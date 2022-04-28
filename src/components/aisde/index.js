@@ -1,31 +1,31 @@
 import React, {useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
-import {getSelectedLocation, resetSelectedLocation} from "../earth/LocationsSlice";
+import {getSelectedAnnot, resetSelectedAnnot} from "app/AnnotsSlice";
 import {getAsideState, toggleAsideAction} from "./AsideSlice";
 
-export function Aisde() {
-    const location = useSelector(getSelectedLocation)
+export function Aside() {
+    const location = useSelector(getSelectedAnnot)
     const open = useSelector(getAsideState)
     const dispath = useDispatch()
 
     function toggleSidebar(state) {
         dispath(toggleAsideAction(state))
-        dispath(resetSelectedLocation())
+        dispath(resetSelectedAnnot())
     }
 
     return (
         <>
-            <button onClick={() => toggleSidebar(true)} className='flex items-center'>
-                <span className='uppercase text-white mr-3 text-[14px]'>Menu</span>
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M4 5.33325H28V7.99992H4V5.33325ZM12 14.6666H28V17.3333H12V14.6666ZM4 23.9999H28V26.6666H4V23.9999Z"
-                        fill="white"/>
-                </svg>
-            </button>
+            {/*<button onClick={() => toggleSidebar(true)} className='flex items-center'>*/}
+            {/*    <span className='uppercase text-white mr-3 text-[14px]'>Menu</span>*/}
+            {/*    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">*/}
+            {/*        <path*/}
+            {/*            d="M4 5.33325H28V7.99992H4V5.33325ZM12 14.6666H28V17.3333H12V14.6666ZM4 23.9999H28V26.6666H4V23.9999Z"*/}
+            {/*            fill="white"/>*/}
+            {/*    </svg>*/}
+            {/*</button>*/}
 
             <aside
-                className={`fixed top-0 right-0 w-[450px] rounded-tl-[16px] h-full bg-[#262728] p-[40px] transition duration-[1s] transform translate-x-[450px] ${open ? 'translate-x-0' : ''}`}>
+                className={`fixed top-0 right-0 w-[450px] rounded-tl-[16px] h-full bg-[#262728] p-[40px] transition duration-[1s] z-[1000] transform translate-x-[450px] ${open ? 'translate-x-0' : ''}`}>
                 <div className="flex items-center text-white">
                     <button className='h-[48px]' onClick={() => toggleSidebar(false)}>
                         <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">

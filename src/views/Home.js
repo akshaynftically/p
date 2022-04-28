@@ -3,9 +3,10 @@ import {useDispatch, useSelector} from 'react-redux'
 import {
   getAnnots,
   getSelectedAnnot,
-  // resetSelectedAnnot,
+  resetSelectedAnnot,
   selectedAnnot,
 } from 'app/AnnotsSlice'
+import {getAsideState, toggleAsideAction} from "app/AsideSlice"
 import '@google/model-viewer'
 
 const Home = () => {
@@ -37,19 +38,28 @@ const Home = () => {
     return xyz.join(' ')
   }
 
-  // function reset() {
-  //   dispatch(resetSelectedAnnot())
-  //   modelViewerRef.current.cameraOrbit = calculateOffset(currentAnnot.default_camera_orbit_position)
-  //   modelViewerRef.current.cameraTarget = '0m 0m 0m'
-  // }
+  function reset() {
+    dispatch(resetSelectedAnnot())
+    modelViewerRef.current.cameraOrbit = calculateOffset(currentAnnot.default_camera_orbit_position)
+    modelViewerRef.current.cameraTarget = '0m 0m 0m'
+  }
 
   function selectAnnot(annot) {
     dispatch(selectedAnnot(annot))
+    annot.brand ? brandAction() : continentAction()
     moveCameraTo(annot)
   }
 
+  function brandAction () {
+    dispatch(toggleAsideAction(true))
+  }
+
+  function continentAction () {
+
+  }
+
   function moveCameraTo(annot) {
-    if (annot.page) {
+    if (!annot.brand) {
       modelViewerRef.current.cameraOrbit = calculateOffset(annot.mount_camera_orbit_position)
       modelViewerRef.current.cameraTarget = annot.camera_orbit_target
       return
@@ -60,7 +70,7 @@ const Home = () => {
 
   return (
     <Fragment>
-      {/*<button className='absolute top-0 left-0 z-[1000]' onClick={reset}>Reset</button>*/}
+      <button className='absolute top-[100px] left-0 z-[1000]' onClick={reset}>Reset</button>
       <div className='flex items-center h-[100vh]'>
         <model-viewer
           bounds='tight'
@@ -90,7 +100,7 @@ const Home = () => {
 
           {annots.map((annot) => (
             <button
-              className={`hotspot ${!annot.page && 'hotspot-brand'}`}
+              className={`hotspot ${annot.brand && 'hotspot-brand'} ${(getAsideState && currentAnnot && annot.id !== currentAnnot.id) && 'transition scale-0'}`}
               key={`hotspot-${annot.id}`}
               slot={`hotspot-${annot.id}`}
               data-position={annot.position}
@@ -100,7 +110,7 @@ const Home = () => {
               onMouseEnter={mouseEnter}
               onMouseLeave={mouseLeave}
             >
-              {!annot.page && (
+              {annot.brand && (
                 <img
                   className='absolute top-0 left-0 transform translate-x-[-20px] translate-y-[-38px] h-[62px] max-w-[48px] w-[48px]'
                   src={annot.brandPinImage}

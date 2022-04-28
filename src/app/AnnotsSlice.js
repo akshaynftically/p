@@ -13,7 +13,7 @@ export const annotsSlice = createSlice({
                 mount_camera_orbit_position: '-2.755139938215447rad 2.424262331020119rad 0.02588959374274817m',
                 default_camera_orbit_position: '3.529055747532537rad 1.0314895879286485rad 0.06614345369711913m',
                 camera_orbit_target: '-0.007398469430484787m 0.01216199411204226m -0.01810417518190218m',
-                page: true,
+                brand: false,
                 brandPinImage: null
             },
             {
@@ -24,7 +24,7 @@ export const annotsSlice = createSlice({
                 mount_camera_orbit_position: '',
                 default_camera_orbit_position: '-2.174489154128482rad 1.2147491593880533rad 0.06457764286903352m',
                 camera_orbit_target: '0m 0m 0m',
-                page: false,
+                brand: true,
                 brandPinImage: '/assets/images/brands-annots/brand-1.png'
             },
             {
@@ -35,7 +35,7 @@ export const annotsSlice = createSlice({
                 mount_camera_orbit_position: '',
                 default_camera_orbit_position: '-1.8834351185629274rad 1.2461650859239513rad 0.06457764286903352m',
                 camera_orbit_target: '0m 0m 0m',
-                page: false,
+                brand: true,
                 brandPinImage: '/assets/images/brands-annots/brand-1.png'
             },
             // {
