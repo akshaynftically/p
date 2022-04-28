@@ -1,24 +1,32 @@
-import {Fragment} from 'react'
-import {BrowserRouter} from 'react-router-dom'
+import {useEffect} from 'react'
+import {useLocation} from 'react-router-dom'
+import clsx from 'clsx'
 
 // Components
 import {HeaderMenu} from 'components/layout/HeaderMenu'
-import {Footer} from 'components/layout/Footer'
+import Footer from 'components/layout/Footer'
 
 // Routing
 import Routes from 'routing/Routes'
 
-const App = (props) => {
-  const {basename} = props
+const App = () => {
+  const location = useLocation()
+
+  useEffect(() => {
+    console.log(location)
+  }, [location])
 
   return (
-    <Fragment>
+    <main
+      className={clsx(
+        {'home-page': location.pathname === '/'},
+        {'inner-page': location.pathname !== '/'}
+      )}
+    >
       <HeaderMenu />
-      <BrowserRouter basename={basename}>
-        <Routes />
-      </BrowserRouter>
+      <Routes />
       <Footer />
-    </Fragment>
+    </main>
   )
 }
 
