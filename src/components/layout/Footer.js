@@ -1,5 +1,3 @@
-import React, {useState} from 'react'
-
 export function Footer () {
     return (
         <div className='absolute w-full left-0 bottom-0'>

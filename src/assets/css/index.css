@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 model-viewer {
-    cursor: grab;
     display: flex;
     align-items: center;
     height: 80vh;
@@ -68,8 +67,18 @@ model-viewer {
     transition: transform 0.3s ease 0s, opacity 0.3s ease 0s;
 }
 
-body {
-    background-image: url("../img/stars.png");
+.bg-stars {
+    background-image: url("assets/images/background/stars.png");
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.text-gradient {
+    background: linear-gradient(to right, #D299FF 30%, #58C3FF 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body {
+    background: #161718;
 }
