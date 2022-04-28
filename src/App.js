@@ -26,9 +26,7 @@ const App = () => {
     >
       <HeaderMenu />
       <Aside />
-      <BrowserRouter basename={basename}>
-        <Routes />
-      </BrowserRouter>
+      <Routes />
       <Footer />
     </main>
   )
