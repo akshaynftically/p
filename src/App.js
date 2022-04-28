@@ -5,6 +5,7 @@ import clsx from 'clsx'
 // Components
 import {HeaderMenu} from 'components/layout/HeaderMenu'
 import Footer from 'components/layout/Footer'
+import {Aside} from 'components/aisde/index'
 
 // Routing
 import Routes from 'routing/Routes'
@@ -24,7 +25,10 @@ const App = () => {
       )}
     >
       <HeaderMenu />
-      <Routes />
+      <Aside />
+      <BrowserRouter basename={basename}>
+        <Routes />
+      </BrowserRouter>
       <Footer />
     </main>
   )

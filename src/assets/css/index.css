@@ -42,14 +42,13 @@ input:not([type="checkbox"]) {
 
 /* Custom */
 model-viewer {
-	cursor: grab;
-	display: flex;
-	align-items: center;
-	height: 80vh;
-	width: 100%;
-	overflow: hidden;
-	position: relative;
-	user-select: none;
+    display: flex;
+    align-items: center;
+    height: 80vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
 }
 
 .hotspot:not(.hotspot-brand) {
@@ -107,6 +106,7 @@ model-viewer {
 	transition: transform 0.3s ease 0s, opacity 0.3s ease 0s;
 }
 
+
 /* React Select */
 .react-select__control .react-select__input {
 	border: 0;
@@ -121,4 +121,20 @@ model-viewer {
 
 .react-select__control .react-select__indicator-separator {
 	display: none;
+}
+
+.bg-stars {
+    background-image: url("assets/images/background/stars.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.text-gradient {
+    background: linear-gradient(to right, #D299FF 30%, #58C3FF 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body {
+    background: #161718;
 }

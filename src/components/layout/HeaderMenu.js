@@ -11,7 +11,7 @@ export function HeaderMenu() {
 
         <div className='hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow ml-auto sm:block sm:w-auto sm:basis-auto sm:order-2'>
           <div className='flex flex-col gap-6 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5'>
-            {/*<Aisde />*/}
+            {/*<Aside />*/}
           </div>
         </div>
       </nav>
