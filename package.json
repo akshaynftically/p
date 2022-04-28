@@ -1,7 +1,15 @@
 {
-  "name": "untitled",
-  "version": "0.1.0",
+  "name": "comearth",
+  "version": "0.1.1",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "prettier --check .",
+    "format": "prettier --write ."
+  },
   "dependencies": {
     "@google/model-viewer": "^1.11.1",
     "@react-three/fiber": "^8.0.12",
@@ -16,17 +24,11 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "devDependencies": {
+    "autoprefixer": "^10.4.4",
+    "postcss": "^8.4.12",
+    "prettier": "^2.6.2",
+    "tailwindcss": "^3.0.24"
   },
   "browserslist": {
     "production": [
@@ -40,9 +42,19 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "autoprefixer": "^10.4.4",
-    "postcss": "^8.4.12",
-    "tailwindcss": "^3.0.24"
-  }
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "eslintIgnore": [
+    "dist/*"
+  ]
 }
