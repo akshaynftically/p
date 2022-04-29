@@ -1,15 +1,17 @@
+import {Fragment} from 'react'
 import clsx from 'clsx'
 
-const FullScreenPopup = (props) => {
-  const {className, children, onClose, ...rest} = props
+const FullScreen = (props) => {
+  const {title, size = 'w-[560px]', className, children, onClose, ...rest} = props
 
   return (
     <div className='fixed top-0 left-0 flex items-center w-full h-full overflow-y-auto z-30'>
       <div className='fixed top-0 bottom-0 left-0 right-0 z-40 bg-black/50' onClick={onClose} />
-      <div className='relative z-50 w-[560px] max-w-full py-[20px] mx-auto'>
+      <div className={clsx('relative z-50  max-w-full py-[20px] mx-auto')}>
         <div
           className={clsx(
-            'relative bg-[#262728] text-white rounded-lg px-[32px] py-[20px] md:py-[30px]',
+            'relative bg-[#262728] text-white rounded-lg px-[24px] py-[20px]',
+            size,
             className
           )}
           {...rest}
@@ -29,6 +31,12 @@ const FullScreenPopup = (props) => {
               />
             </svg>
           </span>
+          {title && (
+            <Fragment>
+              <h2 className='font-extrabold text-[24px] mb-[16px]'>{title}</h2>
+              <hr className='border-[#363738] my-[16px]' />
+            </Fragment>
+          )}
           {children}
         </div>
       </div>
@@ -36,4 +44,4 @@ const FullScreenPopup = (props) => {
   )
 }
 
-export default FullScreenPopup
+export default FullScreen
