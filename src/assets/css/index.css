@@ -144,3 +144,8 @@ model-viewer {
 body {
 	background: #161718;
 }
+
+.border-sq-gradient {
+	border: 1px solid;
+	border-image: linear-gradient(45deg, #D299FF, #58C3FF) 1;
+}
