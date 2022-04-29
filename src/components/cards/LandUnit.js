@@ -1,5 +1,5 @@
 // Components
-import {Simple} from 'components/counters'
+import {SimpleCounter} from 'components/counters'
 
 const LandUnit = (props) => {
   const {title, img, count} = props
@@ -10,7 +10,7 @@ const LandUnit = (props) => {
         <img src={img} alt={title} />
       </div>
       <div className='text-[16px] text-white/[.80] text-center mb-[8px]'>{title}</div>
-      <Simple value={count} />
+      <SimpleCounter value={count} />
     </div>
   )
 }
