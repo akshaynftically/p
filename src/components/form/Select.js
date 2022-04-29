@@ -29,6 +29,7 @@ const customStyles = {
   }),
   menu: (styles) => ({
     ...styles,
+    zIndex: 10,
     background: '#363738',
     borderColor: '#6A6A6A',
     boxShadow: 'inset 0px 2px 4px rgba(0, 0, 0, 0.45)',
