@@ -21,7 +21,7 @@ const Simple = (props) => {
       {href && (
         <Link
           className={clsx(
-            'group items-center justify-center font-semibold font-sans rounded-lg transition ease-in-out',
+            'group items-center justify-center font-semibold font-sans rounded-[4px] transition ease-in-out',
             {'inline-flex': !block},
             {'flex w-full': block},
             {'': size === 'sm'},
@@ -45,7 +45,7 @@ const Simple = (props) => {
       {type && (
         <button
           className={clsx(
-            'group items-center justify-center font-semibold font-sans rounded-lg transition ease-in-out',
+            'group items-center justify-center font-semibold font-sans rounded-[4px] transition ease-in-out',
             {'inline-flex': !block},
             {'flex w-full': block},
             {'': size === 'sm'},
