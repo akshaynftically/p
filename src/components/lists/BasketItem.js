@@ -1,4 +1,4 @@
-const BasketListItem = (props) => {
+const BasketItem = (props) => {
   const {qty, type, perItemPrice} = props
 
   return (
@@ -6,8 +6,8 @@ const BasketListItem = (props) => {
       <div className='text-white/[.80]'>
         {qty} units - {type} land
       </div>
-      <div className='text-white ml-auto'>
-        <span className=''>
+      <div className='flex items-center text-white ml-auto'>
+        <span className='mr-[5px]'>
           <svg
             width='17'
             height='15'
@@ -27,4 +27,4 @@ const BasketListItem = (props) => {
   )
 }
 
-export default BasketListItem
+export default BasketItem

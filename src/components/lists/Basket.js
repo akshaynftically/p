@@ -1,9 +1,9 @@
 import {Fragment} from 'react'
 
 // Components
-import BasketListItem from './BasketListItem'
+import BasketListItem from './BasketItem'
 
-const BasketList = (props) => {
+const Basket = (props) => {
   const {items} = props
 
   return (
@@ -15,4 +15,4 @@ const BasketList = (props) => {
   )
 }
 
-export default BasketList
+export default Basket

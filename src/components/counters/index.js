@@ -1,3 +1,3 @@
-import Simple from './Simple'
+import SimpleCounter from './Simple'
 
-export {Simple}
+export {SimpleCounter}
