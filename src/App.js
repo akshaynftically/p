@@ -1,4 +1,3 @@
-import {useEffect} from 'react'
 import {useLocation} from 'react-router-dom'
 import clsx from 'clsx'
 
@@ -12,10 +11,6 @@ import Routes from 'routing/Routes'
 
 const App = () => {
   const location = useLocation()
-
-  useEffect(() => {
-    console.log(location)
-  }, [location])
 
   return (
     <main
