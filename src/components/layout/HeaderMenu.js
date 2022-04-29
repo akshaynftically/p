@@ -4,7 +4,7 @@ import logo from 'assets/img/logo.svg'
 export function HeaderMenu() {
   return (
     <header className='absolute w-full top-0 left-0 py-10 z-20'>
-      <nav className='max-w-[105rem] flex flex-wrap basis-full items-center w-full mx-auto px-4 sm:px-6 lg:px-8'>
+      <nav className='sm:max-w-[90rem] 2xl:max-w-[105rem] flex flex-wrap basis-full items-center w-full mx-auto px-4 sm:px-6 lg:px-8'>
         <a className='flex-none' href='/'>
           <img src={logo} alt='logo' />
         </a>

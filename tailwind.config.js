@@ -4,11 +4,15 @@ module.exports = {
     fontFamily: {
       sans: ['Manrope', 'sans-serif'],
     },
-    extend: {
-      screens: {
-        '3xl': '2000px',
-      },
-    },
+    screens: {
+      '3xl': '2000px',
+      'xs': '300px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px'
+    }
   },
   plugins: [],
 }
