@@ -1,4 +1,4 @@
-import {Fragment, useState} from 'react'
+import {Fragment, useEffect, useState} from 'react'
 
 // Components
 import {SimpleButton, PillButton} from 'components/buttons'
@@ -11,6 +11,8 @@ import LandUnits from './sections/LandUnits'
 
 // Modals
 import ConnectYourWallet from 'modals/ConnectYourWallet'
+import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet'
+import {useSearchParams} from "react-router-dom";
 
 const _selectIndustryOptions = [
   {value: 'Ecommerce', label: 'Ecommerce'},
@@ -46,11 +48,26 @@ const _basket = [
 ]
 
 const ReserveLand = () => {
+  const queryParams = new URLSearchParams(window.location.search)
+  const [name, setName] = useState(queryParams.get('name') || '')
+  const [email, setEmail] = useState(queryParams.get('email') || '')
+  const [company, setCompany] = useState(queryParams.get('company') || '')
   const [selectIndustry, setSelectIndustry] = useState(_selectIndustryOptions[0])
   const [selectCountry, setSelectCountry] = useState(null)
   const [selectToken, setSelectToken] = useState(_selectTokenOptions[0])
   const [areYouRepresenting, setAreYouRepresenting] = useState('individual')
   const [isOpenedConnectYourWallet, setIsOpenedConnectYourWallet] = useState(false)
+  const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
+
+  useEffect(() => {
+    if (queryParams.get('industry')) {
+      setSelectIndustry(queryParams.get('industry'))
+    }
+
+    if (queryParams.get('country')) {
+      setSelectCountry(queryParams.get('country'))
+    }
+  })
 
   // Handlers
   const handleChangeAreYouRepresenting = (val) => {
@@ -58,6 +75,13 @@ const ReserveLand = () => {
   }
   const handleToggleConnectYourWallet = () => {
     setIsOpenedConnectYourWallet(!isOpenedConnectYourWallet)
+  }
+  const handleProgressWallet = () => {
+    setIsOpenedProgressWallet(!isOpenedProgressWallet)
+  }
+  const handleSelectConnectYourWallet = () => {
+    setIsOpenedConnectYourWallet(false)
+    setTimeout(() => setIsOpenedProgressWallet(true))
   }
 
   return (
@@ -85,10 +109,10 @@ const ReserveLand = () => {
             <hr className='border-[#363738] my-[16px]' />
 
             <FieldGroup label='Name'>
-              <Field placeholder='Enter Your Full Name Here' />
+              <Field value={name} onChange={setName} placeholder='Enter Your Full Name Here' />
             </FieldGroup>
             <FieldGroup label='Email Address'>
-              <Field type='email' placeholder='Enter Your Email Address Here' />
+              <Field value={email} onChange={setEmail} type='email' placeholder='Enter Your Email Address Here' />
             </FieldGroup>
             <FieldGroup label='Select Industry'>
               <Select
@@ -122,7 +146,7 @@ const ReserveLand = () => {
               </div>
             </FieldGroup>
             <FieldGroup label='Company Name'>
-              <Field placeholder='Enter Your Company or Brand Name Here' />
+              <Field value={company} onChange={setCompany} placeholder='Enter Your Company or Brand Name Here' />
             </FieldGroup>
             <FieldGroup label='Select Country' className='md:mb-[40px]'>
               <Select
@@ -195,7 +219,8 @@ const ReserveLand = () => {
         </div>
       </div>
 
-      {isOpenedConnectYourWallet && <ConnectYourWallet onClose={handleToggleConnectYourWallet} />}
+      {isOpenedConnectYourWallet && <ConnectYourWallet onSelect={handleSelectConnectYourWallet} onClose={handleToggleConnectYourWallet} />}
+      {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} />}
     </Fragment>
   )
 }

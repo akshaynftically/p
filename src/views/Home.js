@@ -7,7 +7,7 @@ import {
 } from 'app/AnnotsSlice'
 import {getAsideState, toggleAsideAction} from "app/AsideSlice"
 import '@google/model-viewer'
-import {Route, Routes, useNavigate, Outlet} from 'react-router-dom';
+import {useNavigate, Outlet} from 'react-router-dom';
 import _preloadGlobe from 'assets/img/preloader.png'
 
 const Home = () => {
@@ -81,6 +81,9 @@ const Home = () => {
         modelViewerRef.current.cameraOrbit = calculateOffset(annot.default_camera_orbit_position)
     }
 
+    // min-camera-orbit='auto 45deg auto'
+    // max-camera-orbit='auto 135deg auto'
+
     return (
         <Fragment>
             <div className='bg-stars flex items-center h-[100vh]'>
@@ -95,8 +98,6 @@ const Home = () => {
                     environment-image='neutral'
                     poster='poster.webp'
                     orbit-sensitivity={0.4}
-                    min-camera-orbit='auto 45deg auto'
-                    max-camera-orbit='auto 135deg auto'
                     auto-rotate
                     auto-rotate-delay={0}
                     ref={(ref) => {
