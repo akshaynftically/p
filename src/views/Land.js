@@ -25,13 +25,12 @@ import _map from 'assets/images/background/map.png'
 import _sqTop from 'assets/img/land-units/square-top.svg'
 import _sqBottom from 'assets/img/land-units/square-bottom.svg'
 
-
-
-import FullScreenPopup from 'components/popups/FullScreenPopup'
+import FullScreenPopup from 'components/popups/FullScreen'
 import FieldGroup from "../components/form/FieldGroup";
 import Field from "../components/form/Field";
 import Select from "../components/form/Select";
 import {SimpleButton} from "../components/buttons";
+import axios from "axios";
 
 const BackButton = ({back, className}) => {
     return (
@@ -70,6 +69,11 @@ const Land = (props) => {
     const [enterYourDetailsIsOpened, setEnterYourDetailsIsOpened] = useState(false)
     const [selectIndustry, setSelectIndustry] = useState(_selectIndustryOptions[0])
     const [selectCountry, setSelectCountry] = useState(null)
+
+    axios.get('https://e35df215-1476-4ed0-9a7b-a9053666b26c.mock.pstmn.io/metaverse/comearth')
+        .then(data => {
+            console.log(data)
+        })
 
     useEffect(() => {
         setAnimate(true)
@@ -116,34 +120,38 @@ const Land = (props) => {
                     <h2 className='font-extrabold text-[24px] mb-[16px]'>Enter Your Details</h2>
                     <hr className='border-[#363738] my-[16px]' />
 
-                    <FieldGroup label='Name'>
-                        <Field placeholder='Enter Your Full Name Here' />
-                    </FieldGroup>
-                    <FieldGroup label='Email Address'>
-                        <Field type='email' placeholder='Enter Your Email Address Here' />
-                    </FieldGroup>
-                    <FieldGroup label='Select Industry'>
-                        <Select
-                            defaultValue={selectIndustry}
-                            options={_selectIndustryOptions}
-                            onChange={setSelectIndustry}
-                        />
-                    </FieldGroup>
-                    <FieldGroup label='Company Name'>
-                        <Field placeholder='Enter Your Company or Brand Name Here' />
-                    </FieldGroup>
-                    <FieldGroup label='Select Country' className='md:mb-[40px]'>
-                        <Select
-                            defaultValue={selectCountry}
-                            options={_selectCountryOptions}
-                            placeholder='Please Select Country'
-                            onChange={setSelectCountry}
-                        />
-                    </FieldGroup>
+                    <form action="/reserve-land">
+                        <FieldGroup label='Name'>
+                            <Field name='name' placeholder='Enter Your Full Name Here' />
+                        </FieldGroup>
+                        <FieldGroup label='Email Address'>
+                            <Field name='email' type='email' placeholder='Enter Your Email Address Here' />
+                        </FieldGroup>
+                        <FieldGroup label='Select Industry'>
+                            <Select
+                                name='industry'
+                                defaultValue={selectIndustry}
+                                options={_selectIndustryOptions}
+                                onChange={setSelectIndustry}
+                            />
+                        </FieldGroup>
+                        <FieldGroup label='Company Name'>
+                            <Field name='company' placeholder='Enter Your Company or Brand Name Here' />
+                        </FieldGroup>
+                        <FieldGroup label='Select Country' className='md:mb-[40px]'>
+                            <Select
+                                name='country'
+                                defaultValue={selectCountry}
+                                options={_selectCountryOptions}
+                                placeholder='Please Select Country'
+                                onChange={setSelectCountry}
+                            />
+                        </FieldGroup>
 
-                    <SimpleButton type='button' block>
-                        Reserve Land Now
-                    </SimpleButton>
+                        <SimpleButton type='submit' block>
+                            Reserve Land Now
+                        </SimpleButton>
+                    </form>
                 </FullScreenPopup>
             )}
 
@@ -216,7 +224,7 @@ const Land = (props) => {
 
                             <p className='text-[20px] mb-[28px]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
 
-                            <button className='bg-[#3F99FF] py-[14px] block w-full text-center shadow rounded-[4px]'>Reserve Land Now</button>
+                            <button onClick={handleToggleEnterYourDetails} className='bg-[#3F99FF] py-[14px] block w-full text-center shadow rounded-[4px]'>Reserve Land Now</button>
                         </div>
                     </div>
                 </div>
@@ -237,7 +245,7 @@ const Land = (props) => {
                                 <h4 className='text-white text-[36px] font-bold mb-[24px]'>Ut enim ad minim</h4>
                                 <p className='text-[#ffffff]/80 mb-[20px]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                                 <p className='text-[#ffffff]/80 mb-[24px]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-                                <button className='bg-[#3F99FF] py-[14px] px-[20px] text-white shadow rounded-[4px] mb-[50px]'>Reserve Land Now</button>
+                                <button onClick={handleToggleEnterYourDetails} className='bg-[#3F99FF] py-[14px] px-[20px] text-white shadow rounded-[4px] mb-[50px]'>Reserve Land Now</button>
                             </div>
                         </div>
 
@@ -352,7 +360,7 @@ const Land = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <button className='bg-[#3F99FF] py-[14px] px-[20px] text-white shadow rounded-[4px] mb-[50px]'>Reserve Land Now</button>
+                                <button onClick={handleToggleEnterYourDetails} className='bg-[#3F99FF] py-[14px] px-[20px] text-white shadow rounded-[4px] mb-[50px]'>Reserve Land Now</button>
                             </div>
                         </div>
 
@@ -440,7 +448,7 @@ const Land = (props) => {
                             <p className='text-white/80 text-[14px] max-w-[890px]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                         </div>
                         <div className="text-center">
-                            <button className='bg-[#3F99FF] py-[14px] px-[20px] text-white shadow rounded-[4px] mb-[50px]'>Reserve Land Now</button>
+                            <button onClick={handleToggleEnterYourDetails} className='bg-[#3F99FF] py-[14px] px-[20px] text-white shadow rounded-[4px] mb-[50px]'>Reserve Land Now</button>
                         </div>
                     </div>
 
@@ -498,7 +506,7 @@ const Land = (props) => {
                     </div>
 
                     <div className="text-center">
-                        <button className='bg-[#3F99FF] py-[14px] px-[20px] text-white shadow rounded-[4px] mb-[50px]'>Reserve Land Now</button>
+                        <button onClick={handleToggleEnterYourDetails} className='bg-[#3F99FF] py-[14px] px-[20px] text-white shadow rounded-[4px] mb-[50px]'>Reserve Land Now</button>
                         <div className="block"></div>
                         <BackButton className='bg-[#363738]' back={back}/>
                     </div>

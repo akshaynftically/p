@@ -1,8 +1,8 @@
 const WalletItem = (props) => {
-  const {title, icon} = props
+  const {title, icon, onClick} = props
 
   return (
-    <div className='flex items-center border-solid border-b-[1px] border-b-white/[.15] py-[10px] px-[20px]'>
+    <div className='cursor-pointer hover:opacity-80 transition flex items-center border-solid border-b-[1px] border-b-white/[.15] py-[10px] px-[20px]' onClick={onClick}>
       {icon && (
         <span className='flex items-center justify-end w-[45px] h-[40px] text-right mr-[20px]'>
           <img className='max-h-full' src={icon} alt={title} />

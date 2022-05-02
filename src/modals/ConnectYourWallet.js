@@ -33,7 +33,7 @@ const _tokens = [
   },
 ]
 
-const ConnectYourWallet = ({onClose}) => {
+const ConnectYourWallet = ({onClose, onSelect}) => {
   return (
     <FullScreenPopup title='Connect Your Wallet' size='w-[520px]' onClose={onClose}>
       <div className='text-[14px] text-white/[.80] mb-[24px]'>
@@ -51,7 +51,7 @@ const ConnectYourWallet = ({onClose}) => {
       <div className='bg-[#363738] rounded-lg mb-[18px]'>
         <div>
           {_tokens.map((el) => (
-            <WalletListItem key={el.id} title={el.title} {...el} />
+            <WalletListItem key={el.id} title={el.title} {...el} onClick={onSelect} />
           ))}
         </div>
         <div className='flex items-center justify-center min-h-[54px] py-[10px] px-[20px]'>
