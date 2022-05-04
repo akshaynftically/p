@@ -1,48 +1,5 @@
 import ReactSelect, {components} from 'react-select'
 
-const customStyles = {
-  valueContainer: (styles) => ({
-    ...styles,
-    padding: '0 20px',
-  }),
-  control: (styles) => ({
-    ...styles,
-    minHeight: 44,
-    background: '#363738',
-    borderColor: '#6A6A6A',
-    boxShadow: 'inset 0px 2px 4px rgba(0, 0, 0, 0.45)',
-  }),
-  input: (styles) => ({
-    ...styles,
-    color: 'rgba(255, 255, 255, 0.65)',
-    fontSize: '14px',
-  }),
-  placeholder: (styles) => ({
-    ...styles,
-    color: '#ffffff',
-    fontSize: '14px',
-  }),
-  singleValue: (styles) => ({
-    ...styles,
-    color: '#ffffff',
-    fontSize: '14px',
-  }),
-  menu: (styles) => ({
-    ...styles,
-    zIndex: 10,
-    background: '#363738',
-    borderColor: '#6A6A6A',
-    boxShadow: 'inset 0px 2px 4px rgba(0, 0, 0, 0.45)',
-  }),
-  option: (styles, state) => ({
-    ...styles,
-    color: '#ffffff',
-    fontSize: '14px',
-    background: state.isSelected ? '#3F99FF' : state.isFocused ? '#262728' : 'transparent',
-    padding: '10px 20px',
-  }),
-}
-
 const DropdownIndicator = (props) => {
   return (
     <components.DropdownIndicator {...props}>
@@ -54,7 +11,50 @@ const DropdownIndicator = (props) => {
 }
 
 const Select = (props) => {
-  const {...rest} = props
+  const {isError, ...rest} = props
+
+  const customStyles = {
+    valueContainer: (styles) => ({
+      ...styles,
+      padding: '0 20px',
+    }),
+    control: (styles) => ({
+      ...styles,
+      minHeight: 44,
+      background: '#363738',
+      borderColor: isError ? 'rgb(248 113 113)' : '#6A6A6A',
+      boxShadow: 'inset 0px 2px 4px rgba(0, 0, 0, 0.45)',
+    }),
+    input: (styles) => ({
+      ...styles,
+      color: 'rgba(255, 255, 255, 0.65)',
+      fontSize: '14px',
+    }),
+    placeholder: (styles) => ({
+      ...styles,
+      color: '#ffffff',
+      fontSize: '14px',
+    }),
+    singleValue: (styles) => ({
+      ...styles,
+      color: '#ffffff',
+      fontSize: '14px',
+    }),
+    menu: (styles) => ({
+      ...styles,
+      zIndex: 10,
+      background: '#363738',
+      borderColor: '#6A6A6A',
+      boxShadow: 'inset 0px 2px 4px rgba(0, 0, 0, 0.45)',
+    }),
+    option: (styles, state) => ({
+      ...styles,
+      color: '#ffffff',
+      fontSize: '14px',
+      background: state.isSelected ? '#3F99FF' : state.isFocused ? '#262728' : 'transparent',
+      padding: '10px 20px',
+    }),
+  }
 
   return (
     <ReactSelect

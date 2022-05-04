@@ -8,47 +8,9 @@ import 'swiper/css/navigation'
 // Components
 import LandUnit from 'components/cards/LandUnit'
 
-// Mocks
-import _landUnit1Img from 'assets/img/land-units/1.svg'
-import _landUnit2Img from 'assets/img/land-units/2.svg'
-import _landUnit3Img from 'assets/img/land-units/3.svg'
+const LandUnits = (props) => {
+  const {basket, setBasket,} = props
 
-const _landUnits = [
-  {
-    id: '1001',
-    title: '32x32',
-    img: _landUnit1Img,
-  },
-  {
-    id: '1002',
-    title: '16x16',
-    img: _landUnit2Img,
-    count: 2,
-  },
-  {
-    id: '1003',
-    title: '8x8',
-    img: _landUnit3Img,
-    count: 1,
-  },
-  {
-    id: '1004',
-    title: '4x4',
-    img: _landUnit1Img,
-  },
-  {
-    id: '1005',
-    title: '2x2',
-    img: _landUnit2Img,
-  },
-  {
-    id: '1006',
-    title: '1x1',
-    img: _landUnit3Img,
-  },
-]
-
-const LandUnits = () => {
   const settings = {
     spaceBetween: 12,
     slidesPerView: 3.4,
@@ -56,11 +18,16 @@ const LandUnits = () => {
     navigation: true,
   }
 
+  function onChange (qty, index) {
+    basket[index].qty = qty
+    setBasket([...basket])
+  }
+
   return (
     <Swiper {...settings} className='mb-[34px]'>
-      {_landUnits.map((el) => (
+      {props.basket.map((el, index) => (
         <SwiperSlide key={el.id}>
-          <LandUnit {...el} />
+          <LandUnit {...el} index={index} onChange={qty => onChange(qty, index)} />
         </SwiperSlide>
       ))}
     </Swiper>
