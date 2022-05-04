@@ -1,4 +1,5 @@
 import {Fragment, useEffect, useState} from 'react'
+import { ethers } from "ethers";
 
 // Components
 import {SimpleButton, PillButton} from 'components/buttons'
@@ -89,6 +90,7 @@ const ReserveLand = () => {
   const [areYouRepresenting, setAreYouRepresenting] = useState('individual')
   const [isOpenedConnectYourWallet, setIsOpenedConnectYourWallet] = useState(false)
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
+  const [provider, setProvider] = useState(null)
 
   useEffect(() => {
     if (transactionForm) {
@@ -116,6 +118,9 @@ const ReserveLand = () => {
     }
 
     setValue('industry', _selectIndustryOptions[0])
+    
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    setProvider(provider)
   }, [])
 
   const getTotal = () => {
@@ -138,15 +143,16 @@ const ReserveLand = () => {
     setIsOpenedProgressWallet(!isOpenedProgressWallet)
   }
   const handleSelectConnectYourWallet = () => {
-    setIsOpenedConnectYourWallet(false)
-    setTimeout(() => setIsOpenedProgressWallet(true))
+    setIsOpenedConnectYourWallet(true)
+    // setIsOpenedConnectYourWallet(false)
+    // setTimeout(() => setIsOpenedProgressWallet(true))
   }
   const onSubmit = (data) => {
     dispatch(setTransactionForm({...data, basket, discountCode}))
     handleSelectConnectYourWallet()
-    setTimeout(() => {
-      navigate('/success')
-    }, 2000)
+    // setTimeout(() => {
+    //   navigate('/success')
+    // }, 2000)
   }
 
   return (
@@ -288,7 +294,7 @@ const ReserveLand = () => {
         </form>
       </div>
 
-      {isOpenedConnectYourWallet && <ConnectYourWallet onSelect={handleSelectConnectYourWallet} onClose={handleToggleConnectYourWallet} />}
+      {isOpenedConnectYourWallet && <ConnectYourWallet onSelect={handleSelectConnectYourWallet} onClose={handleToggleConnectYourWallet} provider={provider} />}
       {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} />}
     </Fragment>
   )
