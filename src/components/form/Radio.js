@@ -2,7 +2,7 @@ const Radio = (props) => {
   const {children, checked = false, ...rest} = props
 
   return (
-    <label className='inline-flex items-center cursor-pointer fs-[14px] text-white'>
+    <label className='inline-flex items-center cursor-pointer fs-[14px] text-white mb-4'>
       <input className='hidden' type='radio' {...rest} />
       <span className='mr-[16px]'>
         {!checked && (

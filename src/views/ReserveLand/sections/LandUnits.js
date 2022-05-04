@@ -13,9 +13,22 @@ const LandUnits = (props) => {
 
   const settings = {
     spaceBetween: 12,
-    slidesPerView: 3.4,
     modules: [Navigation],
     navigation: true,
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      648: {
+        slidesPerView: 3.4,
+      },
+      1031: {
+        slidesPerView: 2
+      },
+      1300: {
+        slidesPerView: 3.4
+      }
+    }
   }
 
   function onChange (qty, index) {

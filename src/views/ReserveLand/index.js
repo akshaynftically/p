@@ -42,7 +42,9 @@ const _selectTokenOptions = [
 const ReserveLand = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { register, control, setValue, handleSubmit, formState: { errors } } = useForm()
+  const { register, control, setValue, getValues, handleSubmit, formState: { errors } } = useForm({
+    mode: 'onChange'
+  })
   const transactionForm = useSelector(getTransactionForm)
   const [basket, setBasket] = useState([
     {
@@ -118,6 +120,10 @@ const ReserveLand = () => {
     setValue('industry', _selectIndustryOptions[0])
   }, [])
 
+  useEffect(() => {
+    dispatch(setTransactionForm({...getValues(), basket, discountCode}))
+  }, [basket, discountCode])
+
   const getTotal = () => {
     let total = basket.reduce((sum, cur) => {
       return sum += cur.perItemPrice * cur.qty
@@ -149,11 +155,15 @@ const ReserveLand = () => {
     }, 2000)
   }
 
+
+  function lol () {
+    console.log(1)
+  }
   return (
     <Fragment>
-      <div className='py-[120px] px-[80px] text-white'>
+      <div className='py-[120px] px-10 lg:px-[80px] text-white'>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className='grid md:grid-cols-2 md:gap-x-[7.5rem]'>
+          <div className='lg:grid md:grid-cols-2 md:gap-x-[7.5rem]'>
               <div>
                 <div className='mb-[14px] lg:mb-[50px]'>
                   <PillButton className='md:pr-[30px]' href='/'>
