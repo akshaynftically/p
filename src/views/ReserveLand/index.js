@@ -13,14 +13,10 @@ import LandUnits from './sections/LandUnits'
 // Modals
 import ConnectYourWallet from 'modals/ConnectYourWallet'
 import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet'
-import {useNavigate, useSearchParams} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {getTransactionForm, setTransactionForm} from "../../app/TransactionFormSlice";
-import {Controller, useForm} from "react-hook-form";
-import log from "tailwindcss/lib/util/log";
-import _landUnit1Img from "../../assets/img/land-units/1.svg";
-import _landUnit2Img from "../../assets/img/land-units/2.svg";
-import _landUnit3Img from "../../assets/img/land-units/3.svg";
+import {useNavigate} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
+import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
+import {Controller, useForm} from 'react-hook-form'
 
 const _selectIndustryOptions = [
   {value: 'Ecommerce', label: 'Ecommerce'},
@@ -43,7 +39,9 @@ const _selectTokenOptions = [
 const ReserveLand = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { register, control, setValue, handleSubmit, formState: { errors } } = useForm()
+  const { register, control, setValue, getValues, handleSubmit, formState: { errors } } = useForm({
+    mode: 'onChange'
+  })
   const transactionForm = useSelector(getTransactionForm)
   const [basket, setBasket] = useState([
     {
@@ -124,6 +122,10 @@ const ReserveLand = () => {
     setProvider(provider)
   }, [])
 
+  useEffect(() => {
+    dispatch(setTransactionForm({...getValues(), basket, discountCode}))
+  }, [basket, discountCode])
+
   const getTotal = () => {
     let total = basket.reduce((sum, cur) => {
       return sum += cur.perItemPrice * cur.qty
@@ -168,11 +170,15 @@ const ReserveLand = () => {
     // }, 2000)
   }
 
+
+  function lol () {
+    console.log(1)
+  }
   return (
     <Fragment>
-      <div className='py-[120px] px-[80px] text-white'>
+      <div className='py-[120px] px-10 lg:px-[80px] text-white'>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className='grid md:grid-cols-2 md:gap-x-[7.5rem]'>
+          <div className='lg:grid md:grid-cols-2 md:gap-x-[7.5rem]'>
               <div>
                 <div className='mb-[14px] lg:mb-[50px]'>
                   <PillButton className='md:pr-[30px]' href='/'>
