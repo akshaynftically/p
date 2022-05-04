@@ -13,6 +13,7 @@ const Simple = (props) => {
     href,
     type,
     children,
+    disabled,
     ...rest
   } = props
 
@@ -48,18 +49,21 @@ const Simple = (props) => {
             'group items-center justify-center font-semibold font-sans rounded-[4px] transition ease-in-out',
             {'inline-flex': !block},
             {'flex w-full': block},
+            {'opacity-70': disabled},
             {'': size === 'sm'},
             {
               'min-h-[52px] text-[14px] md:text-[16px] py-[5px] md:py-[10px] px-[15px]':
                 size === 'md',
             },
             {'': size === 'lg'},
-            {'text-white bg-[#3F99FF] hover:bg-[#7A3FE4]': variant === 'primary'},
+            {'text-white bg-[#3F99FF]': variant === 'primary'},
+            {'hover:bg-[#7A3FE4]': !disabled},
             {'': variant === 'secondary'},
             {'': variant === 'danger'},
             {'': variant === 'warning'},
             className
           )}
+          disabled={disabled}
           type={type}
           {...rest}
         >

@@ -31,6 +31,8 @@ import Field from "../components/form/Field";
 import Select from "../components/form/Select";
 import {SimpleButton} from "../components/buttons";
 import axios from "axios";
+import {useForm, Controller} from "react-hook-form";
+import {setTransactionForm} from "../app/TransactionFormSlice";
 
 const BackButton = ({back, className}) => {
     return (
@@ -60,6 +62,7 @@ const _selectCountryOptions = [
 ]
 
 const Land = (props) => {
+    const { register, control, handleSubmit, formState: { errors } } = useForm()
     const [animate, setAnimate] = useState(false)
     const navigate = useNavigate()
     const [reset] = useOutletContext()
@@ -69,11 +72,15 @@ const Land = (props) => {
     const [enterYourDetailsIsOpened, setEnterYourDetailsIsOpened] = useState(false)
     const [selectIndustry, setSelectIndustry] = useState(_selectIndustryOptions[0])
     const [selectCountry, setSelectCountry] = useState(null)
+    const onSubmit = data => {
+        dispatch(setTransactionForm(data))
+        navigate('/reserve-land')
+    }
 
-    axios.get('https://e35df215-1476-4ed0-9a7b-a9053666b26c.mock.pstmn.io/metaverse/comearth')
-        .then(data => {
-            console.log(data)
-        })
+    // axios.get('https://e35df215-1476-4ed0-9a7b-a9053666b26c.mock.pstmn.io/metaverse/comearth')
+    //     .then(data => {
+    //         console.log(data)
+    //     })
 
     useEffect(() => {
         setAnimate(true)
@@ -113,6 +120,7 @@ const Land = (props) => {
         setEnterYourDetailsIsOpened(!enterYourDetailsIsOpened)
     }
 
+    console.log(errors);
     return (
         <Fragment>
             {enterYourDetailsIsOpened && (
@@ -120,12 +128,22 @@ const Land = (props) => {
                     <h2 className='font-extrabold text-[24px] mb-[16px]'>Enter Your Details</h2>
                     <hr className='border-[#363738] my-[16px]' />
 
-                    <form action="/reserve-land">
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <FieldGroup label='Name'>
-                            <Field name='name' placeholder='Enter Your Full Name Here' />
+                            <Field isError={errors.name}
+                                   register={register("name", { required: true})}
+                                   placeholder='Enter Your Full Name Here' />
+                            <small className='text-red-400'>{errors.name?.type === 'required' && "Name is required"}</small>
                         </FieldGroup>
-                        <FieldGroup label='Email Address'>
-                            <Field name='email' type='email' placeholder='Enter Your Email Address Here' />
+                        <FieldGroup label='Email ID'>
+                            <Field isError={errors.email}
+                                   register={register("email", { required: true, pattern: /^\S+@\S+$/i })}
+                                   type='email'
+                                   placeholder='Enter Your Email Address Here' />
+                            <small className='text-red-400'>
+                                {errors.email?.type === 'required' && "Email is required"}
+                                {errors.email?.type === 'pattern' && "Email is invalid"}
+                            </small>
                         </FieldGroup>
                         <FieldGroup label='Select Industry'>
                             <Select
@@ -136,16 +154,28 @@ const Land = (props) => {
                             />
                         </FieldGroup>
                         <FieldGroup label='Company Name'>
-                            <Field name='company' placeholder='Enter Your Company or Brand Name Here' />
+                            <Field isError={errors.company}
+                                   register={register("company", { required: true })}
+                                   placeholder='Enter Your Company or Brand Name Here' />
+                            <small className='text-red-400'>{errors.company?.type === 'required' && "Company is required"}</small>
                         </FieldGroup>
+
                         <FieldGroup label='Select Country' className='md:mb-[40px]'>
-                            <Select
+                            <Controller
                                 name='country'
-                                defaultValue={selectCountry}
-                                options={_selectCountryOptions}
-                                placeholder='Please Select Country'
+                                control={control}
                                 onChange={setSelectCountry}
+                                rules={{ required: true }}
+                                render={({ field }) => <Select
+                                        {...field}
+                                        isError={errors.country}
+                                        defaultValue={selectCountry}
+                                        options={_selectCountryOptions}
+                                        placeholder='Please Select Country'
+                                    />}
                             />
+
+                            <small className='text-red-400'>{errors.country?.type === 'required' && "Country is required"}</small>
                         </FieldGroup>
 
                         <SimpleButton type='submit' block>
@@ -181,7 +211,7 @@ const Land = (props) => {
                         onClick={scrollToStart}
                 >
                     <svg className='animate-[bounce_2.5s_ease-in-out_infinite]' width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="32" cy="32" r="30" fill="black" fill-opacity="0.1" stroke="white" stroke-width="3"/>
+                        <circle cx="32" cy="32" r="30" fill="black" fillOpacity="0.1" stroke="white" stroke-width="3"/>
                         <path d="M20 29L32 41L44 29" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
@@ -262,8 +292,8 @@ const Land = (props) => {
                                                 <path d="M18 16.5C19.9891 16.5 21.8968 17.2902 23.3033 18.6967C24.7098 20.1032 25.5 22.0109 25.5 24V33H10.5V24C10.5 22.0109 11.2902 20.1032 12.6967 18.6967C14.1032 17.2902 16.0109 16.5 18 16.5ZM7.932 21.009C7.69329 21.8142 7.55227 22.6451 7.512 23.484L7.5 24V33H3V26.25C2.9997 24.9564 3.47704 23.7082 4.34045 22.7448C5.20386 21.7815 6.39255 21.1708 7.6785 21.03L7.9335 21.009H7.932ZM28.068 21.009C29.4029 21.0904 30.6564 21.6779 31.5729 22.6519C32.4894 23.6258 32.9998 24.9127 33 26.25V33H28.5V24C28.5 22.9605 28.35 21.957 28.068 21.009ZM8.25 12C9.24456 12 10.1984 12.3951 10.9017 13.0984C11.6049 13.8016 12 14.7554 12 15.75C12 16.7446 11.6049 17.6984 10.9017 18.4017C10.1984 19.1049 9.24456 19.5 8.25 19.5C7.25544 19.5 6.30161 19.1049 5.59835 18.4017C4.89509 17.6984 4.5 16.7446 4.5 15.75C4.5 14.7554 4.89509 13.8016 5.59835 13.0984C6.30161 12.3951 7.25544 12 8.25 12ZM27.75 12C28.7446 12 29.6984 12.3951 30.4017 13.0984C31.1049 13.8016 31.5 14.7554 31.5 15.75C31.5 16.7446 31.1049 17.6984 30.4017 18.4017C29.6984 19.1049 28.7446 19.5 27.75 19.5C26.7554 19.5 25.8016 19.1049 25.0984 18.4017C24.3951 17.6984 24 16.7446 24 15.75C24 14.7554 24.3951 13.8016 25.0984 13.0984C25.8016 12.3951 26.7554 12 27.75 12ZM18 3C19.5913 3 21.1174 3.63214 22.2426 4.75736C23.3679 5.88258 24 7.4087 24 9C24 10.5913 23.3679 12.1174 22.2426 13.2426C21.1174 14.3679 19.5913 15 18 15C16.4087 15 14.8826 14.3679 13.7574 13.2426C12.6321 12.1174 12 10.5913 12 9C12 7.4087 12.6321 5.88258 13.7574 4.75736C14.8826 3.63214 16.4087 3 18 3Z" fill="url(#paint0_linear_133_257)"/>
                                                 <defs>
                                                     <linearGradient id="paint0_linear_133_257" x1="3" y1="18" x2="33" y2="18" gradientUnits="userSpaceOnUse">
-                                                        <stop stop-color="#D299FF"/>
-                                                        <stop offset="1" stop-color="#58C3FF"/>
+                                                        <stop stopColor="#D299FF"/>
+                                                        <stop offset="1" stopColor="#58C3FF"/>
                                                     </linearGradient>
                                                 </defs>
                                             </svg>
@@ -279,8 +309,8 @@ const Land = (props) => {
                                                 <path d="M11.085 24.8087C9.00218 23.3399 7.4411 21.2461 6.62793 18.8307C5.81476 16.4153 5.79173 13.8037 6.56218 11.3744C7.33263 8.94498 8.85653 6.82399 10.9131 5.31869C12.9697 3.81339 15.4521 3.00195 18.0007 3.00195C20.5493 3.00195 23.0318 3.81339 25.0884 5.31869C27.1449 6.82399 28.6688 8.94498 29.4393 11.3744C30.2097 13.8037 30.1867 16.4153 29.3735 18.8307C28.5604 21.2461 26.9993 23.3399 24.9165 24.8087L28.041 31.9487C28.0912 32.063 28.112 32.188 28.1017 32.3124C28.0913 32.4368 28.0501 32.5566 27.9817 32.6611C27.9133 32.7655 27.82 32.8512 27.7101 32.9104C27.6002 32.9696 27.4773 33.0005 27.3525 33.0002H8.64748C8.52286 33.0004 8.40015 32.9695 8.29045 32.9104C8.18075 32.8512 8.08752 32.7657 8.01918 32.6615C7.95084 32.5572 7.90955 32.4376 7.89904 32.3135C7.88853 32.1893 7.90913 32.0644 7.95898 31.9502L11.0835 24.8087H11.085ZM12.1785 16.4552C12.5048 17.7519 13.2547 18.9026 14.3093 19.7247C15.3639 20.5468 16.6628 20.9932 18 20.9932C19.3371 20.9932 20.636 20.5468 21.6906 19.7247C22.7452 18.9026 23.4952 17.7519 23.8215 16.4552L20.9115 15.7277C20.75 16.3778 20.3756 16.9551 19.848 17.3677C19.3203 17.7802 18.6698 18.0044 18 18.0044C17.3302 18.0044 16.6796 17.7802 16.152 17.3677C15.6244 16.9551 15.25 16.3778 15.0885 15.7277L12.1785 16.4552Z" fill="url(#paint0_linear_133_271)"/>
                                                 <defs>
                                                     <linearGradient id="paint0_linear_133_271" x1="6.00073" y1="18.0011" x2="30.0007" y2="18.0011" gradientUnits="userSpaceOnUse">
-                                                        <stop stop-color="#D299FF"/>
-                                                        <stop offset="1" stop-color="#58C3FF"/>
+                                                        <stop stopColor="#D299FF"/>
+                                                        <stop offset="1" stopColor="#58C3FF"/>
                                                     </linearGradient>
                                                 </defs>
                                             </svg>
@@ -296,8 +326,8 @@ const Land = (props) => {
                                                 <path d="M1 25.0004H9.25V26.8754C9.25 27.9694 8.8154 29.0186 8.04182 29.7922C7.26823 30.5658 6.21902 31.0004 5.125 31.0004C4.03098 31.0004 2.98177 30.5658 2.20818 29.7922C1.4346 29.0186 1 27.9694 1 26.8754V25.0004ZM7 7.18036C10 7.18036 11.5 11.5004 11.5 14.5004C11.5 16.0004 10.75 17.5004 10 19.7504L9.25 22.0004H1C1 20.5004 0.25 18.2504 0.25 14.5004C0.25 10.7504 3.247 7.18036 7 7.18036ZM25.081 19.1474L24.7555 20.9939C24.5655 22.0714 23.9553 23.0293 23.0591 23.6569C22.1628 24.2845 21.054 24.5303 19.9765 24.3404C18.899 24.1504 17.9411 23.5402 17.3135 22.6439C16.6859 21.7477 16.44 20.6389 16.63 19.5614L16.957 17.7164L25.081 19.1474ZM22.267 0.557862C25.963 1.20886 28.294 5.24386 27.643 8.93686C26.992 12.6314 25.8625 14.7164 25.603 16.1939L17.4775 14.7614L17.1295 12.4154C16.7815 10.0694 16.3045 8.46136 16.564 6.98536C17.0845 4.03036 19.312 0.0373622 22.267 0.557862Z" fill="url(#paint0_linear_133_266)"/>
                                                 <defs>
                                                     <linearGradient id="paint0_linear_133_266" x1="0.25" y1="15.756" x2="27.7518" y2="15.756" gradientUnits="userSpaceOnUse">
-                                                        <stop stop-color="#D299FF"/>
-                                                        <stop offset="1" stop-color="#58C3FF"/>
+                                                        <stop stopColor="#D299FF"/>
+                                                        <stop offset="1" stopColor="#58C3FF"/>
                                                     </linearGradient>
                                                 </defs>
                                             </svg>
@@ -314,8 +344,8 @@ const Land = (props) => {
                                                 <path d="M2.96925e-07 4.5L10.5 0L19.5 4.5L28.9545 0.4485C29.0686 0.399576 29.1931 0.379754 29.3168 0.390814C29.4405 0.401874 29.5595 0.443469 29.6631 0.511867C29.7668 0.580266 29.8518 0.673326 29.9106 0.782697C29.9694 0.892068 30.0001 1.01433 30 1.1385V25.5L19.5 30L10.5 25.5L1.0455 29.5515C0.931371 29.6004 0.806879 29.6203 0.683199 29.6092C0.559518 29.5981 0.440519 29.5565 0.336881 29.4881C0.233243 29.4197 0.148209 29.3267 0.0894105 29.2173C0.0306123 29.1079 -0.000110184 28.9857 2.96925e-07 28.8615V4.5ZM19.5 26.646V7.764L19.4025 7.806L10.5 3.354V22.236L10.5975 22.194L19.5 26.646Z" fill="url(#paint0_linear_133_280)"/>
                                                 <defs>
                                                     <linearGradient id="paint0_linear_133_280" x1="1.11759e-07" y1="15" x2="30" y2="15" gradientUnits="userSpaceOnUse">
-                                                        <stop stop-color="#D299FF"/>
-                                                        <stop offset="1" stop-color="#58C3FF"/>
+                                                        <stop stopColor="#D299FF"/>
+                                                        <stop offset="1" stopColor="#58C3FF"/>
                                                     </linearGradient>
                                                 </defs>
                                             </svg>
@@ -331,8 +361,8 @@ const Land = (props) => {
                                                 <path d="M14.35 0.150391L29.1985 2.27289L31.3195 17.1229L17.5315 30.9109C17.2502 31.1921 16.8688 31.3501 16.471 31.3501C16.0733 31.3501 15.6918 31.1921 15.4105 30.9109L0.560518 16.0609C0.279311 15.7796 0.121338 15.3981 0.121338 15.0004C0.121338 14.6026 0.279311 14.2212 0.560518 13.9399L14.35 0.150391ZM18.592 12.8794C18.8706 13.1579 19.2014 13.3788 19.5654 13.5296C19.9294 13.6803 20.3196 13.7578 20.7135 13.7577C21.1075 13.7576 21.4976 13.68 21.8616 13.5291C22.2255 13.3783 22.5562 13.1573 22.8348 12.8786C23.1133 12.6 23.3342 12.2692 23.4849 11.9052C23.6356 11.5412 23.7132 11.1511 23.7131 10.7571C23.713 10.3631 23.6354 9.97303 23.4845 9.60907C23.3337 9.24511 23.1126 8.91442 22.834 8.63589C22.5554 8.35736 22.2246 8.13643 21.8606 7.98573C21.4966 7.83502 21.1065 7.75749 20.7125 7.75756C19.9168 7.7577 19.1538 8.07392 18.5913 8.63664C18.0287 9.19936 17.7128 9.9625 17.7129 10.7582C17.7131 11.5538 18.0293 12.3169 18.592 12.8794Z" fill="url(#paint0_linear_133_288)"/>
                                                 <defs>
                                                     <linearGradient id="paint0_linear_133_288" x1="0.121338" y1="15.7502" x2="31.3195" y2="15.7502" gradientUnits="userSpaceOnUse">
-                                                        <stop stop-color="#D299FF"/>
-                                                        <stop offset="1" stop-color="#58C3FF"/>
+                                                        <stop stopColor="#D299FF"/>
+                                                        <stop offset="1" stopColor="#58C3FF"/>
                                                     </linearGradient>
                                                 </defs>
                                             </svg>
@@ -348,8 +378,8 @@ const Land = (props) => {
                                                 <path d="M30 15.4985V26C30 26.3978 29.842 26.7794 29.5607 27.0607C29.2794 27.342 28.8978 27.5 28.5 27.5H16.5V15.4985H30ZM13.5 15.4985V27.5H1.5C1.10218 27.5 0.720644 27.342 0.43934 27.0607C0.158035 26.7794 0 26.3978 0 26V15.4985H13.5ZM13.5 0.5V12.4985H0V2C0 1.60218 0.158035 1.22064 0.43934 0.93934C0.720644 0.658035 1.10218 0.5 1.5 0.5H13.5ZM28.5 0.5C28.8978 0.5 29.2794 0.658035 29.5607 0.93934C29.842 1.22064 30 1.60218 30 2V12.4985H16.5V0.5H28.5Z" fill="url(#paint0_linear_133_295)"/>
                                                 <defs>
                                                     <linearGradient id="paint0_linear_133_295" x1="1.11759e-07" y1="14" x2="30" y2="14" gradientUnits="userSpaceOnUse">
-                                                        <stop stop-color="#D299FF"/>
-                                                        <stop offset="1" stop-color="#58C3FF"/>
+                                                        <stop stopColor="#D299FF"/>
+                                                        <stop offset="1" stopColor="#58C3FF"/>
                                                     </linearGradient>
                                                 </defs>
                                             </svg>

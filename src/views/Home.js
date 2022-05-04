@@ -89,7 +89,7 @@ const Home = () => {
             <div className='bg-stars flex items-center h-[100vh]'>
                 <model-viewer
                     bounds='tight'
-                    src='/very_small_size.glb'
+                    src='/Old_shade_blue_comearth.glb'
                     ar
                     disable-zoom
                     interpolation-decay='200'

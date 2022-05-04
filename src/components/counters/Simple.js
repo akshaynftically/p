@@ -1,9 +1,17 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import clsx from 'clsx'
 
 const Simple = (props) => {
-  const {value = 0} = props
+  const {value, onChange} = props
   const [currentValue, setCurrentValue] = useState(value)
+  function change (val) {
+      setCurrentValue(val)
+      onChange(val)
+  }
+
+  useEffect(() => {
+      setCurrentValue(value)
+  }, [value])
 
   return (
     <div className='flex items-center justify-items-stretch'>
@@ -13,7 +21,7 @@ const Simple = (props) => {
           {'bg-[#363738]': currentValue < 1},
           {'bg-[#3F99FF]': currentValue >= 1}
         )}
-        onClick={() => setCurrentValue(currentValue === 0 ? 0 : currentValue - 1)}
+        onClick={() => change(currentValue === 0 ? 0 : currentValue - 1)}
         role='button'
       >
         <svg
@@ -33,7 +41,7 @@ const Simple = (props) => {
       <div className='grow font-extrabold text-[24px] text-white text-center'>{currentValue}</div>
       <span
         className='inline-flex w-[24px] h-[24px] bg-[#3F99FF] rounded-full ml-[10px]'
-        onClick={() => setCurrentValue(currentValue + 1)}
+        onClick={() => change(currentValue + 1)}
         role='button'
       >
         <svg
