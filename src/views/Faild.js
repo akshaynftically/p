@@ -58,7 +58,7 @@ const Faild = () => {
                     <p className='mb-[20px]'>Your transaction couldn’t be completed.</p>
                     <p className='mb-[32px]'>You can retry your payment. <a className='text-[#3F99FF] underline' href="#">Learn More</a></p>
 
-                    <SimpleButton className='max-w-[439px] w-full' href='/'>
+                    <SimpleButton className='max-w-[439px] w-full' href='/reserve-land'>
                         Retry Now
                     </SimpleButton>
                 </div>
