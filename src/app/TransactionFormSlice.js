@@ -7,7 +7,6 @@ export const transactionFormSlice = createSlice({
     },
     reducers: {
         setTransactionForm: (state, action) => {
-            state.value = action.payload
             localStorage.setItem('transaction_form', JSON.stringify(action.payload))
         },
         clearTransactionForm (state) {
@@ -22,7 +21,8 @@ export const getTransactionForm = (store) => {
     if (localStorage.getItem('transaction_form')) {
         return JSON.parse(localStorage.getItem('transaction_form'))
     }
-    return store.transactionForm.value
+
+    return null
 }
 
 export default transactionFormSlice.reducer
