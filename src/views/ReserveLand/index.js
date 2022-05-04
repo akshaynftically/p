@@ -12,14 +12,10 @@ import LandUnits from './sections/LandUnits'
 // Modals
 import ConnectYourWallet from 'modals/ConnectYourWallet'
 import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet'
-import {useNavigate, useSearchParams} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {getTransactionForm, setTransactionForm} from "../../app/TransactionFormSlice";
-import {Controller, useForm} from "react-hook-form";
-import log from "tailwindcss/lib/util/log";
-import _landUnit1Img from "../../assets/img/land-units/1.svg";
-import _landUnit2Img from "../../assets/img/land-units/2.svg";
-import _landUnit3Img from "../../assets/img/land-units/3.svg";
+import {useNavigate} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
+import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
+import {Controller, useForm} from 'react-hook-form'
 
 const _selectIndustryOptions = [
   {value: 'Ecommerce', label: 'Ecommerce'},
