@@ -1,14 +1,7 @@
 import {FullScreenPopup} from "components/popups";
 import {useEffect, useState} from "react";
 
-const ProgressConnectYourWallet = ({onClose}) => {
-  const [title, setTitle] = useState('Please confirm the transaction')
-
-  useEffect(() => {
-    setTimeout(() => {
-      setTitle('Initialize Your Account First')
-    }, 1000)
-  }, [])
+const ProgressConnectYourWallet = ({onClose, title}) => {
 
   return (
     <FullScreenPopup title={title} size='w-[520px]' onClose={onClose}>

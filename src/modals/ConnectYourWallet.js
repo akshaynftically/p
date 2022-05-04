@@ -33,13 +33,15 @@ const _tokens = [
   },
 ]
 
-const ConnectYourWallet = ({onClose, onSelect, provider}) => {
+const ConnectYourWallet = ({onClose, onSelect, provider, startTransactionFlow}) => {
   //handler for logging into wallet and handle transactions
   const handleWalletConnect = async(walletTitle) => {
     if(walletTitle === "MetaMask") {
       if(provider !== null) {
-        await provider.send("eth_requestAccounts", [])
-        const signer = provider.getSigner()
+        let accounts =  provider.send("eth_requestAccounts", [])
+        accounts.then(() => {
+          startTransactionFlow("MetaMask")
+        })
       }
     }
   }

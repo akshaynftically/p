@@ -90,6 +90,7 @@ const ReserveLand = () => {
   const [areYouRepresenting, setAreYouRepresenting] = useState('individual')
   const [isOpenedConnectYourWallet, setIsOpenedConnectYourWallet] = useState(false)
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
+  const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
   const [provider, setProvider] = useState(null)
 
   useEffect(() => {
@@ -142,14 +143,26 @@ const ReserveLand = () => {
   const handleProgressWallet = () => {
     setIsOpenedProgressWallet(!isOpenedProgressWallet)
   }
-  const handleSelectConnectYourWallet = () => {
-    setIsOpenedConnectYourWallet(true)
-    // setIsOpenedConnectYourWallet(false)
-    // setTimeout(() => setIsOpenedProgressWallet(true))
+  const startTransactionFlow = (walletTitle) => {
+    if(walletTitle === "MetaMask") {
+      setIsOpenedConnectYourWallet(false)
+      setIsOpenedProgressWallet(true)
+      const signer = provider.getSigner()
+      //If we want to change title of the modal depending on the task flow
+      // setProgressModalTitle("Preparing the smart contract")
+      setTimeout(() => {
+        // 50% success of transaction success
+        if (Math.random() < 0.5) {
+          navigate('/success')
+        } else {
+          navigate('/faild')
+        }
+      }, 3000)
+    }
   }
   const onSubmit = (data) => {
     dispatch(setTransactionForm({...data, basket, discountCode}))
-    handleSelectConnectYourWallet()
+    setIsOpenedConnectYourWallet(true)
     // setTimeout(() => {
     //   navigate('/success')
     // }, 2000)
@@ -294,8 +307,8 @@ const ReserveLand = () => {
         </form>
       </div>
 
-      {isOpenedConnectYourWallet && <ConnectYourWallet onSelect={handleSelectConnectYourWallet} onClose={handleToggleConnectYourWallet} provider={provider} />}
-      {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} />}
+      {isOpenedConnectYourWallet && <ConnectYourWallet onClose={handleToggleConnectYourWallet} provider={provider} startTransactionFlow={startTransactionFlow} />}
+      {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} title={progressModalTitle} />}
     </Fragment>
   )
 }
