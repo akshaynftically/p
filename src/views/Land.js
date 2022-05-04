@@ -30,7 +30,6 @@ import FieldGroup from "../components/form/FieldGroup";
 import Field from "../components/form/Field";
 import Select from "../components/form/Select";
 import {SimpleButton} from "../components/buttons";
-import axios from "axios";
 import {useForm, Controller} from "react-hook-form";
 import {setTransactionForm} from "../app/TransactionFormSlice";
 
@@ -62,7 +61,9 @@ const _selectCountryOptions = [
 ]
 
 const Land = (props) => {
-    const { register, control, handleSubmit, formState: { errors } } = useForm()
+    const { register, control, handleSubmit, formState: { errors } } = useForm({
+        mode: 'onChange'
+    })
     const [animate, setAnimate] = useState(false)
     const navigate = useNavigate()
     const [reset] = useOutletContext()
