@@ -141,7 +141,10 @@ const ReserveLand = () => {
   const handleProgressWallet = () => {
     setIsOpenedProgressWallet(!isOpenedProgressWallet)
   }
-
+  const handleSelectConnectYourWallet = () => {
+    setIsOpenedConnectYourWallet(false)
+    setTimeout(() => setIsOpenedProgressWallet(true))
+  }
   const onSubmit = (data) => {
     dispatch(setTransactionForm({...data, basket, discountCode}))
   }
