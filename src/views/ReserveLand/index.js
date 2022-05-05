@@ -1,5 +1,4 @@
 import {Fragment, useEffect, useState} from 'react'
-import { ethers } from "ethers";
 
 // Components
 import {SimpleButton, PillButton} from 'components/buttons'
@@ -89,7 +88,6 @@ const ReserveLand = () => {
   const [isOpenedConnectYourWallet, setIsOpenedConnectYourWallet] = useState(false)
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
   const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
-  const [provider, setProvider] = useState(null)
 
   useEffect(() => {
     if (transactionForm) {
@@ -118,8 +116,6 @@ const ReserveLand = () => {
 
     setValue('industry', _selectIndustryOptions[0])
     
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    setProvider(provider)
   }, [])
 
   useEffect(() => {
@@ -145,35 +141,11 @@ const ReserveLand = () => {
   const handleProgressWallet = () => {
     setIsOpenedProgressWallet(!isOpenedProgressWallet)
   }
-  const startTransactionFlow = (walletTitle) => {
-    if(walletTitle === "MetaMask") {
-      setIsOpenedConnectYourWallet(false)
-      setIsOpenedProgressWallet(true)
-      const signer = provider.getSigner()
-      //If we want to change title of the modal depending on the task flow
-      // setProgressModalTitle("Preparing the smart contract")
-      setTimeout(() => {
-        // 50% success of transaction success
-        if (Math.random() < 0.5) {
-          navigate('/success')
-        } else {
-          navigate('/faild')
-        }
-      }, 3000)
-    }
-  }
+
   const onSubmit = (data) => {
     dispatch(setTransactionForm({...data, basket, discountCode}))
-    setIsOpenedConnectYourWallet(true)
-    // setTimeout(() => {
-    //   navigate('/success')
-    // }, 2000)
   }
 
-
-  function lol () {
-    console.log(1)
-  }
   return (
     <Fragment>
       <div className='py-[120px] px-10 lg:px-[80px] text-white'>
@@ -313,7 +285,7 @@ const ReserveLand = () => {
         </form>
       </div>
 
-      {isOpenedConnectYourWallet && <ConnectYourWallet onClose={handleToggleConnectYourWallet} provider={provider} startTransactionFlow={startTransactionFlow} />}
+      {isOpenedConnectYourWallet && <ConnectYourWallet onSelect={handleSelectConnectYourWallet} onClose={handleToggleConnectYourWallet} />}
       {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} title={progressModalTitle} />}
     </Fragment>
   )

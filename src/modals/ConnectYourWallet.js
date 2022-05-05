@@ -33,18 +33,7 @@ const _tokens = [
   },
 ]
 
-const ConnectYourWallet = ({onClose, onSelect, provider, startTransactionFlow}) => {
-  //handler for logging into wallet and handle transactions
-  const handleWalletConnect = async(walletTitle) => {
-    if(walletTitle === "MetaMask") {
-      if(provider !== null) {
-        let accounts =  provider.send("eth_requestAccounts", [])
-        accounts.then(() => {
-          startTransactionFlow("MetaMask")
-        })
-      }
-    }
-  }
+const ConnectYourWallet = ({onClose, onSelect}) => {
 
   return (
     <FullScreenPopup title='Connect Your Wallet' size='w-[520px]' onClose={onClose}>
@@ -63,7 +52,7 @@ const ConnectYourWallet = ({onClose, onSelect, provider, startTransactionFlow}) 
       <div className='bg-[#363738] rounded-lg mb-[18px]'>
         <div>
           {_tokens.map((el) => (
-            <WalletListItem key={el.id} title={el.title} {...el} onClick={handleWalletConnect} />
+            <WalletListItem key={el.id} title={el.title} {...el} onClick={onSelect} />
           ))}
         </div>
         <div className='flex items-center justify-center min-h-[54px] py-[10px] px-[20px]'>
