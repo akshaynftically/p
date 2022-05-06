@@ -52,17 +52,15 @@ model-viewer {
 }
 
 .hotspot:not(.hotspot-brand) {
-	background: transparent;
+	background: url('../img/continent.png');
+	background-size: cover;
 	border-radius: 32px;
-	border: 4px solid #fff;
-	box-shadow: rgb(0 0 0 / 25%) 0px 2px 4px;
-	box-sizing: border-box;
 	cursor: pointer;
-	height: 34px;
+	height: 64px;
 	padding: 8px;
 	position: relative;
 	transition: opacity 0.3s ease 0s;
-	width: 34px;
+	width: 64px;
 }
 
 .hotspot-annotation {
@@ -148,4 +146,12 @@ body {
 .border-sq-gradient {
 	border: 1px solid;
 	border-image: linear-gradient(45deg, #D299FF, #58C3FF) 1;
+}
+
+.swiper-wrapper {
+	align-items: center;
+}
+
+.swiper-autoheight .swiper-slide {
+	height: 100% !important;
 }
