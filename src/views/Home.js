@@ -111,8 +111,8 @@ const Home = () => {
                         <div className='text-center'>
                             <div className="flex flex-wrap justify-center">
                                 <img className='mb-[30px]' src={_preloadGlobe} alt="Preloader"/>
-                                <div className="block"></div>
-                                <div className='max-w-[500px] w-full h-[24px] relative border-2 rounded-[40px] bg-white/30 mb-[26px]'>
+                                <div className="block w-full"></div>
+                                <div className='w-[300px] md:w-[500px] overflow-hidden block h-[24px] relative border-2 rounded-[40px] bg-white/30 mb-[26px]'>
                                     <div className='bg-[#3F99FF] absolute rounded-[40px] overflow-hidden transition-[width] top-0 left-0 h-full' style={{'width': `${loading}px`}}>
                                         <svg className='absolute top-[-2px] right-0' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <mask id="path-1-inside-1_310_4" fill="white">
@@ -133,31 +133,58 @@ const Home = () => {
                         </div>
                     </div>
                     <button slot='ar-button' id='ar-button'>
-                        View in your space
+
                     </button>
 
-                    {annots.map((annot) => (
-                        <button
-                            className={`hotspot ${annot.brand && 'hotspot-brand'} ${(getAsideState && currentAnnot && (annot.id !== currentAnnot.id || !annot.brand)) && 'transition scale-0'}`}
-                            key={`hotspot-${annot.id}`}
-                            slot={`hotspot-${annot.id}`}
-                            data-position={annot.position}
-                            data-normal={annot.normal_position}
-                            data-visibility-attribute='visible'
-                            onClick={() => selectAnnot(annot)}
-                            onMouseEnter={mouseEnter}
-                            onMouseLeave={mouseLeave}
-                        >
-                            {annot.brand && (
-                                <img
-                                    className='absolute top-0 left-0 transform translate-x-[-20px] translate-y-[-38px] h-[62px] max-w-[48px] w-[48px]'
-                                    src={annot.brandPinImage}
-                                    alt='Brand Annot'
-                                />
-                            )}
-                            <div className='hotspot-annotation'>{annot.name}</div>
-                        </button>
-                    ))}
+                        {annots.map((annot) => (
+                            <button
+                                className={`relative hotspot ${loading === 500 ? 'block' : 'hidden'} ${annot.brand && 'hotspot-brand'} ${(getAsideState && currentAnnot && (annot.id !== currentAnnot.id || !annot.brand)) && 'transition scale-0'}`}
+                                key={`hotspot-${annot.id}`}
+                                slot={`hotspot-${annot.id}`}
+                                data-position={annot.position}
+                                data-normal={annot.normal_position}
+                                data-visibility-attribute='visible'
+                                onClick={() => selectAnnot(annot)}
+                                onMouseEnter={mouseEnter}
+                                onMouseLeave={mouseLeave}
+                            >
+                                {annot.brand ? (
+                                    <img
+                                        className='absolute top-0 left-0 transform translate-x-[-20px] translate-y-[-38px] h-[62px] max-w-[48px] w-[48px]'
+                                        src={annot.brandPinImage}
+                                        alt='Brand Annot'
+                                    />
+                                ) : (
+                                    <div className='absolute text-[30px] font-[900] text-white top-[45%] left-1/2 transform -translate-y-1/2 -translate-x-1/2'>
+                                        {annot.name[0]}
+                                    </div>
+                                )}
+                                <div className='hotspot-annotation px-[20px] py-[22px]'>
+                                    <div className='text-white text-[16px] font-[900] mb-[12px]'>{annot.name}</div>
+
+                                    <div className='flex items-center text-white/60 text-[12px] mb-[10px]'>
+                                        <svg className='mr-2' width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7.33333 2V14H2.66667C2.48986 14 2.32029 13.9298 2.19526 13.8047C2.07024 13.6797 2 13.5101 2 13.3333V2.66667C2 2.48986 2.07024 2.32029 2.19526 2.19526C2.32029 2.07024 2.48986 2 2.66667 2H7.33333ZM14 8.66667V13.3333C14 13.5101 13.9298 13.6797 13.8047 13.8047C13.6797 13.9298 13.5101 14 13.3333 14H8.66667V8.66667H14ZM13.3333 2C13.5101 2 13.6797 2.07024 13.8047 2.19526C13.9298 2.32029 14 2.48986 14 2.66667V7.33333H8.66667V2H13.3333Z" fill="white" fill-opacity="0.5"/>
+                                        </svg>
+
+                                        <span className='mr-2'>Total Land Units</span>
+                                        <span>24,562</span>
+                                    </div>
+
+                                    <div className='grid grid-cols-2 text-white/60 text-[12px]'>
+                                        <div>
+                                            <div>Land Area</div>
+                                            <div>8923 sq.m</div>
+                                        </div>
+
+                                        <div>
+                                            <div>Water Area</div>
+                                            <div>24523 sq.m</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </button>
+                        ))}
                 </model-viewer>
             </div>
             <Outlet context={[reset]}/>
