@@ -25,7 +25,7 @@ const Simple = (props) => {
             'group items-center justify-center font-semibold font-sans rounded-[4px] transition ease-in-out',
             {'inline-flex': !block},
             {'flex w-full': block},
-            {'': size === 'sm'},
+            {'min-h-[40px] text-[14px] md:text-[16px] py-[5px] md:py-[10px] px-[15px]': size === 'sm'},
             {
               'min-h-[52px] text-[14px] md:text-[16px] py-[5px] md:py-[10px] px-[15px]':
                 size === 'md',
@@ -50,7 +50,7 @@ const Simple = (props) => {
             {'inline-flex': !block},
             {'flex w-full': block},
             {'opacity-70': disabled},
-            {'': size === 'sm'},
+            {'min-h-[40px] text-[14px] md:text-[16px] py-[5px] md:py-[10px] px-[15px]': size === 'sm'},
             {
               'min-h-[52px] text-[14px] md:text-[16px] py-[5px] md:py-[10px] px-[15px]':
                 size === 'md',

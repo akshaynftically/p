@@ -1,0 +1,48 @@
+import {useEffect, useState} from 'react'
+import {utils} from 'ethers'
+import AccountModal from "../../modals/AccountModal";
+
+const HeaderBalance = (props) => {
+    const {address, provider} = props
+    const [balance, setBalance] = useState('0.0')
+    const [accountModal, setAccountModal] = useState(false)
+
+    useEffect(() => {
+        if (!window.ethereum) return
+
+        (async () => {
+            setBalance(utils.formatEther(await provider.getBalance(address)))
+        })()
+    }, [])
+
+    const handleCloseAccountModal = () => {
+        setAccountModal(false)
+    }
+
+    return (
+        <>
+        <div className='cursor-pointer bg-[#262728] flex items-center rounded-[8px] pl-[24px] h-[52px]' onClick={() => setAccountModal(true)}>
+            <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.8469 5.49895C15.4594 5.27061 14.9557 5.27061 14.5295 5.49895L11.5074 7.24948L9.45389 8.39115L6.43174 10.1416C6.04428 10.37 5.54059 10.37 5.1144 10.1416L2.71218 8.77169C2.32472 8.54334 2.05351 8.12472 2.05351 7.66809V4.96618C2.05351 4.50952 2.28598 4.09091 2.71218 3.86258L5.07565 2.53066C5.4631 2.30233 5.96679 2.30233 6.39299 2.53066L8.75648 3.86258C9.14389 4.09091 9.41516 4.50952 9.41516 4.96618V6.71669L11.4686 5.537V3.78647C11.4686 3.32981 11.2362 2.91121 10.81 2.68288L6.43174 0.171247C6.04428 -0.0570825 5.54059 -0.0570825 5.1144 0.171247L0.658672 2.68288C0.232472 2.91121 0 3.32981 0 3.78647V8.84778C0 9.30441 0.232472 9.72303 0.658672 9.95138L5.1144 12.463C5.50185 12.6914 6.00554 12.6914 6.43174 12.463L9.45389 10.7505L11.5074 9.57084L14.5295 7.85836C14.917 7.63001 15.4207 7.63001 15.8469 7.85836L18.2103 9.19031C18.5978 9.41859 18.869 9.8372 18.869 10.2939V12.9958C18.869 13.4524 18.6365 13.8711 18.2103 14.0994L15.8469 15.4694C15.4594 15.6977 14.9557 15.6977 14.5295 15.4694L12.166 14.1374C11.7786 13.9091 11.5074 13.4905 11.5074 13.0338V11.2833L9.45389 12.463V14.2136C9.45389 14.6702 9.68636 15.0888 10.1126 15.3172L14.5683 17.8287C14.9557 18.0571 15.4594 18.0571 15.8856 17.8287L20.3413 15.3172C20.7288 15.0888 21 14.6702 21 14.2136V9.15223C21 8.6956 20.7675 8.27698 20.3413 8.04863L15.8469 5.49895Z" fill="#7A3FE4"/>
+            </svg>
+
+            <span className='text-[16px] text-white ml-[4px] mr-[17px]'>{balance}</span>
+
+            <div className='bg-[#363738] text-[16px] text-white flex items-center rounded-[8px] px-[16px] h-full'>
+                <span>{address.slice(0, 7)}...{address.slice(address.length - 5, address.length + 5)}</span>
+
+                <button className='ml-[8px]'>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g opacity="0.8">
+                            <path d="M5.25 4.5V2.25C5.25 2.05109 5.32902 1.86032 5.46967 1.71967C5.61032 1.57902 5.80109 1.5 6 1.5H15C15.1989 1.5 15.3897 1.57902 15.5303 1.71967C15.671 1.86032 15.75 2.05109 15.75 2.25V12.75C15.75 12.9489 15.671 13.1397 15.5303 13.2803C15.3897 13.421 15.1989 13.5 15 13.5H12.75V15.75C12.75 16.164 12.4125 16.5 11.9948 16.5H3.00525C2.90635 16.5006 2.8083 16.4816 2.71674 16.4442C2.62519 16.4068 2.54192 16.3517 2.47174 16.282C2.40156 16.2123 2.34584 16.1294 2.30779 16.0381C2.26974 15.9468 2.2501 15.8489 2.25 15.75L2.25225 5.25C2.25225 4.836 2.58975 4.5 3.0075 4.5H5.25ZM3.75225 6L3.75 15H11.25V6H3.75225ZM6.75 4.5H12.75V12H14.25V3H6.75V4.5Z" fill="white"/>
+                        </g>
+                    </svg>
+                </button>
+            </div>
+        </div>
+            <AccountModal openAccountModal={accountModal} balance={balance} address={address} onClose={handleCloseAccountModal}/>
+        </>
+    )
+}
+
+export default HeaderBalance

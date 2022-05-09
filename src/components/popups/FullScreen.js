@@ -2,7 +2,7 @@ import {Fragment} from 'react'
 import clsx from 'clsx'
 
 const FullScreen = (props) => {
-  const {title, size = 'w-[560px]', className, children, onClose, ...rest} = props
+  const {title, size = 'w-[560px]', className, children, onClose, onBack, ...rest} = props
 
   return (
     <div className='fixed top-0 left-0 flex items-center w-full h-full overflow-y-auto z-30'>
@@ -33,7 +33,19 @@ const FullScreen = (props) => {
           </span>
           {title && (
             <Fragment>
-              <h2 className='font-extrabold text-[24px] mb-[16px]'>{title}</h2>
+              <h2 className='font-extrabold text-[24px] mb-[16px]'>
+                <div className="flex items-center">
+                  {onBack && (
+                      <button onClick={onBack} className='mr-[8px]'>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7.3065 10.8429H21V13.1571H7.3065L13.341 19.3638L11.7502 21L3 12L11.7502 3L13.341 4.63615L7.3065 10.8429Z" fill="white"/>
+                        </svg>
+                      </button>
+                  )}
+
+                  {title}
+                </div>
+              </h2>
               <hr className='border-[#363738] my-[16px]' />
             </Fragment>
           )}

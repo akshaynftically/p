@@ -329,7 +329,7 @@ const ReserveLand = () => {
                 </SimpleButton>
 
                 <div className='py-[34px] px-[32px] text-[14px] text-white/70 bg-[#262728] rounded-[8px]'>
-                  <div className='font-[900]'>Important:</div>
+                  <div className='font-[900] mb-1'>Important:</div>
                   <p className='mb-5'>Currently you are pre-reserving the land units in the COMEARTH. You will be getting the pre-mint NFT Pass in your connected wallet which you can later swap against the exact land units in the COMEARTH Metaverse.</p>
                   <p>Once the landscape is launched, you, the pre-mint NFT Pass holder, will be offered the first right to select & fix your units’ exact location on the map before they are opened for general public.</p>
                 </div>
