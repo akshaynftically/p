@@ -17,6 +17,7 @@ import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
 import {Controller, useForm} from 'react-hook-form'
+import { landPrices } from './landPrices';
 
 const _selectIndustryOptions = [
   {value: 'Ecommerce', label: 'Ecommerce'},
@@ -120,6 +121,9 @@ const ReserveLand = () => {
     
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     setProvider(provider)
+    landPrices(0,true).then((prices) => {
+      console.log(prices);
+    });
   }, [])
 
   useEffect(() => {
