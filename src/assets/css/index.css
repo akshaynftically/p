@@ -155,3 +155,51 @@ body {
 .swiper-autoheight .swiper-slide {
 	height: 100% !important;
 }
+
+.Toastify__toast {
+	background: #262728 !important;
+	position: relative !important;
+	border: solid 5px transparent;
+	overflow: visible !important;
+	opacity: 1 !important;
+	padding-right: 0 !important;
+	border-radius: 5px !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+.Toastify__toast-body {
+	padding-right: 0 !important;
+	padding-top: 0 !important;
+	font-size: 12px !important;
+	padding-bottom: 0 !important;
+}
+
+.Toastify__toast:before {
+	content: '';
+	position: absolute;
+	top: -1px;
+	right: -1px;
+	bottom: 0;
+	left: -1px;
+	padding: 33px;
+	z-index: -1;
+	margin: -5px;
+	border-radius: 5px;
+	background: linear-gradient(45deg, #D299FF, #58C3FF);
+}
+
+.Toastify--animate.Toastify__toast:before {
+	display: none !important;
+}
+
+.Toastify__progress-bar {
+	background: #3F99FF !important;
+	bottom: -5px !important;
+	left: -5px !important;
+	border-bottom-left-radius: 8px !important;
+}
+
+.Toastify__close-button {
+	display: none;
+}

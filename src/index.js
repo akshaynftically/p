@@ -7,6 +7,7 @@ import reportWebVitals from 'reportWebVitals'
 
 // Styles
 import 'assets/css/index.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 // Store
 import store from 'app/store'

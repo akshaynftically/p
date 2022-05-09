@@ -1,60 +1,60 @@
 <svg width="44" height="40" viewBox="0 0 44 40" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M40.9187 1L24.5127 13.1153L27.5635 5.97535L40.9187 1Z" fill="#E17726" stroke="#E17726" strokeWidth="0.25"
-          stroke-linecap="round" stroke-linejoin="round"/>
+          stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M3.08203 1L19.342 13.2283L16.4373 5.97534L3.08203 1Z" fill="#E27625" stroke="#E27625" strokeWidth="0.25"
-          stroke-linecap="round" stroke-linejoin="round"/>
+          stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M35.0097 29.0918L30.6445 35.7471L39.9915 38.3156L42.6692 29.2373L35.0097 29.0918Z" fill="#E27625"
-          stroke="#E27625" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          stroke="#E27625" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M1.34082 29.2373L4.00211 38.3156L13.333 35.7471L8.98395 29.0918L1.34082 29.2373Z" fill="#E27625"
-          stroke="#E27625" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          stroke="#E27625" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M12.8268 17.8475L10.2305 21.7567L19.4801 22.1767L19.1718 12.2422L12.8268 17.8475Z" fill="#E27625"
-          stroke="#E27625" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          stroke="#E27625" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M31.1659 17.8473L24.7237 12.1289L24.5127 22.1765L33.7623 21.7565L31.1659 17.8473Z" fill="#E27625"
-          stroke="#E27625" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          stroke="#E27625" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M13.335 35.7461L18.9334 33.0484L14.1139 29.3008L13.335 35.7461Z" fill="#E27625" stroke="#E27625"
-          strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M25.0684 33.0484L30.6505 35.7461L29.8878 29.3008L25.0684 33.0484Z" fill="#E27625" stroke="#E27625"
-          strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M30.6505 35.7464L25.0684 33.0488L25.5227 36.6672L25.4739 38.2018L30.6505 35.7464Z" fill="#D5BFB2"
-          stroke="#D5BFB2" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          stroke="#D5BFB2" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M13.335 35.7464L18.5278 38.2018L18.4953 36.6672L18.9334 33.0488L13.335 35.7464Z" fill="#D5BFB2"
-          stroke="#D5BFB2" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          stroke="#D5BFB2" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M18.6225 26.91L13.9814 25.5531L17.2594 24.0508L18.6225 26.91Z" fill="#233447" stroke="#233447"
-          strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M25.3789 26.91L26.7421 24.0508L30.0362 25.5531L25.3789 26.91Z" fill="#233447" stroke="#233447"
-          strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M13.3323 35.7471L14.1437 29.0918L8.9834 29.2373L13.3323 35.7471Z" fill="#CC6228" stroke="#CC6228"
-          strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M29.8525 29.0918L30.6477 35.7471L35.0129 29.2373L29.8525 29.0918Z" fill="#CC6228" stroke="#CC6228"
-          strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M33.7623 21.7578L24.5127 22.1778L25.3727 26.9109L26.7359 24.0516L30.03 25.554L33.7623 21.7578Z"
-          fill="#CC6228" stroke="#CC6228" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          fill="#CC6228" stroke="#CC6228" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M13.979 25.554L17.2569 24.0516L18.6201 26.9109L19.4801 22.1778L10.2305 21.7578L13.979 25.554Z"
-          fill="#CC6228" stroke="#CC6228" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          fill="#CC6228" stroke="#CC6228" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M10.2305 21.7578L14.1089 29.3016L13.979 25.554L10.2305 21.7578Z" fill="#E27525" stroke="#E27525"
-          strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M30.0288 25.554L29.8828 29.3016L33.7612 21.7578L30.0288 25.554Z" fill="#E27525" stroke="#E27525"
-          strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M19.4871 22.1777L18.627 26.9109L19.7142 32.5L19.9576 25.1339L19.4871 22.1777Z" fill="#E27525"
-          stroke="#E27525" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          stroke="#E27525" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M24.513 22.1777L24.0586 25.1178L24.2858 32.5L25.373 26.9109L24.513 22.1777Z" fill="#E27525"
-          stroke="#E27525" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          stroke="#E27525" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M25.3695 26.9097L24.2822 32.4988L25.0612 33.0481L29.8808 29.3004L30.0268 25.5527L25.3695 26.9097Z"
-          fill="#F5841F" stroke="#F5841F" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          fill="#F5841F" stroke="#F5841F" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M13.9814 25.5527L14.1114 29.3004L18.9308 33.0481L19.7098 32.4988L18.6225 26.9097L13.9814 25.5527Z"
-          fill="#F5841F" stroke="#F5841F" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          fill="#F5841F" stroke="#F5841F" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M25.4731 38.2015L25.5217 36.6669L25.0999 36.3114H18.901L18.4953 36.6669L18.5278 38.2015L13.335 35.7461L15.1524 37.2322L18.8361 39.7684H25.1485L28.8484 37.2322L30.6496 35.7461L25.4731 38.2015Z"
-          fill="#C0AC9D" stroke="#C0AC9D" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          fill="#C0AC9D" stroke="#C0AC9D" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M25.0682 33.0491L24.2892 32.5H19.7131L18.9343 33.0491L18.4961 36.6677L18.9018 36.3122H25.1007L25.5226 36.6677L25.0682 33.0491Z"
-          fill="#161616" stroke="#161616" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          fill="#161616" stroke="#161616" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M41.6203 13.9068L42.9997 7.21917L40.9225 1L25.0684 12.7115L31.1698 17.8483L39.7866 20.3522L41.6852 18.1391L40.8577 17.5414L42.172 16.3461L41.166 15.5707L42.4804 14.5691L41.6203 13.9068Z"
-          fill="#763E1A" stroke="#763E1A" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          fill="#763E1A" stroke="#763E1A" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M1 7.21917L2.39556 13.9068L1.50306 14.5691L2.8337 15.5707L1.8276 16.3461L3.14202 17.5414L2.31442 18.1391L4.21304 20.3522L12.8299 17.8483L18.9313 12.7115L3.07712 1L1 7.21917Z"
-          fill="#763E1A" stroke="#763E1A" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          fill="#763E1A" stroke="#763E1A" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M39.7816 20.3514L31.1648 17.8477L33.7612 21.7569L29.8828 29.3006L35.0107 29.236H42.67L39.7816 20.3514Z"
-          fill="#F5841F" stroke="#F5841F" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          fill="#F5841F" stroke="#F5841F" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M12.8298 17.8477L4.21308 20.3514L1.34082 29.236H8.98396L14.1118 29.3006L10.2335 21.7569L12.8298 17.8477Z"
-          fill="#F5841F" stroke="#F5841F" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          fill="#F5841F" stroke="#F5841F" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
     <path d="M24.5217 22.1768L25.0735 12.7106L27.5724 5.97461H16.4404L18.9394 12.7106L19.4911 22.1768L19.7021 25.149L19.7184 32.499H24.2945L24.3107 25.149L24.5217 22.1768Z"
-          fill="#F5841F" stroke="#F5841F" strokeWidth="0.25" stroke-linecap="round" stroke-linejoin="round"/>
+          fill="#F5841F" stroke="#F5841F" strokeWidth="0.25" stroke-linecap="round" strokeLinejoin="round"/>
 </svg>

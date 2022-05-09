@@ -188,7 +188,7 @@ const Land = (props) => {
                          viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="32" cy="32" r="30" fill="black" fillOpacity="0.1" stroke="white" strokeWidth="3"/>
                         <path d="M20 29L32 41L44 29" stroke="white" strokeWidth="3" stroke-linecap="round"
-                              stroke-linejoin="round"/>
+                              strokeLinejoin="round"/>
                     </svg>
                 </button>
 

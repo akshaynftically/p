@@ -10,6 +10,9 @@ import {BasketList} from 'components/lists'
 import Faqs from './sections/Faqs'
 import LandUnits from './sections/LandUnits'
 
+// Toasts
+import { ToastContainer, toast } from 'react-toastify'
+
 // Modals
 import ConnectYourWallet from 'modals/ConnectYourWallet'
 import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet'
@@ -175,14 +178,27 @@ const ReserveLand = () => {
   }
 
 
-  function lol () {
-    console.log(1)
-  }
+  const notify = () => toast('Please wait while we redirect you to the payment page!', {
+    icon: () => <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.5145 0.0828645L16.2504 4.81786V11.5145L11.5145 16.2504H4.81786L0.0820312 11.5145V4.81786L4.81786 0.0820312H11.5145V0.0828645ZM7.1662 10.4995V12.1662H8.83286V10.4995H7.1662ZM7.1662 3.83286V8.83286H8.83286V3.83286H7.1662Z" fill="white" fill-opacity="0.8"/>
+</svg>
+,
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'dark'
+  });
+
   return (
     <Fragment>
-      <div className='py-[120px] px-10 lg:px-[80px] text-white'>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className='lg:grid md:grid-cols-2 md:gap-x-[7.5rem]'>
+      <div className="sm:max-w-[90rem] 2xl:max-w-[105rem] flex basis-full items-center sm:items-end w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <div className='py-[120px] text-white'>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className='lg:grid md:grid-cols-2 md:gap-x-[7.5rem]'>
               <div>
                 <div className='mb-[14px] lg:mb-[50px]'>
                   <PillButton className='md:pr-[30px]' href='/'>
@@ -309,12 +325,21 @@ const ReserveLand = () => {
 
                   <BasketList items={basket} setBasket={setBasket} discountCode={discountCode} setDiscountCode={setDiscountCode} />
                 </div>
-                <SimpleButton type='submit' block disabled={!getTotal()}>
+                <SimpleButton type='submit' className='mb-[27px]' block disabled={!getTotal()}>
                   Buy Virtual Land
                 </SimpleButton>
+
+                <div className='py-[34px] px-[32px] text-[14px] text-white/70 bg-[#262728] rounded-[8px]'>
+                  <div className='font-[900]'>Important:</div>
+                  <p className='mb-5'>Currently you are pre-reserving the land units in the COMEARTH. You will be getting the pre-mint NFT Pass in your connected wallet which you can later swap against the exact land units in the COMEARTH Metaverse.</p>
+                  <p>Once the landscape is launched, you, the pre-mint NFT Pass holder, will be offered the first right to select & fix your units’ exact location on the map before they are opened for general public.</p>
+                </div>
               </div>
-          </div>
-        </form>
+            </div>
+          </form>
+          <button onClick={notify}>Notasdify!</button>
+          <ToastContainer />
+        </div>
       </div>
 
       {isOpenedConnectYourWallet && <ConnectYourWallet onClose={handleToggleConnectYourWallet} provider={provider} startTransactionFlow={startTransactionFlow} />}
