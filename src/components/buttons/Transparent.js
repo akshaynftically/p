@@ -2,7 +2,7 @@ import {Fragment} from 'react'
 import {Link} from 'react-router-dom'
 import clsx from 'clsx'
 
-const Pill = (props) => {
+const Transparent = (props) => {
   // size: sm | md | lg
   // variant: primary | secondary | danger | warning
   const {
@@ -66,4 +66,4 @@ const Pill = (props) => {
   )
 }
 
-export default Pill
+export default Transparent
