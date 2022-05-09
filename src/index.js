@@ -16,8 +16,6 @@ import App from 'App'
 
 const {PUBLIC_URL} = process.env
 
-console.log(PUBLIC_URL)
-
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
