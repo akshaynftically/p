@@ -1,10 +1,7 @@
-import {SimpleButton} from "../components/buttons";
 import {useDispatch, useSelector} from "react-redux";
 import {clearTransactionForm, getTransactionForm} from "../app/TransactionFormSlice";
 import {Fragment, useEffect} from "react";
-import Basket from "../components/lists/Basket";
-import {useNavigate} from "react-router-dom";
-import {getSelectedAnnot} from "../app/AnnotsSlice";
+import {Link, useNavigate} from "react-router-dom"
 
 const Faild = () => {
     const navigate = useNavigate()
@@ -17,7 +14,7 @@ const Faild = () => {
         }
 
         dispatch(clearTransactionForm())
-    }, [])
+    }, [dispatch, navigate, transactionForm])
 
     const getTotal = () => {
         let total = transactionForm.basket.reduce((sum, cur) => {
@@ -212,7 +209,7 @@ const Faild = () => {
 
                     <p className='text-white/80'>
                         Please ensure to confirm your email id by clicking on the link in our email. In case, you are not abel to find our email, please make sure you check your spam folder too.
-                        <a href="#" className='text-[#3F99FF] underline ml-1'>Learn More</a>
+                        <Link className='text-[#3F99FF] underline ml-1'>Learn More</Link>
                     </p>
                 </div>
             )}
