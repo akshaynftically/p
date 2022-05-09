@@ -1,4 +1,5 @@
 import {Fragment, useEffect, useState} from 'react'
+import { ethers } from "ethers";
 
 // Components
 import {SimpleButton, PillButton} from 'components/buttons'
@@ -16,6 +17,7 @@ import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
 import {Controller, useForm} from 'react-hook-form'
+import { landPrices } from './landPrices';
 
 const _selectIndustryOptions = [
   {value: 'Ecommerce', label: 'Ecommerce'},
@@ -88,6 +90,7 @@ const ReserveLand = () => {
   const [isOpenedConnectYourWallet, setIsOpenedConnectYourWallet] = useState(false)
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
   const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
+  const [provider, setProvider] = useState(null)
 
   useEffect(() => {
     if (transactionForm) {
@@ -116,6 +119,11 @@ const ReserveLand = () => {
 
     setValue('industry', _selectIndustryOptions[0])
     
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    setProvider(provider)
+    landPrices(0,true).then((prices) => {
+      console.log(prices);
+    });
   }, [])
 
   useEffect(() => {
@@ -141,14 +149,35 @@ const ReserveLand = () => {
   const handleProgressWallet = () => {
     setIsOpenedProgressWallet(!isOpenedProgressWallet)
   }
-  const handleSelectConnectYourWallet = () => {
-    setIsOpenedConnectYourWallet(false)
-    setTimeout(() => setIsOpenedProgressWallet(true))
+  const startTransactionFlow = (walletTitle) => {
+    if(walletTitle === "MetaMask") {
+      setIsOpenedConnectYourWallet(false)
+      setIsOpenedProgressWallet(true)
+      const signer = provider.getSigner()
+      //If we want to change title of the modal depending on the task flow
+      // setProgressModalTitle("Preparing the smart contract")
+      setTimeout(() => {
+        // 50% success of transaction success
+        if (Math.random() < 0.5) {
+          navigate('/success')
+        } else {
+          navigate('/faild')
+        }
+      }, 3000)
+    }
   }
   const onSubmit = (data) => {
     dispatch(setTransactionForm({...data, basket, discountCode}))
+    setIsOpenedConnectYourWallet(true)
+    // setTimeout(() => {
+    //   navigate('/success')
+    // }, 2000)
   }
 
+
+  function lol () {
+    console.log(1)
+  }
   return (
     <Fragment>
       <div className='py-[120px] px-10 lg:px-[80px] text-white'>
@@ -288,7 +317,7 @@ const ReserveLand = () => {
         </form>
       </div>
 
-      {isOpenedConnectYourWallet && <ConnectYourWallet onSelect={handleSelectConnectYourWallet} onClose={handleToggleConnectYourWallet} />}
+      {isOpenedConnectYourWallet && <ConnectYourWallet onClose={handleToggleConnectYourWallet} provider={provider} startTransactionFlow={startTransactionFlow} />}
       {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} title={progressModalTitle} />}
     </Fragment>
   )
