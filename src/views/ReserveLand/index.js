@@ -92,7 +92,7 @@ const ReserveLand = () => {
   const [areYouRepresenting, setAreYouRepresenting] = useState('individual')
   const [isOpenedConnectYourWallet, setIsOpenedConnectYourWallet] = useState(false)
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
-  const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
+  const [progressModalTitle] = useState("Please confirm the transaction")
   const [provider, setProvider] = useState(null)
 
   useEffect(() => {
@@ -127,11 +127,11 @@ const ReserveLand = () => {
     landPrices(0,true).then((prices) => {
       console.log(prices);
     });
-  }, [])
+  }, [setValue, transactionForm])
 
   useEffect(() => {
     dispatch(setTransactionForm({...getValues(), basket, discountCode}))
-  }, [basket, discountCode])
+  }, [basket, discountCode, dispatch, getValues])
 
   const getTotal = () => {
     let total = basket.reduce((sum, cur) => {
@@ -156,7 +156,6 @@ const ReserveLand = () => {
     if(walletTitle === "MetaMask") {
       setIsOpenedConnectYourWallet(false)
       setIsOpenedProgressWallet(true)
-      const signer = provider.getSigner()
       //If we want to change title of the modal depending on the task flow
       // setProgressModalTitle("Preparing the smart contract")
       setTimeout(() => {
@@ -180,7 +179,7 @@ const ReserveLand = () => {
 
   const notify = () => toast('Please wait while we redirect you to the payment page!', {
     icon: () => <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M11.5145 0.0828645L16.2504 4.81786V11.5145L11.5145 16.2504H4.81786L0.0820312 11.5145V4.81786L4.81786 0.0820312H11.5145V0.0828645ZM7.1662 10.4995V12.1662H8.83286V10.4995H7.1662ZM7.1662 3.83286V8.83286H8.83286V3.83286H7.1662Z" fill="white" fill-opacity="0.8"/>
+<path d="M11.5145 0.0828645L16.2504 4.81786V11.5145L11.5145 16.2504H4.81786L0.0820312 11.5145V4.81786L4.81786 0.0820312H11.5145V0.0828645ZM7.1662 10.4995V12.1662H8.83286V10.4995H7.1662ZM7.1662 3.83286V8.83286H8.83286V3.83286H7.1662Z" fill="white" fillOpacity="0.8"/>
 </svg>
 ,
     position: "top-right",
