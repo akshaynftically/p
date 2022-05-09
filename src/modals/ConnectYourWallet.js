@@ -15,32 +15,37 @@ const _tokens = [
     id: '1001',
     title: 'MetaMask',
     icon: _tokenIcon1,
+    provider: "ethereum"
   },
   {
     id: '1002',
     title: 'WalletConnect',
     icon: _tokenIcon2,
+    provider: "wc"
   },
   {
     id: '1003',
     title: 'Coinbase Wallet',
     icon: _tokenIcon3,
+    provider: "ethereum"
   },
   {
     id: '1004',
     title: 'Fortmatic',
     icon: _tokenIcon4,
+    provider: "fm"
   },
 ]
 
-const ConnectYourWallet = ({onClose, onSelect, provider, startTransactionFlow}) => {
+const ConnectYourWallet = ({onClose, abstractProvider, startTransactionFlow}) => {
   //handler for logging into wallet and handle transactions
-  const handleWalletConnect = async(walletTitle) => {
+  const handleWalletConnect = async(walletTitle, walletProvider) => {
     if(walletTitle === "MetaMask") {
-      if(provider !== null) {
+      if(abstractProvider !== null) {
+        let provider = abstractProvider(walletProvider)
         let accounts =  provider.send("eth_requestAccounts", [])
         accounts.then(() => {
-          startTransactionFlow("MetaMask")
+          startTransactionFlow("MetaMask", provider)
         })
       }
     }
@@ -63,7 +68,7 @@ const ConnectYourWallet = ({onClose, onSelect, provider, startTransactionFlow}) 
       <div className='bg-[#363738] rounded-lg mb-[18px]'>
         <div>
           {_tokens.map((el) => (
-            <WalletListItem key={el.id} title={el.title} {...el} onClick={handleWalletConnect} />
+            <WalletListItem key={el.id} {...el} onClick={handleWalletConnect} />
           ))}
         </div>
         <div className='flex items-center justify-center min-h-[54px] py-[10px] px-[20px]'>

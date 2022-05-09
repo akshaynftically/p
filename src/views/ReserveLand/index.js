@@ -89,7 +89,7 @@ const ReserveLand = () => {
   const [isOpenedConnectYourWallet, setIsOpenedConnectYourWallet] = useState(false)
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
   const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
-  const [provider, setProvider] = useState(null)
+  const [abstractProvider, setabstractProvider] = useState(null)
 
   useEffect(() => {
     if (transactionForm) {
@@ -117,9 +117,13 @@ const ReserveLand = () => {
     }
 
     setValue('industry', _selectIndustryOptions[0])
-    
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    setProvider(provider)
+  }, [])
+
+  useEffect(() => {
+    const abstractProvider = () => (walletProvider) => {
+      return new ethers.providers.Web3Provider(window[walletProvider])
+    }
+    setabstractProvider(abstractProvider)
   }, [])
 
   useEffect(() => {
@@ -145,7 +149,7 @@ const ReserveLand = () => {
   const handleProgressWallet = () => {
     setIsOpenedProgressWallet(!isOpenedProgressWallet)
   }
-  const startTransactionFlow = (walletTitle) => {
+  const startTransactionFlow = (walletTitle, provider) => {
     if(walletTitle === "MetaMask") {
       setIsOpenedConnectYourWallet(false)
       setIsOpenedProgressWallet(true)
@@ -170,10 +174,6 @@ const ReserveLand = () => {
     // }, 2000)
   }
 
-
-  function lol () {
-    console.log(1)
-  }
   return (
     <Fragment>
       <div className='py-[120px] px-10 lg:px-[80px] text-white'>
@@ -313,7 +313,7 @@ const ReserveLand = () => {
         </form>
       </div>
 
-      {isOpenedConnectYourWallet && <ConnectYourWallet onClose={handleToggleConnectYourWallet} provider={provider} startTransactionFlow={startTransactionFlow} />}
+      {isOpenedConnectYourWallet && <ConnectYourWallet onClose={handleToggleConnectYourWallet} abstractProvider={abstractProvider} startTransactionFlow={startTransactionFlow} />}
       {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} title={progressModalTitle} />}
     </Fragment>
   )
