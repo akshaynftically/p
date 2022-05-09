@@ -59,37 +59,37 @@ const ReserveLand = () => {
       id: '1000',
       qty: 0,
       type: '32x32',
-      perItemPrice: 20,
+      perItemPrice: 0,
     },
     {
       id: '1001',
       qty: 0,
       type: '16x16',
-      perItemPrice: 10,
+      perItemPrice: 0,
     },
     {
       id: '1002',
       qty: 0,
       type: '8x8',
-      perItemPrice: 5,
+      perItemPrice: 0,
     },
     {
       id: '1004',
       qty: 0,
       type: '4x4',
-      perItemPrice: 4,
+      perItemPrice: 0,
     },
     {
       id: '1005',
       qty: 0,
       type: '2x2',
-      perItemPrice: 2,
+      perItemPrice: 0,
     },
     {
       id: '1006',
       qty: 0,
       type: '1x1',
-      perItemPrice: 1,
+      perItemPrice: 0,
     }
   ])
   const [discountCode, setDiscountCode] = useState('')
@@ -135,11 +135,17 @@ const ReserveLand = () => {
       return new ethers.providers.Web3Provider(window[walletProvider])
     }
     setabstractProvider(abstractProvider)
-    
+  }, [])
+
+  useEffect(() => {
     landPrices(0,true).then((prices) => {
       console.log(prices);
+      setBasket((basket) => basket.map((elem, i) => ({
+          ...elem,
+          perItemPrice: prices[5-i]
+        })))
     });
-  }, [])
+  }, [basket])
 
   useEffect(() => {
     dispatch(setTransactionForm({...getValues(), basket, discountCode}))
