@@ -15,7 +15,7 @@ import FieldGroup from '../components/form/FieldGroup'
 import Field from '../components/form/Field'
 import {SimpleButton} from '../components/buttons'
 import {useForm} from 'react-hook-form'
-import {setTransactionForm} from '../app/TransactionFormSlice'
+import {getTransactionForm, setTransactionForm} from '../app/TransactionFormSlice'
 import PopularBrands from '../components/land/PopularBrands'
 import Stores from '../components/land/Stores'
 
@@ -49,6 +49,7 @@ const Land = (props) => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: {errors},
   } = useForm({
     mode: 'onChange',
@@ -57,6 +58,7 @@ const Land = (props) => {
   const navigate = useNavigate()
   const [reset] = useOutletContext()
   const land = useSelector(getSelectedAnnot)
+  const transactionForm = useSelector(getTransactionForm)
   const dispatch = useDispatch()
   const sectionRef = useRef()
   const [enterYourDetailsIsOpened, setEnterYourDetailsIsOpened] = useState(false)
@@ -72,6 +74,10 @@ const Land = (props) => {
 
   useEffect(() => {
     setAnimate(true)
+
+    if (transactionForm) {
+      setValue('email', transactionForm.email)
+    }
   }, [])
 
   function back() {

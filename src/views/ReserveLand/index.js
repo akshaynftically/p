@@ -276,12 +276,16 @@ const ReserveLand = () => {
                     </div>
                   </div>
                 </FieldGroup>
-                <FieldGroup label='Company Name'>
-                  <Field isError={errors.company}
-                         register={register("company", { required: true })}
-                         placeholder='Enter Your Company or Brand Name Here' />
-                  <small className='text-red-400'>{errors.company?.type === 'required' && "Company is required"}</small>
-                </FieldGroup>
+
+                {areYouRepresenting !== 'individual' && (
+                    <FieldGroup label='Company Name'>
+                      <Field isError={errors.company}
+                             register={register("company", { required: true })}
+                             placeholder='Enter Your Company or Brand Name Here' />
+                      <small className='text-red-400'>{errors.company?.type === 'required' && "Company is required"}</small>
+                    </FieldGroup>
+                )}
+
                 <FieldGroup label='Select Country' className='md:mb-[40px]'>
                   <Controller
                       name='country'

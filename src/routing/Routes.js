@@ -13,8 +13,8 @@ const Routes = () => {
   return (
     <Fragment>
       <RRDRoutes>
-        <Route path='/' element={<Promo />} />
-        <Route path='/home' element={<Home />}>
+        {/*<Route path='/' element={<Promo />} />*/}
+        <Route path='/' element={<Home />}>
           <Route hash='land' path='land/:landId' element={<Land />} />
         </Route>
         <Route path='/reserve-land' element={<ReserveLand />} exact />
