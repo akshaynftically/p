@@ -1,8 +1,8 @@
 import { ethers } from 'ethers'
 
 export const landPrices = async (token = 0,returnNumeric = false) => {
-    let provider = new ethers.providers.JsonRpcProvider(process.env.POLYGON_RPC_PROVIDER);
-    let contract  = new ethers.Contract(process.env.LAND_RESERVER_CONTRACT_ADDRESS, [{
+    let provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_POLYGON_RPC_PROVIDER);
+    let contract  = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS, [{
         "inputs": [
             {
                 "internalType": "enum LandReserver.PaymentToken",

@@ -18,6 +18,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
 import {Controller, useForm} from 'react-hook-form'
 import { landPrices } from './landPrices';
+import { _selectTokenOptions } from 'constants/tokens';
 
 const _selectIndustryOptions = [
   {value: 'Ecommerce', label: 'Ecommerce'},
@@ -31,21 +32,7 @@ const _selectCountryOptions = [
   {value: 'Option3', label: 'Option 3'},
 ]
 
-const _selectTokenOptions = [
-  {id: 0, logo:"token_logo0", value: 'MATIC', label: 'MATIC', contract_address: "0x2232", decimals: 2},
-  {id: 1, logo:"token_logo1", value: 'USDT ERC20 (on Polygon)', label: 'USDT ERC20 (on Polygon)', contract_address: process.env.USDT_contract_address, decimals: 2},
-  {id: 2, logo:"token_logo2", value: 'USDC ERC20 (on Polygon)', label: 'USDC ERC20 (on Polygon)', contract_address: process.env.USDC_contract_address, decimals: 2},
-  {id: 3, logo:"token_logo3", value: 'BUSD ERC20 (on Polygon)', label: 'BUSD ERC20 (on Polygon)', contract_address: process.env.BUSD_contract_address, decimals: 2},
-  {id: 4, logo:"token_logo4", value: 'wMATIC (on Polygon)', label: 'wMATIC (on Polygon)', contract_address: process.env.wMATIC_contract_address, decimals: 2},
-  {id: 5, logo:"token_logo5", value: 'ETH (on Polygon)', label: 'ETH (on Polygon)', contract_address: process.env.ETH_contract_address, decimals: 2},
-  {id: 6, logo:"token_logo6", value: 'BTC (on Polygon)', label: 'BTC (on Polygon)', contract_address: process.env.BTC_contract_address, decimals: 2},
-  {id: 7, logo:"token_logo7", value: 'BNB (on Polygon)', label: 'BNB (on Polygon)', contract_address: process.env.BNB_contract_address, decimals: 2},
-  {id: 8, logo:"token_logo8", value: 'Aave (on Polygon)', label: 'Aave (on Polygon)', contract_address: process.env.Aave_contract_address, decimals: 2},
-  {id: 9, logo:"token_logo9", value: 'LINK (on Polygon)', label: 'LINK (on Polygon)', contract_address: process.env.LINK_contract_address, decimals: 2},
-  {id: 10, logo:"token_logo10", value: 'Luna (on Polygon)', label: 'Luna (on Polygon)', contract_address: process.env.Luna_contract_address, decimals: 2},
-  {id: 11, logo:"token_logo11", value: 'MANA (on Polygon)', label: 'MANA (on Polygon)', contract_address: process.env.MANA_contract_address, decimals: 2},
-  {id: 12, logo:"token_logo12", value: 'SAND (on Polygon)', label: 'SAND (on Polygon)', contract_address: process.env.SAND_contract_address, decimals: 2},
-]
+
 
 const ReserveLand = () => {
   const dispatch = useDispatch()
@@ -135,9 +122,8 @@ const ReserveLand = () => {
       return new ethers.providers.Web3Provider(window[walletProvider])
     }
     setabstractProvider(abstractProvider)
-  }, [])
 
-  useEffect(() => {
+    // currently load just once due to overwhelming console logs
     landPrices(0,true).then((prices) => {
       console.log(prices);
       setBasket((basket) => basket.map((elem, i) => ({
@@ -145,7 +131,11 @@ const ReserveLand = () => {
           perItemPrice: prices[5-i]
         })))
     });
-  }, [basket])
+  }, [])
+
+  // commenting for now too much console logs
+  // useEffect(() => {
+  // }, [basket])
 
   useEffect(() => {
     dispatch(setTransactionForm({...getValues(), basket, discountCode}))
@@ -161,6 +151,11 @@ const ReserveLand = () => {
 
 
   // Handlers
+
+  const handleTokenChange = (token) => {
+    setSelectToken(token);
+    console.log(token);
+  }
   const handleChangeAreYouRepresenting = (val) => {
     setAreYouRepresenting(val)
   }
@@ -316,7 +311,7 @@ const ReserveLand = () => {
                         defaultValue={selectToken}
                         options={_selectTokenOptions}
                         placeholder='Please Select Token'
-                        onChange={setSelectToken}
+                        onChange={handleTokenChange}
                     />
                   </FieldGroup>
 
