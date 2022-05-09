@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom'
+import detectEthereumProvider from '@metamask/detect-provider';
 
 // Components
 import {WalletListItem} from 'components/lists'
@@ -41,6 +42,33 @@ const ConnectYourWallet = ({onClose, abstractProvider, startTransactionFlow}) =>
   //handler for logging into wallet and handle transactions
   const handleWalletConnect = async(walletTitle, walletProvider) => {
     if(walletTitle === "MetaMask") {
+      const provider = await detectEthereumProvider();
+      if(provider) {
+        let accounts =  provider.send("eth_requestAccounts", [])
+        accounts.then(() => {
+          startTransactionFlow("MetaMask", provider)
+        })
+      }
+    }
+    if(walletTitle === "WalletConnect") {
+      if(abstractProvider !== null) {
+        let provider = abstractProvider(walletProvider)
+        let accounts =  provider.send("eth_requestAccounts", [])
+        accounts.then(() => {
+          startTransactionFlow("MetaMask", provider)
+        })
+      }
+    }
+    if(walletTitle === "Coinbase Wallet") {
+      if(abstractProvider !== null) {
+        let provider = abstractProvider(walletProvider)
+        let accounts =  provider.send("eth_requestAccounts", [])
+        accounts.then(() => {
+          startTransactionFlow("MetaMask", provider)
+        })
+      }
+    }
+    if(walletTitle === "Fortmatic") {
       if(abstractProvider !== null) {
         let provider = abstractProvider(walletProvider)
         let accounts =  provider.send("eth_requestAccounts", [])
