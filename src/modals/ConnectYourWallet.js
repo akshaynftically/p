@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom'
+import detectEthereumProvider from '@metamask/detect-provider';
 
 // Components
 import {WalletListItem} from 'components/lists'
@@ -9,6 +10,7 @@ import _tokenIcon1 from 'assets/icons/metamask.svg'
 import _tokenIcon2 from 'assets/icons/wallet-connect.svg'
 import _tokenIcon3 from 'assets/icons/coinbase.svg'
 import _tokenIcon4 from 'assets/icons/fortmatic.svg'
+import { ethers } from 'ethers';
 
 const _tokens = [
   {
@@ -33,17 +35,24 @@ const _tokens = [
   },
 ]
 
-const ConnectYourWallet = ({onClose, onSelect, provider, startTransactionFlow}) => {
+const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
   //handler for logging into wallet and handle transactions
   const handleWalletConnect = async(walletTitle) => {
+    let walletWeb3;
     if(walletTitle === "MetaMask") {
-      if(provider !== null) {
-        let accounts =  provider.send("eth_requestAccounts", [])
-        accounts.then(() => {
-          startTransactionFlow("MetaMask")
-        })
+      // if wallet is metamask pluck only metamask provider
+      if(typeof window.ethereum.providers != "undefined"){
+        walletWeb3 = window.ethereum.providers.find((provider) => provider.isMetaMask);
+      }else{
+        walletWeb3 = window.ethereum;
+      }
+      if(walletWeb3) {
+        let accounts =  await walletWeb3.request({method: "eth_requestAccounts"})
+        // here we get accounts['address'] 
       }
     }
+    let provider = new ethers.providers.Web3Provider(walletWeb3);
+    startTransactionFlow(provider)
   }
 
   return (
@@ -63,7 +72,7 @@ const ConnectYourWallet = ({onClose, onSelect, provider, startTransactionFlow}) 
       <div className='bg-[#363738] rounded-lg mb-[18px]'>
         <div>
           {_tokens.map((el) => (
-            <WalletListItem key={el.id} title={el.title} {...el} onClick={handleWalletConnect} />
+            <WalletListItem key={el.id} {...el} onClick={handleWalletConnect} />
           ))}
         </div>
         <div className='flex items-center justify-center min-h-[54px] py-[10px] px-[20px]'>
