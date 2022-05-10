@@ -21,7 +21,7 @@ const AccountModal = (props) => {
     return (
         <>
             {(openAccountModal && !openAddFoundsModal) && (
-                <FullScreenPopup size='w-full md:w-[640px]' title='Account' onClose={onClose}>
+                <FullScreenPopup fullscreen={true} size='w-full md:w-[640px]' title='Account' className='min-h-[100vh] md:min-h-full' onClose={onClose}>
                     {balance === '0.0' && (
                         <div className='my-[20px]'>
                             <div className='flex items-center bg-[#514638] rounded-[8px] border border-[#FFC179] py-[8px] px-[16px]'>

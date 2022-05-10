@@ -32,7 +32,7 @@ const AddFoundsModal = (props) => {
     return (
         <>
             {openAddFoundsModal && (
-                <FullScreenPopup size='w-[300px] md:w-[640px]' title='Add Funds' onClose={onClose} onBack={handleBack}>
+                <FullScreenPopup fullscreen={true} size='w-full md:w-[640px]' title='Add Funds' className='min-h-[100vh] md:min-h-full' onClose={onClose} onBack={handleBack}>
                     <TabsNav tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
 
                     {activeTab === 0 ? (
@@ -42,8 +42,8 @@ const AddFoundsModal = (props) => {
 
                                <hr className='border-white/10 my-[16px]' />
 
-                               <div className='flex items-center justify-between mb-[17px]'>
-                                   <span className='font-[700] text-[32px] text-white/80'>{address.slice(0, 10)}...{address.slice(address.length - 5, address.length + 5)}</span>
+                               <div className='flex items-center flex-wrap justify-between mb-[17px]'>
+                                   <span className='font-[700] text-[25px] md:text-[32px] text-white/80 mb-2'>{address.slice(0, 10)}...{address.slice(address.length - 5, address.length + 5)}</span>
                                    <CopyToClipboard successText='Copied!' copyText={address}>
                                        <button className='text-[12px] text-white/60 flex items-center py-[8.5px] px-[22px] border-2 rounded-full'>
                                            <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +56,7 @@ const AddFoundsModal = (props) => {
                            </div>
 
                            <div className='text-center mb-[10px]'>
-                               <SimpleButton type='button' size='sm'>Done</SimpleButton>
+                               <SimpleButton type='button' className='block w-full md:w-auto' size='sm'>Done</SimpleButton>
                            </div>
                        </div>
                     ) : (

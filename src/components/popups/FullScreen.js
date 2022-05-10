@@ -2,15 +2,15 @@ import {Fragment} from 'react'
 import clsx from 'clsx'
 
 const FullScreen = (props) => {
-  const {title, size = 'w-[560px]', className, children, onClose, onBack, ...rest} = props
+  const {title, fullscreen = false, size = 'w-[560px]', className, children, onClose, onBack, ...rest} = props
 
   return (
-    <div className='fixed top-0 left-0 flex items-center w-full h-full overflow-y-auto z-30'>
+    <div className={`fixed top-0 left-0 ${fullscreen ? 'md:flex' : 'flex'} items-center w-full h-full overflow-y-auto z-30`}>
       <div className='fixed top-0 bottom-0 left-0 right-0 z-40 bg-black/50' onClick={onClose} />
-      <div className={clsx('relative z-50  max-w-full py-[20px] mx-auto')}>
+      <div className={clsx('relative z-50  max-w-full md:py-[20px] mx-auto')}>
         <div
           className={clsx(
-            'relative bg-[#262728] text-white rounded-lg px-[24px] py-[20px]',
+            `relative bg-[#262728] text-white ${fullscreen ? 'md:rounded-lg' : 'rounded-lg'} px-[24px] py-[20px]`,
             size,
             className
           )}

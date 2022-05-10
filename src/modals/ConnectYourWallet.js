@@ -47,7 +47,7 @@ const ConnectYourWallet = ({onClose, onSelect, provider, startTransactionFlow}) 
   }
 
   return (
-    <FullScreenPopup title='Connect Your Wallet' size='w-[520px]' onClose={onClose}>
+    <FullScreenPopup title='Connect Your Wallet' size='w-full sm:w-[520px]' onClose={onClose}>
       <div className='text-[14px] text-white/[.80] mb-[24px]'>
         By connecting a wallet, you agree to NFTICALLY’s{' '}
         <Link className='font-bold text-[#3E97FC] hover:underline' to='/'>
