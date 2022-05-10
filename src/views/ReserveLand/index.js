@@ -20,6 +20,7 @@ import {Controller, useForm} from 'react-hook-form'
 import { landPrices } from './landPrices';
 import { _selectTokenOptions } from 'constants/tokens';
 import { _landReserverAbi } from 'constants/landReserverAbi';
+import { _erc20Abi } from 'constants/erc20Abi';
 
 const _selectIndustryOptions = [
   {value: 'Ecommerce', label: 'Ecommerce'},
@@ -166,22 +167,40 @@ const ReserveLand = () => {
   const handleProgressWallet = () => {
     setIsOpenedProgressWallet(!isOpenedProgressWallet)
   }
-  const startTransactionFlow = (provider) => {
+  const startTransactionFlow = async (provider) => {
     setIsOpenedConnectYourWallet(false)
     setIsOpenedProgressWallet(true)
+
+    let transaction;
+    let receipt;
+    let tNumber = 0;
+    
     const signer = provider.getSigner()
+    const account = (await provider.send("eth_requestAccounts",[]))[0];
     let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider);
     let signedContract = contract.connect(signer);
     let parcelQuantities = basket.reverse().map((el) => {
       return el.qty
     })
-    let tNumber = 0;
-    signedContract.reserveLand(parcelQuantities,selectToken.contract_address,tNumber).then((tx) => {
-      console.log(tx);
-      // navigate('/success')
-    }).catch((err) => {
-      navigate('/faild')
-    })
+    // check for approval erc20
+    if(selectToken.id !== 0){
+      let erc20 = new ethers.Contract(selectToken.contract_address,_erc20Abi,provider);
+      let allowedAmt = await erc20.allowance(account, process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS);
+      if(!allowedAmt.gt(0)){
+          // ask to approve and procees further
+          setProgressModalTitle("Please approve for "+selectToken.label+" token")
+          let erc20Signed = erc20.connect(signer);
+          transaction = await erc20Signed.approve(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,'0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff');
+          // wait for transaction modal erc20
+          receipt = await transaction.wait();
+      }
+    }
+
+    // initiate transaction modal
+    transaction = await signedContract.reserveLand(parcelQuantities,selectToken.contract_address,tNumber)
+    // wait for transaction modal
+    receipt  = await transaction.wait()
+    return receipt;
   }
   const onSubmit = (data) => {
     dispatch(setTransactionForm({...data, basket, discountCode}))
