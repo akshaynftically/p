@@ -1,4 +1,5 @@
 import SimpleButton from './Simple'
 import PillButton from './Pill'
+import BlurButton from './Blur'
 
-export {SimpleButton, PillButton}
+export {SimpleButton, PillButton, BlurButton}

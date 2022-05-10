@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap');
 
 body {
 	-webkit-font-smoothing: antialiased;
@@ -121,6 +121,13 @@ model-viewer {
 	display: none;
 }
 
+/* Buttons */
+.btn-blur {
+	text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+	background: linear-gradient(180deg, rgba(188, 220, 245, 0.2) 0%, rgba(255, 255, 255, 0.116188) 99.99%, rgba(188, 220, 245, 0) 100%);
+	backdrop-filter: blur(11.6071px);
+}
+
 /* Swiper */
 .swiper-button-next.swiper-button-disabled,
 .swiper-button-prev.swiper-button-disabled {
@@ -146,6 +153,16 @@ body {
 .border-sq-gradient {
 	border: 1px solid;
 	border-image: linear-gradient(45deg, #D299FF, #58C3FF) 1;
+}
+
+.pseudo-border-gradient {
+	background: linear-gradient(#161718, #161718) padding-box, linear-gradient(45deg, #D299FF, #58C3FF) border-box;
+	border: 2px solid transparent;
+	transition: background 0.2s ease-in-out;
+}
+
+.bg-shaded {
+	background: linear-gradient(0deg, #070707 52.54%, rgba(7, 7, 7, 0) 100%);
 }
 
 .swiper-wrapper {
