@@ -21,7 +21,7 @@ const AccountModal = (props) => {
     return (
         <>
             {(openAccountModal && !openAddFoundsModal) && (
-                <FullScreenPopup size='w-[300px] md:w-[640px]' title='Account' onClose={onClose}>
+                <FullScreenPopup size='w-full md:w-[640px]' title='Account' onClose={onClose}>
                     {balance === '0.0' && (
                         <div className='my-[20px]'>
                             <div className='flex items-center bg-[#514638] rounded-[8px] border border-[#FFC179] py-[8px] px-[16px]'>
@@ -37,7 +37,7 @@ const AccountModal = (props) => {
                     )}
 
                     <div className='pt-[40px] px-[24px] pb-[44px] bg-[#363738] rounded-[8px] mb-[16px]'>
-                        <div className='grid grid-cols-3'>
+                        <div className='grid gap-y-4 md:gap-y-0 grid-cols-2 md:grid-cols-3'>
                             <div>
                                 <span className='block text-white/70 text-[14px] mb-[4px]'>Total Balance</span>
                                 <div className='flex items-center'>
@@ -52,11 +52,13 @@ const AccountModal = (props) => {
                                 <span className='block text-white/60 text-[14px] mb-[4px]'>Network</span>
                                 <span className='text-[14px] text-white mr-[17px]'>Polygon (Mainnet)</span>
                             </div>
-                            <SimpleButton type='button' onClick={() => setOpenAddFoundsModal(true)}>Add Founds</SimpleButton>
+                            <div className='col-span-2 md:col-span-1'>
+                                <SimpleButton type='button' className='block w-full' onClick={() => setOpenAddFoundsModal(true)}>Add Founds</SimpleButton>
+                            </div>
                         </div>
                     </div>
                     <div className='pt-[24px] px-[24px] pb-[25px] bg-[#363738] rounded-[8px]'>
-                        <div className='flex items-center justify-between'>
+                        <div className='flex items-center justify-between flex-wrap'>
                             <div className="flex items-center">
                                 <svg width="28" height="26" viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M25.7109 1L15.5547 8.49997L17.4433 4.07999L25.7109 1Z" fill="#E17726" stroke="#E17726" strokeWidth="0.25" strokeLinecap="round" strokeLinejoin="round"/>
@@ -93,12 +95,12 @@ const AccountModal = (props) => {
                                 <span className='text-white/80 text-[16px] ml-[10px]'>Connected with Metamask</span>
                             </div>
 
-                            <SimpleButton type='button'>Change Wallet</SimpleButton>
+                            <SimpleButton type='button' className='block w-full mt-3 sm:w-auto sm:inline sm:mt-0'>Change Wallet</SimpleButton>
                         </div>
                         <hr className='border-white/10 my-[16px]' />
                         
-                        <div className='flex items-center justify-between mb-[17px]'>
-                            <span className='font-[700] text-[32px] text-white/80'>{address.slice(0, 10)}...{address.slice(address.length - 5, address.length + 5)}</span>
+                        <div className='flex items-center flex-wrap justify-between mb-[17px]'>
+                            <span className='font-[700] text-[25px] md:text-[32px] mb-2 md:mb-0 text-white/80'>{address.slice(0, 10)}...{address.slice(address.length - 5, address.length + 5)}</span>
                             <CopyToClipboard successText='Copied!' copyText={address}>
                                 <button className='text-[12px] text-white/60 flex items-center py-[8.5px] px-[22px] border-2 rounded-full'>
                                     <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">

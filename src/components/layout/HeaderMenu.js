@@ -10,7 +10,7 @@ export function HeaderMenu() {
       <nav className='sm:max-w-[90rem] 2xl:max-w-[105rem] flex basis-full items-center sm:items-end w-full mx-auto px-4 sm:px-6 lg:px-8'>
         <AsideLeft />
 
-        <Link className='max-w-[250px] sm:max-w-[unset] flex-none' to='/'>
+        <Link className='max-w-[225px] sm:max-w-[unset] flex-none' to='/'>
           <img className='block' src={logo} alt='logo' />
         </Link>
 

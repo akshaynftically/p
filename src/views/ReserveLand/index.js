@@ -194,7 +194,7 @@ const ReserveLand = () => {
 
   return (
     <Fragment>
-      <div className="sm:max-w-[90rem] 2xl:max-w-[105rem] flex basis-full items-center sm:items-end w-full mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="sm:max-w-[90rem] 2xl:max-w-[105rem] sm:items-end w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className='py-[120px] text-white'>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className='lg:grid md:grid-cols-2 md:gap-x-[7.5rem]'>
@@ -304,7 +304,7 @@ const ReserveLand = () => {
                   <small className='text-red-400'>{errors.country?.type === 'required' && "Country is required"}</small>
                 </FieldGroup>
 
-                <div className='bg-[#262728] rounded-lg py-[20px] px-[24px]'>
+                <div className='hidden lg:block bg-[#262728] rounded-lg py-[20px] px-[24px]'>
                   <h2 className='font-semibold text-[20px] mb-[20px]'>FAQs</h2>
                   <Faqs />
                 </div>
@@ -331,6 +331,11 @@ const ReserveLand = () => {
                 <SimpleButton type='submit' className='mb-[27px]' block disabled={!getTotal()}>
                   Buy Virtual Land
                 </SimpleButton>
+
+                <div className='lg:hidden bg-[#262728] rounded-lg py-[20px] px-[24px] mb-[27px]'>
+                  <h2 className='font-semibold text-[20px] mb-[20px]'>FAQs</h2>
+                  <Faqs />
+                </div>
 
                 <div className='py-[34px] px-[32px] text-[14px] text-white/70 bg-[#262728] rounded-[8px]'>
                   <div className='font-[900] mb-1'>Important:</div>
