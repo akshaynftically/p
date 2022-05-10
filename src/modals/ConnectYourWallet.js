@@ -17,31 +17,27 @@ const _tokens = [
     id: '1001',
     title: 'MetaMask',
     icon: _tokenIcon1,
-    provider: "ethereum"
   },
   {
     id: '1002',
     title: 'WalletConnect',
     icon: _tokenIcon2,
-    provider: "wc"
   },
   {
     id: '1003',
     title: 'Coinbase Wallet',
     icon: _tokenIcon3,
-    provider: "ethereum"
   },
   {
     id: '1004',
     title: 'Fortmatic',
     icon: _tokenIcon4,
-    provider: "fm"
   },
 ]
 
-const ConnectYourWallet = ({onClose, abstractProvider, startTransactionFlow}) => {
+const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
   //handler for logging into wallet and handle transactions
-  const handleWalletConnect = async(walletTitle, walletProvider) => {
+  const handleWalletConnect = async(walletTitle) => {
     let walletWeb3;
     if(walletTitle === "MetaMask") {
       // if wallet is metamask pluck only metamask provider
@@ -56,7 +52,7 @@ const ConnectYourWallet = ({onClose, abstractProvider, startTransactionFlow}) =>
       }
     }
     let provider = new ethers.providers.Web3Provider(walletWeb3);
-    startTransactionFlow("MetaMask", provider)
+    startTransactionFlow(provider)
   }
 
   return (

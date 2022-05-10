@@ -88,7 +88,6 @@ const ReserveLand = () => {
   const [isOpenedConnectYourWallet, setIsOpenedConnectYourWallet] = useState(false)
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
   const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
-  const [abstractProvider, setabstractProvider] = useState(null)
 
   useEffect(() => {
     if (transactionForm) {
@@ -119,11 +118,6 @@ const ReserveLand = () => {
   }, [])
 
   useEffect(() => {
-    const abstractProvider = () => (walletProvider) => {
-      return new ethers.providers.Web3Provider(window[walletProvider])
-    }
-    setabstractProvider(abstractProvider)
-
     // currently load just once due to overwhelming console logs
     landPrices(selectToken,true).then((prices) => {
       console.log(prices);
@@ -172,24 +166,22 @@ const ReserveLand = () => {
   const handleProgressWallet = () => {
     setIsOpenedProgressWallet(!isOpenedProgressWallet)
   }
-  const startTransactionFlow = (walletTitle, provider) => {
-    if(walletTitle === "MetaMask") {
-      setIsOpenedConnectYourWallet(false)
-      setIsOpenedProgressWallet(true)
-      const signer = provider.getSigner()
-      let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider);
-      let signedContract = contract.connect(signer);
-      let parcelQuantities = basket.reverse().map((el) => {
-        return el.qty
-      })
-      let tNumber = 0;
-      signedContract.reserveLand(parcelQuantities,selectToken.contract_address,tNumber).then((tx) => {
-        console.log(tx);
-        // navigate('/success')
-      }).catch((err) => {
-        navigate('/faild')
-      })
-    }
+  const startTransactionFlow = (provider) => {
+    setIsOpenedConnectYourWallet(false)
+    setIsOpenedProgressWallet(true)
+    const signer = provider.getSigner()
+    let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider);
+    let signedContract = contract.connect(signer);
+    let parcelQuantities = basket.reverse().map((el) => {
+      return el.qty
+    })
+    let tNumber = 0;
+    signedContract.reserveLand(parcelQuantities,selectToken.contract_address,tNumber).then((tx) => {
+      console.log(tx);
+      // navigate('/success')
+    }).catch((err) => {
+      navigate('/faild')
+    })
   }
   const onSubmit = (data) => {
     dispatch(setTransactionForm({...data, basket, discountCode}))
@@ -338,7 +330,7 @@ const ReserveLand = () => {
         </form>
       </div>
 
-      {isOpenedConnectYourWallet && <ConnectYourWallet onClose={handleToggleConnectYourWallet} abstractProvider={abstractProvider} startTransactionFlow={startTransactionFlow} />}
+      {isOpenedConnectYourWallet && <ConnectYourWallet onClose={handleToggleConnectYourWallet} startTransactionFlow={startTransactionFlow} />}
       {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} title={progressModalTitle} />}
     </Fragment>
   )
