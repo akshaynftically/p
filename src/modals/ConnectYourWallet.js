@@ -10,6 +10,7 @@ import _tokenIcon1 from 'assets/icons/metamask.svg'
 import _tokenIcon2 from 'assets/icons/wallet-connect.svg'
 import _tokenIcon3 from 'assets/icons/coinbase.svg'
 import _tokenIcon4 from 'assets/icons/fortmatic.svg'
+import { ethers } from 'ethers';
 
 const _tokens = [
   {
@@ -41,42 +42,21 @@ const _tokens = [
 const ConnectYourWallet = ({onClose, abstractProvider, startTransactionFlow}) => {
   //handler for logging into wallet and handle transactions
   const handleWalletConnect = async(walletTitle, walletProvider) => {
+    let walletWeb3;
     if(walletTitle === "MetaMask") {
-      const provider = await detectEthereumProvider();
-      if(provider) {
-        let accounts =  provider.send("eth_requestAccounts", [])
-        accounts.then(() => {
-          startTransactionFlow("MetaMask", provider)
-        })
+      // if wallet is metamask pluck only metamask provider
+      if(typeof window.ethereum.providers != "undefined"){
+        walletWeb3 = window.ethereum.providers.find((provider) => provider.isMetaMask);
+      }else{
+        walletWeb3 = window.ethereum;
+      }
+      if(walletWeb3) {
+        let accounts =  await walletWeb3.request({method: "eth_requestAccounts"})
+        // here we get accounts['address'] 
       }
     }
-    if(walletTitle === "WalletConnect") {
-      if(abstractProvider !== null) {
-        let provider = abstractProvider(walletProvider)
-        let accounts =  provider.send("eth_requestAccounts", [])
-        accounts.then(() => {
-          startTransactionFlow("MetaMask", provider)
-        })
-      }
-    }
-    if(walletTitle === "Coinbase Wallet") {
-      if(abstractProvider !== null) {
-        let provider = abstractProvider(walletProvider)
-        let accounts =  provider.send("eth_requestAccounts", [])
-        accounts.then(() => {
-          startTransactionFlow("MetaMask", provider)
-        })
-      }
-    }
-    if(walletTitle === "Fortmatic") {
-      if(abstractProvider !== null) {
-        let provider = abstractProvider(walletProvider)
-        let accounts =  provider.send("eth_requestAccounts", [])
-        accounts.then(() => {
-          startTransactionFlow("MetaMask", provider)
-        })
-      }
-    }
+    let provider = new ethers.providers.Web3Provider(walletWeb3);
+    startTransactionFlow("MetaMask", provider)
   }
 
   return (

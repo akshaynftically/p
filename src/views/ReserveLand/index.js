@@ -19,6 +19,7 @@ import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
 import {Controller, useForm} from 'react-hook-form'
 import { landPrices } from './landPrices';
 import { _selectTokenOptions } from 'constants/tokens';
+import { _landReserverAbi } from 'constants/landReserverAbi';
 
 const _selectIndustryOptions = [
   {value: 'Ecommerce', label: 'Ecommerce'},
@@ -124,7 +125,7 @@ const ReserveLand = () => {
     setabstractProvider(abstractProvider)
 
     // currently load just once due to overwhelming console logs
-    landPrices(0,true).then((prices) => {
+    landPrices(selectToken,true).then((prices) => {
       console.log(prices);
       setBasket((basket) => basket.map((elem, i) => ({
           ...elem,
@@ -154,7 +155,13 @@ const ReserveLand = () => {
 
   const handleTokenChange = (token) => {
     setSelectToken(token);
-    console.log(token);
+    landPrices(token,true).then((prices) => {
+      console.log(prices);
+      setBasket((basket) => basket.map((elem, i) => ({
+          ...elem,
+          perItemPrice: prices[5-i]
+        })))
+    });
   }
   const handleChangeAreYouRepresenting = (val) => {
     setAreYouRepresenting(val)
@@ -170,16 +177,18 @@ const ReserveLand = () => {
       setIsOpenedConnectYourWallet(false)
       setIsOpenedProgressWallet(true)
       const signer = provider.getSigner()
-      //If we want to change title of the modal depending on the task flow
-      // setProgressModalTitle("Preparing the smart contract")
-      setTimeout(() => {
-        // 50% success of transaction success
-        if (Math.random() < 0.5) {
-          navigate('/success')
-        } else {
-          navigate('/faild')
-        }
-      }, 3000)
+      let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider);
+      let signedContract = contract.connect(signer);
+      let parcelQuantities = basket.reverse().map((el) => {
+        return el.qty
+      })
+      let tNumber = 0;
+      signedContract.reserveLand(parcelQuantities,selectToken.contract_address,tNumber).then((tx) => {
+        console.log(tx);
+        // navigate('/success')
+      }).catch((err) => {
+        navigate('/faild')
+      })
     }
   }
   const onSubmit = (data) => {
