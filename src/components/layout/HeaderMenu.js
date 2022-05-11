@@ -6,8 +6,6 @@ import AsideLeft from 'components/aisde/AsideLeft'
 
 // Sources
 import logo from 'assets/img/logo.svg'
-import AsideLeft from "../aisde/AsideLeft";
-import {Link} from "react-router-dom";
 import HeaderWalletInfo from "../wallet/HeaderWalletInfo";
 
 export function HeaderMenu() {
