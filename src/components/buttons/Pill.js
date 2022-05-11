@@ -5,7 +5,16 @@ import clsx from 'clsx'
 const Pill = (props) => {
   // size: sm | md | lg
   // variant: primary | secondary | danger | warning
-  const {size = 'md', variant = 'primary', className = '', href, type, children, ...rest} = props
+  const {
+    size = 'md',
+    variant = 'primary',
+    isActive = false,
+    className = '',
+    href,
+    type,
+    children,
+    ...rest
+  } = props
 
   return (
     <Fragment>
@@ -20,6 +29,9 @@ const Pill = (props) => {
             {'': variant === 'secondary'},
             {'': variant === 'danger'},
             {'': variant === 'warning'},
+            {
+              'bg-gradient-to-r from-[#D299FF] to-[#58C3FF]': isActive,
+            },
             className
           )}
           to={href}
@@ -39,6 +51,9 @@ const Pill = (props) => {
             {'': variant === 'secondary'},
             {'': variant === 'danger'},
             {'': variant === 'warning'},
+            {
+              'bg-gradient-to-r from-[#D299FF] to-[#58C3FF]': isActive,
+            },
             className
           )}
           type={type}
