@@ -139,7 +139,7 @@ const Second = () => {
 
   return (
     <Fragment>
-      <div className='bg-[#161718] pt-[80px] mb-[40px]'>
+      <div className='bg-[#161718] pt-[80px] mb-[40px] relative'>
         <div className='max-w-[1340px] px-4 lg:px-8 mx-auto'>
           <h2 className='leading-tight font-extrabold text-center text-[32px] lg:text-[52px] mb-[40px]'>
             Web3 E-Commerce will be <span className='text-gradient'>bigger than</span>
@@ -149,7 +149,9 @@ const Second = () => {
         </div>
       </div>
 
-      <div className='overflow-x-hidden'>
+      <div className='overflow-x-hidden relative'>
+        <div className='bg-gradient-to-b from-[#161718] to-[#161718]/0 h-[110px] absolute top-0 z-[1] left-0 w-full'></div>
+
         <div
           className='relative lg:min-h-[660px] bg-center bg-no-repeat bg-cover -mx-[8px]'
           style={{

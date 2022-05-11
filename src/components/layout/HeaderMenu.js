@@ -26,7 +26,9 @@ export function HeaderMenu() {
           <img className='block' src={logo} alt='logo' />
         </Link>
 
-         <HeaderWalletInfo />
+          {pathname === '/reserve-land' && (
+              <HeaderWalletInfo />
+          )}
       </nav>
     </header>
   )
