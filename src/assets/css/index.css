@@ -47,8 +47,14 @@ model-viewer {
 	height: 80vh;
 	width: 100%;
 	overflow: hidden;
-	position: relative;
+	position: absolute;
 	user-select: none;
+	z-index: 10;
+	transition: 1s;
+}
+
+.animate-continent model-viewer {
+	bottom: 0;
 }
 
 .hotspot:not(.hotspot-brand) {

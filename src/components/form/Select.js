@@ -1,5 +1,15 @@
 import ReactSelect, {components} from 'react-select'
 
+const OptionItem = (props) => {
+  return (
+      <components.Option {...props}>
+        <div className='flex items-center'>
+          <span>{props.data.label}</span>
+        </div>
+      </components.Option>
+  )
+}
+
 const DropdownIndicator = (props) => {
   return (
     <components.DropdownIndicator {...props}>
@@ -11,7 +21,7 @@ const DropdownIndicator = (props) => {
 }
 
 const Select = (props) => {
-  const {isError, ...rest} = props
+  const {isError, Option = OptionItem, ...rest} = props
 
   const customStyles = {
     valueContainer: (styles) => ({
@@ -60,7 +70,7 @@ const Select = (props) => {
     <ReactSelect
       classNamePrefix='react-select'
       styles={customStyles}
-      components={{DropdownIndicator}}
+      components={{DropdownIndicator, Option}}
       {...rest}
     />
   )

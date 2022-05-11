@@ -6,6 +6,9 @@ import AsideLeft from 'components/aisde/AsideLeft'
 
 // Sources
 import logo from 'assets/img/logo.svg'
+import AsideLeft from "../aisde/AsideLeft";
+import {Link} from "react-router-dom";
+import HeaderWalletInfo from "../wallet/HeaderWalletInfo";
 
 export function HeaderMenu() {
   const {pathname} = useLocation()
@@ -21,9 +24,11 @@ export function HeaderMenu() {
       >
         <AsideLeft />
 
-        <Link className='max-w-[250px] sm:max-w-[unset] flex-none' to='/'>
-          <img className='block' src={logo} alt='NFTCally' />
+        <Link className='max-w-[225px] sm:max-w-[unset] flex-none' to='/metaverse'>
+          <img className='block' src={logo} alt='logo' />
         </Link>
+
+         <HeaderWalletInfo />
       </nav>
     </header>
   )

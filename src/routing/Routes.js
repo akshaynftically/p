@@ -14,7 +14,7 @@ const Routes = () => {
     <Fragment>
       <RRDRoutes>
         <Route path='/' element={<Promo />} />
-        <Route path='/home' element={<Home />}>
+        <Route path='/metaverse' element={<Home />}>
           <Route hash='land' path='land/:landId' element={<Land />} />
         </Route>
         <Route path='/reserve-land' element={<ReserveLand />} exact />

@@ -1,5 +1,9 @@
-import {Fragment, useEffect, useState} from 'react'
+import {Fragment, useEffect, useState, useMemo} from 'react'
 import { ethers } from "ethers";
+import {components} from 'react-select'
+
+// Tokens list
+import { _selectTokenOptions } from 'constants/tokens'
 
 // Components
 import {SimpleButton, PillButton} from 'components/buttons'
@@ -21,6 +25,24 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
 import {Controller, useForm} from 'react-hook-form'
 import { landPrices } from './landPrices';
+import countryList from 'react-select-country-list'
+
+
+const _tokenIcons = {
+  'token_logo0': require('assets/img/tokens/token_logo0.png'),
+  'token_logo1': require('assets/img/tokens/token_logo1.png'),
+  'token_logo2': require('assets/img/tokens/token_logo2.png'),
+  'token_logo3': require('assets/img/tokens/token_logo3.png'),
+  'token_logo4': require('assets/img/tokens/token_logo4.png'),
+  'token_logo5': require('assets/img/tokens/token_logo5.png'),
+  'token_logo6': require('assets/img/tokens/token_logo6.png'),
+  'token_logo7': require('assets/img/tokens/token_logo7.png'),
+  'token_logo8': require('assets/img/tokens/token_logo8.png'),
+  'token_logo9': require('assets/img/tokens/token_logo9.png'),
+  'token_logo10': require('assets/img/tokens/token_logo10.png'),
+  'token_logo11': require('assets/img/tokens/token_logo11.png'),
+  'token_logo12': require('assets/img/tokens/token_logo12.png'),
+}
 
 const _selectIndustryOptions = [
   {value: 'Ecommerce', label: 'Ecommerce'},
@@ -28,17 +50,33 @@ const _selectIndustryOptions = [
   {value: 'Option3', label: 'Option 3'},
 ]
 
-const _selectCountryOptions = [
-  {value: 'Option1', label: 'Option 1'},
-  {value: 'Option2', label: 'Option 2'},
-  {value: 'Option3', label: 'Option 3'},
-]
+const tokenSelectOption = (props) => {
+  return (
+      <components.Option {...props}>
+        <div className='flex items-center'>
+          <div className='mr-[8px]'>
+            <img className='h-[20px] w-[20px]' src={_tokenIcons[props.data.logo]} alt="token logo" />
+          </div>
 
-const _selectTokenOptions = [
-  {value: 'MATIC', label: 'MATIC'},
-  {value: 'Option2', label: 'Option 2'},
-  {value: 'Option3', label: 'Option 3'},
-]
+          <span>{props.data.label}</span>
+        </div>
+      </components.Option>
+  )
+}
+
+const countrySelectOption = (props) => {
+  return (
+      <components.Option {...props}>
+        <div className='flex items-center'>
+          <div className='mr-[8px]'>
+            <img className='h-[20px] w-[20px]' src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${props.data.value}.svg`} alt="token logo" />
+          </div>
+
+          <span>{props.data.label}</span>
+        </div>
+      </components.Option>
+  )
+}
 
 const ReserveLand = () => {
   const dispatch = useDispatch()
@@ -85,6 +123,7 @@ const ReserveLand = () => {
       perItemPrice: 1,
     }
   ])
+  const _selectCountryOptions = useMemo(() => countryList().getData(), [])
   const [discountCode, setDiscountCode] = useState('')
   const [selectIndustry, setSelectIndustry] = useState(_selectIndustryOptions[0])
   const [selectCountry, setSelectCountry] = useState(null)
@@ -96,6 +135,7 @@ const ReserveLand = () => {
   const [provider, setProvider] = useState(null)
 
   useEffect(() => {
+    notify()
     if (transactionForm) {
       setValue('name', transactionForm.name)
       setValue('email', transactionForm.email)
@@ -171,9 +211,6 @@ const ReserveLand = () => {
   const onSubmit = (data) => {
     dispatch(setTransactionForm({...data, basket, discountCode}))
     setIsOpenedConnectYourWallet(true)
-    // setTimeout(() => {
-    //   navigate('/success')
-    // }, 2000)
   }
 
 
@@ -194,13 +231,13 @@ const ReserveLand = () => {
 
   return (
     <Fragment>
-      <div className="sm:max-w-[90rem] 2xl:max-w-[105rem] flex basis-full items-center sm:items-end w-full mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="sm:max-w-[90rem] 2xl:max-w-[105rem] sm:items-end w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className='py-[120px] text-white'>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className='lg:grid md:grid-cols-2 md:gap-x-[7.5rem]'>
               <div>
                 <div className='mb-[14px] lg:mb-[50px]'>
-                  <PillButton className='md:pr-[30px]' href='/'>
+                  <PillButton className='md:pr-[30px]' href='/metaverse'>
                     <svg
                         width='24'
                         height='24'
@@ -276,12 +313,16 @@ const ReserveLand = () => {
                     </div>
                   </div>
                 </FieldGroup>
-                <FieldGroup label='Company Name'>
-                  <Field isError={errors.company}
-                         register={register("company", { required: true })}
-                         placeholder='Enter Your Company or Brand Name Here' />
-                  <small className='text-red-400'>{errors.company?.type === 'required' && "Company is required"}</small>
-                </FieldGroup>
+
+                {areYouRepresenting !== 'individual' && (
+                    <FieldGroup label='Company Name'>
+                      <Field isError={errors.company}
+                             register={register("company", { required: true })}
+                             placeholder='Enter Your Company or Brand Name Here' />
+                      <small className='text-red-400'>{errors.company?.type === 'required' && "Company is required"}</small>
+                    </FieldGroup>
+                )}
+
                 <FieldGroup label='Select Country' className='md:mb-[40px]'>
                   <Controller
                       name='country'
@@ -290,6 +331,7 @@ const ReserveLand = () => {
                       rules={{ required: true }}
                       render={({ field }) => <Select
                           {...field}
+                          Option={countrySelectOption}
                           isError={errors.country}
                           defaultValue={selectCountry}
                           options={_selectCountryOptions}
@@ -300,7 +342,7 @@ const ReserveLand = () => {
                   <small className='text-red-400'>{errors.country?.type === 'required' && "Country is required"}</small>
                 </FieldGroup>
 
-                <div className='bg-[#262728] rounded-lg py-[20px] px-[24px]'>
+                <div className='hidden lg:block bg-[#262728] rounded-lg py-[20px] px-[24px]'>
                   <h2 className='font-semibold text-[20px] mb-[20px]'>FAQs</h2>
                   <Faqs />
                 </div>
@@ -315,6 +357,7 @@ const ReserveLand = () => {
                         options={_selectTokenOptions}
                         placeholder='Please Select Token'
                         onChange={setSelectToken}
+                        Option={tokenSelectOption}
                     />
                   </FieldGroup>
 
@@ -328,15 +371,19 @@ const ReserveLand = () => {
                   Buy Virtual Land
                 </SimpleButton>
 
+                <div className='lg:hidden bg-[#262728] rounded-lg py-[20px] px-[24px] mb-[27px]'>
+                  <h2 className='font-semibold text-[20px] mb-[20px]'>FAQs</h2>
+                  <Faqs />
+                </div>
+
                 <div className='py-[34px] px-[32px] text-[14px] text-white/70 bg-[#262728] rounded-[8px]'>
-                  <div className='font-[900]'>Important:</div>
+                  <div className='font-[900] mb-1'>Important:</div>
                   <p className='mb-5'>Currently you are pre-reserving the land units in the COMEARTH. You will be getting the pre-mint NFT Pass in your connected wallet which you can later swap against the exact land units in the COMEARTH Metaverse.</p>
                   <p>Once the landscape is launched, you, the pre-mint NFT Pass holder, will be offered the first right to select & fix your units’ exact location on the map before they are opened for general public.</p>
                 </div>
               </div>
             </div>
           </form>
-          <button onClick={notify}>Notasdify!</button>
           <ToastContainer />
         </div>
       </div>

@@ -55,7 +55,7 @@ const Basket = (props) => {
                   <Field value={_discountCode} onChange={e => _setDiscountCode(e.target.value)} className='pr-[210px]' placeholder='Enter Your Promo Code Here' />
                   <SimpleButton
                       disabled={!_discountCode.length}
-                      className='disabled:opacity-80 absolute top-0 right-0 w-[190px] min-h-full rounded-l-none'
+                      className='disabled:opacity-80 mt-3 md:mt-0 w-full md:absolute top-0 right-0 md:w-[190px] min-h-[37px] md:min-h-full md:rounded-l-none'
                       type='button'
                       onClick={addCode}
                   >

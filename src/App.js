@@ -14,7 +14,12 @@ const App = () => {
   const {pathname} = useLocation()
 
   return (
-    <main className={clsx({'home-page': pathname === '/home'}, {'inner-page': pathname !== '/'})}>
+    <main
+      className={clsx(
+        {'home-page': location.pathname === '/'},
+        {'inner-page': location.pathname !== '/' && location.pathname !== '/metaverse'}
+      )}
+    >
       <HeaderMenu />
       <Aside />
       <Routes />
