@@ -22,7 +22,7 @@ const AccountModal = (props) => {
         <>
             {(openAccountModal && !openAddFoundsModal) && (
                 <FullScreenPopup fullscreen={true} size='w-full md:w-[640px]' title='Account' className='min-h-[100vh] md:min-h-full' onClose={onClose}>
-                    {balance === '0.0' && (
+                    {true && (
                         <div className='my-[20px]'>
                             <div className='flex items-center bg-[#514638] rounded-[8px] border border-[#FFC179] py-[8px] px-[16px]'>
                                 <div>
@@ -53,7 +53,7 @@ const AccountModal = (props) => {
                                 <span className='text-[14px] text-white mr-[17px]'>Polygon (Mainnet)</span>
                             </div>
                             <div className='col-span-2 md:col-span-1'>
-                                <SimpleButton type='button' className='block w-full' onClick={() => setOpenAddFoundsModal(true)}>Add Founds</SimpleButton>
+                                <SimpleButton type='button' size='sm' className='block w-full' onClick={() => setOpenAddFoundsModal(true)}>Add Founds</SimpleButton>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@ const AccountModal = (props) => {
                                 <span className='text-white/80 text-[16px] ml-[10px]'>Connected with Metamask</span>
                             </div>
 
-                            <SimpleButton type='button' className='block w-full mt-3 sm:w-auto sm:inline sm:mt-0'>Change Wallet</SimpleButton>
+                            <SimpleButton type='button' size='sm' className='block w-full mt-3 sm:w-auto sm:inline sm:mt-0'>Change Wallet</SimpleButton>
                         </div>
                         <hr className='border-white/10 my-[16px]' />
                         
