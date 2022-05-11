@@ -1,9 +1,9 @@
 import {Fragment, useEffect, useRef, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getAnnots, getSelectedAnnot, selectedAnnot} from 'app/AnnotsSlice'
+import {getAnnots, getSelectedAnnot, resetSelectedAnnot, selectedAnnot} from 'app/AnnotsSlice'
 import {getAsideState, toggleAsideAction} from 'app/AsideSlice'
 import '@google/model-viewer'
-import {useNavigate, Outlet} from 'react-router-dom'
+import {useNavigate, useLocation, Outlet} from 'react-router-dom'
 import _preloadGlobe from 'assets/img/preloader.png'
 
 const Home = () => {
@@ -13,6 +13,16 @@ const Home = () => {
   const [loading, setLoading] = useState(0)
   const annots = useSelector(getAnnots)
   const currentAnnot = useSelector(getSelectedAnnot)
+  const [locationKeys, setLocationKeys] = useState([]);
+  const location = useLocation();
+
+
+  useEffect(() => {
+    if (location.pathname === '/' && currentAnnot) {
+      reset()
+      dispatch(resetSelectedAnnot())
+    }
+  }, [location])
 
   useEffect(() => {
     if (currentAnnot) {
@@ -49,6 +59,7 @@ const Home = () => {
   }
 
   function reset() {
+    document.body.classList.remove('animate-continent')
     modelViewerRef.current.cameraOrbit = calculateOffset(currentAnnot.default_camera_orbit_position)
     modelViewerRef.current.cameraTarget = '0m 0m 0m'
   }
@@ -64,7 +75,8 @@ const Home = () => {
   }
 
   function continentAction() {
-    navigate('land/1')
+    document.body.classList.add('animate-continent')
+    setTimeout(() => navigate('land/1'), 1200)
   }
 
   function moveCameraTo(annot) {

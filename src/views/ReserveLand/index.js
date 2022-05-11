@@ -1,5 +1,9 @@
-import {Fragment, useEffect, useState} from 'react'
+import {Fragment, useEffect, useState, useMemo} from 'react'
 import { ethers } from "ethers";
+import {components} from 'react-select'
+
+// Tokens list
+import { _selectTokenOptions } from 'constants/tokens'
 
 // Components
 import {SimpleButton, PillButton} from 'components/buttons'
@@ -21,6 +25,24 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
 import {Controller, useForm} from 'react-hook-form'
 import { landPrices } from './landPrices';
+import countryList from 'react-select-country-list'
+
+
+const _tokenIcons = {
+  'token_logo0': require('assets/img/tokens/token_logo0.png'),
+  'token_logo1': require('assets/img/tokens/token_logo1.png'),
+  'token_logo2': require('assets/img/tokens/token_logo2.png'),
+  'token_logo3': require('assets/img/tokens/token_logo3.png'),
+  'token_logo4': require('assets/img/tokens/token_logo4.png'),
+  'token_logo5': require('assets/img/tokens/token_logo5.png'),
+  'token_logo6': require('assets/img/tokens/token_logo6.png'),
+  'token_logo7': require('assets/img/tokens/token_logo7.png'),
+  'token_logo8': require('assets/img/tokens/token_logo8.png'),
+  'token_logo9': require('assets/img/tokens/token_logo9.png'),
+  'token_logo10': require('assets/img/tokens/token_logo10.png'),
+  'token_logo11': require('assets/img/tokens/token_logo11.png'),
+  'token_logo12': require('assets/img/tokens/token_logo12.png'),
+}
 
 const _selectIndustryOptions = [
   {value: 'Ecommerce', label: 'Ecommerce'},
@@ -28,17 +50,33 @@ const _selectIndustryOptions = [
   {value: 'Option3', label: 'Option 3'},
 ]
 
-const _selectCountryOptions = [
-  {value: 'Option1', label: 'Option 1'},
-  {value: 'Option2', label: 'Option 2'},
-  {value: 'Option3', label: 'Option 3'},
-]
+const tokenSelectOption = (props) => {
+  return (
+      <components.Option {...props}>
+        <div className='flex items-center'>
+          <div className='mr-[8px]'>
+            <img className='h-[20px] w-[20px]' src={_tokenIcons[props.data.logo]} alt="token logo" />
+          </div>
 
-const _selectTokenOptions = [
-  {value: 'MATIC', label: 'MATIC'},
-  {value: 'Option2', label: 'Option 2'},
-  {value: 'Option3', label: 'Option 3'},
-]
+          <span>{props.data.label}</span>
+        </div>
+      </components.Option>
+  )
+}
+
+const countrySelectOption = (props) => {
+  return (
+      <components.Option {...props}>
+        <div className='flex items-center'>
+          <div className='mr-[8px]'>
+            <img className='h-[20px] w-[20px]' src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${props.data.value}.svg`} alt="token logo" />
+          </div>
+
+          <span>{props.data.label}</span>
+        </div>
+      </components.Option>
+  )
+}
 
 const ReserveLand = () => {
   const dispatch = useDispatch()
@@ -85,6 +123,7 @@ const ReserveLand = () => {
       perItemPrice: 1,
     }
   ])
+  const _selectCountryOptions = useMemo(() => countryList().getData(), [])
   const [discountCode, setDiscountCode] = useState('')
   const [selectIndustry, setSelectIndustry] = useState(_selectIndustryOptions[0])
   const [selectCountry, setSelectCountry] = useState(null)
@@ -96,6 +135,7 @@ const ReserveLand = () => {
   const [provider, setProvider] = useState(null)
 
   useEffect(() => {
+    notify()
     if (transactionForm) {
       setValue('name', transactionForm.name)
       setValue('email', transactionForm.email)
@@ -171,9 +211,6 @@ const ReserveLand = () => {
   const onSubmit = (data) => {
     dispatch(setTransactionForm({...data, basket, discountCode}))
     setIsOpenedConnectYourWallet(true)
-    // setTimeout(() => {
-    //   navigate('/success')
-    // }, 2000)
   }
 
 
@@ -294,6 +331,7 @@ const ReserveLand = () => {
                       rules={{ required: true }}
                       render={({ field }) => <Select
                           {...field}
+                          Option={countrySelectOption}
                           isError={errors.country}
                           defaultValue={selectCountry}
                           options={_selectCountryOptions}
@@ -319,6 +357,7 @@ const ReserveLand = () => {
                         options={_selectTokenOptions}
                         placeholder='Please Select Token'
                         onChange={setSelectToken}
+                        Option={tokenSelectOption}
                     />
                   </FieldGroup>
 
@@ -345,7 +384,6 @@ const ReserveLand = () => {
               </div>
             </div>
           </form>
-          <button onClick={notify}>Notasdify!</button>
           <ToastContainer />
         </div>
       </div>
