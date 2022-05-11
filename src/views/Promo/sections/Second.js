@@ -1,14 +1,14 @@
-import {Fragment} from 'react'
+import {Fragment, useRef} from 'react'
 import clsx from 'clsx'
-import {Navigation} from 'swiper'
+import {Pagination} from 'swiper'
 import {Swiper, SwiperSlide} from 'swiper/react'
 
 // Plugins styles
 import 'swiper/css'
-import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
 // Components
-import {PillButton} from 'components/buttons'
+import {PillButton, BlurButton} from 'components/buttons'
 
 // Sources
 import _bgImg from 'assets/img/bg/1.jpg'
@@ -110,52 +110,96 @@ const _slides = [
 
 const Second = () => {
   const sliderSettings = {
-    navigation: true,
     slidesPerView: 1,
     loop: true,
-    modules: [Navigation],
+    pagination: {
+      clickable: true,
+      renderBullet: function (i, className) {
+        return `
+          <span
+            class='${className} swiper-pagination-bullet--alt-2'
+          >
+            ${_slides[i].title}
+          </span>
+        `
+      },
+    },
+    modules: [Pagination],
+  }
+  const swiperRef = useRef()
+
+  // Handlers
+  const handleOnPrevSlide = () => {
+    swiperRef.current.slidePrev()
+  }
+
+  const handleOnNextSlide = () => {
+    swiperRef.current.slideNext()
   }
 
   return (
     <Fragment>
-      <div className='bg-[#161718] pt-[80px]'>
-        <div className='max-w-[1215px] mx-auto px-4 lg:px-8'>
+      <div className='bg-[#161718] pt-[80px] mb-[40px]'>
+        <div className='max-w-[1340px] px-4 lg:px-8 mx-auto'>
           <h2 className='leading-tight font-extrabold text-center text-[32px] lg:text-[52px] mb-[40px]'>
             Web3 E-Commerce will be <span className='text-gradient'>bigger than</span>
             <br />
             Web2 E-Commerce
           </h2>
-
-          <div className='overflow-x-auto pb-[20px]'>
-            <div className='flex flex-nowrap'>
-              {_categories.map((el, i) => (
-                <PillButton
-                  key={el.id}
-                  className={clsx('whitespace-nowrap border-[1px] border-[#363738] !px-[20px]', {
-                    'ml-[15px]': i !== 0,
-                  })}
-                  type='button'
-                  isActive={el.isActive}
-                >
-                  {el.title}
-                </PillButton>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
 
       <div className='overflow-x-hidden'>
         <div
-          className='lg:min-h-[800px] bg-no-repeat bg-cover py-[60px] -mx-[8px]'
+          className='relative lg:min-h-[660px] bg-center bg-no-repeat bg-cover -mx-[8px]'
           style={{
             backgroundImage: `url(${_bgImg})`,
           }}
         >
-          <Swiper {...sliderSettings}>
+          <div className='absolute top-[136px] left-1/2 z-10 -translate-x-1/2 flex items-center'>
+            <BlurButton
+              className='w-[32px] min-h-[32px] justify-center !p-[5px]'
+              type='button'
+              onClick={handleOnPrevSlide}
+            >
+              <svg
+                className='fill-white'
+                width='6'
+                height='10'
+                viewBox='0 0 6 10'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path d='M2.248 4.99959L5.42578 1.82182L4.51803 0.914062L0.432497 4.99959L4.51803 9.08512L5.42578 8.17737L2.248 4.99959Z' />
+              </svg>
+            </BlurButton>
+            <BlurButton
+              className='w-[32px] min-h-[32px] justify-center !p-[5px] ml-[40px]'
+              type='button'
+              onClick={handleOnNextSlide}
+            >
+              <svg
+                className='fill-white'
+                width='6'
+                height='10'
+                viewBox='0 0 6 10'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path d='M3.752 4.99959L0.574219 1.82182L1.48197 0.914062L5.5675 4.99959L1.48197 9.08513L0.574219 8.17737L3.752 4.99959Z' />
+              </svg>
+            </BlurButton>
+          </div>
+          <Swiper
+            className='swiper-pagination--alt-2 border-transparent !pt-[136px]'
+            {...sliderSettings}
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper
+            }}
+          >
             {_slides.map((el, i) => (
               <SwiperSlide key={el.id}>
-                <div className='max-w-[1215px] mx-auto px-4 lg:px-8'>
+                <div className='max-w-[1340px] px-4 lg:px-8 mx-auto'>
                   <div className='max-w-[855px]'>
                     <div className='max-w-[480px] mb-[35px]'>
                       <img className='max-w-full' src={el.image} alt='Slide' />
