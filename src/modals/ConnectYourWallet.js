@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom'
-
+import CoinbaseWalletSDK from '@coinbase/wallet-sdk'
+import logo from 'assets/img/logo.svg'
 // Components
 import {WalletListItem} from 'components/lists'
 import {FullScreenPopup} from 'components/popups'
@@ -69,7 +70,16 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
       walletWeb3 = fm.getProvider();
     }
     if(walletTitle === "Coinbase Wallet"){
-      let coinbaseWallet
+      let coinbaseWallet = new CoinbaseWalletSDK({
+        appName: 'COMEARTH',
+        appLogoUrl: logo,
+        darkMode: false
+      })
+      walletWeb3 = coinbaseWallet.makeWeb3Provider(process.env.REACT_APP_POLYGON_RPC_PROVIDER,process.env.REACT_CHAIN_ID)
+      if(userWallet === null){
+        let accounts = await walletWeb3.enable();
+        dispatch(setWallet(accounts[0]))
+      }
     }
     let provider = new ethers.providers.Web3Provider(walletWeb3);
     startTransactionFlow(provider)
