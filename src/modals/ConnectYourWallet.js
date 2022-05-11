@@ -14,6 +14,7 @@ import { ethers } from 'ethers';
 import Fortmatic from 'fortmatic'
 import {getWallet,setWallet} from 'app/WalletSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import WalletConnectProvider from '@walletconnect/web3-provider'
 
 const _tokens = [
   {
@@ -76,6 +77,16 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
         darkMode: false
       })
       walletWeb3 = coinbaseWallet.makeWeb3Provider(process.env.REACT_APP_POLYGON_RPC_PROVIDER,process.env.REACT_CHAIN_ID)
+      if(userWallet === null){
+        let accounts = await walletWeb3.enable();
+        dispatch(setWallet(accounts[0]))
+      }
+    }
+    if(walletTitle === "WalletConnect"){
+      let rpcObject = process.env.REACT_CHAIN_ID === 80001 ? {80001 : process.env.REACT_APP_POLYGON_RPC_PROVIDER} : {137 : process.env.REACT_APP_POLYGON_RPC_PROVIDER}
+      let walletWeb3 = new WalletConnectProvider({
+        rpc : rpcObject
+      })
       if(userWallet === null){
         let accounts = await walletWeb3.enable();
         dispatch(setWallet(accounts[0]))
