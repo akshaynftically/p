@@ -97,7 +97,7 @@ const Land = (props) => {
         reset()
 
         setTimeout(() => {
-          navigate( '/', {state: { prevPath: location.pathname } })
+          navigate( '/metaverse', {state: { prevPath: location.pathname } })
           dispatch(resetSelectedAnnot())
         }, 1200)
       }, 1000)
@@ -109,7 +109,7 @@ const Land = (props) => {
     reset()
 
     setTimeout(() => {
-      navigate( '/', {state: { prevPath: location.pathname } })
+      navigate( '/metaverse', {state: { prevPath: location.pathname } })
       dispatch(resetSelectedAnnot())
     }, 1200)
   }

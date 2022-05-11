@@ -237,7 +237,7 @@ const ReserveLand = () => {
             <div className='lg:grid md:grid-cols-2 md:gap-x-[7.5rem]'>
               <div>
                 <div className='mb-[14px] lg:mb-[50px]'>
-                  <PillButton className='md:pr-[30px]' href='/'>
+                  <PillButton className='md:pr-[30px]' href='/metaverse'>
                     <svg
                         width='24'
                         height='24'

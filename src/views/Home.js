@@ -16,9 +16,8 @@ const Home = () => {
   const [locationKeys, setLocationKeys] = useState([]);
   const location = useLocation();
 
-
   useEffect(() => {
-    if (location.pathname === '/' && currentAnnot) {
+    if (location.pathname === '/metaverse' && currentAnnot) {
       reset()
       dispatch(resetSelectedAnnot())
     }

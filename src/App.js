@@ -16,7 +16,7 @@ const App = () => {
     <main
       className={clsx(
         {'home-page': location.pathname === '/'},
-        {'inner-page': location.pathname !== '/'}
+        {'inner-page': location.pathname !== '/' && location.pathname !== '/metaverse'}
       )}
     >
       <HeaderMenu />
