@@ -343,3 +343,11 @@ body {
 .Toastify__close-button {
 	display: none;
 }
+
+header .css-vbpnyd-control:hover,
+header .css-1comtmu-control:hover,
+header .css-1comtmu-control {
+	cursor: pointer;
+	border-color: #262728 !important;
+	box-shadow: none !important;
+}

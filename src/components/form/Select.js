@@ -21,9 +21,7 @@ const DropdownIndicator = (props) => {
 }
 
 const Select = (props) => {
-  const {isError, Option = OptionItem, ...rest} = props
-
-  const customStyles = {
+  const defaultStyles = {
     valueContainer: (styles) => ({
       ...styles,
       padding: '0 20px',
@@ -66,11 +64,14 @@ const Select = (props) => {
     }),
   }
 
+  const {isError, customStyles = {}, components = {}, Option = OptionItem, ...rest} = props
+  const _customStyles = Object.assign(defaultStyles, customStyles)
+
   return (
     <ReactSelect
       classNamePrefix='react-select'
-      styles={customStyles}
-      components={{DropdownIndicator, Option}}
+      styles={_customStyles}
+      components={{DropdownIndicator, Option, ...components}}
       {...rest}
     />
   )

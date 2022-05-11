@@ -54,13 +54,54 @@ const tokenSelectOption = (props) => {
   return (
       <components.Option {...props}>
         <div className='flex items-center'>
-          <div className='mr-[8px]'>
-            <img className='h-[20px] w-[20px]' src={_tokenIcons[props.data.logo]} alt="token logo" />
+          <div className='mr-[8px] pt-[2px]'>
+            <img src={_tokenIcons[props.data.logo]} alt="token logo" />
           </div>
 
           <span>{props.data.label}</span>
         </div>
       </components.Option>
+  )
+}
+
+
+const tokenSelectValue = (props) => {
+  return (
+      <components.SingleValue {...props}>
+        {props.getValue().length ? (
+            <div className='flex items-center'>
+              <div className='mr-[8px]'>
+                <img src={_tokenIcons[props.getValue()[0].logo]} alt="token logo" />
+              </div>
+
+              <span>{props.getValue()[0].label}</span>
+            </div>
+        ) : (
+            <>
+              {props.children}
+            </>
+        )}
+      </components.SingleValue>
+  )
+}
+
+const countrySelectValue = (props) => {
+  return (
+      <components.SingleValue {...props}>
+        {props.getValue().length ? (
+            <div className='flex items-center'>
+              <div className='mr-[8px]'>
+                <img className='h-[20px] w-[20px]' src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${props.getValue()[0].value}.svg`} alt="token logo" />
+              </div>
+
+              <span>{props.getValue()[0].label}</span>
+            </div>
+        ) : (
+            <>
+              {props.children}
+            </>
+        )}
+      </components.SingleValue>
   )
 }
 
@@ -332,6 +373,7 @@ const ReserveLand = () => {
                       render={({ field }) => <Select
                           {...field}
                           Option={countrySelectOption}
+                          components={{SingleValue: countrySelectValue}}
                           isError={errors.country}
                           defaultValue={selectCountry}
                           options={_selectCountryOptions}
@@ -357,6 +399,7 @@ const ReserveLand = () => {
                         options={_selectTokenOptions}
                         placeholder='Please Select Token'
                         onChange={setSelectToken}
+                        components={{SingleValue: tokenSelectValue}}
                         Option={tokenSelectOption}
                     />
                   </FieldGroup>

@@ -34,7 +34,7 @@ const Simple = (props) => {
             {'text-white bg-[#3F99FF] hover:bg-[#7A3FE4]': variant === 'primary'},
             {'': variant === 'secondary'},
             {'': variant === 'danger'},
-            {'': variant === 'warning'},
+            {'text-white bg-[#FF5A26] hover:bg-[#FF6B3D]': variant === 'warning'},
             className
           )}
           to={href}
@@ -60,7 +60,7 @@ const Simple = (props) => {
             {'hover:bg-[#7A3FE4]': !disabled},
             {'': variant === 'secondary'},
             {'': variant === 'danger'},
-            {'': variant === 'warning'},
+            {'text-white bg-[#FF5A26] hover:bg-[#FF6B3D]': variant === 'warning'},
             className
           )}
           disabled={disabled}
