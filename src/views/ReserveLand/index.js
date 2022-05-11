@@ -181,7 +181,7 @@ const ReserveLand = () => {
     const account = userWallet;
     let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider);
     let signedContract = contract.connect(signer);
-    let parcelQuantities = basket.reverse().map((el) => {
+    let parcelQuantities = [...basket].reverse().map((el) => {
       return el.qty
     })
     // check for approval erc20
