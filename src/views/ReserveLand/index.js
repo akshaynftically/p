@@ -21,6 +21,7 @@ import { landPrices } from './landPrices';
 import { _selectTokenOptions } from 'constants/tokens';
 import { _landReserverAbi } from 'constants/landReserverAbi';
 import { _erc20Abi } from 'constants/erc20Abi';
+import { getWallet } from 'app/WalletSlice';
 
 const _selectIndustryOptions = [
   {value: 'Ecommerce', label: 'Ecommerce'},
@@ -43,6 +44,7 @@ const ReserveLand = () => {
     mode: 'onChange'
   })
   const transactionForm = useSelector(getTransactionForm)
+  const userWallet = useSelector(getWallet)
   const [basket, setBasket] = useState([
     {
       id: '1000',
@@ -176,7 +178,7 @@ const ReserveLand = () => {
     let tNumber = 0;
     
     const signer = provider.getSigner()
-    const account = (await provider.send("eth_requestAccounts",[]))[0];
+    const account = userWallet;
     let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider);
     let signedContract = contract.connect(signer);
     let parcelQuantities = basket.reverse().map((el) => {

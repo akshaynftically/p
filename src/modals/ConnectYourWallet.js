@@ -1,5 +1,4 @@
 import {Link} from 'react-router-dom'
-import detectEthereumProvider from '@metamask/detect-provider';
 
 // Components
 import {WalletListItem} from 'components/lists'
@@ -11,6 +10,9 @@ import _tokenIcon2 from 'assets/icons/wallet-connect.svg'
 import _tokenIcon3 from 'assets/icons/coinbase.svg'
 import _tokenIcon4 from 'assets/icons/fortmatic.svg'
 import { ethers } from 'ethers';
+import Fortmatic from 'fortmatic'
+import {getWallet,setWallet} from 'app/WalletSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const _tokens = [
   {
@@ -36,6 +38,9 @@ const _tokens = [
 ]
 
 const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
+
+  const userWallet = useSelector(getWallet)
+  const dispatch = useDispatch()
   //handler for logging into wallet and handle transactions
   const handleWalletConnect = async(walletTitle) => {
     let walletWeb3;
@@ -50,6 +55,21 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
         let accounts =  await walletWeb3.request({method: "eth_requestAccounts"})
         // here we get accounts['address'] 
       }
+    }
+    if(walletTitle === "Fortmatic") {
+      let fm = new Fortmatic(process.env.REACT_APP_FORTMATIC_API_KEY,{
+        rpcUrl: process.env.REACT_APP_POLYGON_RPC_PROVIDER,
+        chainId: process.env.REACT_CHAIN_ID
+      })
+      if(userWallet === null){
+        let accounts = await fm.user.login();
+        dispatch(setWallet(accounts[0]))
+      }
+      console.log(userWallet)
+      walletWeb3 = fm.getProvider();
+    }
+    if(walletTitle === "Coinbase Wallet"){
+      let coinbaseWallet
     }
     let provider = new ethers.providers.Web3Provider(walletWeb3);
     startTransactionFlow(provider)
