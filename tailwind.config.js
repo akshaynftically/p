@@ -5,6 +5,7 @@ module.exports = {
       sans: ['Manrope', 'sans-serif'],
     },
     screens: {
+      '4xl': '1800px',
       '3xl': '2000px',
       'xs': '300px',
       'sm': '640px',

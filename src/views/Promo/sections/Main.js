@@ -9,7 +9,7 @@ import _imgEarth from 'assets/img/earth-md.png'
 const Main = () => {
   return (
     <div
-      className='bg-center bg-no-repeat bg-cover lg:pt-[140px] lg:pb-[80px]'
+      className='bg-center bg-no-repeat bg-cover lg:pt-[140px] lg:pb-[80px] relative'
       style={{
         backgroundImage: `url(${_bgMain})`,
       }}
@@ -88,6 +88,8 @@ const Main = () => {
           </div>
         </div>
       </div>
+
+      <div className='bg-gradient-to-b from-[#161718]/0 to-[#161718] h-[107px] absolute bottom-0 left-0 w-full'></div>
     </div>
   )
 }

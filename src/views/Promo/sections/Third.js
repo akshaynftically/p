@@ -5,15 +5,18 @@ import _bgAbstract2 from 'assets/img/370x400/2.jpg'
 
 const Third = () => {
   return (
-    <div className='bg-[#161718] py-[100px]'>
-      <div className='max-w-[1340px] mx-auto px-4 lg:px-8'>
-        <h2 className='leading-tight font-extrabold text-center text-[32px] lg:text-[52px] lg:mb-[200px]'>
+    <div className='bg-[#161718] py-[100px] relative'>
+      <div className='bg-gradient-to-b from-[#161718] to-[#161718]/0 h-[110px] transform translate-y-[70px] absolute top-0 z-[1] left-0 w-full'></div>
+      <div className='absolute bottom-0 left-0 transform bg-contain 4xl:bg-cover transform translate-y-[70px] w-full bg-no-repeat h-full bg-[url("assets/img/bg/7.png")]'></div>
+
+      <div className='max-w-[1340px] mx-auto px-4 lg:px-8 relative z-[1]'>
+        <h2 className='leading-tight font-extrabold text-center text-[32px] lg:text-[52px] lg:mb-[200px] '>
           COMEARTH - <span className='text-gradient'>Metaverse</span> with a
           <br />
           Purpose
         </h2>
 
-        <div className='grid grid-cols-10'>
+        <div className='grid grid-cols-10 '>
           <div className='col-span-3'>
             <div
               className='relative min-h-[400px] bg-no-repeat bg-cover bg-center'
@@ -44,7 +47,7 @@ const Third = () => {
             </div>
           </div>
           <div className='col-span-4'>
-            <img className='inline-block max-w-full translate-y-1/4' src={_imgEarth} alt='Earth' />
+            <img className='inline-block max-w-full translate-y-1/4 relative z-[2]' src={_imgEarth} alt='Earth' />
           </div>
           <div className='col-span-3'>
             <div
