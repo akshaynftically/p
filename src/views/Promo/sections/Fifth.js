@@ -73,16 +73,19 @@ const _investors = [
 
 const Fifth = () => {
   return (
-    <div className='relative'>
-      <div className='absolute -top-[96px] left-0'>
+    <div className='relative mt-[240px] md:mt-0'>
+      <div className='hidden md:block absolute md:-top-[96px] left-0'>
         <img className='max-w-full' src={_imgAbstraction1} alt='Abstraction' />
       </div>
       <div className='relative max-w-[1340px] mx-auto px-4 lg:px-8'>
         <div className='grid grid-cols-12 items-center'>
-          <div className='col-span-6'>
-            <img className='inline-block max-w-full' src={_imgIllustration1} alt='Illustration' />
+          <div className='relative col-span-12 order-2 md:order-1 md:col-span-6'>
+            <div className='md:hidden absolute top-0 left-0 z-[0]'>
+              <img className='max-w-full' src={_imgAbstraction1} alt='Abstraction' />
+            </div>
+            <img className='inline-block max-w-full relative z-[2]' src={_imgIllustration1} alt='Illustration' />
           </div>
-          <div className='col-span-6'>
+          <div className='col-span-12 order-1 md:order-2 md:col-span-6 mb-[20px] md:md-0'>
             <h2 className='leading-tight font-black text-[32px] lg:text-[48px] mb-[14px]'>
               <span className='text-gradient'>Brand Presence</span> on
               <br />
@@ -94,7 +97,7 @@ const Fifth = () => {
             </div>
           </div>
         </div>
-        <div className='grid grid-cols-8 gap-[6px]'>
+        <div className='grid grid-cols-2 md:grid-cols-8 gap-[6px]'>
           {_investors.map((el) => (
             <div
               key={el.id}

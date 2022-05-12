@@ -349,12 +349,12 @@ const _investors = [
 
 const Eighth = () => {
   return (
-    <div className='max-w-[1340px] lg:pt-[150px] px-4 lg:px-8 mx-auto'>
+    <div className='max-w-[1340px] lg:pt-[150px] px-4 lg:px-8 mx-auto mt-[60px] lg:mt-0'>
       <h2 className='leading-tight font-black text-[32px] lg:text-[48px] mb-[32px]'>
         Our <span className='text-gradient'>Key</span> Investors
       </h2>
 
-      <div className='grid grid-cols-8 gap-[16px]'>
+      <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-[16px]'>
         {_investors.map((el) => (
           <div key={el.id}>
             <div className='group relative overflow-hidden pt-[30px]'>
