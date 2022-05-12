@@ -44,22 +44,22 @@ const _secondMenu = [
   {
     id: '1001',
     title: 'Community Guidelines',
-    url: '/community-guidelines',
+    url: '/terms#community-guidelines',
   },
   {
     id: '1002',
     title: 'Risk Policy',
-    url: '/risk-policy',
+    url: '/terms#risk-policy',
   },
   {
     id: '1003',
     title: 'Terms',
-    url: '/terms',
+    url: '/terms#terms',
   },
   {
     id: '1004',
     title: 'Privacy Policy',
-    url: '/privacy-policy',
+    url: '/terms#privacy-policy',
   },
 ]
 const _socialMenu = [
