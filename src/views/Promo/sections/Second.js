@@ -8,7 +8,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 
 // Components
-import {PillButton, BlurButton} from 'components/buttons'
+import {BlurButton} from 'components/buttons'
 
 // Sources
 import _bgImg from 'assets/img/bg/1.jpg'
@@ -22,41 +22,6 @@ import _imgSlide7 from 'assets/img/480x240/7.jpg'
 import _imgSlide8 from 'assets/img/480x240/8.jpg'
 
 // Mocks
-const _categories = [
-  {
-    id: '1001',
-    title: 'Semantic Web',
-  },
-  {
-    id: '1002',
-    title: 'VR & AR (Metaverse)',
-    isActive: true,
-  },
-  {
-    id: '1003',
-    title: 'Interoperability',
-  },
-  {
-    id: '1004',
-    title: 'NFTs',
-  },
-  {
-    id: '1005',
-    title: 'AI',
-  },
-  {
-    id: '1006',
-    title: 'Tokenomics',
-  },
-  {
-    id: '1007',
-    title: 'Permissionless Blockchains',
-  },
-  {
-    id: '1008',
-    title: 'UI & Service Layers',
-  },
-]
 const _slides = [
   {
     id: '1001',
@@ -117,7 +82,7 @@ const Second = () => {
       renderBullet: function (i, className) {
         return `
           <span
-            class='${className} swiper-pagination-bullet--alt-2'
+            class="${className} swiper-pagination-bullet--alt-2"
           >
             ${_slides[i].title}
           </span>

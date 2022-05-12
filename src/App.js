@@ -23,8 +23,8 @@ const App = () => {
       <HeaderMenu />
       <Aside />
       <Routes />
-      {pathname !== '/' && <Footer />}
-      {pathname === '/' && <FooterAlt />}
+      {pathname !== '/' && pathname !== '/terms' && <Footer />}
+      {(pathname === '/' || pathname === '/terms') && <FooterAlt />}
     </main>
   )
 }
