@@ -45,21 +45,25 @@ const _secondMenu = [
     id: '1001',
     title: 'Community Guidelines',
     url: '/terms#community-guidelines',
+    className: ''
   },
   {
     id: '1002',
     title: 'Risk Policy',
     url: '/terms#risk-policy',
+    className: 'text-right md:text-left'
   },
   {
     id: '1003',
     title: 'Terms',
     url: '/terms#terms',
+    className: ''
   },
   {
     id: '1004',
     title: 'Privacy Policy',
     url: '/terms#privacy-policy',
+    className: 'text-right md:text-left'
   },
 ]
 const _socialMenu = [
@@ -141,18 +145,22 @@ const FooterAlt = () => {
   return (
     <div className='bg-[#161718]'>
       <div className='max-w-[1340px] text-white pt-[100px] px-4 lg:px-8 mx-auto'>
-        <div className='grid grid-cols-12'>
-          <div className='col-span-4'>
-            <div className='mb-[24px]'>
+        <div className='grid grid-cols-12 border-t-[1px] md:border-none border-[#363738] pt-[24px] md:pt-0'>
+          <div className='col-span-12 text-center md:text-left md:col-span-4 mb-[24px] md:mb-0'>
+            <div className='mb-[20px] md:mb-[24px]'>
               <img className='inline-block max-w-full' src={_logoComearth} alt='Comearth' />
             </div>
-            <div className='max-w-[215px] text-center bg-[#35363C] border border-white/[.20] rounded-lg py-[8px] px-[20px]'>
-              <div className='text-[12px] text-white/[.80] mb-[4px]'>Powered By</div>
-              <img className='inline-block max-w-full' src={_logoNftcally} alt='NFTically' />
+
+            <div className='flex justify-center md:justify-start'>
+              <div className='max-w-[215px] text-center bg-[#35363C] border border-white/[.20] rounded-lg py-[8px] px-[20px]'>
+                <div className='text-[12px] text-white/[.80] mb-[4px]'>Powered By</div>
+                <img className='inline-block max-w-full' src={_logoNftcally} alt='NFTically' />
+              </div>
             </div>
           </div>
+
           {_menuCategories.map((el) => (
-            <div key={el} className='col-span-2'>
+            <div key={el} className='col-span-6 md:col-span-2 mb-[32px] md:mb-0'>
               <h4 className='capitalize font-semibold text-[16px] mb-[16px]'>{el}</h4>
               <ul>
                 {_menu[el].map((elI) => (
@@ -168,13 +176,13 @@ const FooterAlt = () => {
               </ul>
             </div>
           ))}
-          <div className='col-span-4'>
-            <div className='max-w-[214px] ml-auto'>
-              <SimpleButton className='w-full mb-[20px]' href='/contact-us' size='sm'>
+          <div className='col-span-12 md:col-span-4'>
+            <div className='md:max-w-[214px] md:ml-auto'>
+              <SimpleButton className='w-full mb-[32px] md:mb-[20px]' href='/contact-us' size='sm'>
                 Contact Us
               </SimpleButton>
-              <h4 className='capitalize font-semibold text-[14px] mb-[8px]'>Follow us on</h4>
-              <ul className='flex flex-wrap items-center -mb-[16px] -mx-[6px]'>
+              <h4 className='capitalize text-center md:text-left font-semibold text-[14px] mb-[12px] md:mb-[8px]'>Follow us on</h4>
+              <ul className='flex flex-wrap justify-between md:justify-start items-center -mb-[16px] -mx-[6px]'>
                 {_socialMenu.map((el) => (
                   <li key={el.id} className='mb-[16px] mx-[6px]'>
                     <Link to={el.url}>
@@ -195,15 +203,15 @@ const FooterAlt = () => {
             </div>
           </div>
         </div>
-        <div className='mt-[65px] border-t-[1px] border-[#363738] py-[20px]'>
-          <div className='flex items-center justify-between'>
-            <div className='text-[12px] text-white/[.65]'>
+        <div className='mt-[20px] md:mt-[65px] border-t-[1px] border-[#363738] py-[20px]'>
+          <div className='flex flex-wrap md:flex-nowrap items-center justify-between'>
+            <div className='hidden md:block text-[12px] text-white/[.65]'>
               © NFTICALLY {new Date().getFullYear()} | All Rights Reserved. Built with Love on
               planet Earth.
             </div>
-            <ul className='flex items-center -mx-[16px]'>
+            <ul className='grid grid-cols-2 md:flex items-center md:-mx-[16px] mb-[24px] md:mb-0 w-full md:w-auto'>
               {_secondMenu.map((el) => (
-                <li key={el.id} className='mx-[16px]'>
+                <li key={el.id} className={`md:mx-[16px] ${el.className}`}>
                   <Link
                     className='text-[12px] text-white/[.65] hover:text-white transition duration-[200ms] ease-in-out'
                     to={el.url}
@@ -213,6 +221,11 @@ const FooterAlt = () => {
                 </li>
               ))}
             </ul>
+
+            <div className='md:hidden text-[12px] text-white/[.65] text-center block w-full'>
+              © NFTICALLY {new Date().getFullYear()} | All Rights Reserved. Built with Love on
+              planet Earth.
+            </div>
           </div>
         </div>
       </div>

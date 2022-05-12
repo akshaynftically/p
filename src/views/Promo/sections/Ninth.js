@@ -44,7 +44,6 @@ const Ninth = () => {
       delay: 5000,
       disableOnInteraction: false,
     },
-    spaceBetween: 12,
     breakpoints: {
       0: {
         slidesPerView: 1.5,
@@ -69,7 +68,7 @@ const Ninth = () => {
       <Swiper{...swiperSettings}>
         {_partners.map((el) => (
             <SwiperSlide key={el.id}>
-              <div className='text-center'>
+              <div className='md:text-center'>
                 <img className='inline-block max-w-full' src={el.image} alt='Partner' />
               </div>
             </SwiperSlide>
