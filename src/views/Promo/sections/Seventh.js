@@ -86,7 +86,7 @@ const Seventh = () => {
   return (
     <>
       <div
-          className='hidden lg:block md:min-h-[510px] bg-no-repeat bg-contain lg:py-[50px]'
+          className='hidden lg:block md:min-h-[510px] xl:min-h-[710px] bg-no-repeat bg-contain lg:py-[50px]'
           style={{
             backgroundImage: `url(${_bgMain})`,
           }}
@@ -154,7 +154,7 @@ const Seventh = () => {
         </div>
       </div>
 
-      <div className='mt-[60px]'>
+      <div className='lg:hidden mt-[60px]'>
         <div
             className='aboslute min-h-[238px] bg-cover w-full flex items-bottom justify-center bg-no-repeat'
             style={{

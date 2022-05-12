@@ -108,7 +108,7 @@ const Sixth = () => {
   }, [swiperRef])
 
   return (
-    <div className='lg:pt-[160px] lg:pb-[40px] mt-[40px] md:mt-0 relative'>
+    <div className='lg:pt-[160px] lg:pb-[40px] mt-[70px] md:mt-0 relative'>
       <div className='lg:hidden bg-[#161718] h-[30px] absolute bottom-0 z-[1] left-0 w-full'></div>
       <h2 className='leading-tight font-black text-[32px] lg:text-[48px] mb-[16px] lg:mb-[32px] px-4 lg:px-12'>
         <span className='text-gradient'>8 Continents and</span> and <span className='text-gradient'>6 </span> land sizes

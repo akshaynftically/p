@@ -34,18 +34,18 @@ const _banners = [
 const Fourth = () => {
   return (
     <div className='pt-[70px] relative'>
-      <div className='absolute top-0 left-0 transform translate-y-[120px] md:translate-y-[-300px] bg-contain 4xl:bg-cover w-full bg-no-repeat h-full bg-[url("assets/img/bg/8.png")]'></div>
+      <div className='absolute top-0 left-0 transform translate-y-[220px] md:translate-y-[-300px] bg-contain 4xl:bg-cover w-full bg-no-repeat h-full bg-[url("assets/img/bg/8.png")]'></div>
       <div className='hidden md:block bg-gradient-to-b transform md:translate-y-[-200px] 4xl:translate-y-[-170px] 3xl:translate-y-[-150px] from-[#161819] z-[0] to-[#161718]/0 h-[110px] absolute top-0 z-[1] left-0 w-full'></div>
       <div className='md:hidden bg-[#161819] z-[0] h-[110px] absolute top-[30px] z-[1] left-0 w-full'></div>
       <div className='md:hidden bg-gradient-to-b from-[#161819] to-[#161718]/0 z-[0] h-[110px] absolute top-[50px] z-[1] left-0 w-full'></div>
 
-      <div className='relative'>
+      <div className='mt-[40px] md:mt-0 relative'>
         <div className='max-w-[1340px] mx-auto px-4 lg:px-8 relative z-[2]'>
           <div className='grid grid-cols-12'>
             <div className='md:col-span-3'></div>
             <div className='col-span-12 md:col-span-6 mb-[30px] md:md-0'>
               <h2 className='leading-2 font-extrabold md:text-center text-[32px] lg:text-[48px]'>
-                <span className='text-gradient'>A Metaverse</span>
+                <span className='text-gradient'>A Measdtaverse</span>
                 <br />
                 That Users Will Flock To
               </h2>
