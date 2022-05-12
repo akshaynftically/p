@@ -1,3 +1,7 @@
+import { _landReserverAbi } from 'constants/landReserverAbi';
+import { _erc20Abi } from 'constants/erc20Abi';
+import { getWallet } from 'app/WalletSlice';
+
 import {Fragment, useEffect, useState, useMemo} from 'react'
 import { ethers } from "ethers";
 import {components} from 'react-select'
@@ -27,7 +31,6 @@ import {Controller, useForm} from 'react-hook-form'
 import { landPrices } from './landPrices';
 import countryList from 'react-select-country-list'
 
-
 const _tokenIcons = {
   'token_logo0': require('assets/img/tokens/token_logo0.png'),
   'token_logo1': require('assets/img/tokens/token_logo1.png'),
@@ -43,6 +46,7 @@ const _tokenIcons = {
   'token_logo11': require('assets/img/tokens/token_logo11.png'),
   'token_logo12': require('assets/img/tokens/token_logo12.png'),
 }
+
 
 const _selectIndustryOptions = [
   {value: 'Ecommerce', label: 'Ecommerce'},
@@ -126,42 +130,43 @@ const ReserveLand = () => {
     mode: 'onChange'
   })
   const transactionForm = useSelector(getTransactionForm)
+  const userWallet = useSelector(getWallet)
   const [basket, setBasket] = useState([
     {
       id: '1000',
       qty: 0,
       type: '32x32',
-      perItemPrice: 20,
+      perItemPrice: 0,
     },
     {
       id: '1001',
       qty: 0,
       type: '16x16',
-      perItemPrice: 10,
+      perItemPrice: 0,
     },
     {
       id: '1002',
       qty: 0,
       type: '8x8',
-      perItemPrice: 5,
+      perItemPrice: 0,
     },
     {
       id: '1004',
       qty: 0,
       type: '4x4',
-      perItemPrice: 4,
+      perItemPrice: 0,
     },
     {
       id: '1005',
       qty: 0,
       type: '2x2',
-      perItemPrice: 2,
+      perItemPrice: 0,
     },
     {
       id: '1006',
       qty: 0,
       type: '1x1',
-      perItemPrice: 1,
+      perItemPrice: 0,
     }
   ])
   const _selectCountryOptions = useMemo(() => countryList().getData(), [])
@@ -172,8 +177,7 @@ const ReserveLand = () => {
   const [areYouRepresenting, setAreYouRepresenting] = useState('individual')
   const [isOpenedConnectYourWallet, setIsOpenedConnectYourWallet] = useState(false)
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
-  const [progressModalTitle] = useState("Please confirm the transaction")
-  const [provider, setProvider] = useState(null)
+  const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
 
   useEffect(() => {
     notify()
@@ -202,13 +206,22 @@ const ReserveLand = () => {
     }
 
     setValue('industry', _selectIndustryOptions[0])
-    
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    setProvider(provider)
-    landPrices(0,true).then((prices) => {
+  }, [])
+
+  useEffect(() => {
+    // currently load just once due to overwhelming console logs
+    landPrices(selectToken,true).then((prices) => {
       console.log(prices);
+      setBasket((basket) => basket.map((elem, i) => ({
+          ...elem,
+          perItemPrice: prices[5-i]
+        })))
     });
   }, [setValue, transactionForm])
+
+  // commenting for now too much console logs
+  // useEffect(() => {
+  // }, [basket])
 
   useEffect(() => {
     dispatch(setTransactionForm({...getValues(), basket, discountCode}))
@@ -224,6 +237,17 @@ const ReserveLand = () => {
 
 
   // Handlers
+
+  const handleTokenChange = (token) => {
+    setSelectToken(token);
+    landPrices(token,true).then((prices) => {
+      console.log(prices);
+      setBasket((basket) => basket.map((elem, i) => ({
+          ...elem,
+          perItemPrice: prices[5-i]
+        })))
+    });
+  }
   const handleChangeAreYouRepresenting = (val) => {
     setAreYouRepresenting(val)
   }
@@ -233,21 +257,40 @@ const ReserveLand = () => {
   const handleProgressWallet = () => {
     setIsOpenedProgressWallet(!isOpenedProgressWallet)
   }
-  const startTransactionFlow = (walletTitle) => {
-    if(walletTitle === "MetaMask") {
-      setIsOpenedConnectYourWallet(false)
-      setIsOpenedProgressWallet(true)
-      //If we want to change title of the modal depending on the task flow
-      // setProgressModalTitle("Preparing the smart contract")
-      setTimeout(() => {
-        // 50% success of transaction success
-        if (Math.random() < 0.5) {
-          navigate('/success')
-        } else {
-          navigate('/faild')
-        }
-      }, 3000)
+  const startTransactionFlow = async (provider) => {
+    setIsOpenedConnectYourWallet(false)
+    setIsOpenedProgressWallet(true)
+
+    let transaction;
+    let receipt;
+    let tNumber = 0;
+    
+    const signer = provider.getSigner()
+    const account = userWallet;
+    let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider);
+    let signedContract = contract.connect(signer);
+    let parcelQuantities = [...basket].reverse().map((el) => {
+      return el.qty
+    })
+    // check for approval erc20
+    if(selectToken.id !== 0){
+      let erc20 = new ethers.Contract(selectToken.contract_address,_erc20Abi,provider);
+      let allowedAmt = await erc20.allowance(account, process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS);
+      if(!allowedAmt.gt(0)){
+          // ask to approve and procees further
+          setProgressModalTitle("Please approve for "+selectToken.label+" token")
+          let erc20Signed = erc20.connect(signer);
+          transaction = await erc20Signed.approve(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,'0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff');
+          // wait for transaction modal erc20
+          receipt = await transaction.wait();
+      }
     }
+
+    // initiate transaction modal
+    transaction = await signedContract.reserveLand(parcelQuantities,selectToken.contract_address,tNumber)
+    // wait for transaction modal
+    receipt  = await transaction.wait()
+    return receipt;
   }
   const onSubmit = (data) => {
     dispatch(setTransactionForm({...data, basket, discountCode}))
@@ -398,9 +441,9 @@ const ReserveLand = () => {
                         defaultValue={selectToken}
                         options={_selectTokenOptions}
                         placeholder='Please Select Token'
-                        onChange={setSelectToken}
                         components={{SingleValue: tokenSelectValue}}
                         Option={tokenSelectOption}
+                        onChange={handleTokenChange}
                     />
                   </FieldGroup>
 
@@ -431,7 +474,7 @@ const ReserveLand = () => {
         </div>
       </div>
 
-      {isOpenedConnectYourWallet && <ConnectYourWallet onClose={handleToggleConnectYourWallet} provider={provider} startTransactionFlow={startTransactionFlow} />}
+      {isOpenedConnectYourWallet && <ConnectYourWallet onClose={handleToggleConnectYourWallet} startTransactionFlow={startTransactionFlow} />}
       {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} title={progressModalTitle} />}
     </Fragment>
   )
