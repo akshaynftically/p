@@ -127,7 +127,7 @@ const Land = (props) => {
   return (
     <Fragment>
       {enterYourDetailsIsOpened && (
-        <FullScreenPopup onClose={handleToggleEnterYourDetails}>
+        <FullScreenPopup size='w-[340px] md:w-[640px]' onClose={handleToggleEnterYourDetails}>
           <h2 className='font-extrabold text-[24px] mb-[16px]'>Enter Your Details</h2>
           <hr className='border-[#363738] my-[16px]' />
 
