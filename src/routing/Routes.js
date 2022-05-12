@@ -6,8 +6,9 @@ import Promo from 'views/Promo'
 import Home from 'views/Home'
 import Land from 'views/Land'
 import ReserveLand from 'views/ReserveLand'
-import Faild from '../views/Faild'
-import Success from '../views/Success'
+import Faild from 'views/Faild'
+import Success from 'views/Success'
+import Terms from 'views/Terms'
 
 const Routes = () => {
   return (
@@ -20,6 +21,7 @@ const Routes = () => {
         <Route path='/reserve-land' element={<ReserveLand />} exact />
         <Route path='/faild' element={<Faild />} exact />
         <Route path='/success' element={<Success />} exact />
+        <Route path='/terms' element={<Terms />} />
       </RRDRoutes>
     </Fragment>
   )

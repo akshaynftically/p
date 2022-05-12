@@ -1,3 +1,5 @@
+import Countdown from 'react-countdown'
+
 // Components
 import {SimpleButton} from 'components/buttons'
 import {Field, FieldGroup} from 'components/form'
@@ -62,26 +64,37 @@ const Main = () => {
                 Hurry, <span className='text-gradient'>Sale Ends in:</span>
               </span>
             </div>
-            <div className='bg-[#262728] rounded-lg p-[8px]'>
-              <div className='grid grid-cols-4'>
-                <div className='leading-tight uppercase text-center'>
-                  <div className='font-black text-[24px]'>12</div>
-                  <div className='text-[14px] text-white/[.80]'>Days</div>
+            <Countdown
+              date={Date.now() + 1036800000}
+              renderer={({days, hours, minutes, seconds}) => (
+                <div className='bg-[#262728] rounded-lg p-[8px]'>
+                  <div className='grid grid-cols-4'>
+                    <div className='leading-tight uppercase text-center'>
+                      <div className='font-black text-[24px]'>{days < 10 ? `0${days}` : days}</div>
+                      <div className='text-[14px] text-white/[.80]'>Days</div>
+                    </div>
+                    <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
+                      <div className='font-black text-[24px]'>
+                        {hours < 10 ? `0${hours}` : hours}
+                      </div>
+                      <div className='text-[14px] text-white/[.80]'>Hours</div>
+                    </div>
+                    <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
+                      <div className='font-black text-[24px]'>
+                        {minutes < 10 ? `0${minutes}` : minutes}
+                      </div>
+                      <div className='text-[14px] text-white/[.80]'>Minutes</div>
+                    </div>
+                    <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
+                      <div className='font-black text-[24px]'>
+                        {seconds < 10 ? `0${seconds}` : seconds}
+                      </div>
+                      <div className='text-[14px] text-white/[.80]'>Seconds</div>
+                    </div>
+                  </div>
                 </div>
-                <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
-                  <div className='font-black text-[24px]'>13</div>
-                  <div className='text-[14px] text-white/[.80]'>Hours</div>
-                </div>
-                <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
-                  <div className='font-black text-[24px]'>15</div>
-                  <div className='text-[14px] text-white/[.80]'>Minutes</div>
-                </div>
-                <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
-                  <div className='font-black text-[24px]'>48</div>
-                  <div className='text-[14px] text-white/[.80]'>Seconds</div>
-                </div>
-              </div>
-            </div>
+              )}
+            />
           </div>
           <div className='order-1 md:order-2 col-span-12 md:col-span-7 text-right'>
             <img className='inline-block max-w-full' src={_imgEarth} alt='Comearth' />
