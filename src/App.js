@@ -31,7 +31,7 @@ const App = () => {
     return new Promise((resolve, reject) => {
       let userWallet = localStorage.getItem('wallet') ? JSON.parse(localStorage.getItem('wallet')) : null
       if(userWallet){
-        resolve(getWalletProvider(userWallet.wallet))
+        getWalletProvider(userWallet.wallet).then((provider) => { resolve(provider)})
       }else{
         setIsOpenedConnectYourWallet(true)
         document.addEventListener('wallet:connected',function (ev) {

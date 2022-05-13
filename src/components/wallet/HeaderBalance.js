@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useContext, useEffect, useState} from 'react'
 import {utils} from 'ethers'
 import AccountModal from 'modals/AccountModal'
 import CopyToClipboard from "../clipboard/CopyToClipboard";
@@ -6,18 +6,32 @@ import {SimpleButton} from "../buttons";
 import Select from "../form/Select";
 import {components} from "react-select";
 import WrongNetworkModal from "../../modals/WrongNetworkModal";
+import AppContext from 'components/AppContext';
 
 const _networks = [
     {
         value: 1,
         label: 'Polygon (Mainnet)',
+        chainId: 137,
+        mainnet: true,
         icon: <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.8469 5.49895C15.4594 5.27061 14.9557 5.27061 14.5295 5.49895L11.5074 7.24948L9.45389 8.39115L6.43174 10.1416C6.04428 10.37 5.54059 10.37 5.1144 10.1416L2.71218 8.77169C2.32472 8.54334 2.05351 8.12472 2.05351 7.66809V4.96618C2.05351 4.50952 2.28598 4.09091 2.71218 3.86258L5.07565 2.53066C5.4631 2.30233 5.96679 2.30233 6.39299 2.53066L8.75648 3.86258C9.14389 4.09091 9.41516 4.50952 9.41516 4.96618V6.71669L11.4686 5.537V3.78647C11.4686 3.32981 11.2362 2.91121 10.81 2.68288L6.43174 0.171247C6.04428 -0.0570825 5.54059 -0.0570825 5.1144 0.171247L0.658672 2.68288C0.232472 2.91121 0 3.32981 0 3.78647V8.84778C0 9.30441 0.232472 9.72303 0.658672 9.95138L5.1144 12.463C5.50185 12.6914 6.00554 12.6914 6.43174 12.463L9.45389 10.7505L11.5074 9.57084L14.5295 7.85836C14.917 7.63001 15.4207 7.63001 15.8469 7.85836L18.2103 9.19031C18.5978 9.41859 18.869 9.8372 18.869 10.2939V12.9958C18.869 13.4524 18.6365 13.8711 18.2103 14.0994L15.8469 15.4694C15.4594 15.6977 14.9557 15.6977 14.5295 15.4694L12.166 14.1374C11.7786 13.9091 11.5074 13.4905 11.5074 13.0338V11.2833L9.45389 12.463V14.2136C9.45389 14.6702 9.68636 15.0888 10.1126 15.3172L14.5683 17.8287C14.9557 18.0571 15.4594 18.0571 15.8856 17.8287L20.3413 15.3172C20.7288 15.0888 21 14.6702 21 14.2136V9.15223C21 8.6956 20.7675 8.27698 20.3413 8.04863L15.8469 5.49895Z" fill="#7A3FE4"/>
         </svg>
     },
     {
         value: 2,
+        label: 'Polygon (Testnet)',
+        chainId: 80001,
+        mainnet: false,
+        icon: <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.8469 5.49895C15.4594 5.27061 14.9557 5.27061 14.5295 5.49895L11.5074 7.24948L9.45389 8.39115L6.43174 10.1416C6.04428 10.37 5.54059 10.37 5.1144 10.1416L2.71218 8.77169C2.32472 8.54334 2.05351 8.12472 2.05351 7.66809V4.96618C2.05351 4.50952 2.28598 4.09091 2.71218 3.86258L5.07565 2.53066C5.4631 2.30233 5.96679 2.30233 6.39299 2.53066L8.75648 3.86258C9.14389 4.09091 9.41516 4.50952 9.41516 4.96618V6.71669L11.4686 5.537V3.78647C11.4686 3.32981 11.2362 2.91121 10.81 2.68288L6.43174 0.171247C6.04428 -0.0570825 5.54059 -0.0570825 5.1144 0.171247L0.658672 2.68288C0.232472 2.91121 0 3.32981 0 3.78647V8.84778C0 9.30441 0.232472 9.72303 0.658672 9.95138L5.1144 12.463C5.50185 12.6914 6.00554 12.6914 6.43174 12.463L9.45389 10.7505L11.5074 9.57084L14.5295 7.85836C14.917 7.63001 15.4207 7.63001 15.8469 7.85836L18.2103 9.19031C18.5978 9.41859 18.869 9.8372 18.869 10.2939V12.9958C18.869 13.4524 18.6365 13.8711 18.2103 14.0994L15.8469 15.4694C15.4594 15.6977 14.9557 15.6977 14.5295 15.4694L12.166 14.1374C11.7786 13.9091 11.5074 13.4905 11.5074 13.0338V11.2833L9.45389 12.463V14.2136C9.45389 14.6702 9.68636 15.0888 10.1126 15.3172L14.5683 17.8287C14.9557 18.0571 15.4594 18.0571 15.8856 17.8287L20.3413 15.3172C20.7288 15.0888 21 14.6702 21 14.2136V9.15223C21 8.6956 20.7675 8.27698 20.3413 8.04863L15.8469 5.49895Z" fill="#7A3FE4"/>
+        </svg>
+    },
+    {
+        value: 3,
         label: 'Binance Smart Chain (Mainnnet)',
+        chainId: 56,
+        mainnet: true,
         icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_440_1476)">
                 <path d="M6.11584 8.4042L9.99984 4.5203L13.8858 8.4062L16.1458 6.1462L9.99984 0L3.85594 6.1442L6.11584 8.4042ZM0 9.99969L2.26007 7.73962L4.51999 9.99955L2.25994 12.2596L0 9.99969ZM6.11584 11.5958L9.99984 15.4797L13.8857 11.5939L16.1469 13.8527L16.1458 13.8539L9.99984 20L3.85574 13.856L3.85254 13.8528L6.11584 11.5958ZM15.4801 10.0009L17.7401 7.74087L20.0001 10.0008L17.74 12.2609L15.4801 10.0009Z" fill="#F3BA2F"/>
@@ -78,6 +92,8 @@ const HeaderBalance = (props) => {
     const [accountModal, setAccountModal] = useState(false)
     const [wrongNetworkModal, setWrongNetworkModal] = useState(false)
     const [selectNetwork, setSelectNetwork] = useState(_networks[0])
+    const appGlobals = useContext(AppContext)
+    
 
     const customSelectStyles = {
         control: (styles) => ({
@@ -103,12 +119,14 @@ const HeaderBalance = (props) => {
     }
 
     useEffect(() => {
-        if (!window.ethereum) return
-
         (async () => {
+            let tempProvider = await appGlobals.hasWalletProvider()
+            if(!tempProvider) return
+            let chainId = (await tempProvider.getNetwork()).chainId
+            setSelectNetwork(_networks.filter((el) => {return el.chainId === chainId})[0])
             setBalance(utils.formatEther(await provider.getBalance(address)))
         })()
-    }, [])
+    }, [appGlobals,provider,address])
 
     const handleCloseAccountModal = () => {
         setAccountModal(false)
@@ -125,7 +143,7 @@ const HeaderBalance = (props) => {
 
     return (
         <div className='flex items-center'>
-            <Select defaultValue={selectNetwork}
+            <Select value={selectNetwork}
                     options={_networks}
                     customStyles={customSelectStyles}
                     placeholder='Please Select Token'

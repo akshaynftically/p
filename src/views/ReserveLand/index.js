@@ -22,7 +22,6 @@ import LandUnits from './sections/LandUnits'
 import { ToastContainer, toast } from 'react-toastify'
 
 // Modals
-import ConnectYourWallet from 'modals/ConnectYourWallet'
 import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet'
 import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
@@ -177,7 +176,6 @@ const ReserveLand = () => {
   const [selectCountry, setSelectCountry] = useState(null)
   const [selectToken, setSelectToken] = useState(_selectTokenOptions[0])
   const [areYouRepresenting, setAreYouRepresenting] = useState('individual')
-  const [isOpenedConnectYourWallet, setIsOpenedConnectYourWallet] = useState(false)
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
   const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
 
@@ -253,14 +251,10 @@ const ReserveLand = () => {
   const handleChangeAreYouRepresenting = (val) => {
     setAreYouRepresenting(val)
   }
-  const handleToggleConnectYourWallet = () => {
-    setIsOpenedConnectYourWallet(!isOpenedConnectYourWallet)
-  }
   const handleProgressWallet = () => {
     setIsOpenedProgressWallet(!isOpenedProgressWallet)
   }
   const startTransactionFlow = async (provider) => {
-    setIsOpenedConnectYourWallet(false)
     setIsOpenedProgressWallet(true)
 
     let transaction;
@@ -268,7 +262,7 @@ const ReserveLand = () => {
     let tNumber = 0;
     
     const signer = provider.getSigner()
-    const account = userWallet.address;
+    const account = (await provider.send("eth_accounts",[]))[0];
     let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider);
     let signedContract = contract.connect(signer);
     let parcelQuantities = [...basket].reverse().map((el) => {
@@ -289,7 +283,7 @@ const ReserveLand = () => {
     }
 
     // initiate transaction modal
-    transaction = await signedContract.reserveLand(parcelQuantities,selectToken.contract_address,tNumber)
+    transaction = await signedContract.reserveLand(parcelQuantities,selectToken.id,tNumber)
     // wait for transaction modal
     receipt  = await transaction.wait()
     return receipt;
@@ -485,7 +479,6 @@ const ReserveLand = () => {
         </div>
       </div>
 
-      {isOpenedConnectYourWallet && <ConnectYourWallet onClose={handleToggleConnectYourWallet} startTransactionFlow={startTransactionFlow} />}
       {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} title={progressModalTitle} />}
     </Fragment>
   )

@@ -51,7 +51,7 @@ export const _landReserverAbi = [
             {
                 "indexed": false,
                 "internalType": "uint256[6]",
-                "name": "_parcelPricesInMatic",
+                "name": "_parcelPricesInUSD",
                 "type": "uint256[6]"
             },
             {
@@ -590,11 +590,11 @@ export const _landReserverAbi = [
         "inputs": [
             {
                 "internalType": "uint256[6]",
-                "name": "newParcelPricesInMatic",
+                "name": "newParcelPricesInUSD",
                 "type": "uint256[6]"
             }
         ],
-        "name": "setParcelPricesInMatic",
+        "name": "setParcelPricesInUSD",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -733,7 +733,7 @@ export const _landReserverAbi = [
     },
     {
         "inputs": [],
-        "name": "withdrawMatic",
+        "name": "withdrawNativeToken",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"

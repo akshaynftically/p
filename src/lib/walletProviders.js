@@ -46,7 +46,7 @@ export const getWalletProvider = async (walletTitle) =>{
     }
     if(walletTitle === "WalletConnect"){
       let rpcObject = process.env.REACT_CHAIN_ID === 80001 ? {80001 : process.env.REACT_APP_POLYGON_RPC_PROVIDER} : {137 : process.env.REACT_APP_POLYGON_RPC_PROVIDER}
-      let walletWeb3 = new WalletConnectProvider({
+      walletWeb3 = new WalletConnectProvider({
         rpc : rpcObject
       })
       if(userWallet === null){
