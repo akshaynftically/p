@@ -1,8 +1,21 @@
-import {Fragment} from 'react'
+import {Fragment, useEffect} from 'react'
 import clsx from 'clsx'
 
 const FullScreen = (props) => {
   const {title, fullscreen = false, size = 'w-[560px]', className, children, onClose, onBack, ...rest} = props
+
+  const handleKeyDown = (evt) => {
+    if (evt.keyCode === 27) {
+      onClose()
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
 
   return (
     <div className={`fixed top-0 left-0 ${fullscreen ? 'md:flex' : 'flex'} items-center w-full h-full overflow-y-auto z-30`}>
