@@ -1,32 +1,38 @@
+import AppContext from 'components/AppContext';
 import { SimpleButton } from 'components/buttons'
-import {ethers} from 'ethers'
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import HeaderBalance from "./HeaderBalance";
 
 const HeaderWalletInfo = () => {
-    const [accounts, setAccounts] = useState([])
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    const [account, setAccount] = useState(null)
+    const [provider,setProvider] = useState(null)
+    const appGlobals = useContext(AppContext)
 
     useEffect(() => {
-        if (!window.ethereum) return
         (async () => {
-            const accountsList = await provider.send("eth_accounts", [])
-            setAccounts(accountsList)
-            provider.provider.on('accountsChanged', changeAccount)
+            let tempProvider = await appGlobals.hasWalletProvider()
+            if(!tempProvider) return
+            const accountsList = await tempProvider.send("eth_accounts", [])
+            setProvider(tempProvider)
+            setAccount(accountsList[0])
         })()
-    }, [])
+    }, [appGlobals])
 
-    const changeAccount = (accounts) => {
-        setAccounts(accounts)
+    const changeAccount = (provider) => {
+        provider.send("eth_accounts",[]).then((accounts) => {
+            setAccount(accounts[0])
+        })
     }
 
     const connectWallet = async ()  => {
-        await provider.send("eth_requestAccounts", [])
+        let tempProvider = await appGlobals.getWalletProviderConfirmed()
+        setProvider(tempProvider)
+        changeAccount(tempProvider)
     }
 
     return (
         <div className='ml-auto'>
-            {!accounts.length
+            {!account
                 ? (
                     <>
                         <SimpleButton type='button' size='sm' className='hidden md:block' onClick={connectWallet}>
@@ -52,7 +58,7 @@ const HeaderWalletInfo = () => {
                 )
 
                 : (
-                    <HeaderBalance provider={provider} address={accounts[0]} />
+                    <HeaderBalance provider={provider} address={account} />
                 )
             }
         </div>

@@ -2,7 +2,7 @@ import { _landReserverAbi } from 'constants/landReserverAbi';
 import { _erc20Abi } from 'constants/erc20Abi';
 import { getWallet } from 'app/WalletSlice';
 
-import {Fragment, useEffect, useState, useMemo} from 'react'
+import {Fragment, useEffect, useState, useMemo, useContext} from 'react'
 import { ethers } from "ethers";
 import {components} from 'react-select'
 
@@ -30,6 +30,7 @@ import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
 import {Controller, useForm} from 'react-hook-form'
 import { landPrices } from './landPrices';
 import countryList from 'react-select-country-list'
+import AppContext from 'components/AppContext';
 
 const _tokenIcons = {
   'token_logo0': require('assets/img/tokens/token_logo0.png'),
@@ -126,6 +127,7 @@ const countrySelectOption = (props) => {
 const ReserveLand = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const appGlobals = useContext(AppContext)
   const { register, control, setValue, getValues, handleSubmit, formState: { errors } } = useForm({
     mode: 'onChange'
   })
@@ -266,7 +268,7 @@ const ReserveLand = () => {
     let tNumber = 0;
     
     const signer = provider.getSigner()
-    const account = userWallet;
+    const account = userWallet.address;
     let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider);
     let signedContract = contract.connect(signer);
     let parcelQuantities = [...basket].reverse().map((el) => {
@@ -294,7 +296,16 @@ const ReserveLand = () => {
   }
   const onSubmit = (data) => {
     dispatch(setTransactionForm({...data, basket, discountCode}))
-    setIsOpenedConnectYourWallet(true)
+    let walletProvider  = appGlobals.getWalletProviderConfirmed()
+    walletProvider.then((provider) => {
+      let process = startTransactionFlow(provider)
+      process.then((tx) => {
+        console.log('success')
+      }).catch((err) => {
+        console.log(err)
+        console.log('error')
+      })
+    })
   }
 
 
