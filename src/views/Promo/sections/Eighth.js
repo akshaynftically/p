@@ -1,3 +1,5 @@
+import {useEffect, useMemo, useState} from 'react'
+
 // Sources
 import _imgInvestor1 from 'assets/img/investor-people/1.png'
 import _imgInvestor2 from 'assets/img/investor-people/2.png'
@@ -348,14 +350,36 @@ const _investors = [
 ]
 
 const Eighth = () => {
+  const [isMobile, setIsMobile] = useState(window.outerWidth < 600)
+  const [showMore, setShowMore] = useState(false)
+
+  const handleWindowSizeChange = () => {
+    setIsMobile(window.outerWidth < 600)
+  }
+
+  const getInvestors = useMemo(() => {
+    if (isMobile && !showMore) {
+      return _investors.slice(0, 4)
+    }
+
+    return _investors
+  }, [isMobile, showMore])
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    }
+  }, [])
+
   return (
-    <div className='max-w-[1340px] lg:pt-[150px] px-4 lg:px-8 mx-auto'>
+    <div className='max-w-[1340px] lg:pt-[150px] px-4 lg:px-8 mx-auto mt-[60px] lg:mt-0'>
       <h2 className='leading-tight font-black text-[32px] lg:text-[48px] mb-[32px]'>
         Our <span className='text-gradient'>Key</span> Investors
       </h2>
 
-      <div className='grid grid-cols-8 gap-[16px]'>
-        {_investors.map((el) => (
+      <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-[16px]'>
+        {getInvestors.map((el) => (
           <div key={el.id}>
             <div className='group relative overflow-hidden pt-[30px]'>
               <div className='absolute top-0 group-hover:top-[10px] h-full border-b-[2px] border-l-[2px] border-transparent rounded overflow-hidden transition-all duration-[400ms] ease-in-out'>
@@ -388,6 +412,12 @@ const Eighth = () => {
           </div>
         ))}
       </div>
+
+      {(isMobile && !showMore) && (
+          <div className='flex justify-center mt-[24px]'>
+            <button onClick={() => setShowMore(true)} className='border-2 border-white rounded-[4px] h-[40px] flex items-center justify-center px-[24px]'>Show More</button>
+          </div>
+      )}
     </div>
   )
 }

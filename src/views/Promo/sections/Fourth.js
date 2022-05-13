@@ -34,24 +34,27 @@ const _banners = [
 const Fourth = () => {
   return (
     <div className='pt-[70px] relative'>
-      <div className='absolute top-0 left-0 transform translate-y-[-300px] bg-contain 4xl:bg-cover w-full bg-no-repeat h-full bg-[url("assets/img/bg/8.png")]'></div>
-      <div className='bg-gradient-to-b transform translate-y-[-200px] 4xl:translate-y-[-170px] 3xl:translate-y-[-150px] from-[#161819] z-[0] to-[#161718]/0 h-[110px] absolute top-0 z-[1] left-0 w-full'></div>
+      <div className='absolute top-0 left-0 transform translate-y-[220px] md:translate-y-[-300px] bg-contain 4xl:bg-cover w-full bg-no-repeat h-full bg-[url("assets/img/bg/8.png")]'></div>
+      <div className='hidden md:block bg-gradient-to-b transform md:translate-y-[-200px] 4xl:translate-y-[-170px] 3xl:translate-y-[-150px] from-[#161819] z-[0] to-[#161718]/0 h-[110px] absolute top-0 z-[1] left-0 w-full'></div>
+      <div className='md:hidden bg-[#161819] z-[0] h-[110px] absolute top-[30px] z-[1] left-0 w-full'></div>
+      <div className='md:hidden bg-gradient-to-b from-[#161819] to-[#161718]/0 z-[0] h-[110px] absolute top-[50px] z-[1] left-0 w-full'></div>
 
-      <div className='relative'>
+      <div className='mt-[40px] md:mt-0 relative'>
         <div className='max-w-[1340px] mx-auto px-4 lg:px-8 relative z-[2]'>
           <div className='grid grid-cols-12'>
-            <div className='col-span-3'></div>
-            <div className='col-span-6'>
-              <h2 className='leading-2 font-extrabold text-center text-[32px] lg:text-[48px]'>
-                <span className='text-gradient'>A Metaverse</span>
+            <div className='md:col-span-3'></div>
+            <div className='col-span-12 md:col-span-6 mb-[30px] md:md-0'>
+              <h2 className='leading-2 font-extrabold md:text-center text-[32px] lg:text-[48px]'>
+                <span className='text-gradient'>A Measdtaverse</span>
                 <br />
                 That Users Will Flock To
               </h2>
             </div>
-            <div className='col-span-3'></div>
+            <div className='md:col-span-3'></div>
           </div>
+
           <div className='grid grid-cols-12 gap-[30px] mb-[60px]'>
-            <div className='col-span-3'>
+            <div className='col-span-12 md:col-span-3 order-1 md:order-1'>
               <div className='-mb-[16px]'>
                 <BlurButton className='w-full text-left mb-[16px]' type='button'>
                   <svg
@@ -94,12 +97,12 @@ const Fourth = () => {
                 </BlurButton>
               </div>
             </div>
-            <div className='col-span-6 flex items-end justify-center text-center'>
+            <div className='col-span-12 md:col-span-6 order-3 md:order-2 flex items-end justify-center text-center'>
               <SimpleButton className='!px-[24px] md:mb-[55px]' type='button'>
                 Start Your Metaverse Journey Now
               </SimpleButton>
             </div>
-            <div className='col-span-3'>
+            <div className='col-span-12 md:col-span-3 order-2 md:order-3'>
               <div className='-mb-[16px]'>
                 <BlurButton className='w-full text-left mb-[16px]' type='button'>
                   <svg
@@ -151,14 +154,14 @@ const Fourth = () => {
           {_banners.map((el) => (
               <div
                   key={el.id}
-                  className='relative min-h-[345px] bg-no-repeat bg-cover bg-center mb-[160px]'
+                  className='relative col-span-2 md:col-span-1 min-h-[200px] md:min-h-[345px] bg-no-repeat bg-cover bg-center md:mb-[160px]'
                   style={{
                     backgroundImage: `url(${el.image})`,
                   }}
               >
                 <div className='absolute top-0 bottom-0 left-0 right-0 bg-black/[.50]' />
-                <div className='absolute top-[120px] left-0 right-0 p-[20px]'>
-                  <div className='leading-tight font-black text-[24px]'>{el.title}</div>
+                <div className='absolute top-[60px] md:top-[120px] left-0 right-0 p-[20px]'>
+                  <div className='leading-tight font-black text-[14px] md:text-[24px]'>{el.title}</div>
                 </div>
                 {el.text && (
                     <div className='absolute top-[100%] left-0 right-0 bg-[#262728] text-[14px] text-white/[.80] p-[16px]'>

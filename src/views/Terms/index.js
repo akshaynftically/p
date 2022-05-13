@@ -48,7 +48,7 @@ const Terms = () => {
   return (
     <div className='text-white pt-[150px]'>
       <div className='max-w-[1340px] px-4 lg:px-8 mx-auto'>
-        <div className='flex items-center mb-[34px] -mx-[8px]'>
+        <div className='flex overflow-auto pb-[20px] md:pb-0 items-center mb-[34px] -mx-[8px]'>
           {_menu.map((el) => (
             <Link
               key={el.id}

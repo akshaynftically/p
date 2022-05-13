@@ -11,14 +11,14 @@ import _imgEarth from 'assets/img/earth-md.png'
 const Main = () => {
   return (
     <div
-      className='bg-center bg-no-repeat bg-cover lg:pt-[140px] lg:pb-[80px] relative'
+      className='bg-center bg-no-repeat bg-cover pt-[90px] pb-[40px] md:pt-[140px] md:pb-[80px] relative'
       style={{
         backgroundImage: `url(${_bgMain})`,
       }}
     >
       <div className='max-w-[1340px] px-4 lg:px-8 mx-auto'>
         <div className='grid grid-cols-12 items-center gap-x-[30px]'>
-          <div className='col-span-5'>
+          <div className='order-2 md:order-1 col-span-12 md:col-span-5'>
             <h1 className='leading-tight font-extrabold text-[32px] lg:text-[52px] mb-[24px]'>
               The Go-To Destination for <span className='text-gradient'>Commerce in</span>{' '}
               <span className='text-gradient'>Metaverse</span>
@@ -28,9 +28,9 @@ const Main = () => {
               consumers discover everything at a place
             </div>
             <FieldGroup className='relative mb-[45px]'>
-              <Field className='pr-[230px] md:py-[14px]' placeholder='Enter Your Promo Code Here' />
+              <Field className='pr-[230px] py-[14px] lg:py-[14px] mb-[12px] lg:mb-0' placeholder='Enter Your Promo Code Here' />
               <SimpleButton
-                className='absolute top-0 right-0 w-[210px] min-h-full md:text-[14px] text-bold rounded-l-none'
+                className='lg:absolute top-0 right-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold lg:rounded-l-none'
                 type='button'
               >
                 Reserve Your Land Now
@@ -96,13 +96,13 @@ const Main = () => {
               )}
             />
           </div>
-          <div className='col-span-7 text-right'>
+          <div className='order-1 md:order-2 col-span-12 md:col-span-7 text-right'>
             <img className='inline-block max-w-full' src={_imgEarth} alt='Comearth' />
           </div>
         </div>
       </div>
 
-      <div className='bg-gradient-to-b from-[#161718]/0 to-[#161718] h-[107px] absolute bottom-0 left-0 w-full'></div>
+      <div className='bg-gradient-to-b from-[#161718]/0 to-[#161718] h-[40px] md:h-[107px] absolute bottom-0 left-0 w-full'></div>
     </div>
   )
 }
