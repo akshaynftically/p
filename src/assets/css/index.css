@@ -5,6 +5,15 @@
 /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap');
 
+@font-face {
+	font-family: "JamGrotesque";
+	src: url("../font/JamGrotesqueExtraBold/JAMTypeDesign-JamGrotesqueExtraBold.otf");
+}
+
+h1, h2 {
+	font-family: "JamGrotesque";
+}
+
 body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
