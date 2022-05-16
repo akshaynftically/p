@@ -17,6 +17,7 @@ import _imgLand4x4 from 'assets/img/lands/4x4.svg'
 import _imgLand16x16 from 'assets/img/lands/16x16.svg'
 import _imgLand32x32 from 'assets/img/lands/32x32.svg'
 import _imgLand64x64 from 'assets/img/lands/64x64.svg'
+import _bgVideo from '../../../assets/videos/retro.mp4'
 
 // Mocks
 const _lands = [
@@ -91,14 +92,19 @@ const Seventh = () => {
 
 
   return (
-    <>
+    <div className='relative'>
       <div
-          className='hidden lg:block md:min-h-[510px] xl:min-h-[710px] bg-no-repeat bg-contain lg:py-[50px]'
+          className='hidden overflow-hidden lg:block md:min-h-[510px] xl:min-h-[710px] bg-no-repeat relative z-[4] bg-contain lg:py-[50px]'
           style={{
             backgroundImage: `url(${_bgMain})`,
           }}
       >
-        <div className='flex justify-end'>
+        <video className='absolute top-0 left-0 w-full h-full transform scale-150' autoPlay="autoplay" loop muted>
+          <source src={_bgVideo} type="video/mp4"/>
+        </video>
+        <div className='absolute w-full top-0 left-0 h-full bg-[#000000]/50'></div>
+
+        <div className='flex justify-end relative z-[10]'>
           <div className='md:max-w-[880px]'>
             <div className='md:pr-[80px] mb-[24px]'>
               <h3 className='font-black text-[22px] lg:text-[36px] mb-[16px]'>
@@ -177,7 +183,7 @@ const Seventh = () => {
         </div>
       </div>
 
-      <div className='lg:hidden mt-[60px]'>
+      <div className='lg:hidden mt-[60px] relative z-[4]'>
         <div
             className='aboslute min-h-[238px] bg-cover w-full flex items-bottom justify-center bg-no-repeat'
             style={{
@@ -246,7 +252,7 @@ const Seventh = () => {
           ))}
         </Swiper>
       </div>
-    </>
+    </div>
   )
 }
 

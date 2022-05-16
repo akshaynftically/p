@@ -20,6 +20,7 @@ import _imgSlide5 from 'assets/img/480x240/5.jpg'
 import _imgSlide6 from 'assets/img/480x240/6.jpg'
 import _imgSlide7 from 'assets/img/480x240/7.jpg'
 import _imgSlide8 from 'assets/img/480x240/8.jpg'
+import _bgVideo from 'assets/videos/neon-city.mp4'
 
 // Mocks
 const _slides = [
@@ -116,13 +117,19 @@ const Second = () => {
 
       <div className='overflow-x-hidden relative promo-second'>
         <div className='hidden md:block bg-gradient-to-b from-[#161718] to-[#161718]/0 h-[110px] absolute top-0 z-[1] left-0 w-full'></div>
+        <div className='hidden md:block bg-gradient-to-t from-[#161718] to-[#161718]/0 h-[20px] absolute bottom-0 z-[1] left-0 w-full'></div>
 
         <div
-          className='relative lg:min-h-[660px] bg-center bg-no-repeat bg-cover -mx-[8px]'
+          className='relative lg:min-h-[660px] bg-center bg-no-repeat bg-cover -mx-[8px] overflow-hidden'
           style={{
             backgroundImage: `url(${_bgImg})`,
           }}
         >
+          <video className='absolute top-0 left-0 w-full h-full transform scale-150' autoplay="autoplay" loop muted>
+            <source src={_bgVideo} type="video/mp4"/>
+          </video>
+          <div className='absolute w-full h-full bg-[#000000]/50'></div>
+
           <div className='absolute top-[136px] left-1/2 z-10 -translate-x-1/2 hidden lg:flex items-center'>
             <BlurButton
               className='w-[32px] min-h-[32px] justify-center !p-[5px]'

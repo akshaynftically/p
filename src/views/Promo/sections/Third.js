@@ -2,14 +2,18 @@
 import _imgEarth from 'assets/img/earth-sm.png'
 import _bgAbstract1 from 'assets/img/370x400/1.jpg'
 import _bgAbstract2 from 'assets/img/370x400/2.jpg'
+import _bgVideo from '../../../assets/videos/neon-ring.mp4'
 
 const Third = () => {
   return (
-    <div className='bg-[#161718] lg:py-[100px] relative'>
+    <div className='bg-[#161718] lg:py-[100px] relative overflow-hidden'>
       <div className='hidden lg:block bg-gradient-to-b from-[#161718] to-[#161718]/0 h-[110px] transform translate-y-[70px] absolute top-0 z-[1] left-0 w-full'></div>
       <div className='absolute bottom-0 left-0 bg-center md:bg-top md:transform bg-cover md:bg-contain 4xl:bg-cover translate-y-[140px] md:translate-y-[70px] w-full bg-no-repeat h-full bg-[url("assets/img/bg/7.png")]'></div>
+      <video className='absolute top-0 left-0 w-full h-[80%] transform translate-y-[100px] scale-x-[1.3] md:translate-y-[70px]' autoPlay="autoplay" loop muted>
+        <source src={_bgVideo} type="video/mp4"/>
+      </video>
 
-      <div className='max-w-[1340px] mx-auto px-4 lg:px-[80px] relative z-[1]'>
+      <div className='max-w-[1340px] mx-auto px-4 lg:px-[80px] relative z-[4]'>
         <h2 className='leading-tight font-extrabold lg:text-center text-[32px] lg:text-[52px] mb-[40px] lg:mb-[200px] '>
           COMEARTH - <span className='text-gradient'>Metaverse</span> with a
           <br />

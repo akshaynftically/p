@@ -12,6 +12,7 @@ import _bgMain from 'assets/img/bg/2.jpg'
 import _preloadGlobe from 'assets/img/preloader.png'
 import _imgEarth from 'assets/img/earth-md.png'
 import {getAsideState} from '../../../app/AsideSlice'
+import _bgVideo from '../../../assets/videos/sky.mp4'
 
 const Main = () => {
   const modelViewerRef = useRef()
@@ -25,12 +26,16 @@ const Main = () => {
 
   return (
     <div
-      className='bg-center bg-no-repeat bg-cover pt-[90px] pb-[40px] md:pt-[140px] md:pb-[80px] relative'
+      className='bg-center bg-no-repeat bg-cover pt-[90px] pb-[40px] md:pt-[140px] md:pb-[80px] relative overflow-hidden'
       style={{
         backgroundImage: `url(${_bgMain})`,
       }}
     >
-      <div className='max-w-[1340px] px-4 lg:px-[80px] mx-auto'>
+      <video className='absolute top-0 left-0 w-full h-full transform scale-150' autoPlay="autoplay" loop muted>
+        <source src={_bgVideo} type="video/mp4"/>
+      </video>
+
+      <div className='max-w-[1340px] px-4 lg:px-[80px] mx-auto relative z-[100]'>
         <div className='grid grid-cols-12 items-center gap-x-[30px]'>
           <div className='order-2 md:order-1 col-span-12 md:col-span-5'>
             <h1 className='leading-tight font-extrabold text-[32px] lg:text-[52px] mb-[24px]'>
