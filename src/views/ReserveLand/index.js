@@ -27,7 +27,7 @@ import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
 import {Controller, useForm} from 'react-hook-form'
-import { landPrices } from './landPrices';
+import { getDiscountPercentage, getTotalParcelPrice, landPrices } from './landPrices';
 import countryList from 'react-select-country-list'
 import AppContext from 'components/AppContext';
 
@@ -175,6 +175,7 @@ const ReserveLand = () => {
   const [selectIndustry, setSelectIndustry] = useState(_selectIndustryOptions[0])
   const [selectCountry, setSelectCountry] = useState(null)
   const [selectToken, setSelectToken] = useState(_selectTokenOptions[0])
+  const [discountPercentage, setDiscountPercentage] = useState(0)
   const [areYouRepresenting, setAreYouRepresenting] = useState('individual')
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
   const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
@@ -211,12 +212,14 @@ const ReserveLand = () => {
   useEffect(() => {
     // currently load just once due to overwhelming console logs
     landPrices(selectToken,true).then((prices) => {
-      console.log(prices);
       setBasket((basket) => basket.map((elem, i) => ({
           ...elem,
           perItemPrice: prices[5-i]
         })))
     });
+    getDiscountPercentage().then((dis) => {
+      setDiscountPercentage(dis.toNumber())
+    })
   }, [setValue, transactionForm])
 
   // commenting for now too much console logs
@@ -269,6 +272,7 @@ const ReserveLand = () => {
       return el.qty
     })
     // check for approval erc20
+    let totalPrice = await getTotalParcelPrice(basket,selectToken)
     if(selectToken.id !== 0){
       let erc20 = new ethers.Contract(selectToken.contract_address,_erc20Abi,provider);
       let allowedAmt = await erc20.allowance(account, process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS);
@@ -280,10 +284,12 @@ const ReserveLand = () => {
           // wait for transaction modal erc20
           receipt = await transaction.wait();
       }
+      totalPrice = 0
     }
 
     // initiate transaction modal
-    transaction = await signedContract.reserveLand(parcelQuantities,selectToken.id,tNumber)
+    console.log(parcelQuantities,selectToken.id,tNumber,{value:totalPrice})
+    transaction = await signedContract.reserveLand(parcelQuantities,selectToken.id,tNumber,{value:totalPrice})
     // wait for transaction modal
     receipt  = await transaction.wait()
     return receipt;
@@ -456,7 +462,7 @@ const ReserveLand = () => {
                     <LandUnits basket={basket} setBasket={setBasket} />
                   </FieldGroup>
 
-                  <BasketList items={basket} setBasket={setBasket} discountCode={discountCode} setDiscountCode={setDiscountCode} />
+                  <BasketList items={basket} setBasket={setBasket} discountCode={discountCode} discountPercentage={discountPercentage} setDiscountCode={setDiscountCode} />
                 </div>
                 <SimpleButton type='submit' className='mb-[27px]' block disabled={!getTotal()}>
                   Buy Virtual Land
