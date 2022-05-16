@@ -198,8 +198,8 @@ const Seventh = () => {
         </div>
         <Swiper {...mobileSliderSettings} className='mb-[12px] pb-[100px]'>
           {_lands.map((el, i) => (
-              <SwiperSlide key={el.id} className='!w-[265px]'>
-                <div className='relative flex items-center justify-center w-[265px] h-[240px] overflow-hidden border-bottom-sq-gradient--active'>
+              <SwiperSlide key={el.id} className='!w-[265px] group'>
+                <div className='relative flex items-center justify-center mb-2 w-[265px] h-[240px] overflow-hidden border-bottom-sq-gradient--active'>
                   <div className='absolute -top-[22px] -bottom-[22px] -left-[22px] -right-[22px]'>
                     {[...Array(11)].map((el, i) => (
                         <Fragment key={i}>
@@ -225,30 +225,26 @@ const Seventh = () => {
                     <span className='font-black text-[36px]'>{el.title}</span>
                   </div>
                 </div>
+
+                <Link
+                  className='opacity-0 transition group-hover:opacity-100 text-[16px] text-white/[.80] underline hover:no-underline underline-offset-8 decoration-[#3F99FF]'
+                  to='/reserve-land'
+                >
+                  Reserve Your Land Now
+                  <svg
+                    className='fill-[#3F99FF] ml-[8px]'
+                    width='13'
+                    height='14'
+                    viewBox='0 0 13 14'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path d='M8.05047 7.35909L2.39447 13.0171L0.980469 11.6021L6.63747 5.94609L1.68747 0.996094H13.0005V12.3091L8.05047 7.35909Z' />
+                  </svg>
+                </Link>
               </SwiperSlide>
           ))}
         </Swiper>
-
-       <div className="px-7 py-4">
-         <Link
-             className='text-[16px] text-white/[.80] underline hover:no-underline underline-offset-8 decoration-[#3F99FF]'
-             to='/reserve-land'
-         >
-           Reserve Your Land Now
-           <svg
-               className='fill-[#3F99FF] ml-[8px]'
-               width='13'
-               height='14'
-               viewBox='0 0 13 14'
-               fill='none'
-               xmlns='http://www.w3.org/2000/svg'
-           >
-             <path d='M8.05047 7.35909L2.39447 13.0171L0.980469 11.6021L6.63747 5.94609L1.68747 0.996094H13.0005V12.3091L8.05047 7.35909Z' />
-           </svg>
-         </Link>
-
-         <div className="swiper-pagination-mobile flex justify-center mt-[24px]"></div>
-       </div>
       </div>
     </>
   )
