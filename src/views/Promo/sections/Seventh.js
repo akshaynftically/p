@@ -85,10 +85,6 @@ const Seventh = () => {
   }
 
   // Handlers
-  const handleOnPrevSlide = () => {
-    swiperRef.current.slidePrev()
-  }
-
   const handleOnNextSlide = () => {
     swiperRef.current.slideNext()
   }

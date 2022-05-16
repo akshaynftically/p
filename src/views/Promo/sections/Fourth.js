@@ -1,3 +1,5 @@
+import {useState} from 'react'
+
 // Components
 import {SimpleButton, BlurButton} from 'components/buttons'
 
@@ -6,6 +8,7 @@ import _imgBanner1 from 'assets/img/320x345/1.jpg'
 import _imgBanner2 from 'assets/img/320x345/2.jpg'
 import _imgBanner3 from 'assets/img/320x345/3.jpg'
 import _imgBanner4 from 'assets/img/320x345/4.jpg'
+import ReserveLandModal from '../../../modals/ReserveLandModal'
 
 const _banners = [
   {
@@ -32,6 +35,8 @@ const _banners = [
 ]
 
 const Fourth = () => {
+  const [openModal, setOpenModal] = useState(false)
+
   return (
     <div className='pt-[70px] relative'>
       <div className='absolute top-0 left-0 transform translate-y-[220px] md:translate-y-[-300px] bg-contain 4xl:bg-cover w-full bg-no-repeat h-full bg-[url("assets/img/bg/8.png")]'></div>
@@ -98,7 +103,8 @@ const Fourth = () => {
               </div>
             </div>
             <div className='col-span-12 md:col-span-6 order-3 md:order-2 flex items-end justify-center text-center'>
-              <SimpleButton className='!px-[24px] md:mb-[55px]' type='button'>
+              <SimpleButton className='!px-[24px] md:mb-[55px]' type='button'
+                            onClick={() => setOpenModal(true)}>
                 Start Your Metaverse Journey Now
               </SimpleButton>
             </div>
@@ -148,6 +154,10 @@ const Fourth = () => {
           </div>
         </div>
       </div>
+
+      {openModal && (
+        <ReserveLandModal onClose={() => setOpenModal(false)} />
+      )}
 
       <div className='max-w-[1340px] mx-auto px-4 lg:px-8'>
         <div className='grid grid-cols-4'>
