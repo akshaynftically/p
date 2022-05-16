@@ -14,11 +14,13 @@ const _banners = [
   {
     id: '1001',
     title: 'Drive Key Business Metrics',
+    text: 'Conduct end-to-end personalization based on user personas. Leverage AR/VR to create unforgettable shopping experiences',
     image: _imgBanner1,
   },
   {
     id: '1002',
     title: 'Use Metaverse for branding',
+    text: 'Conduct end-to-end personalization based on user personas. Leverage AR/VR to create unforgettable shopping experiences',
     image: _imgBanner2,
   },
   {
@@ -30,6 +32,7 @@ const _banners = [
   {
     id: '1004',
     title: 'Metaverse’s hottest commercial real estate',
+    text: 'Conduct end-to-end personalization based on user personas. Leverage AR/VR to create unforgettable shopping experiences',
     image: _imgBanner4,
   },
 ]
@@ -164,7 +167,7 @@ const Fourth = () => {
           {_banners.map((el) => (
               <div
                   key={el.id}
-                  className='relative col-span-2 md:col-span-1 min-h-[200px] md:min-h-[345px] bg-no-repeat bg-cover bg-center md:mb-[160px]'
+                  className='relative group col-span-2 md:col-span-1 min-h-[200px] md:min-h-[345px] bg-no-repeat bg-cover bg-center md:mb-[160px]'
                   style={{
                     backgroundImage: `url(${el.image})`,
                   }}
@@ -173,11 +176,9 @@ const Fourth = () => {
                 <div className='absolute top-[60px] md:top-[120px] left-0 right-0 p-[20px]'>
                   <div className='leading-tight font-black text-[14px] md:text-[24px]'>{el.title}</div>
                 </div>
-                {el.text && (
-                    <div className='absolute top-[100%] left-0 right-0 bg-[#262728] text-[14px] text-white/[.80] p-[16px]'>
-                      {el.text}
-                    </div>
-                )}
+                <div className='opacity-0 transition group-hover:opacity-100 absolute top-[100%] left-0 right-0 bg-[#262728] text-[14px] text-white/[.80] p-[16px]'>
+                  {el.text}
+                </div>
               </div>
           ))}
         </div>
