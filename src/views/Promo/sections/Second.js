@@ -105,7 +105,7 @@ const Second = () => {
   return (
     <Fragment>
       <div className='bg-[#161718] pt-[50px] md:pt-[80px] mb-[40px] relative'>
-        <div className='max-w-[1340px] px-4 lg:px-8 mx-auto'>
+        <div className='max-w-[1340px] px-4 lg:px-[80px] mx-auto'>
           <h2 className='leading-tight font-extrabold text-center text-[32px] lg:text-[52px] mb-[40px]'>
             Web3 E-Commerce will be <span className='text-gradient'>bigger than</span>
             <br />
@@ -166,7 +166,7 @@ const Second = () => {
           >
             {_slides.map((el, i) => (
               <SwiperSlide key={el.id}>
-                <div className='max-w-[1340px] px-4 lg:px-8 mx-auto'>
+                <div className='max-w-[1340px] px-4 lg:px-[80px] mx-auto'>
                   <div className='max-w-[855px]'>
                     <div className='max-w-[480px] mb-[35px]'>
                       <img className='max-w-full' src={el.image} alt='Slide' />

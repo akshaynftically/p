@@ -30,7 +30,7 @@ const Main = () => {
         backgroundImage: `url(${_bgMain})`,
       }}
     >
-      <div className='max-w-[1340px] px-4 lg:px-8 mx-auto'>
+      <div className='max-w-[1340px] px-4 lg:px-[80px] mx-auto'>
         <div className='grid grid-cols-12 items-center gap-x-[30px]'>
           <div className='order-2 md:order-1 col-span-12 md:col-span-5'>
             <h1 className='leading-tight font-extrabold text-[32px] lg:text-[52px] mb-[24px]'>

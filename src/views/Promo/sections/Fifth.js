@@ -102,7 +102,7 @@ const Fifth = () => {
       <div className='hidden md:block absolute md:-top-[96px] left-0'>
         <img className='max-w-full' src={_imgAbstraction1} alt='Abstraction' />
       </div>
-      <div className='relative max-w-[1340px] mx-auto px-4 lg:px-8'>
+      <div className='relative max-w-[1340px] mx-auto px-4 lg:px-[80px]'>
         <div className='grid grid-cols-12 items-center'>
           <div className='relative col-span-12 order-2 md:order-1 md:col-span-6'>
             <div className='md:hidden absolute top-0 left-0 z-[0]'>

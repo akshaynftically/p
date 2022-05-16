@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <div className='footer-container z-[1] fixed left-0 right-0 bottom-0'>
-      <footer className='sm:max-w-[90rem] 2xl:max-w-[104rem] text-gray-400 sm:items-end w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap basis-full items-center pb-[32px]'>
+      <footer className='sm:max-w-[90rem] 2xl:max-w-[104rem] text-gray-400 sm:items-end w-full mx-auto px-4 sm:px-6 lg:px-[80px] flex flex-wrap basis-full items-center pb-[32px]'>
         <hr className='hidden lg:block border-[#2D2E2F] w-full mb-[20px]'/>
         <div className='text-center mt-[30px] lg:mt-0 block w-full lg:w-auto lg:flex items-center lg:mx-[unset] text-[12px] mb-[10px] font-[700] lg:mb-0'>
           <svg className='mr-[5px]' width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">

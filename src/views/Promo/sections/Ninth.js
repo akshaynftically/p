@@ -72,7 +72,7 @@ const Ninth = () => {
 
 
   return (
-    <div className='max-w-[1340px] pb-[25px] lg:pt-[120px] px-4 lg:px-8 mx-auto mt-[60px] lg:mt-0'>
+    <div className='max-w-[1340px] pb-[25px] lg:pt-[120px] px-4 lg:px-[80px] mx-auto mt-[60px] lg:mt-0'>
       <h2 className='leading-tight font-black text-[32px] lg:text-[48px] mb-[32px]'>
         Our <span className='text-gradient'>Key</span> Partners
       </h2>

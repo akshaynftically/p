@@ -161,7 +161,7 @@ const Land = (props) => {
           >
             <div className='w-full'>
               <div className='text-center relative text-white mb-5'>
-                <div className='hidden lg:block sm:max-w-[90rem] 2xl:max-w-[105rem] flex flex-wrap basis-full items-center w-full mx-auto px-4 sm:px-6 lg:px-8'>
+                <div className='hidden lg:block sm:max-w-[90rem] 2xl:max-w-[105rem] flex flex-wrap basis-full items-center w-full mx-auto px-4 sm:px-6 lg:px-[80px]'>
                   <div className='absolute top-0 transform translate-y-[-100%]'>
                     <BackButton className='bg-[#262728]' back={back} />
                   </div>

@@ -9,7 +9,7 @@ const Third = () => {
       <div className='hidden lg:block bg-gradient-to-b from-[#161718] to-[#161718]/0 h-[110px] transform translate-y-[70px] absolute top-0 z-[1] left-0 w-full'></div>
       <div className='absolute bottom-0 left-0 bg-center md:bg-top md:transform bg-cover md:bg-contain 4xl:bg-cover translate-y-[140px] md:translate-y-[70px] w-full bg-no-repeat h-full bg-[url("assets/img/bg/7.png")]'></div>
 
-      <div className='max-w-[1340px] mx-auto px-4 lg:px-8 relative z-[1]'>
+      <div className='max-w-[1340px] mx-auto px-4 lg:px-[80px] relative z-[1]'>
         <h2 className='leading-tight font-extrabold lg:text-center text-[32px] lg:text-[52px] mb-[40px] lg:mb-[200px] '>
           COMEARTH - <span className='text-gradient'>Metaverse</span> with a
           <br />
