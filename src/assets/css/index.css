@@ -207,15 +207,19 @@ body {
 	background: #363738;
 }
 
-.swiper-slide-active .border-bottom-sq-gradient--active {
+.border-bottom-sq-gradient--active {
+	transition: .4s;
+}
+
+.swiper-slide:hover .border-bottom-sq-gradient--active {
 	background: #161718;
 }
 
-.swiper-slide-active .border-bottom-sq-gradient--active::before {
+.swiper-slide:hover .border-bottom-sq-gradient--active::before {
 	background: linear-gradient(177.35deg, rgba(88, 195, 255, 0) 2.46%, rgba(210, 153, 255, 0.25) 98.08%);
 }
 
-.swiper-slide-active .border-bottom-sq-gradient--active::after {
+.swiper-slide:hover .border-bottom-sq-gradient--active::after {
 	background: linear-gradient(270deg, #58C3FF 26.97%, #D299FF 77.53%);
 }
 
