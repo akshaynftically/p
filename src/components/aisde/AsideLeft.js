@@ -21,7 +21,7 @@ const AsideLeft = () => {
         </svg>
       </button>
       <aside
-        className={`fixed top-0 left-0 w-full max-w-[480px] md:rounded-tr-[16px] h-full overflow-scroll bg-[#262728] p-[40px] transition duration-[1s] z-[10000000] transform -translate-x-[480px] ${
+        className={`fixed top-0 left-0 w-full max-w-[480px] md:rounded-tr-[16px] h-full overflow-scroll bg-[#262728] p-[40px] transition duration-[1s] z-[1000000000000] transform -translate-x-[480px] ${
           open ? '!translate-x-0' : ''
         }`}
       >

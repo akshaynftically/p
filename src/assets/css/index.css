@@ -389,3 +389,8 @@ header .css-1comtmu-control {
 		padding-bottom: 15px;
 	}
 }
+
+.animated-slider .swiper-slide {
+	width: 60% !important;
+}
+

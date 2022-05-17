@@ -10,19 +10,36 @@ import {Field, FieldGroup} from 'components/form'
 // Sources
 import _bgMain from 'assets/img/bg/2.jpg'
 import _preloadGlobe from 'assets/img/preloader.png'
-import _imgEarth from 'assets/img/earth-md.png'
-import {getAsideState} from '../../../app/AsideSlice'
 import _bgVideo from '../../../assets/videos/sky.mp4'
+import {useForm} from 'react-hook-form'
+import {setTransactionForm} from '../../../app/TransactionFormSlice'
+import {useDispatch} from 'react-redux'
+import {useNavigate} from 'react-router-dom'
 
 const Main = () => {
   const modelViewerRef = useRef()
+  const navigate = useNavigate()
   const [loading, setLoading] = useState(0)
+  const dispatch = useDispatch()
+
+  const {
+    register,
+    handleSubmit,
+    formState: {errors},
+  } = useForm({
+    mode: 'onChange',
+  })
 
   useEffect(() => {
     modelViewerRef.current.addEventListener('progress', (e) => {
       setLoading(e.detail.totalProgress * 500)
     })
   })
+
+  const onSubmit = (data) => {
+    dispatch(setTransactionForm(data))
+    navigate('/reserve-land')
+  }
 
   return (
     <div
@@ -31,11 +48,11 @@ const Main = () => {
         backgroundImage: `url(${_bgMain})`,
       }}
     >
-      <video className='absolute top-0 left-0 w-full h-full transform scale-150' autoPlay="autoplay" loop muted>
+      <video className='hidden lg:block absolute top-0 left-0 w-full h-full transform scale-150' autoPlay="autoplay" loop muted>
         <source src={_bgVideo} type="video/mp4"/>
       </video>
 
-      <div className='max-w-[1340px] px-4 lg:px-[80px] mx-auto relative z-[100]'>
+      <div className='max-w-[1340px] px-4 lg:px-[80px] mx-auto relative z-[2]'>
         <div className='grid grid-cols-12 items-center gap-x-[30px]'>
           <div className='order-2 md:order-1 col-span-12 md:col-span-5'>
             <h1 className='leading-tight font-extrabold text-[32px] lg:text-[52px] mb-[24px]'>
@@ -46,15 +63,26 @@ const Main = () => {
               COMEARTH is where brands & creators can create unparalleled experiences while
               consumers discover everything at a place
             </div>
-            <FieldGroup className='relative mb-[45px]'>
-              <Field className='pr-[230px] py-[14px] lg:py-[14px] mb-[12px] lg:mb-0' placeholder='Enter Your Promo Code Here' />
-              <SimpleButton
-                className='lg:absolute top-0 right-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold lg:rounded-l-none'
-                type='button'
-              >
-                Reserve Your Land Now
-              </SimpleButton>
-            </FieldGroup>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className='mb-[45px]'>
+                <FieldGroup className='relative'>
+                  <Field
+                    isError={errors.email}
+                    register={register('email', {required: true, pattern: /^\S+@\S+$/i})}
+                    type='email'
+                    className='pr-[230px] py-[14px] lg:py-[14px] mb-[12px] lg:mb-0'
+                    placeholder='Enter Your Email Address'
+                  />
+
+                  <SimpleButton
+                    className='lg:absolute top-0 right-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold lg:rounded-l-none'
+                    type='submit'
+                  >
+                    Reserve Your Land Now
+                  </SimpleButton>
+                </FieldGroup>
+              </div>
+            </form>
             <div className='flex items-center mb-[12px]'>
               <svg
                 className='stroke-white mr-[8px]'

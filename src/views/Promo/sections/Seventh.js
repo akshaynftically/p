@@ -99,7 +99,7 @@ const Seventh = () => {
             backgroundImage: `url(${_bgMain})`,
           }}
       >
-        <video className='absolute top-0 left-0 w-full h-full transform scale-150' autoPlay="autoplay" loop muted>
+        <video className='hidden lg:block absolute top-0 left-0 w-full h-full transform scale-150' autoPlay="autoplay" loop muted>
           <source src={_bgVideo} type="video/mp4"/>
         </video>
         <div className='absolute w-full top-0 left-0 h-full bg-[#000000]/50'></div>

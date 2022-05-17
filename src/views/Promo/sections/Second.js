@@ -125,7 +125,7 @@ const Second = () => {
             backgroundImage: `url(${_bgImg})`,
           }}
         >
-          <video className='absolute top-0 left-0 w-full h-full transform scale-150' autoplay="autoplay" loop muted>
+          <video className='hidden lg:block absolute top-0 left-0 w-full h-full transform scale-150' autoplay="autoplay" loop muted>
             <source src={_bgVideo} type="video/mp4"/>
           </video>
           <div className='absolute w-full h-full bg-[#000000]/50'></div>
