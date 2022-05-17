@@ -31,6 +31,7 @@ import { getDiscountPercentage, getTotalParcelPrice, landPrices } from './landPr
 import countryList from 'react-select-country-list'
 import AppContext from 'components/AppContext';
 
+
 const _tokenIcons = {
   'token_logo0': require('assets/img/tokens/token_logo0.png'),
   'token_logo1': require('assets/img/tokens/token_logo1.png'),
@@ -179,6 +180,14 @@ const ReserveLand = () => {
   const [areYouRepresenting, setAreYouRepresenting] = useState('individual')
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
   const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
+  const[modalProps,setModalProps]= useState({
+    title:'',
+    mainHeading:'Please confirm the transaction with your wallet and then wait for the transaction to complete. ',
+    content:'To allow COMEARTH to reserve virtual land units for you in your currently connected wallet, you must authorize this transaction in your wallet. Please keep this tab open while we wait for the blockchain to confirm your action. This only needs to be done once per order.',
+    loading:true,
+    learn:'',
+    view:''
+  })
 
   useEffect(() => {
     notify()
@@ -258,6 +267,9 @@ const ReserveLand = () => {
     setIsOpenedProgressWallet(!isOpenedProgressWallet)
   }
   const startTransactionFlow = async (provider) => {
+    setProgressModalTitle("Please approve for "+selectToken.label+" token")
+    setModalProps({...modalProps,title:"Please approve for "+selectToken.label+" token"})
+
     setIsOpenedProgressWallet(true)
 
     let transaction;
@@ -492,7 +504,9 @@ const ReserveLand = () => {
         </div>
       </div>
 
-      {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} title={progressModalTitle} />}
+      {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} 
+      {...modalProps}
+      />}
     </Fragment>
   )
 }
