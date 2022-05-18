@@ -227,7 +227,8 @@ const ReserveLand = () => {
         })))
     });
     getDiscountPercentage().then((dis) => {
-      setDiscountPercentage(dis.toNumber())
+      console.log('discount',dis)
+      setDiscountPercentage(dis)
     })
   }, [setValue, transactionForm])
 
