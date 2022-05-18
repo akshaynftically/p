@@ -25,7 +25,7 @@ const HeaderWalletInfo = () => {
     }
 
     return (
-        <div className='ml-auto'>
+        <div className='ml-auto hidden lg:block'>
             {!accounts.length
                 ? (
                     <>
