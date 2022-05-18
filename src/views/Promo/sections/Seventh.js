@@ -161,7 +161,7 @@ const Seventh = () => {
                       </div>
                     </div>
                     <Link
-                      className='text-[16px] text-white/[.80] underline hover:no-underline underline-offset-8 decoration-[#3F99FF]'
+                      className='opacity-0 swiper-slide-active:opacity-100 transition duration-[.5s] text-[16px] text-white/[.80] underline hover:no-underline underline-offset-8 decoration-[#3F99FF]'
                       to='/reserve-land'
                     >
                       Reserve Your Land Now

@@ -62,7 +62,7 @@ const _secondMenu = [
   {
     id: '1004',
     title: 'Privacy Policy',
-    url: 'https://www.nftically.com/privacy-policyy',
+    url: 'https://www.nftically.com/privacy-policy',
     className: 'text-right md:text-left'
   },
 ]
@@ -235,6 +235,7 @@ const FooterAlt = () => {
                   <a
                     className='text-[12px] text-white/[.65] hover:text-white transition duration-[200ms] ease-in-out'
                     href={el.url}
+                    target='_blank'
                   >
                     {el.title}
                   </a>

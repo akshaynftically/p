@@ -119,31 +119,34 @@ const AsideLeft = () => {
 
           <nav>
             <a
-              href='#'
+              href='/'
               className='text-white text-[16px] md:text-[20px] hover:text-white/70 font-bold block border-b border-[#363738] py-[16px] md:py-[28px]'
             >
               Home
             </a>
             <a
-              href='#'
+              href='https://docs.comearth.world/whitepaper'
+              target='_blank'
               className='text-white text-[16px] md:text-[20px] hover:text-white/70 font-bold block border-b border-[#363738] py-[16px] md:py-[28px]'
             >
               Whitepaper
             </a>
             <a
-              href='#'
+              href='https://www.nftically.com'
+              target='_blank'
               className='text-white text-[16px] md:text-[20px] hover:text-white/70 font-bold block border-b border-[#363738] py-[16px] md:py-[28px]'
             >
               NFTICALLY
             </a>
             <a
-              href='#'
+              href='https://www.comearth.world/blog'
+              target='_blank'
               className='text-white text-[16px] md:text-[20px] hover:text-white/70 font-bold block border-b border-[#363738] py-[16px] md:py-[28px]'
             >
               Blog
             </a>
             <a
-              href='#'
+              href='mailto:hello@comearth.world'
               className='text-white text-[16px] md:text-[20px] hover:text-white/70 font-bold block border-b border-[#363738] py-[16px] md:py-[28px]'
             >
               Contact Us
@@ -151,7 +154,7 @@ const AsideLeft = () => {
           </nav>
 
           <div className='absolute bottom-0 w-full'>
-            <SimpleButton block type='button'>
+            <SimpleButton block href='/reserve-land'>
               Reserve Land Now
             </SimpleButton>
           </div>

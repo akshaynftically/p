@@ -35,11 +35,8 @@ const ReserveLandModal = (props) => {
     }
 
     return (
-      <FullScreenPopup fullscreen={true} size='w-full md:w-[640px]' title='Account' className='min-h-[100vh] md:min-h-full' onClose={onClose}>
+      <FullScreenPopup fullscreen={true} size='w-full md:w-[640px]' title='Please Enter Your Email ID' className='min-h-[100vh] md:min-h-full' onClose={onClose}>
           <>
-              <h2 className='font-extrabold text-[24px] mb-[16px]'>Enter Your Details</h2>
-              <hr className='border-[#363738] my-[16px]' />
-
               <form onSubmit={handleSubmit(onSubmit)}>
                   <FieldGroup label='Email ID'>
                       <Field

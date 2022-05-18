@@ -21,6 +21,7 @@ import _imgContinentEta from 'assets/img/continents/eta.svg'
 import _imgContinentAakaus from 'assets/img/continents/aakaus.svg'
 import _imgContinentRohin from 'assets/img/continents/rohin.svg'
 import _imgContinentTosh from 'assets/img/continents/tosh.svg'
+import _imgContinentHorus from 'assets/img/continents/horus.svg'
 import ReserveLandModal from '../../../modals/ReserveLandModal'
 
 // Mocks
@@ -28,51 +29,58 @@ const _continents = [
   {
     id: '1001',
     title: 'Cardinal',
-    text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.',
+    text: 'It’s a first continent of the COMEARTH planet which will host roughly~11% of the land parcels. Can host multiple industries & various types of e-commerce activities.',
     image: _imgContinentCardinal,
     bg: _bgSlider
   },
   {
     id: '1002',
     title: 'Octum',
-    text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.',
+    text: 'It’s the second continent of the COMEARTH planet which will host roughly 14-15% of the land parcels. This continent can host businesses, brands & various types of e-commerce activities.',
     image: _imgContinentOctum,
     bg: _bgSliderNext
   },
   {
     id: '1003',
     title: 'Marth',
-    text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.',
+    text: 'It’s the third continent of the COMEARTH planet which will host roughly 11-12% of the land parcels. This continent can host businesses, brands & various types of engagement & business activities.',
     image: _imgContinentMarth,
     bg: _bgSliderPrev
   },
   {
     id: '1004',
     title: 'Eta',
-    text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.',
+    text: 'It’s the fourth continent of the COMEARTH planet which will host roughly 12-13% of the land parcels. This continent can host businesses, brands & various types of engagement & business activities.',
     image: _imgContinentEta,
     bg: _bgSliderNext
   },
   {
     id: '1005',
     title: 'Aakaus',
-    text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.',
+    text: 'It’s the fifth continent of the COMEARTH planet which will host roughly 14-15% of the land parcels. This continent can host anythig related to commerce & engagement.',
     image: _imgContinentAakaus,
     bg: _bgSliderPrev
   },
   {
     id: '1006',
     title: 'Rohin',
-    text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.',
+    text: 'It’s the sixth continent of the COMEARTH planet which will host roughly 12% of the land parcels. This continent can host events, groups, communities.',
     image: _imgContinentRohin,
     bg: _bgSliderNext
   },
   {
     id: '1007',
     title: 'Tosh',
-    text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.',
+    text: 'It’s the seventh continent of the COMEARTH planet which will host roughly 8% of the land parcels. This continent can has evertything you need to make your business successful.',
     image: _imgContinentTosh,
     bg: _bgSliderPrev
+  },
+  {
+    id: '1008',
+    title: 'Horus',
+    text: 'It’s the eigth & the largest continent of the COMEARTH planet which will host roughly 16% of the land parcels. This continent can host multiple business, engagement modules, experience centers etc.',
+    image: _imgContinentHorus,
+    bg: _bgSliderNext
   },
 ]
 
