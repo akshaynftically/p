@@ -66,8 +66,6 @@ input:not([type="checkbox"]) {
 .metaverse-demo model-viewer {
 	display: flex;
 	align-items: center;
-	height: 100%;
-	width: 100%;
 	overflow: hidden;
 	position: absolute;
 	user-select: none;
@@ -186,6 +184,12 @@ body {
 .pseudo-border-gradient {
 	background: linear-gradient(#161718, #161718) padding-box, linear-gradient(45deg, #D299FF, #58C3FF) border-box;
 	border: 2px solid transparent;
+	transition: background 0.2s ease-in-out;
+}
+
+.pseudo-border-gradient-1 {
+	background: linear-gradient(#1b1e2e, #1b1e2e) padding-box, linear-gradient(45deg, #D299FF, #58C3FF) border-box;
+	border: 1px solid transparent;
 	transition: background 0.2s ease-in-out;
 }
 
@@ -394,3 +398,13 @@ header .css-1comtmu-control {
 	width: 60% !important;
 }
 
+
+.atmo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	background: rgba(104, 192, 255, 0.92);
+	filter: blur(60px);
+}

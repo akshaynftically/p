@@ -20,7 +20,7 @@ const Simple = (props) => {
   return (
     <Fragment>
       {href && (
-        <Link
+        <a
           className={clsx(
             'group items-center justify-center font-semibold font-sans rounded-[4px] transition ease-in-out',
             {'inline-flex': !block},
@@ -37,11 +37,11 @@ const Simple = (props) => {
             {'text-white bg-[#FF5A26] hover:bg-[#FF6B3D]': variant === 'warning'},
             className
           )}
-          to={href}
+          href={href}
           {...rest}
         >
           {children}
-        </Link>
+        </a>
       )}
       {type && (
         <button

@@ -11,8 +11,8 @@ const Promo = () => {
       <Fifth />
       <Sixth />
       <Seventh />
-      <Eighth />
       <Ninth />
+      <Eighth />
     </div>
   )
 }

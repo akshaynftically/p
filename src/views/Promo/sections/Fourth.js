@@ -48,7 +48,7 @@ const Fourth = () => {
       <div className='md:hidden bg-gradient-to-b from-[#161819] to-[#161718]/0 z-[0] h-[110px] absolute top-[50px] z-[1] left-0 w-full'></div>
 
       <div className='mt-[40px] md:mt-0 relative'>
-        <div className='max-w-[1340px] mx-auto px-4 lg:px-[80px] relative z-[2]'>
+        <div className='mx-[20px] lg:mx-[80px] relative z-[2]'>
           <div className='grid grid-cols-12'>
             <div className='md:col-span-3'></div>
             <div className='col-span-12 md:col-span-6 mb-[30px] md:md-0'>
@@ -162,7 +162,7 @@ const Fourth = () => {
         <ReserveLandModal onClose={() => setOpenModal(false)} />
       )}
 
-      <div className='max-w-[1340px] mx-auto px-4 lg:px-[80px]'>
+      <div className='mx-[20px] lg:mx-[80px]'>
         <div className='grid grid-cols-4'>
           {_banners.map((el) => (
               <div
@@ -176,7 +176,7 @@ const Fourth = () => {
                 <div className='absolute top-[60px] md:top-[120px] left-0 right-0 p-[20px]'>
                   <div className='leading-tight font-black text-[14px] md:text-[24px]'>{el.title}</div>
                 </div>
-                <div className='opacity-0 transition group-hover:opacity-100 absolute top-[100%] left-0 right-0 bg-[#262728] text-[14px] text-white/[.80] p-[16px]'>
+                <div className='z-[2] opacity-0 transition group-hover:opacity-100 absolute top-[100%] left-0 right-0 bg-[#262728] text-[14px] text-white/[.80] p-[16px]'>
                   {el.text}
                 </div>
               </div>

@@ -9,6 +9,10 @@ import 'swiper/css/pagination'
 // Sources
 import _imgPartner1 from 'assets/img/partners/1.svg'
 import _imgPartner2 from 'assets/img/partners/2.svg'
+import _imgPartner3 from 'assets/img/partners/3.svg'
+import _imgPartner4 from 'assets/img/partners/4.svg'
+import _imgPartner5 from 'assets/img/partners/5.svg'
+import _imgPartner6 from 'assets/img/partners/6.svg'
 
 // Mocks
 const _partners = [
@@ -22,19 +26,19 @@ const _partners = [
   },
   {
     id: '1003',
-    image: _imgPartner1,
+    image: _imgPartner3,
   },
   {
     id: '1004',
-    image: _imgPartner2,
+    image: _imgPartner4,
   },
   {
     id: '1005',
-    image: _imgPartner1,
+    image: _imgPartner5,
   },
   {
     id: '1006',
-    image: _imgPartner2,
+    image: _imgPartner6,
   },
 ]
 
@@ -72,7 +76,7 @@ const Ninth = () => {
 
 
   return (
-    <div className='max-w-[1340px] pb-[25px] lg:pt-[120px] px-4 lg:px-[80px] mx-auto mt-[60px] lg:mt-0'>
+    <div className='pb-[25px] lg:pt-[120px] mx-[20px] lg:mx-[80px] mt-[60px] lg:mt-0'>
       <h2 className='leading-tight font-black text-[32px] lg:text-[48px] mb-[32px]'>
         Our <span className='text-gradient'>Key</span> Partners
       </h2>

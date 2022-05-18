@@ -373,7 +373,7 @@ const Eighth = () => {
   }, [])
 
   return (
-    <div className='max-w-[1340px] lg:pt-[150px] px-4 lg:px-[80px] mx-auto mt-[60px] lg:mt-0'>
+    <div className='lg:pt-[150px] mx-[20px] lg:mx-[80px] mt-[60px] lg:mt-0'>
       <h2 className='leading-tight font-black text-[32px] lg:text-[48px] mb-[32px]'>
         Our <span className='text-gradient'>Key</span> Investors
       </h2>

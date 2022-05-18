@@ -103,6 +103,7 @@ const Seventh = () => {
           <source src={_bgVideo} type="video/mp4"/>
         </video>
         <div className='absolute w-full top-0 left-0 h-full bg-[#000000]/50'></div>
+        <div className='bg-gradient-to-t z-[10] from-[#161718]/0 to-[#161718] h-[40px] md:h-[107px] absolute top-0 left-0 w-full'></div>
 
         <div className='flex justify-end relative z-[10]'>
           <div className='md:max-w-[880px]'>
@@ -160,7 +161,7 @@ const Seventh = () => {
                       </div>
                     </div>
                     <Link
-                      className='opacity-0 transition group-hover:opacity-100 text-[16px] text-white/[.80] underline hover:no-underline underline-offset-8 decoration-[#3F99FF]'
+                      className='text-[16px] text-white/[.80] underline hover:no-underline underline-offset-8 decoration-[#3F99FF]'
                       to='/reserve-land'
                     >
                       Reserve Your Land Now
@@ -252,6 +253,8 @@ const Seventh = () => {
           ))}
         </Swiper>
       </div>
+
+      <div className='bg-gradient-to-b z-[10] from-[#161718]/0 to-[#161718] h-[40px] md:h-[107px] absolute bottom-0 left-0 w-full'></div>
     </div>
   )
 }
