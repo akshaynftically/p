@@ -108,10 +108,15 @@ const Sixth = () => {
   }, [swiperRef])
 
   return (
-    <div className='lg:pt-[160px] lg:pb-[40px]'>
-      <div className='relative px-[345px] mb-[20px]'>
+    <div className='lg:pt-[160px] lg:pb-[40px] mt-[70px] md:mt-0 relative'>
+      <div className='lg:hidden bg-[#161718] h-[30px] absolute bottom-0 z-[1] left-0 w-full'></div>
+      <h2 className='leading-tight font-black text-[32px] lg:text-[48px] mb-[16px] lg:mb-[32px] px-4 lg:px-12'>
+        <span className='text-gradient'>8 Continents and</span> and <span className='text-gradient'>6 </span> land sizes
+      </h2>
+
+      <div className='relative lg:px-[345px] mb-[20px]'>
         <div
-          className='group absolute top-0 bottom-0 left-0 flex items-center justify-center w-[345px] bg-center bg-no-repeat bg-cover bg-shaded-black-60 p-[20px]'
+          className='hidden group absolute top-0 bottom-0 left-0 lg:flex items-center justify-center w-[345px] bg-center bg-no-repeat bg-cover bg-shaded-black-60 p-[20px]'
           role='button'
           onClick={handleOnPrevSlide}
           style={{
@@ -123,7 +128,7 @@ const Sixth = () => {
           </div>
         </div>
         <div
-          className='group absolute top-0 bottom-0 right-0 flex items-center justify-center w-[345px] bg-center bg-no-repeat bg-cover bg-shaded-black-60 p-[20px]'
+          className='hidden group absolute top-0 bottom-0 right-0 lg:flex items-center justify-center w-[345px] bg-center bg-no-repeat bg-cover bg-shaded-black-60 p-[20px]'
           role='button'
           onClick={handleOnNextSlide}
           style={{
@@ -148,19 +153,29 @@ const Sixth = () => {
           >
             {_continents.map((el, i) => (
               <SwiperSlide key={el.id}>
-                <div className='flex items-center min-h-[460px] p-[40px]'>
+                <div className='flex items-center flex-wrap lg:flex-nowrap min-h-[460px] p-[20px] md:p-[40px]'>
                   <div className='mr-[24px]'>
-                    <div className='md:w-[275px]'>
+                    <div className='w-[160px] md:w-[275px]'>
                       <img className='inline-block max-w-full' src={el.image} alt={el.title} />
                     </div>
                   </div>
-                  <div className='flex-grow-1'>
-                    <div className='uppercase text-[20px] text-white/[.80] mb-[12px]'>
+
+                  <div className='lg:hidden'>
+                    <div className='uppercase text-[16px] lg:text-[20px] text-white/[.80] mb-[12px]'>
                       {el.title}
                     </div>
-                    <div className='font-black uppercase text-[52px] mb-[12px]'>{el.title}</div>
+                    <div className='font-black uppercase text-[24px] lg:text-[52px] mb-[12px]'>{el.title}</div>
+                  </div>
+
+                  <div className='block w-full lg:flex-grow-1'>
+                    <div className='hidden lg:block'>
+                      <div className='uppercase text-[20px] text-white/[.80] mb-[12px]'>
+                        {el.title}
+                      </div>
+                      <div className='font-black uppercase text-[52px] mb-[12px]'>{el.title}</div>
+                    </div>
                     <div className='text-[16px] text-white/[.80] mb-[32px]'>{el.text}</div>
-                    <SimpleButton href='/reserve-land' size='sm'>
+                    <SimpleButton className='block w-full md:w-auto py-[15px] md:py-3' href='/reserve-land' size='sm'>
                       Reserve Land Now
                     </SimpleButton>
                   </div>

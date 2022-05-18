@@ -6,7 +6,7 @@ import AsideLeft from 'components/aisde/AsideLeft'
 
 // Sources
 import logo from 'assets/img/logo.svg'
-import HeaderWalletInfo from "../wallet/HeaderWalletInfo";
+import HeaderWalletInfo from '../wallet/HeaderWalletInfo'
 
 export function HeaderMenu() {
   const {pathname} = useLocation()
@@ -16,8 +16,8 @@ export function HeaderMenu() {
       <nav
         className={clsx(
           'flex basis-full items-center sm:items-end w-full mx-auto px-4 sm:px-6 lg:px-8',
-          {'max-w-[1340px]': pathname === '/'},
-          {'sm:max-w-[90rem] 2xl:max-w-[105rem]': pathname !== '/'}
+          {'max-w-[1340px]': pathname === '/' || pathname === '/terms'},
+          {'sm:max-w-[90rem] 2xl:max-w-[105rem]': pathname !== '/' && pathname !== '/terms'}
         )}
       >
         <AsideLeft />
@@ -26,9 +26,7 @@ export function HeaderMenu() {
           <img className='block' src={logo} alt='logo' />
         </Link>
 
-          {pathname === '/reserve-land' && (
-              <HeaderWalletInfo />
-          )}
+        {pathname === '/reserve-land' && <HeaderWalletInfo />}
       </nav>
     </header>
   )

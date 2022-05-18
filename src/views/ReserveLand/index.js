@@ -30,6 +30,7 @@ import {Controller, useForm} from 'react-hook-form'
 import { getDiscountPercentage, getTotalParcelPrice, landPrices } from './landPrices';
 import countryList from 'react-select-country-list'
 import AppContext from 'components/AppContext';
+import { getChainData } from 'lib/appHelpers';
 
 
 const _tokenIcons = {
@@ -180,7 +181,7 @@ const ReserveLand = () => {
   const [areYouRepresenting, setAreYouRepresenting] = useState('individual')
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
   const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
-  const[modalProps,setModalProps]= useState({
+  const[txModalProps,setTxModalProps]= useState({
     title:'',
     mainHeading:'Please confirm the transaction with your wallet and then wait for the transaction to complete. ',
     content:'To allow COMEARTH to reserve virtual land units for you in your currently connected wallet, you must authorize this transaction in your wallet. Please keep this tab open while we wait for the blockchain to confirm your action. This only needs to be done once per order.',
@@ -248,6 +249,10 @@ const ReserveLand = () => {
     return total
   }
 
+  const showTransactionModal = (obj) => {
+    setTxModalProps(obj)
+    setIsOpenedProgressWallet(true)
+  }
 
   // Handlers
 
@@ -268,17 +273,14 @@ const ReserveLand = () => {
     setIsOpenedProgressWallet(!isOpenedProgressWallet)
   }
   const startTransactionFlow = async (provider) => {
-    setProgressModalTitle("Please approve for "+selectToken.label+" token")
-    setModalProps({...modalProps,title:"Please approve for "+selectToken.label+" token"})
-
-    setIsOpenedProgressWallet(true)
-
+    
     let transaction;
     let receipt;
     let tNumber = 0;
     
     const signer = provider.getSigner()
     const account = (await provider.send("eth_accounts",[]))[0];
+    const networkConfig = await getChainData(provider)
     let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider);
     let signedContract = contract.connect(signer);
     let parcelQuantities = [...basket].reverse().map((el) => {
@@ -297,20 +299,29 @@ const ReserveLand = () => {
         throw new Error('erc20 balance is less then total price')
       }
       if(!allowedAmt.gt(0)){
-          // ask to approve and procees further
-          setProgressModalTitle("Please approve for "+selectToken.label+" token")
-          let erc20Signed = erc20.connect(signer);
-          transaction = await erc20Signed.approve(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,'0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff');
-          // wait for transaction modal erc20
-          receipt = await transaction.wait();
+        showTransactionModal({loading: false,mainHeading: 'Please confirm the transaction with your wallet and then wait for the transaction to complete',title:selectToken.label+" approval", content : "To unlock "+ selectToken.label+" to be used as payment token at COMEARTH, you must complete a free (plus gas) transaction. This needs to be done once only"})
+        // ask to approve and procees further
+        let erc20Signed = erc20.connect(signer);
+        transaction = await erc20Signed.approve(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,'0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff');
+        // wait for transaction modal erc20
+        showTransactionModal({content: '',learn: '',title:"Please wait",loading:true,mainHeading: "Please wait while we are confirming your transaction on the "+ networkConfig.name +" Blockchain",view: networkConfig.explorar+'tx/'+transaction.hash})
+        receipt = await transaction.wait();
       }
       totalPrice = 0
     }
 
     // initiate transaction modal
-    console.log(parcelQuantities,selectToken.id,tNumber,{value:totalPrice})
+    showTransactionModal({
+      title:'Reserve your Land',
+      mainHeading:'Please confirm the transaction with your wallet and then wait for the transaction to complete. ',
+      content:'To allow COMEARTH to reserve virtual land units for you in your currently connected wallet, you must authorize this transaction in your wallet. Please keep this tab open while we wait for the blockchain to confirm your action. This only needs to be done once per order.',
+      loading:false,
+      learn:'',
+      view:''
+    })
     transaction = await signedContract.reserveLand(parcelQuantities,selectToken.id,tNumber,{value:totalPrice})
     // wait for transaction modal
+    showTransactionModal({content: '',learn: '',title:"Please wait",loading:true,mainHeading: "Please wait while we are confirming your transaction on the "+ networkConfig.name +" Blockchain",view: networkConfig.explorar+'tx/'+transaction.hash})
     receipt  = await transaction.wait()
     return receipt;
   }
@@ -320,10 +331,10 @@ const ReserveLand = () => {
     walletProvider.then((provider) => {
       let process = startTransactionFlow(provider)
       process.then((tx) => {
-        console.log('success')
+        navigate('success')
       }).catch((err) => {
         console.log(err)
-        console.log('error')
+        navigate('faild')
       })
     })
   }
@@ -506,7 +517,7 @@ const ReserveLand = () => {
       </div>
 
       {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} 
-      {...modalProps}
+      {...txModalProps}
       />}
     </Fragment>
   )

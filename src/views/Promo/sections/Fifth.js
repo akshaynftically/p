@@ -1,3 +1,5 @@
+import {useEffect, useMemo, useState} from 'react'
+
 // Mocks
 import _imgAbstraction1 from 'assets/img/abstractions/1.png'
 import _imgIllustration1 from 'assets/img/illustration/1.png'
@@ -72,17 +74,43 @@ const _investors = [
 ]
 
 const Fifth = () => {
+  const [isMobile, setIsMobile] = useState(window.outerWidth < 442)
+  const [showMore, setShowMore] = useState(false)
+
+  const handleWindowSizeChange = () => {
+    setIsMobile(window.outerWidth < 442)
+  }
+
+  const getInvestors = useMemo(() => {
+    if (isMobile && !showMore) {
+      return _investors.slice(0, 6)
+    }
+
+    return _investors
+  }, [isMobile, showMore])
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    }
+  }, [])
+
+
   return (
-    <div className='relative'>
-      <div className='absolute -top-[96px] left-0'>
+    <div className='relative mt-[240px] md:mt-0'>
+      <div className='hidden md:block absolute md:-top-[96px] left-0'>
         <img className='max-w-full' src={_imgAbstraction1} alt='Abstraction' />
       </div>
       <div className='relative max-w-[1340px] mx-auto px-4 lg:px-8'>
         <div className='grid grid-cols-12 items-center'>
-          <div className='col-span-6'>
-            <img className='inline-block max-w-full' src={_imgIllustration1} alt='Illustration' />
+          <div className='relative col-span-12 order-2 md:order-1 md:col-span-6'>
+            <div className='md:hidden absolute top-0 left-0 z-[0]'>
+              <img className='max-w-full' src={_imgAbstraction1} alt='Abstraction' />
+            </div>
+            <img className='inline-block max-w-full relative z-[2]' src={_imgIllustration1} alt='Illustration' />
           </div>
-          <div className='col-span-6'>
+          <div className='col-span-12 order-1 md:order-2 md:col-span-6 mb-[20px] md:md-0'>
             <h2 className='leading-tight font-black text-[32px] lg:text-[48px] mb-[14px]'>
               <span className='text-gradient'>Brand Presence</span> on
               <br />
@@ -94,8 +122,8 @@ const Fifth = () => {
             </div>
           </div>
         </div>
-        <div className='grid grid-cols-8 gap-[6px]'>
-          {_investors.map((el) => (
+        <div className='grid grid-cols-2 md:grid-cols-8 gap-[6px]'>
+          {getInvestors.map((el) => (
             <div
               key={el.id}
               className='flex items-center justify-center min-h-[100px] bg-[#262728] rounded p-[10px]'
@@ -104,6 +132,12 @@ const Fifth = () => {
             </div>
           ))}
         </div>
+
+        {(isMobile && !showMore) && (
+            <div className='flex justify-center mt-[24px]'>
+              <button onClick={() => setShowMore(true)} className='border-2 border-white rounded-[4px] h-[40px] flex items-center justify-center px-[24px]'>Show More</button>
+            </div>
+        )}
       </div>
     </div>
   )

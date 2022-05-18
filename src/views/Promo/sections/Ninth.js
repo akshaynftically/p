@@ -1,6 +1,14 @@
+import {Autoplay} from 'swiper'
+import {Swiper, SwiperSlide} from 'swiper/react'
+
+// Plugins Styles
+import 'swiper/css'
+import 'swiper/css/pagination'
+
 // Sources
 import _imgPartner1 from 'assets/img/partners/1.svg'
 import _imgPartner2 from 'assets/img/partners/2.svg'
+import {SimpleButton} from "../../../components/buttons";
 
 // Mocks
 const _partners = [
@@ -31,19 +39,41 @@ const _partners = [
 ]
 
 const Ninth = () => {
+  const swiperSettings = {
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1.5,
+      },
+     500: {
+        slidesPerView: 3,
+      },
+      900: {
+        slidesPerView: 6
+      }
+    },
+    loop: true,
+    modules: [Autoplay]
+  }
+
   return (
-    <div className='max-w-[1340px] lg:pt-[120px] px-4 lg:px-8 mx-auto'>
+    <div className='max-w-[1340px] pb-[25px] lg:pt-[120px] px-4 lg:px-8 mx-auto mt-[60px] lg:mt-0'>
       <h2 className='leading-tight font-black text-[32px] lg:text-[48px] mb-[32px]'>
         Our <span className='text-gradient'>Key</span> Partners
       </h2>
 
-      <div className='grid grid-cols-6 items-center gap-[25px]'>
+      <Swiper{...swiperSettings}>
         {_partners.map((el) => (
-          <div key={el.id} className='text-center'>
-            <img className='inline-block max-w-full' src={el.image} alt='Partner' />
-          </div>
+            <SwiperSlide key={el.id}>
+              <div className='md:text-center'>
+                <img className='inline-block max-w-full' src={el.image} alt='Partner' />
+              </div>
+            </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
     </div>
   )
 }

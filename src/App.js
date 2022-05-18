@@ -59,10 +59,10 @@ const App = () => {
       <HeaderMenu />
       <Aside />
       <Routes />
+      {pathname !== '/' && pathname !== '/terms' && <Footer />}
+      {(pathname === '/' || pathname === '/terms') && <FooterAlt />}
       {isOpenedConnectYourWallet && <ConnectYourWallet onClose={handleToggleConnectYourWallet}/>}
       </AppContext.Provider>
-      {pathname !== '/' && <Footer />}
-      {pathname === '/' && <FooterAlt />}
     </main>
   )
 }

@@ -8,7 +8,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 
 // Components
-import {PillButton, BlurButton} from 'components/buttons'
+import {BlurButton} from 'components/buttons'
 
 // Sources
 import _bgImg from 'assets/img/bg/1.jpg'
@@ -22,41 +22,6 @@ import _imgSlide7 from 'assets/img/480x240/7.jpg'
 import _imgSlide8 from 'assets/img/480x240/8.jpg'
 
 // Mocks
-const _categories = [
-  {
-    id: '1001',
-    title: 'Semantic Web',
-  },
-  {
-    id: '1002',
-    title: 'VR & AR (Metaverse)',
-    isActive: true,
-  },
-  {
-    id: '1003',
-    title: 'Interoperability',
-  },
-  {
-    id: '1004',
-    title: 'NFTs',
-  },
-  {
-    id: '1005',
-    title: 'AI',
-  },
-  {
-    id: '1006',
-    title: 'Tokenomics',
-  },
-  {
-    id: '1007',
-    title: 'Permissionless Blockchains',
-  },
-  {
-    id: '1008',
-    title: 'UI & Service Layers',
-  },
-]
 const _slides = [
   {
     id: '1001',
@@ -117,7 +82,7 @@ const Second = () => {
       renderBullet: function (i, className) {
         return `
           <span
-            class='${className} swiper-pagination-bullet--alt-2'
+            class="${className} swiper-pagination-bullet--alt-2"
           >
             ${_slides[i].title}
           </span>
@@ -139,7 +104,7 @@ const Second = () => {
 
   return (
     <Fragment>
-      <div className='bg-[#161718] pt-[80px] mb-[40px] relative'>
+      <div className='bg-[#161718] pt-[50px] md:pt-[80px] mb-[40px] relative'>
         <div className='max-w-[1340px] px-4 lg:px-8 mx-auto'>
           <h2 className='leading-tight font-extrabold text-center text-[32px] lg:text-[52px] mb-[40px]'>
             Web3 E-Commerce will be <span className='text-gradient'>bigger than</span>
@@ -149,8 +114,8 @@ const Second = () => {
         </div>
       </div>
 
-      <div className='overflow-x-hidden relative'>
-        <div className='bg-gradient-to-b from-[#161718] to-[#161718]/0 h-[110px] absolute top-0 z-[1] left-0 w-full'></div>
+      <div className='overflow-x-hidden relative promo-second'>
+        <div className='hidden md:block bg-gradient-to-b from-[#161718] to-[#161718]/0 h-[110px] absolute top-0 z-[1] left-0 w-full'></div>
 
         <div
           className='relative lg:min-h-[660px] bg-center bg-no-repeat bg-cover -mx-[8px]'
@@ -158,7 +123,7 @@ const Second = () => {
             backgroundImage: `url(${_bgImg})`,
           }}
         >
-          <div className='absolute top-[136px] left-1/2 z-10 -translate-x-1/2 flex items-center'>
+          <div className='absolute top-[136px] left-1/2 z-10 -translate-x-1/2 hidden lg:flex items-center'>
             <BlurButton
               className='w-[32px] min-h-[32px] justify-center !p-[5px]'
               type='button'
@@ -193,7 +158,7 @@ const Second = () => {
             </BlurButton>
           </div>
           <Swiper
-            className='swiper-pagination--alt-2 border-transparent !pt-[136px]'
+            className='swiper-pagination--alt-2 border-transparent !pt-[60px] md:!pt-[136px]'
             {...sliderSettings}
             onSwiper={(swiper) => {
               swiperRef.current = swiper
@@ -206,15 +171,52 @@ const Second = () => {
                     <div className='max-w-[480px] mb-[35px]'>
                       <img className='max-w-full' src={el.image} alt='Slide' />
                     </div>
-                    <div className='grid grid-cols-12'>
-                      <div className='col-span-5 text-[20px] text-white/[.80]'>{el.title}</div>
-                      <div className='col-span-7 text-[14px]'>{el.text}</div>
+                    <div className='lg:grid grid-cols-12'>
+                      <div className='col-span-5 text-[16px] mb-[17px] md:mb-0 md:text-[20px] text-white/[.80]'>{el.title}</div>
+                      <div className='col-span-7 text-[12px] md:text-[14px]'>{el.text}</div>
                     </div>
                   </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
+
+         <div className="flex lg:hidden justify-end px-6 my-[50px]">
+           <div className='flex items-center'>
+             <BlurButton
+                 className='w-[32px] min-h-[32px] justify-center !p-[5px]'
+                 type='button'
+                 onClick={handleOnPrevSlide}
+             >
+               <svg
+                   className='fill-white'
+                   width='6'
+                   height='10'
+                   viewBox='0 0 6 10'
+                   fill='none'
+                   xmlns='http://www.w3.org/2000/svg'
+               >
+                 <path d='M2.248 4.99959L5.42578 1.82182L4.51803 0.914062L0.432497 4.99959L4.51803 9.08512L5.42578 8.17737L2.248 4.99959Z' />
+               </svg>
+             </BlurButton>
+             <BlurButton
+                 className='w-[32px] min-h-[32px] justify-center !p-[5px] ml-[40px]'
+                 type='button'
+                 onClick={handleOnNextSlide}
+             >
+               <svg
+                   className='fill-white'
+                   width='6'
+                   height='10'
+                   viewBox='0 0 6 10'
+                   fill='none'
+                   xmlns='http://www.w3.org/2000/svg'
+               >
+                 <path d='M3.752 4.99959L0.574219 1.82182L1.48197 0.914062L5.5675 4.99959L1.48197 9.08513L0.574219 8.17737L3.752 4.99959Z' />
+               </svg>
+             </BlurButton>
+           </div>
+         </div>
         </div>
       </div>
     </Fragment>
