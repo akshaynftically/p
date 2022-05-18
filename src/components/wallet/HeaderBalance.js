@@ -7,6 +7,7 @@ import Select from "../form/Select";
 import {components} from "react-select";
 import WrongNetworkModal from "../../modals/WrongNetworkModal";
 import AppContext from 'components/AppContext';
+import { useFieldArray } from 'react-hook-form';
 
 const _networks = [
     {
@@ -87,12 +88,16 @@ const networkSelectValueContainer = (props) => {
 }
 
 const HeaderBalance = (props) => {
+
+    const mainnetType=!(process.env.REACT_APP_IS_MAINNET_ENABLED == 'false')                    //converting  env data string into boolean
     const {address, provider} = props
     const [balance, setBalance] = useState('0.0')
     const [accountModal, setAccountModal] = useState(false)
     const [wrongNetworkModal, setWrongNetworkModal] = useState(false)
     const [selectNetwork, setSelectNetwork] = useState(_networks[0])
     const appGlobals = useContext(AppContext)
+
+
     
 
     const customSelectStyles = {
@@ -123,7 +128,13 @@ const HeaderBalance = (props) => {
             let tempProvider = await appGlobals.hasWalletProvider()
             if(!tempProvider) return
             let chainId = (await tempProvider.getNetwork()).chainId
-            setSelectNetwork(_networks.filter((el) => {return el.chainId === chainId})[0])
+            console.log('chainId',chainId)
+            const getNetwork=_networks.filter((el) => {return el.chainId === chainId})
+            console.log(getNetwork)
+            if(getNetwork.length!==0){
+
+                setSelectNetwork(_networks.filter((el) => {return el.chainId === chainId})[0])
+            }
             setBalance(utils.formatEther(await provider.getBalance(address)))
         })()
     }, [appGlobals,provider,address])
@@ -144,7 +155,7 @@ const HeaderBalance = (props) => {
     return (
         <div className='flex items-center'>
             <Select value={selectNetwork}
-                    options={_networks}
+                    options={_networks.filter(item=>item.mainnet==mainnetType)}
                     customStyles={customSelectStyles}
                     placeholder='Please Select Token'
                     className='hidden lg:block mr-[12px]'
