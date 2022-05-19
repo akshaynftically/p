@@ -51,26 +51,26 @@ export const _landReserverAbi = [
             {
                 "indexed": false,
                 "internalType": "uint256[6]",
-                "name": "_parcelPricesInMatic",
+                "name": "_parcelPricesInUSD",
                 "type": "uint256[6]"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256[13]",
-                "name": "_priceConversionFactors",
-                "type": "uint256[13]"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "_discountPercentage",
-                "type": "uint256"
             },
             {
                 "indexed": false,
                 "internalType": "enum LandReserver.PaymentToken",
                 "name": "paymentToken",
                 "type": "uint8"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "_priceConversionFactor",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256[6]",
+                "name": "discounts",
+                "type": "uint256[6]"
             },
             {
                 "indexed": false,
@@ -257,6 +257,16 @@ export const _landReserverAbi = [
     {
         "inputs": [
             {
+                "internalType": "uint256[6]",
+                "name": "parcelLimitForBuyers",
+                "type": "uint256[6]"
+            },
+            {
+                "internalType": "uint256[6]",
+                "name": "parcelDiscounts",
+                "type": "uint256[6]"
+            },
+            {
                 "internalType": "address[]",
                 "name": "buyerAddresses",
                 "type": "address[]"
@@ -272,9 +282,9 @@ export const _landReserverAbi = [
         "name": "getAppliedWhitelists",
         "outputs": [
             {
-                "internalType": "uint256[3]",
+                "internalType": "uint256[10]",
                 "name": "",
-                "type": "uint256[3]"
+                "type": "uint256[10]"
             }
         ],
         "stateMutability": "view",
@@ -309,6 +319,25 @@ export const _landReserverAbi = [
     {
         "inputs": [
             {
+                "internalType": "address",
+                "name": "buyerAddress",
+                "type": "address"
+            }
+        ],
+        "name": "getParcelAvailabilityForBuyer",
+        "outputs": [
+            {
+                "internalType": "uint256[6]",
+                "name": "",
+                "type": "uint256[6]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
                 "internalType": "enum LandReserver.PaymentToken",
                 "name": "paymentToken",
                 "type": "uint8"
@@ -317,9 +346,9 @@ export const _landReserverAbi = [
         "name": "getParcelPrices",
         "outputs": [
             {
-                "internalType": "uint256[]",
+                "internalType": "uint256[6]",
                 "name": "",
-                "type": "uint256[]"
+                "type": "uint256[6]"
             }
         ],
         "stateMutability": "view",
@@ -563,9 +592,9 @@ export const _landReserverAbi = [
     {
         "inputs": [
             {
-                "internalType": "uint256[3]",
+                "internalType": "uint256[10]",
                 "name": "newAppliedWhitelists",
-                "type": "uint256[3]"
+                "type": "uint256[10]"
             }
         ],
         "name": "setAppliedWhitelists",
@@ -590,11 +619,11 @@ export const _landReserverAbi = [
         "inputs": [
             {
                 "internalType": "uint256[6]",
-                "name": "newParcelPricesInMatic",
+                "name": "newParcelPricesInUSD",
                 "type": "uint256[6]"
             }
         ],
-        "name": "setParcelPricesInMatic",
+        "name": "setParcelPricesInUSD",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -733,7 +762,7 @@ export const _landReserverAbi = [
     },
     {
         "inputs": [],
-        "name": "withdrawMatic",
+        "name": "withdrawNativeToken",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
