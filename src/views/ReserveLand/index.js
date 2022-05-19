@@ -31,6 +31,7 @@ import { getDiscountPercentage, getTotalParcelPrice, landPrices } from './landPr
 import countryList from 'react-select-country-list'
 import AppContext from 'components/AppContext';
 import { getChainData } from 'lib/appHelpers';
+import globalErrorNotifier from 'lib/globalNotifier';
 
 
 const _tokenIcons = {
@@ -333,8 +334,8 @@ const ReserveLand = () => {
       process.then((tx) => {
         navigate('/success')
       }).catch((err) => {
-        console.log(err)
-        navigate('/faild')
+        globalErrorNotifier(err)
+        // navigate('/faild')
       })
     })
   }
