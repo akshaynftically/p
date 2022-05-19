@@ -331,10 +331,10 @@ const ReserveLand = () => {
     walletProvider.then((provider) => {
       let process = startTransactionFlow(provider)
       process.then((tx) => {
-        navigate('success')
+        navigate('/success')
       }).catch((err) => {
         console.log(err)
-        navigate('faild')
+        navigate('/faild')
       })
     })
   }
