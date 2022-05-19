@@ -1,6 +1,5 @@
 import { _landReserverAbi } from 'constants/landReserverAbi';
 import { _erc20Abi } from 'constants/erc20Abi';
-import { getWallet } from 'app/WalletSlice';
 
 import {Fragment, useEffect, useState, useMemo, useContext} from 'react'
 import { ethers } from "ethers";
@@ -19,7 +18,7 @@ import Faqs from './sections/Faqs'
 import LandUnits from './sections/LandUnits'
 
 // Toasts
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer} from 'react-toastify'
 
 // Modals
 import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet'
@@ -134,7 +133,6 @@ const ReserveLand = () => {
     mode: 'onChange'
   })
   const transactionForm = useSelector(getTransactionForm)
-  const userWallet = useSelector(getWallet)
   const [basket, setBasket] = useState([
     {
       id: '1000',
@@ -181,7 +179,6 @@ const ReserveLand = () => {
   const [discountPercentage, setDiscountPercentage] = useState(0)
   const [areYouRepresenting, setAreYouRepresenting] = useState('individual')
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
-  const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
   const[txModalProps,setTxModalProps]= useState({
     title:'',
     mainHeading:'Please confirm the transaction with your wallet and then wait for the transaction to complete. ',
@@ -192,7 +189,6 @@ const ReserveLand = () => {
   })
 
   useEffect(() => {
-    notify()
     if (transactionForm) {
       setValue('name', transactionForm.name)
       setValue('email', transactionForm.email)
@@ -297,7 +293,7 @@ const ReserveLand = () => {
       let balance = await erc20.balanceOf(account)
       if(balance.lt(totalPrice)){
         // initialize low balance modal
-        throw new Error('erc20 balance is less then total price')
+        throw new Error({scope:'comearth',message:'Your balance for '+selectToken.name+' less then total price'})
       }
       if(!allowedAmt.gt(0)){
         showTransactionModal({loading: false,mainHeading: 'Please confirm the transaction with your wallet and then wait for the transaction to complete',title:selectToken.label+" approval", content : "To unlock "+ selectToken.label+" to be used as payment token at COMEARTH, you must complete a free (plus gas) transaction. This needs to be done once only"})
@@ -334,27 +330,12 @@ const ReserveLand = () => {
       process.then((tx) => {
         navigate('/success')
       }).catch((err) => {
+        setIsOpenedProgressWallet(false)
         globalErrorNotifier(err)
         // navigate('/faild')
       })
     })
   }
-
-
-  const notify = () => toast('Please wait while we redirect you to the payment page!', {
-    icon: () => <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M11.5145 0.0828645L16.2504 4.81786V11.5145L11.5145 16.2504H4.81786L0.0820312 11.5145V4.81786L4.81786 0.0820312H11.5145V0.0828645ZM7.1662 10.4995V12.1662H8.83286V10.4995H7.1662ZM7.1662 3.83286V8.83286H8.83286V3.83286H7.1662Z" fill="white" fillOpacity="0.8"/>
-</svg>
-,
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: 'dark'
-  });
 
   return (
     <Fragment>

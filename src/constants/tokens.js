@@ -81,14 +81,6 @@ export const _selectTokenOptions = [
       },
       {
          "id":10,
-         "logo":"token_logo10",
-         "value":"Luna",
-         "label":"Luna",
-         "contract_address":process.env.REACT_APP_LUNA_CONTRACT_ADDRESS,
-         "decimals":6
-      },
-      {
-         "id":11,
          "logo":"token_logo11",
          "value":"MANA",
          "label":"MANA",
@@ -96,7 +88,7 @@ export const _selectTokenOptions = [
          "decimals":18
       },
       {
-         "id":12,
+         "id":11,
          "logo":"token_logo12",
          "value":"SAND",
          "label":"SAND",
