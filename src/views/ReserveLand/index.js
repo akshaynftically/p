@@ -357,7 +357,7 @@ const ReserveLand = () => {
 
   return (
     <Fragment>
-      <div className="sm:max-w-[90rem] 2xl:max-w-[105rem] sm:items-end w-full mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="sm:items-end w-full mx-auto px-4 sm:px-6 px-[20px] lg:px-[80px]">
         <div className='py-[120px] text-white'>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className='lg:grid md:grid-cols-2 md:gap-x-[7.5rem]'>

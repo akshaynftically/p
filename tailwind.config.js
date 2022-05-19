@@ -3,6 +3,7 @@ module.exports = {
   theme: {   
     fontFamily: {
       sans: ['Manrope', 'sans-serif'],
+      JAMTypeDesign: ['JamGrotesque']
     },
     screens: {
       '4xl': '1800px',
@@ -15,5 +16,7 @@ module.exports = {
       '2xl': '1536px'
     }
   },
-  plugins: [],
+  plugins: [
+    require('./src/assets/css/plugins')
+  ],
 }

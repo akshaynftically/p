@@ -1,3 +1,5 @@
+import {useState} from 'react'
+
 // Components
 import {SimpleButton, BlurButton} from 'components/buttons'
 
@@ -6,16 +8,19 @@ import _imgBanner1 from 'assets/img/320x345/1.jpg'
 import _imgBanner2 from 'assets/img/320x345/2.jpg'
 import _imgBanner3 from 'assets/img/320x345/3.jpg'
 import _imgBanner4 from 'assets/img/320x345/4.jpg'
+import ReserveLandModal from '../../../modals/ReserveLandModal'
 
 const _banners = [
   {
     id: '1001',
     title: 'Drive Key Business Metrics',
+    text: 'Conduct end-to-end personalization based on user personas. Leverage AR/VR to create unforgettable shopping experiences',
     image: _imgBanner1,
   },
   {
     id: '1002',
     title: 'Use Metaverse for branding',
+    text: 'Conduct end-to-end personalization based on user personas. Leverage AR/VR to create unforgettable shopping experiences',
     image: _imgBanner2,
   },
   {
@@ -27,11 +32,14 @@ const _banners = [
   {
     id: '1004',
     title: 'Metaverse’s hottest commercial real estate',
+    text: 'Conduct end-to-end personalization based on user personas. Leverage AR/VR to create unforgettable shopping experiences',
     image: _imgBanner4,
   },
 ]
 
 const Fourth = () => {
+  const [openModal, setOpenModal] = useState(false)
+
   return (
     <div className='pt-[70px] relative'>
       <div className='absolute top-0 left-0 transform translate-y-[220px] md:translate-y-[-300px] bg-contain 4xl:bg-cover w-full bg-no-repeat h-full bg-[url("assets/img/bg/8.png")]'></div>
@@ -40,7 +48,7 @@ const Fourth = () => {
       <div className='md:hidden bg-gradient-to-b from-[#161819] to-[#161718]/0 z-[0] h-[110px] absolute top-[50px] z-[1] left-0 w-full'></div>
 
       <div className='mt-[40px] md:mt-0 relative'>
-        <div className='max-w-[1340px] mx-auto px-4 lg:px-8 relative z-[2]'>
+        <div className='mx-[20px] lg:mx-[80px] relative z-[2]'>
           <div className='grid grid-cols-12'>
             <div className='md:col-span-3'></div>
             <div className='col-span-12 md:col-span-6 mb-[30px] md:md-0'>
@@ -98,7 +106,8 @@ const Fourth = () => {
               </div>
             </div>
             <div className='col-span-12 md:col-span-6 order-3 md:order-2 flex items-end justify-center text-center'>
-              <SimpleButton className='!px-[24px] md:mb-[55px]' type='button'>
+              <SimpleButton className='!px-[24px] md:mb-[55px]' type='button'
+                            onClick={() => setOpenModal(true)}>
                 Start Your Metaverse Journey Now
               </SimpleButton>
             </div>
@@ -149,12 +158,16 @@ const Fourth = () => {
         </div>
       </div>
 
-      <div className='max-w-[1340px] mx-auto px-4 lg:px-8'>
+      {openModal && (
+        <ReserveLandModal onClose={() => setOpenModal(false)} />
+      )}
+
+      <div className='mx-[20px] lg:mx-[80px]'>
         <div className='grid grid-cols-4'>
           {_banners.map((el) => (
               <div
                   key={el.id}
-                  className='relative col-span-2 md:col-span-1 min-h-[200px] md:min-h-[345px] bg-no-repeat bg-cover bg-center md:mb-[160px]'
+                  className='relative group col-span-2 md:col-span-1 min-h-[200px] md:min-h-[345px] bg-no-repeat bg-cover bg-center md:mb-[160px]'
                   style={{
                     backgroundImage: `url(${el.image})`,
                   }}
@@ -163,11 +176,9 @@ const Fourth = () => {
                 <div className='absolute top-[60px] md:top-[120px] left-0 right-0 p-[20px]'>
                   <div className='leading-tight font-black text-[14px] md:text-[24px]'>{el.title}</div>
                 </div>
-                {el.text && (
-                    <div className='absolute top-[100%] left-0 right-0 bg-[#262728] text-[14px] text-white/[.80] p-[16px]'>
-                      {el.text}
-                    </div>
-                )}
+                <div className='z-[2] opacity-0 transition group-hover:opacity-100 absolute top-[100%] left-0 right-0 bg-[#262728] text-[14px] text-white/[.80] p-[16px]'>
+                  {el.text}
+                </div>
               </div>
           ))}
         </div>

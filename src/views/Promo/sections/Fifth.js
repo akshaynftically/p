@@ -17,6 +17,9 @@ import _imgInvestor10 from 'assets/img/brand-presence-comearth/10.png'
 import _imgInvestor11 from 'assets/img/brand-presence-comearth/11.png'
 import _imgInvestor12 from 'assets/img/brand-presence-comearth/12.png'
 import _imgInvestor13 from 'assets/img/brand-presence-comearth/13.png'
+import _imgInvestor14 from 'assets/img/brand-presence-comearth/14.png'
+import _imgInvestor15 from 'assets/img/brand-presence-comearth/15.png'
+import _imgInvestor16 from 'assets/img/brand-presence-comearth/16.png'
 
 const _investors = [
   {
@@ -71,6 +74,42 @@ const _investors = [
     id: '1013',
     image: _imgInvestor13,
   },
+  {
+    id: '1014',
+    image: _imgInvestor14,
+  },
+  {
+    id: '1015',
+    image: _imgInvestor15,
+  },
+  {
+    id: '1016',
+    image: _imgInvestor16,
+  },
+  {
+    id: '1017',
+    image: _imgInvestor11,
+  },
+  {
+    id: '1018',
+    image: _imgInvestor12,
+  },
+  {
+    id: '1019',
+    image: _imgInvestor13,
+  },
+  {
+    id: '1020',
+    image: _imgInvestor14,
+  },
+  {
+    id: '1021',
+    image: _imgInvestor15,
+  },
+  {
+    id: '1022',
+    image: _imgInvestor16,
+  }
 ]
 
 const Fifth = () => {
@@ -84,6 +123,10 @@ const Fifth = () => {
   const getInvestors = useMemo(() => {
     if (isMobile && !showMore) {
       return _investors.slice(0, 6)
+    }
+
+    if (!showMore) {
+      return _investors.slice(0, 16)
     }
 
     return _investors
@@ -102,7 +145,7 @@ const Fifth = () => {
       <div className='hidden md:block absolute md:-top-[96px] left-0'>
         <img className='max-w-full' src={_imgAbstraction1} alt='Abstraction' />
       </div>
-      <div className='relative max-w-[1340px] mx-auto px-4 lg:px-8'>
+      <div className='relative mx-[20px] lg:mx-[80px]'>
         <div className='grid grid-cols-12 items-center'>
           <div className='relative col-span-12 order-2 md:order-1 md:col-span-6'>
             <div className='md:hidden absolute top-0 left-0 z-[0]'>
@@ -133,7 +176,7 @@ const Fifth = () => {
           ))}
         </div>
 
-        {(isMobile && !showMore) && (
+        {(_investors.length > 16 && !showMore) && (
             <div className='flex justify-center mt-[24px]'>
               <button onClick={() => setShowMore(true)} className='border-2 border-white rounded-[4px] h-[40px] flex items-center justify-center px-[24px]'>Show More</button>
             </div>
