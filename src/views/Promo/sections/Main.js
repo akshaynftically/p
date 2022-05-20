@@ -44,7 +44,7 @@ const Main = () => {
 
   return (
     <div
-      className='bg-center bg-no-repeat bg-cover pt-[90px] pb-[40px] md:pt-[140px] md:pb-[80px] relative overflow-hidden'
+      className='bg-center bg-no-repeat bg-cover pt-[90px] pb-[40px] md:pt-[200px] md:pb-[80px] relative overflow-hidden'
       style={{
         backgroundImage: `url(${_bgMain})`,
       }}
