@@ -8,24 +8,23 @@ import {SimpleButton} from "../buttons";
 const Basket = (props) => {
   const {items, discountCode, setDiscountCode,discountPercentage} = props
   const [discount, setDiscount] = useState(false)
-  const [_discountCode, _setDiscountCode] = useState('')
 
-
-  const getTotal = () => {
-    let total = items.reduce((sum, cur) => {
-      return sum += cur.perItemPrice * cur.qty
+  const totalDiscount = () => {
+    let total = items.reduce((sum, cur, i) => {
+      return sum += cur.perItemPrice * cur.qty * (discountPercentage[5-i]/100000 )
     }, 0)
-
-    return total
+    return (
+      <>
+        {total}
+      </>
+    )
   }
 
   const total = () => {
-    let total = getTotal()
-
-    // if (discount) {
-    //   total = total - ((total * 10) / 100)
-    // }
-    total = total - ((total * discountPercentage) / 100)
+    let total = items.reduce((sum, cur, i) => {
+      return sum += cur.perItemPrice * cur.qty * ( (100000 - discountPercentage[5-i])/100000 )
+    }, 0)
+    // total = total - ((total * discountPercentage) / 100)
 
     return (
         <>
@@ -35,19 +34,6 @@ const Basket = (props) => {
   }
 
   const discountRender = () => {
-    const addCode = () => {
-      if (_discountCode) {
-        setDiscount(true)
-        setDiscountCode(_discountCode)
-      }
-    }
-
-    const removeCode = () => {
-      setDiscountCode('')
-      _setDiscountCode('')
-      setDiscount(false)
-    }
-
     return (
       <>
       {
@@ -100,17 +86,13 @@ const Basket = (props) => {
                />
              </svg>
 
-             - {(getTotal() * discountPercentage) / 100}
+             - {totalDiscount()}
            </div>
           </div>
           </>
       </>
     )
   }
-
-  useEffect(() => {
-      setDiscount(discountCode.length)
-  }, [discountCode])
 
   return (
     <Fragment>

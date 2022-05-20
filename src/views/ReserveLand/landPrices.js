@@ -27,5 +27,6 @@ export const getTotalParcelPrice = async (basket,token) => {
 export const getDiscountPercentage = async () => {
     let provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_POLYGON_RPC_PROVIDER);
     let contract  = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider)
+    return [2500,0,0,0,0,0]
     return await contract.getDiscountPercentages()
 }
