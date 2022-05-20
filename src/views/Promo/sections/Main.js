@@ -33,7 +33,7 @@ const Main = () => {
 
   useEffect(() => {
     modelViewerRef.current.addEventListener('progress', (e) => {
-      setLoading(e.detail.totalProgress * 300)
+      setLoading(e.detail.totalProgress * 180)
     })
   })
 
@@ -180,7 +180,7 @@ const Main = () => {
                       <img src={_bgEarth} alt='Preloader'/>
                       <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
                         <div
-                          className='w-[300px] overflow-hidden block h-[24px] relative border-2 rounded-[40px] bg-white/30 mb-[26px]'>
+                          className='w-[180px] overflow-hidden block h-[24px] relative border-2 rounded-[40px] bg-white/30 mb-[26px]'>
                           <div
                             className='bg-[#3F99FF] absolute rounded-[40px] overflow-hidden transition-[width] top-0 left-0 h-full'
                             style={{width: `${loading}px`}}
@@ -233,9 +233,6 @@ const Main = () => {
                               />
                             </svg>
                           </div>
-                        </div>
-                        <div className='text-white/60 text-[14px]'>
-                          You can buy, sell and launch your NFT projects on COMEARTH
                         </div>
                       </div>
                     </div>
