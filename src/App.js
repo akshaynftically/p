@@ -10,9 +10,10 @@ import {Aside} from 'components/aisde/index'
 // Routing
 import Routes from 'routing/Routes'
 import AppContext from 'components/AppContext'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ConnectYourWallet from 'modals/ConnectYourWallet'
 import { getWalletProvider } from 'lib/walletProviders'
+import registerWalletEvents from 'lib/registerWalletEvents'
 
 const App = () => {
   const {pathname} = useLocation()
@@ -35,8 +36,8 @@ const App = () => {
       }else{
         setIsOpenedConnectYourWallet(true)
         document.addEventListener('wallet:connected',function (ev) {
-          resolve(ev.detail.provider)
           setIsOpenedConnectYourWallet(false)
+          resolve(ev.detail.provider)
         })
         document.removeEventListener('wallet:connected',{},false)
       }
@@ -47,6 +48,13 @@ const App = () => {
     getWalletProviderConfirmed,
     hasWalletProvider
   }
+
+  useEffect(() => {
+    (async() => {
+     let wp =await appGlobals.hasWalletProvider()
+     registerWalletEvents(wp)
+    })() 
+   },[])
 
   return (
     <main
