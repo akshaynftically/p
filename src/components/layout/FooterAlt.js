@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import {useEffect, useState} from 'react'
 
 // Components
 import {SimpleButton} from 'components/buttons'
@@ -142,6 +142,18 @@ const _socialMenu = [
 ]
 
 const FooterAlt = () => {
+  const [showButton, setShowButton] = useState(window.outerWidth < 600)
+
+  const handleWindowScroll = () => {
+    setShowButton(window.scrollY > 4000)
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleWindowScroll);
+    return () => {
+      window.removeEventListener('scroll', handleWindowScroll);
+    }
+  }, [])
 
   const scrollTop = () => {
     window.scrollTo({
@@ -214,14 +226,16 @@ const FooterAlt = () => {
           </div>
         </div>
 
-        <div className='absolute hidden md:block right-0'>
-          <button onClick={scrollTop} className='flex items-center justify-center rounded-[9px] h-[48px] w-[48px] pseudo-border-gradient relative'>
-            <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#FFFFFF]/10 to-[#FFFFFF]/0'></div>
-            <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17.6543 12.1989C16.8732 12.98 15.6068 12.98 14.8257 12.1988L9.32534 6.69728L3.82495 12.1988C3.04393 12.98 1.77749 12.98 0.996384 12.1989L0.854255 12.0568C0.073167 11.2757 0.0732122 10.0093 0.854355 9.22827L9.32534 0.758482L17.7963 9.22827C18.5775 10.0093 18.5775 11.2757 17.7964 12.0568L17.6543 12.1989Z" fill="white" fill-opacity="0.8"/>
-            </svg>
-          </button>
-        </div>
+        {showButton && (
+          <div className='fixed hidden md:block bottom-10 right-10 z-[100]'>
+            <button onClick={scrollTop} className='flex items-center justify-center rounded-[9px] h-[48px] w-[48px] pseudo-border-gradient relative'>
+              <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#FFFFFF]/10 to-[#FFFFFF]/0'></div>
+              <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.6543 12.1989C16.8732 12.98 15.6068 12.98 14.8257 12.1988L9.32534 6.69728L3.82495 12.1988C3.04393 12.98 1.77749 12.98 0.996384 12.1989L0.854255 12.0568C0.073167 11.2757 0.0732122 10.0093 0.854355 9.22827L9.32534 0.758482L17.7963 9.22827C18.5775 10.0093 18.5775 11.2757 17.7964 12.0568L17.6543 12.1989Z" fill="white" fill-opacity="0.8"/>
+              </svg>
+            </button>
+          </div>
+        )}
 
         <div className='mt-[20px] md:mt-[65px] border-t-[1px] border-[#363738] py-[20px]'>
           <div className='flex flex-wrap md:flex-nowrap items-center justify-between'>
