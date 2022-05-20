@@ -53,7 +53,7 @@ const Fourth = () => {
             <div className='md:col-span-3'></div>
             <div className='col-span-12 md:col-span-6 mb-[30px] md:md-0'>
               <h2 className='leading-2 font-extrabold md:text-center text-[32px] lg:text-[48px]'>
-                <span className='text-gradient'>A Measdtaverse</span>
+                <span className='text-gradient'>A Metaverse</span>
                 <br />
                 That Users Will Flock To
               </h2>
