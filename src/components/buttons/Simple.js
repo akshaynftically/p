@@ -14,6 +14,7 @@ const Simple = (props) => {
     type,
     children,
     disabled,
+    onClick,
     ...rest
   } = props
 
@@ -65,6 +66,7 @@ const Simple = (props) => {
           )}
           disabled={disabled}
           type={type}
+          onClick={onClick}
           {...rest}
         >
           {children}

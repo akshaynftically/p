@@ -4,34 +4,9 @@ import {WalletListItem} from 'components/lists'
 import {FullScreenPopup} from 'components/popups'
 
 // Mockups
-import _tokenIcon1 from 'assets/icons/metamask.svg'
-import _tokenIcon2 from 'assets/icons/wallet-connect.svg'
-import _tokenIcon3 from 'assets/icons/coinbase.svg'
-import _tokenIcon4 from 'assets/icons/fortmatic.svg'
+import { _walletIcons } from 'constants/walletIcons'
 import { getWalletProvider } from 'lib/walletProviders'
 
-const _tokens = [
-  {
-    id: '1001',
-    title: 'MetaMask',
-    icon: _tokenIcon1,
-  },
-  {
-    id: '1002',
-    title: 'WalletConnect',
-    icon: _tokenIcon2,
-  },
-  {
-    id: '1003',
-    title: 'Coinbase Wallet',
-    icon: _tokenIcon3,
-  },
-  {
-    id: '1004',
-    title: 'Fortmatic',
-    icon: _tokenIcon4,
-  },
-]
 
 const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
 
@@ -58,7 +33,7 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
 
       <div className='bg-[#363738] rounded-lg mb-[18px]'>
         <div>
-          {_tokens.map((el) => (
+          {_walletIcons.map((el) => (
             <WalletListItem key={el.id} {...el} onClick={handleWalletConnect} />
           ))}
         </div>

@@ -307,7 +307,7 @@ const ReserveLand = () => {
       let balance = await erc20.balanceOf(account)
       if(balance.lt(totalPrice)){
         // initialize low balance modal
-        setAccountModalProps({openAccountModal:true,address:account,balance:balance.toNumber()})
+        setAccountModalProps({openAccountModal:true,address:account,balance:balance.toNumber(),showLowBalance:true,tokenIcon : _tokenIcons[selectToken.logo]})
         err = {scope:'comearth',message:'Your balance for '+selectToken.label+' less then total price'}
         throw err
       }
