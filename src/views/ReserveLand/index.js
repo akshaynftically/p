@@ -31,6 +31,7 @@ import countryList from 'react-select-country-list'
 import AppContext from 'components/AppContext';
 import { getChainData } from 'lib/appHelpers';
 import globalErrorNotifier from 'lib/globalNotifier';
+import AccountModal from 'modals/AccountModal';
 
 
 const _tokenIcons = {
@@ -187,6 +188,18 @@ const ReserveLand = () => {
     learn:'',
     view:''
   })
+  const [accountModalProps,setAccountModalProps] = useState({
+    openAccountModal:false,
+    address:'',
+    balance:'',
+  })
+  const handleAccountModalClose = () => {
+    setAccountModalProps({
+      openAccountModal:false,
+      address:'',
+      balance:'',
+    })
+  }
 
   useEffect(() => {
     if (transactionForm) {
@@ -274,6 +287,7 @@ const ReserveLand = () => {
     let transaction;
     let receipt;
     let tNumber = 0;
+    let err;
     
     const signer = provider.getSigner()
     const account = (await provider.send("eth_accounts",[]))[0];
@@ -293,7 +307,9 @@ const ReserveLand = () => {
       let balance = await erc20.balanceOf(account)
       if(balance.lt(totalPrice)){
         // initialize low balance modal
-        throw new Error({scope:'comearth',message:'Your balance for '+selectToken.name+' less then total price'})
+        setAccountModalProps({openAccountModal:true,address:account,balance:balance.toNumber()})
+        err = {scope:'comearth',message:'Your balance for '+selectToken.label+' less then total price'}
+        throw err
       }
       if(!allowedAmt.gt(0)){
         showTransactionModal({loading: false,mainHeading: 'Please confirm the transaction with your wallet and then wait for the transaction to complete',title:selectToken.label+" approval", content : "To unlock "+ selectToken.label+" to be used as payment token at COMEARTH, you must complete a free (plus gas) transaction. This needs to be done once only"})
@@ -501,6 +517,7 @@ const ReserveLand = () => {
       {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} 
       {...txModalProps}
       />}
+      {accountModalProps.openAccountModal && <AccountModal {...accountModalProps} onClose={handleAccountModalClose}></AccountModal>}
     </Fragment>
   )
 }

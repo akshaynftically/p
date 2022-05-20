@@ -56,9 +56,8 @@ const notify = (message,type = '') => {
 }
 
 const globalErrorNotifier = (err) => {
-    console.log(err,contractMessages,err.toString())
-    window.myerr = err
     // check if any blockchain error is comming
+    console.log(err)
     for (const [key, value] of Object.entries(contractMessages)) {
         if(getPlainString(err).includes(key)){
             notify(value,'error')
@@ -67,6 +66,10 @@ const globalErrorNotifier = (err) => {
     // check for user rejected action
     if(typeof err != "undefined" && typeof err.code != "undefined" && err.code === 4001){
         notify("Transaction rejected",'error')
+    }
+    // show notifier for comearth scope
+    if(typeof err != "undefined" && typeof err.scope != "undefined" && err.scope === 'comearth'){
+        notify(err.message,'error')
     }
 }
 
