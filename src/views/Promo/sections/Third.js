@@ -74,7 +74,7 @@ const Third = () => {
                 </div>
               </div>
             </div>
-            <div className='hidden md:block col-span-4'>
+            <div className='hidden col-span-4 md:flex justify-center'>
               <img className='inline-block max-w-full translate-y-1/4 relative z-[2]' src={_imgEarth} alt='Earth' />
             </div>
             <div className='col-span-7 col-start-4 md:col-span-3'>
