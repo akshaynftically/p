@@ -51,7 +51,7 @@ const Main = () => {
     >
       <div className='mx-[20px] lg:mx-[80px] relative z-[2]'>
         <div className='grid grid-cols-12 items-center gap-x-[30px]'>
-          <div className='order-2 md:order-1 col-span-12 md:col-span-5'>
+          <div className='order-2 md:order-1 col-span-12 md:col-span-6'>
             <h1 className='leading-tight font-extrabold text-[32px] lg:text-[52px] mb-[24px]'>
               The Go-To Destination for <span className='text-gradient'>Commerce in</span>{' '}
               <span className='text-gradient'>Metaverse</span>
@@ -148,7 +148,7 @@ const Main = () => {
               />
             </div>
           </div>
-          <div className='order-1 flex justify-center md:order-2 col-span-12 md:col-span-7 text-right metaverse-demo min-h-[300px] h-full relative'>
+          <div className='order-1 flex justify-center md:order-2 col-span-12 md:col-span-6 text-right metaverse-demo min-h-[300px] h-full relative'>
             <div className='block relative'>
               <div
                 className='atmo w-[250px] h-[250px] md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px] 2xl:w-[500px] 2xl:h-[500px]'></div>
