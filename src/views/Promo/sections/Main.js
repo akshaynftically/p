@@ -175,9 +175,10 @@ const Main = () => {
                 </div>
 
                 <div className='flex items-center justify-center h-full relative' slot='poster'>
+                  <img className='scale-[1.09] w-[300px] h-[300px] md:w-[500px] md:h-[500px] lg:w-[550px] lg:h-[550px] 2xl:w-[600px] 2xl:h-[600px]' src={_bgEarth} alt='Preloader'/>
+
                   <div className='text-center'>
                     <div className='flex flex-wrap justify-center'>
-                      <img src={_bgEarth} alt='Preloader'/>
                       <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
                         <div
                           className='w-[180px] overflow-hidden block h-[24px] relative border-2 rounded-[40px] bg-white/30 mb-[26px]'>
