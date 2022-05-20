@@ -3,8 +3,12 @@ import _imgEarth from 'assets/img/earth-sm.png'
 import _bgAbstract1 from 'assets/img/370x400/1.jpg'
 import _bgAbstract2 from 'assets/img/370x400/2.jpg'
 import _bgVideo from '../../../assets/videos/neon-ring.mp4'
+import NewsLetterModal from '../../../modals/NewsLetterModal'
+import {useState} from 'react'
 
 const Third = () => {
+  const [modal, setModal] = useState(false)
+
   return (
     <div>
       <div className='hidden translate-y-[-60%] z-[10] lg:flex rounded-[8px] relative items-center justify-between h-[72px] max-w-[932px] mx-auto w-full bg-blue-500 pseudo-border-gradient-1 pl-[32px] pr-[24px]'>
@@ -19,12 +23,12 @@ const Third = () => {
             </svg>
             Discord
           </a>
-          <a href='mailto:hello@comearth.world' target='_blank' className='hover:bg-[#3F99FF] hover:border-[#3F99FF] transition h-[40px] flex items-center pl-[10px] pr-[18px] rounded-[4px] border border-white text-[14px] mr-[20px]'>
+          <button onClick={() => setModal(true)} className='hover:bg-[#3F99FF] hover:border-[#3F99FF] transition h-[40px] flex items-center pl-[10px] pr-[18px] rounded-[4px] border border-white text-[14px] mr-[20px]'>
             <svg className='mr-[8px]' width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2.49984 2.5H17.4998C17.7208 2.5 17.9328 2.5878 18.0891 2.74408C18.2454 2.90036 18.3332 3.11232 18.3332 3.33333V16.6667C18.3332 16.8877 18.2454 17.0996 18.0891 17.2559C17.9328 17.4122 17.7208 17.5 17.4998 17.5H2.49984C2.27882 17.5 2.06686 17.4122 1.91058 17.2559C1.7543 17.0996 1.6665 16.8877 1.6665 16.6667V3.33333C1.6665 3.11232 1.7543 2.90036 1.91058 2.74408C2.06686 2.5878 2.27882 2.5 2.49984 2.5ZM10.0498 9.73583L4.7065 5.19833L3.62734 6.46833L10.0607 11.9308L16.3782 6.46417L15.2882 5.20333L10.0507 9.73583H10.0498Z" fill="white"/>
             </svg>
             Newsletter
-          </a>
+          </button>
           <a href='https://twitter.com/comearthHQ' target='_blank' className='hover:bg-[#3F99FF] hover:border-[#3F99FF] transition h-[40px] flex items-center pl-[10px] pr-[18px] rounded-[4px] border border-white text-[14px]'>
             <svg className='mr-[8px]' width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M18.4687 4.71192C17.8325 4.99334 17.1579 5.17815 16.4671 5.26026C17.1952 4.82479 17.7402 4.13944 18.0004 3.33192C17.3171 3.73859 16.5679 4.02359 15.7871 4.17776C14.7086 3.02386 12.989 2.7395 11.5965 3.4848C10.204 4.23011 9.48677 5.81871 9.84874 7.35609C7.04626 7.21563 4.4352 5.89192 2.66541 3.71442C2.35565 4.24647 2.19287 4.85128 2.19374 5.46692C2.19374 6.67526 2.80874 7.74276 3.74374 8.36776C3.19042 8.35034 2.64927 8.20091 2.16541 7.93192V7.97526C2.16575 9.63445 3.33501 11.0637 4.96124 11.3928C4.44759 11.532 3.909 11.5525 3.38624 11.4528C3.84218 12.8729 5.15079 13.8459 6.64208 13.8736C5.18203 15.0203 3.32603 15.5395 1.48291 15.3169C3.07599 16.3414 4.93049 16.8854 6.82458 16.8836C13.2354 16.8836 16.7412 11.5728 16.7412 6.96692C16.7412 6.81692 16.7371 6.66526 16.7304 6.51692C17.4128 6.02373 18.0017 5.41277 18.4696 4.71276L18.4687 4.71192Z" fill="white" fill-opacity="0.65"/>
@@ -61,10 +65,10 @@ const Third = () => {
                   <div className='bg-gradient-to-r h-[1px] w-full from-[#D299FF] to-[#58C3FF] mb-[30px]'></div>
 
                   <p className='font-[JamGrotesque] text-[18px] lg:text-[24px] px-[24px] mb-[14px]'>Create memorable immersive experiences for  fans & consumers</p>
-                  <ul className='font-[JamGrotesque] text-[12px] px-[24px]'>
-                    <li className='mb-2 lg:mb-[20px]'>Get started in minutes via templates</li>
-                    <li className='mb-2 lg:mb-[20px]'>Create instant 3D products from 2D images</li>
-                    <li className='mb-2 lg:mb-[20px]'>Use Key E-Commerce Features</li>
+                  <ul className='text-[14px] px-[24px] list-disc'>
+                    <li className='mb-2 lg:mb-[10px]'>Get started in minutes via templates</li>
+                    <li className='mb-2 lg:mb-[10px]'>Create instant 3D products from 2D images</li>
+                    <li className='mb-2 lg:mb-[10px]'>Use Key E-Commerce Features</li>
                     <li>Ship through Integrated Logistics</li>
                   </ul>
                 </div>
@@ -86,10 +90,10 @@ const Third = () => {
                   <div className='bg-gradient-to-r h-[1px] w-full from-[#D299FF] to-[#58C3FF] mb-[30px]'></div>
 
                   <p className='font-[JamGrotesque] text-[18px] lg:text-[24px] px-[24px] mb-[14px]'>Discover the best global products, events, and services in one Metaverse</p>
-                  <ul className='font-[JamGrotesque] text-[12px] px-[24px]'>
-                    <li className='mb-2 lg:mb-[20px]'>Use social login and fiat payments</li>
-                    <li className='mb-2 lg:mb-[20px]'>Hangout and have fun with friends and family</li>
-                    <li className='mb-2 lg:mb-[20px]'>Promote sustainable products & services</li>
+                  <ul className='text-[14px] px-[24px] list-disc'>
+                    <li className='mb-2 lg:mb-[10px]'>Use social login and fiat payments</li>
+                    <li className='mb-2 lg:mb-[10px]'>Hangout and have fun with friends and family</li>
+                    <li className='mb-2 lg:mb-[10px]'>Promote sustainable products & services</li>
                     <li>Get the speed and convenience of Web2 E-Commerce</li>
                   </ul>
                 </div>
@@ -98,6 +102,11 @@ const Third = () => {
           </div>
         </div>
       </div>
+
+
+      {modal && (
+        <NewsLetterModal onClose={() => setModal(false)} />
+      )}
     </div>
   )
 }

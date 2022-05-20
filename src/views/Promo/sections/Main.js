@@ -32,7 +32,7 @@ const Main = () => {
 
   useEffect(() => {
     modelViewerRef.current.addEventListener('progress', (e) => {
-      setLoading(e.detail.totalProgress * 500)
+      setLoading(e.detail.totalProgress * 300)
     })
   })
 
@@ -59,91 +59,93 @@ const Main = () => {
               COMEARTH is where brands & creators can create unparalleled experiences while
               consumers discover everything at a place
             </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className='mb-[45px]'>
-                <FieldGroup className='relative'>
-                  <Field
-                    isError={errors.email}
-                    register={register('email', {required: true, pattern: /^\S+@\S+$/i})}
-                    type='email'
-                    className='pr-[230px] py-[14px] lg:py-[14px] mb-[12px] lg:mb-0'
-                    placeholder='Enter Your Email Address'
+            <div className='max-w-[500px]'>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className='mb-[45px]'>
+                  <FieldGroup className='relative'>
+                    <Field
+                      isError={errors.email}
+                      register={register('email', {required: true, pattern: /^\S+@\S+$/i})}
+                      type='email'
+                      className='pr-[230px] py-[14px] lg:py-[14px] mb-[12px] lg:mb-0'
+                      placeholder='Enter Your Email Address'
+                    />
+
+                    <SimpleButton
+                      className='lg:absolute top-0 right-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold lg:rounded-l-none'
+                      type='submit'
+                    >
+                      Reserve Your Land Now
+                    </SimpleButton>
+                  </FieldGroup>
+
+                  <small className='text-red-400 block translate-y-[-15px]'>
+                    {errors.email?.type === 'required' && 'Email is required'}
+                    {errors.email?.type === 'pattern' && 'Email is invalid'}
+                  </small>
+                </div>
+              </form>
+              <div className='flex items-center mb-[12px]'>
+                <svg
+                  className='stroke-white mr-[8px]'
+                  width='24'
+                  height='24'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M12 22C16.9706 22 21 17.9706 21 13C21 8.02944 16.9706 4 12 4C7.02944 4 3 8.02944 3 13C3 17.9706 7.02944 22 12 22Z'
+                    stroke='currentColor'
+                    strokeWidth='2'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                   />
-
-                  <SimpleButton
-                    className='lg:absolute top-0 right-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold lg:rounded-l-none'
-                    type='submit'
-                  >
-                    Reserve Your Land Now
-                  </SimpleButton>
-                </FieldGroup>
-
-                <small className='text-red-400 block translate-y-[-15px]'>
-                  {errors.email?.type === 'required' && 'Email is required'}
-                  {errors.email?.type === 'pattern' && 'Email is invalid'}
-                </small>
-              </div>
-            </form>
-            <div className='flex items-center mb-[12px]'>
-              <svg
-                className='stroke-white mr-[8px]'
-                width='24'
-                height='24'
-                viewBox='0 0 24 24'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path
-                  d='M12 22C16.9706 22 21 17.9706 21 13C21 8.02944 16.9706 4 12 4C7.02944 4 3 8.02944 3 13C3 17.9706 7.02944 22 12 22Z'
-                  stroke='currentColor'
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                />
-                <path
-                  d='M12 4V2M15.5 9.5L12 13L15.5 9.5ZM19 19L20 22L19 19ZM5 19L4 22L5 19ZM2 5L5 2L2 5ZM19 2L22 5L19 2Z'
-                  stroke='currentColor'
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                />
-              </svg>
-              <span className='font-semibold'>
+                  <path
+                    d='M12 4V2M15.5 9.5L12 13L15.5 9.5ZM19 19L20 22L19 19ZM5 19L4 22L5 19ZM2 5L5 2L2 5ZM19 2L22 5L19 2Z'
+                    stroke='currentColor'
+                    strokeWidth='2'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
+                <span className='font-semibold'>
                 Hurry, <span className='text-gradient'>Sale Ends in:</span>
               </span>
-            </div>
-            <Countdown
-              date={Date.now() + 1036800000}
-              renderer={({days, hours, minutes, seconds}) => (
-                <div className='bg-[#262728] pseudo-border-gradient-1 relative rounded-lg p-[8px]'>
-                  <div className='absolute w-full h-full top-0 left-0 bg-gradient-to-b from-[#BCDCF5]/20 to-[#BCDCF5]/0'></div>
-                  <div className='grid grid-cols-4'>
-                    <div className='leading-tight uppercase text-center'>
-                      <div className='font-black text-[24px]'>{days < 10 ? `0${days}` : days}</div>
-                      <div className='text-[14px] text-white/[.80]'>Days</div>
-                    </div>
-                    <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
-                      <div className='font-black text-[24px]'>
-                        {hours < 10 ? `0${hours}` : hours}
+              </div>
+              <Countdown
+                date={Date.now() + 1036800000}
+                renderer={({days, hours, minutes, seconds}) => (
+                  <div className='bg-[#262728] pseudo-border-gradient-1 relative rounded-lg p-[8px]'>
+                    <div className='absolute w-full h-full top-0 left-0 bg-gradient-to-b from-[#BCDCF5]/20 to-[#BCDCF5]/0'></div>
+                    <div className='grid grid-cols-4'>
+                      <div className='leading-tight uppercase text-center'>
+                        <div className='font-black text-[24px]'>{days < 10 ? `0${days}` : days}</div>
+                        <div className='text-[14px] text-white/[.80]'>Days</div>
                       </div>
-                      <div className='text-[14px] text-white/[.80]'>Hours</div>
-                    </div>
-                    <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
-                      <div className='font-black text-[24px]'>
-                        {minutes < 10 ? `0${minutes}` : minutes}
+                      <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
+                        <div className='font-black text-[24px]'>
+                          {hours < 10 ? `0${hours}` : hours}
+                        </div>
+                        <div className='text-[14px] text-white/[.80]'>Hours</div>
                       </div>
-                      <div className='text-[14px] text-white/[.80]'>Minutes</div>
-                    </div>
-                    <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
-                      <div className='font-black text-[24px]'>
-                        {seconds < 10 ? `0${seconds}` : seconds}
+                      <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
+                        <div className='font-black text-[24px]'>
+                          {minutes < 10 ? `0${minutes}` : minutes}
+                        </div>
+                        <div className='text-[14px] text-white/[.80]'>Minutes</div>
                       </div>
-                      <div className='text-[14px] text-white/[.80]'>Seconds</div>
+                      <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
+                        <div className='font-black text-[24px]'>
+                          {seconds < 10 ? `0${seconds}` : seconds}
+                        </div>
+                        <div className='text-[14px] text-white/[.80]'>Seconds</div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            />
+                )}
+              />
+            </div>
           </div>
           <div className='order-1 flex justify-center md:order-2 col-span-12 md:col-span-7 text-right metaverse-demo min-h-[300px] h-full relative'>
             <div className='block relative'>
@@ -177,7 +179,7 @@ const Main = () => {
                       <img className='mb-[30px]' src={_preloadGlobe} alt='Preloader'/>
                       <div className='block w-full'></div>
                       <div
-                        className='w-[300px] md:w-[500px] overflow-hidden block h-[24px] relative border-2 rounded-[40px] bg-white/30 mb-[26px]'>
+                        className='w-[300px] overflow-hidden block h-[24px] relative border-2 rounded-[40px] bg-white/30 mb-[26px]'>
                         <div
                           className='bg-[#3F99FF] absolute rounded-[40px] overflow-hidden transition-[width] top-0 left-0 h-full'
                           style={{width: `${loading}px`}}
