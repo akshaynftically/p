@@ -19,6 +19,7 @@ import {getTransactionForm, setTransactionForm} from '../app/TransactionFormSlic
 import PopularBrands from '../components/land/PopularBrands'
 import Stores from '../components/land/Stores'
 import {useLocation} from "react-router";
+import axios from 'axios'
 
 const BackButton = ({back, className}) => {
   return (
@@ -66,7 +67,18 @@ const Land = (props) => {
   const [enterYourDetailsIsOpened, setEnterYourDetailsIsOpened] = useState(false)
   const onSubmit = (data) => {
     dispatch(setTransactionForm(data))
-    navigate('/reserve-land')
+    axios.post(process.env.REACT_APP_API_ENDPOINT_BASE_URL+'/v1/leads',{
+      email: data.email
+    })
+    .then(res => {
+      // save lead in localstorage
+      console.log(res)
+    })
+    .catch(err => {
+      if(err?.response?.status === 409){
+        navigate('/reserve-land')
+      }
+    })
   }
 
   // axios.get('https://e35df215-1476-4ed0-9a7b-a9053666b26c.mock.pstmn.io/metaverse/comearth')
