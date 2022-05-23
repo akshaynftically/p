@@ -5,6 +5,7 @@ import clsx from 'clsx'
 const Simple = (props) => {
   // size: sm | md | lg
   // variant: primary | secondary | danger | warning
+  
   const {
     size = 'md',
     variant = 'primary',
@@ -17,6 +18,7 @@ const Simple = (props) => {
     onClick,
     ...rest
   } = props
+
 
   return (
     <Fragment>

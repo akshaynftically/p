@@ -129,6 +129,9 @@ const HeaderBalance = (props) => {
             if(!tempProvider) return
             let chainId = (await tempProvider.getNetwork()).chainId
             console.log('chainId',chainId)
+            appGlobals.setIsWrongNetwork(chainId == process.env.REACT_APP_CHAIN_ID )
+
+
             const getNetwork=_networks.filter((el) => {return el.chainId === chainId})
             console.log(getNetwork)
             if(getNetwork.length!==0){
@@ -164,7 +167,7 @@ const HeaderBalance = (props) => {
                     components={{SingleValue: networkSelectValueContainer}}
                     Option={networkSelectOption}>
             </Select>
-            {selectNetwork.value === 1 ? (
+            {appGlobals.isWrongNetwork? (
                 <>
                     <div className='cursor-pointer hidden md:flex bg-[#262728] items-center rounded-[8px] pl-[24px] h-[44px]' onClick={handleOpenAccountModal}>
                         <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -242,7 +242,6 @@ const ReserveLand = () => {
         })))
     });
     getDiscountPercentage().then((dis) => {
-      console.log('discount',dis)
       setDiscountPercentage(dis)
     })
   }, [setValue, transactionForm])
@@ -514,7 +513,8 @@ const ReserveLand = () => {
 
                   <BasketList items={basket} setBasket={setBasket} discountCode={discountCode} discountPercentage={discountPercentage} setDiscountCode={setDiscountCode} />
                 </div>
-                <SimpleButton type='submit' className='mb-[27px]' block disabled={!getTotal()}>
+               
+                <SimpleButton type='submit' className='mb-[27px]' block disabled={!getTotal() || !appGlobals.isWrongNetwork}>
                   Buy Virtual Land
                 </SimpleButton>
 
