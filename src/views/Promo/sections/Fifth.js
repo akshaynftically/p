@@ -88,10 +88,10 @@ const Fifth = () => {
               <br />
               COMEARTH
             </h2>
-            <div className='leading-8 text-[14px]'>
+            {/* <div className='leading-8 text-[14px]'>
               Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
               has been the industry's standard dummy text ever since the 1500s
-            </div>
+            </div> */}
           </div>
         </div>
         <div className='grid grid-cols-8 gap-[6px]'>

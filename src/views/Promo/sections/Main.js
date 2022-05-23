@@ -24,8 +24,8 @@ const Main = () => {
               <span className='text-gradient'>Metaverse</span>
             </h1>
             <div className='text-[16px] text-white/[.80] mb-[40px]'>
-              COMEARTH is where brands & creators can create unparalleled experiences while
-              consumers discover everything at a place
+            COMEARTH is the world’s first web3.0 e-commerce metaverse which allows brands & creators to create unparalleled commerce experiences while consumers discover everything in one place
+
             </div>
             <FieldGroup className='relative mb-[45px]'>
               <Field className='pr-[230px] md:py-[14px]' placeholder='Enter Your Promo Code Here' />
