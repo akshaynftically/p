@@ -129,7 +129,6 @@ const HeaderBalance = (props) => {
             if(!tempProvider) return
             let chainId = (await tempProvider.getNetwork()).chainId
             console.log('chainId',chainId)
-            console.log('chainIdtype',chainId == process.env.REACT_APP_CHAIN_ID )
             appGlobals.setIsWrongNetwork(chainId == process.env.REACT_APP_CHAIN_ID )
 
 
