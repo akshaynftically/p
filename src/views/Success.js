@@ -41,7 +41,7 @@ const Faild = () => {
     return (
         <Fragment>
             {transactionForm && (
-                <div className='py-[180px] sm:max-w-[90rem] 2xl:max-w-[70rem] basis-full items-center w-full mx-auto px-4 sm:px-6 lg:px-8 text-white'>
+                <div className='py-[180px] sm:max-w-[90rem] 2xl:max-w-[70rem] basis-full items-center w-full mx-auto px-4 sm:px-6 lg:px-[80px] text-white'>
                     <div className="flex justify-center lg:justify-start mb-[35px]">
                         <svg width="192" height="189" viewBox="0 0 192 189" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="85.5615" cy="87.0439" r="81.3623" fill="#3F99FF" fillOpacity="0.5"/>

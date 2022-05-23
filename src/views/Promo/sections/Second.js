@@ -20,6 +20,7 @@ import _imgSlide5 from 'assets/img/480x240/5.jpg'
 import _imgSlide6 from 'assets/img/480x240/6.jpg'
 import _imgSlide7 from 'assets/img/480x240/7.jpg'
 import _imgSlide8 from 'assets/img/480x240/8.jpg'
+import _bgVideo from 'assets/videos/neon-city.mp4'
 
 // Mocks
 const _slides = [
@@ -36,39 +37,39 @@ const _slides = [
     image: _imgSlide2,
   },
   {
-    id: '1003',
-    title: 'NFTs',
-    text: 'A TRULY meaningful way of interacting with the web may finally be here, In addition to the classic “Web of documents” W3C is helping to build a technology stack to support a “Web of data,” the sort of data you find in databases. The ultimate goal of the Web of data is to enable computers to do more useful work and to develop systems that can support trusted interactions over the network',
-    image: _imgSlide3,
-  },
-  {
     id: '1004',
     title: 'AI',
-    text: 'A TRULY meaningful way of interacting with the web may finally be here, In addition to the classic “Web of documents” W3C is helping to build a technology stack to support a “Web of data,” the sort of data you find in databases. The ultimate goal of the Web of data is to enable computers to do more useful work and to develop systems that can support trusted interactions over the network',
+    text: 'In a world where everyone is an avatar, a brilliant AI would be virtually indistinguishable from a human. This advent in technology shall enable brands and creators to create personalized experiences at scale for their fans and customers. Complete automation of Sales, Support, and other verticals isn\'t far away!',
     image: _imgSlide4,
   },
   {
+    id: '1003',
+    title: 'Stakeholder Rewards',
+    text: 'An ecosystem is built by its stakeholders, and Web3 shall enable COMEARTH to reward its stakeholders for adding value to it. It ensures that all the people and brands that help COMEARTH benefit from its success, creating virtuous cycles that propel COMEARTH in the long run.',
+    image: _imgSlide3,
+  },
+  {
     id: '1005',
-    title: 'Tokenomics',
-    text: 'A TRULY meaningful way of interacting with the web may finally be here, In addition to the classic “Web of documents” W3C is helping to build a technology stack to support a “Web of data,” the sort of data you find in databases. The ultimate goal of the Web of data is to enable computers to do more useful work and to develop systems that can support trusted interactions over the network',
+    title: 'Digital Assets',
+    text: 'Non-Fungible Tokens (NFTs) shall allow digital assets to be owned and traded in a digital-first universe. This shall unlock a new layer in global commerce, creating a market worth hundreds of billions while employing millions.',
     image: _imgSlide5,
   },
   {
     id: '1006',
-    title: 'Permissionless Blockchains',
-    text: 'A TRULY meaningful way of interacting with the web may finally be here, In addition to the classic “Web of documents” W3C is helping to build a technology stack to support a “Web of data,” the sort of data you find in databases. The ultimate goal of the Web of data is to enable computers to do more useful work and to develop systems that can support trusted interactions over the network',
+    title: 'Democratic',
+    text: 'Gone are the days when monopolistic corporations could utilize their position to manipulate their stakeholders. Built on the Polygon Blockchain, COMEARTH shall create a platform and tokenomics that hand the reigns to the global community.',
     image: _imgSlide6,
   },
   {
     id: '1007',
-    title: 'UI & Service Layers',
-    text: 'A TRULY meaningful way of interacting with the web may finally be here, In addition to the classic “Web of documents” W3C is helping to build a technology stack to support a “Web of data,” the sort of data you find in databases. The ultimate goal of the Web of data is to enable computers to do more useful work and to develop systems that can support trusted interactions over the network',
+    title: 'Sustainable',
+    text: 'The transparency of Blockchain shall ensure that the sustainability of products and services traded on COMEARTH can be measured. Appropriate rewards and penalties shall be used to guide commerce in a direction conducive to the long-term sustainability of society at large.',
     image: _imgSlide7,
   },
   {
     id: '1008',
-    title: 'Semantic Web',
-    text: 'A TRULY meaningful way of interacting with the web may finally be here, In addition to the classic “Web of documents” W3C is helping to build a technology stack to support a “Web of data,” the sort of data you find in databases. The ultimate goal of the Web of data is to enable computers to do more useful work and to develop systems that can support trusted interactions over the network',
+    title: 'Secure',
+    text: 'With all transactions on the trustless & permissionless Polygon Blockchain, COMEARTH can power billions of annual e-commerce transactions while remaining completely secure. It shall also enable reliable insights for brands while ensuring that the privacy and data of its users remain protected.',
     image: _imgSlide8,
   },
 ]
@@ -105,7 +106,7 @@ const Second = () => {
   return (
     <Fragment>
       <div className='bg-[#161718] pt-[50px] md:pt-[80px] mb-[40px] relative'>
-        <div className='max-w-[1340px] px-4 lg:px-8 mx-auto'>
+        <div className='mx-[20px] lg:mx-[80px]'>
           <h2 className='leading-tight font-extrabold text-center text-[32px] lg:text-[52px] mb-[40px]'>
             Web3 E-Commerce will be <span className='text-gradient'>bigger than</span>
             <br />
@@ -116,13 +117,19 @@ const Second = () => {
 
       <div className='overflow-x-hidden relative promo-second'>
         <div className='hidden md:block bg-gradient-to-b from-[#161718] to-[#161718]/0 h-[110px] absolute top-0 z-[1] left-0 w-full'></div>
+        <div className='hidden md:block bg-gradient-to-t from-[#161718] to-[#161718]/0 h-[20px] absolute bottom-0 z-[1] left-0 w-full'></div>
 
         <div
-          className='relative lg:min-h-[660px] bg-center bg-no-repeat bg-cover -mx-[8px]'
+          className='relative lg:min-h-[660px] bg-center bg-no-repeat bg-cover -mx-[8px] overflow-hidden'
           style={{
             backgroundImage: `url(${_bgImg})`,
           }}
         >
+          <video className='hidden lg:block absolute top-0 left-0 w-full h-full transform scale-150' autoplay="autoplay" loop muted>
+            <source src={_bgVideo} type="video/mp4"/>
+          </video>
+          <div className='absolute w-full h-full bg-[#000000]/50'></div>
+
           <div className='absolute top-[136px] left-1/2 z-10 -translate-x-1/2 hidden lg:flex items-center'>
             <BlurButton
               className='w-[32px] min-h-[32px] justify-center !p-[5px]'
@@ -166,7 +173,7 @@ const Second = () => {
           >
             {_slides.map((el, i) => (
               <SwiperSlide key={el.id}>
-                <div className='max-w-[1340px] px-4 lg:px-8 mx-auto'>
+                <div className='mx-[20px] lg:mx-[80px]'>
                   <div className='max-w-[855px]'>
                     <div className='max-w-[480px] mb-[35px]'>
                       <img className='max-w-full' src={el.image} alt='Slide' />
@@ -219,6 +226,7 @@ const Second = () => {
          </div>
         </div>
       </div>
+
     </Fragment>
   )
 }

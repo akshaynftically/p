@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import {useEffect, useState} from 'react'
 
 // Components
 import {SimpleButton} from 'components/buttons'
@@ -12,30 +12,30 @@ const _menu = {
   comearth: [
     {
       id: '1001',
-      title: 'Reserve Land',
-      url: '/reserve-land',
+      title: 'Join Waiting List',
+      url: 'https://discord.gg/comearth',
     },
     {
       id: '1002',
       title: 'About Us',
-      url: '/about-us',
+      url: 'https://www.nftically.com/about-us',
     },
     {
       id: '1003',
-      title: 'About NFTICALLY',
-      url: '/about-nftically',
+      title: 'Visit NFTICALLY',
+      url: 'https://www.nftically.com',
     },
   ],
   resources: [
     {
       id: '1004',
       title: 'Whitepaper',
-      url: '/whitepaper',
+      url: 'https://docs.comearth.world/whitepaper',
     },
     {
       id: '1005',
       title: 'Blog',
-      url: '/blog',
+      url: 'https://www.comearth.world/blog',
     },
   ],
 }
@@ -44,25 +44,25 @@ const _secondMenu = [
   {
     id: '1001',
     title: 'Community Guidelines',
-    url: '/terms#community-guidelines',
+    url: 'https://www.nftically.com/terms',
     className: ''
   },
   {
     id: '1002',
     title: 'Risk Policy',
-    url: '/terms#risk-policy',
+    url: 'https://www.nftically.com/terms',
     className: 'text-right md:text-left'
   },
   {
     id: '1003',
     title: 'Terms',
-    url: '/terms#terms',
+    url: 'https://www.nftically.com/terms',
     className: ''
   },
   {
     id: '1004',
     title: 'Privacy Policy',
-    url: '/terms#privacy-policy',
+    url: 'https://www.nftically.com/privacy-policy',
     className: 'text-right md:text-left'
   },
 ]
@@ -70,7 +70,7 @@ const _socialMenu = [
   {
     id: '1001',
     title: 'Facebook',
-    url: '/',
+    url: 'https://www.facebook.com/comearth.metaverse',
     icon: (
       <path d='M15.9998 2.66602C8.63584 2.66602 2.6665 8.63535 2.6665 15.9993C2.6665 22.654 7.5425 28.17 13.9172 29.1713V19.8527H10.5305V15.9993H13.9172V13.062C13.9172 9.72068 15.9065 7.87535 18.9532 7.87535C20.4118 7.87535 21.9372 8.13535 21.9372 8.13535V11.4153H20.2572C18.5998 11.4153 18.0838 12.4433 18.0838 13.498V15.9993H21.7812L21.1905 19.8527H18.0838V29.1713C24.4572 28.1713 29.3332 22.6527 29.3332 15.9993C29.3332 8.63535 23.3638 2.66602 15.9998 2.66602Z' />
     ),
@@ -78,7 +78,7 @@ const _socialMenu = [
   {
     id: '1002',
     title: 'Twitter',
-    url: '/',
+    url: 'https://twitter.com/comearthHQ',
     icon: (
       <path d='M29.5494 7.54142C28.5315 7.99168 27.452 8.28739 26.3467 8.41876C27.5117 7.722 28.3837 6.62544 28.8001 5.33342C27.7067 5.98409 26.5081 6.44009 25.2587 6.68676C23.5332 4.84052 20.7818 4.38554 18.5538 5.57803C16.3257 6.77051 15.1782 9.31228 15.7574 11.7721C11.2734 11.5473 7.09573 9.42942 4.26407 5.94542C3.76846 6.79669 3.50801 7.76439 3.5094 8.74942C3.5094 10.6828 4.4934 12.3908 5.9894 13.3908C5.10408 13.3629 4.23825 13.1238 3.46407 12.6934V12.7628C3.46462 15.4175 5.33542 17.7043 7.9374 18.2308C7.11556 18.4535 6.25381 18.4863 5.4174 18.3268C6.14691 20.599 8.24067 22.1558 10.6267 22.2001C8.29066 24.0348 5.32106 24.8656 2.37207 24.5094C4.921 26.1487 7.8882 27.0189 10.9187 27.0161C21.1761 27.0161 26.7854 18.5188 26.7854 11.1494C26.7854 10.9094 26.7787 10.6668 26.7681 10.4294C27.8599 9.64031 28.8022 8.66278 29.5507 7.54276L29.5494 7.54142Z' />
     ),
@@ -86,7 +86,7 @@ const _socialMenu = [
   {
     id: '1003',
     title: 'LinkedIn',
-    url: '/',
+    url: 'https://www.linkedin.com/company/comearth-metaverse/',
     icon: (
       <path
         fillRule='evenodd'
@@ -98,7 +98,7 @@ const _socialMenu = [
   {
     id: '1004',
     title: 'YouTube',
-    url: '/',
+    url: 'https://www.youtube.com/channel/UCOUBjopfx67GpOWO3fn0FWA',
     icon: (
       <path
         fillRule='evenodd'
@@ -110,7 +110,7 @@ const _socialMenu = [
   {
     id: '1005',
     title: 'Instagram',
-    url: '/',
+    url: 'https://www.instagram.com/comearth.hq',
     icon: (
       <path
         fillRule='evenodd'
@@ -122,7 +122,7 @@ const _socialMenu = [
   {
     id: '1006',
     title: 'Telegram',
-    url: '/',
+    url: 'https://t.me/COMEARTHHQ',
     icon: (
       <path
         fillRule='evenodd'
@@ -134,7 +134,7 @@ const _socialMenu = [
   {
     id: '1007',
     title: 'Discord',
-    url: '/',
+    url: 'https://discord.gg/comearth',
     icon: (
       <path d='M13.4347 14.668C14.2347 14.668 14.8827 15.268 14.868 16.0013C14.868 16.7346 14.236 17.3346 13.4347 17.3346C12.648 17.3346 12 16.7346 12 16.0013C12 15.268 12.6333 14.668 13.4347 14.668ZM18.5653 14.668C19.3667 14.668 20 15.268 20 16.0013C20 16.7346 19.3667 17.3346 18.5653 17.3346C17.7787 17.3346 17.132 16.7346 17.132 16.0013C17.132 15.268 17.764 14.668 18.5653 14.668ZM25.188 2.66797C26.7387 2.66797 28 3.95597 28 5.55197V30.668L25.052 28.008L23.392 26.44L21.636 24.7733L22.364 27.364H6.812C5.26133 27.364 4 26.076 4 24.48V5.55197C4 3.95597 5.26133 2.66797 6.812 2.66797H25.1867H25.188ZM19.8947 20.952C22.9253 20.8546 24.092 18.824 24.092 18.824C24.092 14.316 22.116 10.6613 22.116 10.6613C20.1427 9.15063 18.2627 9.19197 18.2627 9.19197L18.0707 9.41597C20.4027 10.144 21.4853 11.1946 21.4853 11.1946C20.2121 10.4773 18.8089 10.0204 17.3573 9.85064C16.4366 9.74664 15.5066 9.7556 14.588 9.8773C14.5053 9.8773 14.436 9.89197 14.3547 9.9053C13.8747 9.94797 12.708 10.1293 11.2413 10.788C10.7347 11.0253 10.432 11.1946 10.432 11.1946C10.432 11.1946 11.5707 10.088 14.0387 9.35997L13.9013 9.19197C13.9013 9.19197 12.0227 9.15063 10.048 10.6626C10.048 10.6626 8.07333 14.316 8.07333 18.824C8.07333 18.824 9.22533 20.8533 12.256 20.952C12.256 20.952 12.7627 20.3226 13.176 19.7906C11.4333 19.2573 10.776 18.1373 10.776 18.1373C10.776 18.1373 10.912 18.236 11.1587 18.376C11.172 18.3893 11.1853 18.404 11.2133 18.4173C11.2547 18.4466 11.296 18.46 11.3373 18.488C11.68 18.684 12.0227 18.8373 12.3373 18.964C12.9 19.188 13.572 19.412 14.3547 19.5666C15.5271 19.7964 16.7325 19.801 17.9067 19.58C18.5906 19.4579 19.2578 19.2561 19.8947 18.9786C20.3747 18.796 20.9093 18.5293 21.472 18.152C21.472 18.152 20.7867 19.3 18.9893 19.8186C19.4013 20.3506 19.896 20.952 19.896 20.952H19.8947Z' />
     ),
@@ -142,9 +142,30 @@ const _socialMenu = [
 ]
 
 const FooterAlt = () => {
+  const [showButton, setShowButton] = useState(window.outerWidth < 600)
+
+  const handleWindowScroll = () => {
+    setShowButton(window.scrollY > 4000)
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleWindowScroll);
+    return () => {
+      window.removeEventListener('scroll', handleWindowScroll);
+    }
+  }, [])
+
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
+  }
+
   return (
     <div className='bg-[#161718]'>
-      <div className='max-w-[1340px] text-white pt-[100px] px-4 lg:px-8 mx-auto'>
+      <div className='mx-[20px] lg:mx-[80px] text-white pt-[100px] relative'>
         <div className='grid grid-cols-12 border-t-[1px] md:border-none border-[#363738] pt-[24px] md:pt-0'>
           <div className='col-span-12 text-center md:text-left md:col-span-4 mb-[24px] md:mb-0'>
             <div className='mb-[20px] md:mb-[24px]'>
@@ -152,10 +173,10 @@ const FooterAlt = () => {
             </div>
 
             <div className='flex justify-center md:justify-start'>
-              <div className='max-w-[215px] text-center bg-[#35363C] border border-white/[.20] rounded-lg py-[8px] px-[20px]'>
+              <a href='https://www.nftically.com/?utm_source=comearth.world&utm_medium=logo&utm_campaign=footer' target='_blank' className='max-w-[215px] text-center bg-[#35363C] border border-white/[.20] rounded-lg py-[8px] px-[20px]'>
                 <div className='text-[12px] text-white/[.80] mb-[4px]'>Powered By</div>
                 <img className='inline-block max-w-full' src={_logoNftcally} alt='NFTically' />
-              </div>
+              </a>
             </div>
           </div>
 
@@ -165,12 +186,13 @@ const FooterAlt = () => {
               <ul>
                 {_menu[el].map((elI) => (
                   <li key={elI.id} className='mb-[14px]'>
-                    <Link
+                    <a
                       className='text-[14px] text-white/[.80] hover:text-white transition duration-[200ms] ease-in-out'
-                      to={elI.url}
+                      href={elI.url}
+                      target='_blank'
                     >
                       {elI.title}
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -178,14 +200,14 @@ const FooterAlt = () => {
           ))}
           <div className='col-span-12 md:col-span-4'>
             <div className='md:max-w-[214px] md:ml-auto'>
-              <SimpleButton className='w-full mb-[32px] md:mb-[20px]' href='/contact-us' size='sm'>
+              <SimpleButton className='w-full mb-[32px] md:mb-[20px]' href='mailto:hello@comearth.world' size='sm'>
                 Contact Us
               </SimpleButton>
               <h4 className='capitalize text-center md:text-left font-semibold text-[14px] mb-[12px] md:mb-[8px]'>Follow us on</h4>
               <ul className='flex flex-wrap justify-between md:justify-start items-center -mb-[16px] -mx-[6px]'>
                 {_socialMenu.map((el) => (
                   <li key={el.id} className='mb-[16px] mx-[6px]'>
-                    <Link to={el.url}>
+                    <a href={el.url} target='_blank'>
                       <svg
                         className='fill-white/[.65] hover:fill-white transition duration-[200ms] ease-in-out'
                         width='32'
@@ -196,13 +218,25 @@ const FooterAlt = () => {
                       >
                         {el.icon}
                       </svg>
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
         </div>
+
+        {showButton && (
+          <div className='fixed hidden md:block bottom-10 right-10 z-[100]'>
+            <button onClick={scrollTop} className='flex items-center justify-center rounded-[9px] h-[48px] w-[48px] pseudo-border-gradient relative'>
+              <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#FFFFFF]/10 to-[#FFFFFF]/0'></div>
+              <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.6543 12.1989C16.8732 12.98 15.6068 12.98 14.8257 12.1988L9.32534 6.69728L3.82495 12.1988C3.04393 12.98 1.77749 12.98 0.996384 12.1989L0.854255 12.0568C0.073167 11.2757 0.0732122 10.0093 0.854355 9.22827L9.32534 0.758482L17.7963 9.22827C18.5775 10.0093 18.5775 11.2757 17.7964 12.0568L17.6543 12.1989Z" fill="white" fill-opacity="0.8"/>
+              </svg>
+            </button>
+          </div>
+        )}
+
         <div className='mt-[20px] md:mt-[65px] border-t-[1px] border-[#363738] py-[20px]'>
           <div className='flex flex-wrap md:flex-nowrap items-center justify-between'>
             <div className='hidden md:block text-[12px] text-white/[.65]'>
@@ -212,12 +246,13 @@ const FooterAlt = () => {
             <ul className='grid grid-cols-2 md:flex items-center md:-mx-[16px] mb-[24px] md:mb-0 w-full md:w-auto'>
               {_secondMenu.map((el) => (
                 <li key={el.id} className={`md:mx-[16px] ${el.className}`}>
-                  <Link
+                  <a
                     className='text-[12px] text-white/[.65] hover:text-white transition duration-[200ms] ease-in-out'
-                    to={el.url}
+                    href={el.url}
+                    target='_blank'
                   >
                     {el.title}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

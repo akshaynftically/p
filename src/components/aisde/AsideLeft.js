@@ -21,7 +21,7 @@ const AsideLeft = () => {
         </svg>
       </button>
       <aside
-        className={`fixed top-0 left-0 w-full max-w-[480px] md:rounded-tr-[16px] h-full overflow-scroll bg-[#262728] p-[40px] transition duration-[1s] z-[10000000] transform -translate-x-[480px] ${
+        className={`fixed top-0 left-0 w-full max-w-[480px] md:rounded-tr-[16px] h-full overflow-scroll bg-[#262728] p-[40px] transition duration-[1s] z-[1000000000000] transform -translate-x-[480px] ${
           open ? '!translate-x-0' : ''
         }`}
       >
@@ -119,31 +119,34 @@ const AsideLeft = () => {
 
           <nav>
             <a
-              href='#'
+              href='/'
               className='text-white text-[16px] md:text-[20px] hover:text-white/70 font-bold block border-b border-[#363738] py-[16px] md:py-[28px]'
             >
               Home
             </a>
             <a
-              href='#'
+              href='https://docs.comearth.world/whitepaper'
+              target='_blank'
               className='text-white text-[16px] md:text-[20px] hover:text-white/70 font-bold block border-b border-[#363738] py-[16px] md:py-[28px]'
             >
               Whitepaper
             </a>
             <a
-              href='#'
+              href='https://www.nftically.com'
+              target='_blank'
               className='text-white text-[16px] md:text-[20px] hover:text-white/70 font-bold block border-b border-[#363738] py-[16px] md:py-[28px]'
             >
               NFTICALLY
             </a>
             <a
-              href='#'
+              href='https://www.comearth.world/blog'
+              target='_blank'
               className='text-white text-[16px] md:text-[20px] hover:text-white/70 font-bold block border-b border-[#363738] py-[16px] md:py-[28px]'
             >
               Blog
             </a>
             <a
-              href='#'
+              href='mailto:hello@comearth.world'
               className='text-white text-[16px] md:text-[20px] hover:text-white/70 font-bold block border-b border-[#363738] py-[16px] md:py-[28px]'
             >
               Contact Us
@@ -151,7 +154,7 @@ const AsideLeft = () => {
           </nav>
 
           <div className='absolute bottom-0 w-full'>
-            <SimpleButton block type='button'>
+            <SimpleButton block href='/reserve-land'>
               Reserve Land Now
             </SimpleButton>
           </div>

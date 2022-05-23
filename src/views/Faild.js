@@ -3,7 +3,7 @@ import {SimpleButton} from '../components/buttons'
 const Faild = () => {
   return (
     <fragment>
-      <div className='py-[120px] sm:max-w-[90rem] 2xl:max-w-[105rem] flex flex-wrap basis-full items-center w-full mx-auto px-4 sm:px-6 lg:px-8 text-white'>
+      <div className='py-[120px] sm:max-w-[90rem] 2xl:max-w-[105rem] flex flex-wrap basis-full items-center w-full mx-auto px-4 sm:px-6 lg:px-[80px] text-white'>
         <div className='relative max-w-[439px] lg:mt-[5rem] lg:ml-[15rem]'>
           <div className='flex justify-center'>
             <svg
