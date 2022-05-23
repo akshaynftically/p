@@ -32,6 +32,8 @@ import AppContext from 'components/AppContext';
 import { getChainData } from 'lib/appHelpers';
 import globalErrorNotifier from 'lib/globalNotifier';
 import AccountModal from 'modals/AccountModal';
+import { getUser,login } from 'app/UserSlice';
+import axios from 'lib/axiosHelper'
 
 
 const _tokenIcons = {
@@ -180,6 +182,8 @@ const ReserveLand = () => {
   const [discountPercentage, setDiscountPercentage] = useState(0)
   const [areYouRepresenting, setAreYouRepresenting] = useState('individual')
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
+  const userInfo = useSelector(getUser)
+
   const[txModalProps,setTxModalProps]= useState({
     title:'',
     mainHeading:'Please confirm the transaction with your wallet and then wait for the transaction to complete. ',
@@ -289,6 +293,23 @@ const ReserveLand = () => {
     let tNumber = 0;
     let err;
     
+    // create user if not exits
+    // create user and order here
+    if(!userInfo){
+      try{
+        let resp = await axios.post('v1/users',{
+          name: transactionForm.name,
+          email: transactionForm.email,
+          country: transactionForm.country,
+          industry: transactionForm.industry.value,
+          country_code: transactionForm.country.value,
+        })
+        dispatch(login(resp.data))
+      }catch(error){
+        console.log(error)
+      }
+    }
+
     const signer = provider.getSigner()
     const account = (await provider.send("eth_accounts",[]))[0];
     const networkConfig = await getChainData(provider)
