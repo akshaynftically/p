@@ -18,6 +18,8 @@ import registerWalletEvents from 'lib/registerWalletEvents'
 const App = () => {
   const {pathname} = useLocation()
   const [isOpenedConnectYourWallet, setIsOpenedConnectYourWallet ] = useState(false)
+  const [isWrongNetwork, setIsWrongNetwork ] = useState(null)
+
 
   const handleToggleConnectYourWallet = () => {
     setIsOpenedConnectYourWallet(!isOpenedConnectYourWallet)
@@ -46,7 +48,9 @@ const App = () => {
 
   const appGlobals = {
     getWalletProviderConfirmed,
-    hasWalletProvider
+    hasWalletProvider,
+    isWrongNetwork,
+     setIsWrongNetwork
   }
 
   useEffect(() => {
