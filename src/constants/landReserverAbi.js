@@ -15,6 +15,11 @@ export const _landReserverAbi = [
                 "internalType": "address",
                 "name": "passSourceWallet",
                 "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "whitelistManager",
+                "type": "address"
             }
         ],
         "stateMutability": "nonpayable",
@@ -25,18 +30,18 @@ export const _landReserverAbi = [
         "inputs": [
             {
                 "indexed": false,
-                "internalType": "uint256",
+                "internalType": "uint256[6]",
                 "name": "oldDiscountPercentage",
-                "type": "uint256"
+                "type": "uint256[6]"
             },
             {
                 "indexed": false,
-                "internalType": "uint256",
+                "internalType": "uint256[6]",
                 "name": "newDiscountPercentage",
-                "type": "uint256"
+                "type": "uint256[6]"
             }
         ],
-        "name": "DiscountPercentageUpdated",
+        "name": "DiscountPercentagesUpdated",
         "type": "event"
     },
     {
@@ -51,26 +56,26 @@ export const _landReserverAbi = [
             {
                 "indexed": false,
                 "internalType": "uint256[6]",
-                "name": "_parcelPricesInMatic",
+                "name": "_parcelPricesInUSD",
                 "type": "uint256[6]"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256[13]",
-                "name": "_priceConversionFactors",
-                "type": "uint256[13]"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "_discountPercentage",
-                "type": "uint256"
             },
             {
                 "indexed": false,
                 "internalType": "enum LandReserver.PaymentToken",
                 "name": "paymentToken",
                 "type": "uint8"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "_priceConversionFactor",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256[6]",
+                "name": "discounts",
+                "type": "uint256[6]"
             },
             {
                 "indexed": false,
@@ -190,17 +195,23 @@ export const _landReserverAbi = [
         "type": "event"
     },
     {
-        "inputs": [],
-        "name": "APPLIED_WHITELIST_COUNT",
-        "outputs": [
+        "anonymous": false,
+        "inputs": [
             {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
+                "indexed": false,
+                "internalType": "address",
+                "name": "oldWhitelistManagerAddress",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "address",
+                "name": "newWhitelistManagerAddress",
+                "type": "address"
             }
         ],
-        "stateMutability": "view",
-        "type": "function"
+        "name": "WhitelistManagerAddressChanged",
+        "type": "event"
     },
     {
         "inputs": [],
@@ -229,13 +240,19 @@ export const _landReserverAbi = [
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "WHITELISTED_NO",
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "buyerAddress",
+                "type": "address"
+            }
+        ],
+        "name": "getApplicableDiscountPercentages",
         "outputs": [
             {
-                "internalType": "uint8",
+                "internalType": "uint256[6]",
                 "name": "",
-                "type": "uint8"
+                "type": "uint256[6]"
             }
         ],
         "stateMutability": "view",
@@ -243,12 +260,12 @@ export const _landReserverAbi = [
     },
     {
         "inputs": [],
-        "name": "WHITELISTED_YES",
+        "name": "getDiscountPercentages",
         "outputs": [
             {
-                "internalType": "uint8",
+                "internalType": "uint256[6]",
                 "name": "",
-                "type": "uint8"
+                "type": "uint256[6]"
             }
         ],
         "stateMutability": "view",
@@ -257,50 +274,17 @@ export const _landReserverAbi = [
     {
         "inputs": [
             {
-                "internalType": "address[]",
-                "name": "buyerAddresses",
-                "type": "address[]"
+                "internalType": "address",
+                "name": "buyerAddress",
+                "type": "address"
             }
         ],
-        "name": "createWhitelist",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getAppliedWhitelists",
+        "name": "getParcelAvailabilityForBuyer",
         "outputs": [
             {
-                "internalType": "uint256[3]",
+                "internalType": "uint256[6]",
                 "name": "",
-                "type": "uint256[3]"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getDiscountPercentage",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getNextWhitelistId",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
+                "type": "uint256[6]"
             }
         ],
         "stateMutability": "view",
@@ -317,9 +301,9 @@ export const _landReserverAbi = [
         "name": "getParcelPrices",
         "outputs": [
             {
-                "internalType": "uint256[]",
+                "internalType": "uint256[6]",
                 "name": "",
-                "type": "uint256[]"
+                "type": "uint256[6]"
             }
         ],
         "stateMutability": "view",
@@ -346,6 +330,32 @@ export const _landReserverAbi = [
                 "internalType": "address",
                 "name": "",
                 "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getPaymentTokensAddresses",
+        "outputs": [
+            {
+                "internalType": "address[12]",
+                "name": "",
+                "type": "address[12]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getPaymentTokensStatus",
+        "outputs": [
+            {
+                "internalType": "bool[12]",
+                "name": "",
+                "type": "bool[12]"
             }
         ],
         "stateMutability": "view",
@@ -382,33 +392,9 @@ export const _landReserverAbi = [
         "name": "getPriceConversionFactors",
         "outputs": [
             {
-                "internalType": "uint256[13]",
+                "internalType": "uint256[12]",
                 "name": "",
-                "type": "uint256[13]"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "whitelistId",
-                "type": "uint256"
-            },
-            {
-                "internalType": "address",
-                "name": "buyerAddress",
-                "type": "address"
-            }
-        ],
-        "name": "getSingleAddressWhitelistStatus",
-        "outputs": [
-            {
-                "internalType": "uint8",
-                "name": "",
-                "type": "uint8"
+                "type": "uint256[12]"
             }
         ],
         "stateMutability": "view",
@@ -433,61 +419,8 @@ export const _landReserverAbi = [
         "type": "function"
     },
     {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "whitelistId",
-                "type": "uint256"
-            }
-        ],
-        "name": "getWhitelistAddressCount",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "whitelistId",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "pageNumber",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "pageSize",
-                "type": "uint256"
-            }
-        ],
-        "name": "getWhitelistAddresses",
-        "outputs": [
-            {
-                "internalType": "address[]",
-                "name": "",
-                "type": "address[]"
-            },
-            {
-                "internalType": "uint8[]",
-                "name": "",
-                "type": "uint8[]"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
         "inputs": [],
-        "name": "owner",
+        "name": "getWhitelistManager",
         "outputs": [
             {
                 "internalType": "address",
@@ -499,14 +432,8 @@ export const _landReserverAbi = [
         "type": "function"
     },
     {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "paymentTokensAddresses",
+        "inputs": [],
+        "name": "owner",
         "outputs": [
             {
                 "internalType": "address",
@@ -563,25 +490,12 @@ export const _landReserverAbi = [
     {
         "inputs": [
             {
-                "internalType": "uint256[3]",
-                "name": "newAppliedWhitelists",
-                "type": "uint256[3]"
+                "internalType": "uint256[6]",
+                "name": "newDiscountPercentages",
+                "type": "uint256[6]"
             }
         ],
-        "name": "setAppliedWhitelists",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "newDiscountPercentage",
-                "type": "uint256"
-            }
-        ],
-        "name": "setDiscountPercentage",
+        "name": "setDiscountPercentages",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -590,11 +504,11 @@ export const _landReserverAbi = [
         "inputs": [
             {
                 "internalType": "uint256[6]",
-                "name": "newParcelPricesInMatic",
+                "name": "newParcelPricesInUSD",
                 "type": "uint256[6]"
             }
         ],
-        "name": "setParcelPricesInMatic",
+        "name": "setParcelPricesInUSD",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -608,6 +522,24 @@ export const _landReserverAbi = [
             }
         ],
         "name": "setPassSourceWallet",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "enum LandReserver.PaymentToken",
+                "name": "paymentToken",
+                "type": "uint8"
+            },
+            {
+                "internalType": "bool",
+                "name": "enabled",
+                "type": "bool"
+            }
+        ],
+        "name": "setPaymentTokenStatus",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -641,9 +573,9 @@ export const _landReserverAbi = [
     {
         "inputs": [
             {
-                "internalType": "uint256[13]",
+                "internalType": "uint256[12]",
                 "name": "newPriceConversionFactors",
-                "type": "uint256[13]"
+                "type": "uint256[12]"
             }
         ],
         "name": "setPriceConversionFactors",
@@ -686,11 +618,11 @@ export const _landReserverAbi = [
         "inputs": [
             {
                 "internalType": "address",
-                "name": "newOwner",
+                "name": "whitelistManagerAddress",
                 "type": "address"
             }
         ],
-        "name": "transferOwnership",
+        "name": "setWhitelistManager",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -698,22 +630,12 @@ export const _landReserverAbi = [
     {
         "inputs": [
             {
-                "internalType": "uint256",
-                "name": "whitelistId",
-                "type": "uint256"
-            },
-            {
-                "internalType": "address[]",
-                "name": "buyerAddresses",
-                "type": "address[]"
-            },
-            {
-                "internalType": "uint8",
-                "name": "whitelistStatus",
-                "type": "uint8"
+                "internalType": "address",
+                "name": "newOwner",
+                "type": "address"
             }
         ],
-        "name": "updateWhitelistAddresses",
+        "name": "transferOwnership",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -733,7 +655,7 @@ export const _landReserverAbi = [
     },
     {
         "inputs": [],
-        "name": "withdrawMatic",
+        "name": "withdrawNativeToken",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"

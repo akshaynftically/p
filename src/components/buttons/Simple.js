@@ -5,6 +5,7 @@ import clsx from 'clsx'
 const Simple = (props) => {
   // size: sm | md | lg
   // variant: primary | secondary | danger | warning
+  
   const {
     size = 'md',
     variant = 'primary',
@@ -14,13 +15,15 @@ const Simple = (props) => {
     type,
     children,
     disabled,
+    onClick,
     ...rest
   } = props
+
 
   return (
     <Fragment>
       {href && (
-        <Link
+        <a
           className={clsx(
             'group items-center justify-center font-semibold font-sans rounded-[4px] transition ease-in-out',
             {'inline-flex': !block},
@@ -31,17 +34,17 @@ const Simple = (props) => {
                 size === 'md',
             },
             {'': size === 'lg'},
-            {'text-white bg-[#3F99FF] hover:bg-[#7A3FE4]': variant === 'primary'},
+            {'text-white bg-[#3F99FF] hover:shadow-[0px_4px_10px_rgba(0,0,0,0.4)]': variant === 'primary'},
             {'': variant === 'secondary'},
             {'': variant === 'danger'},
             {'text-white bg-[#FF5A26] hover:bg-[#FF6B3D]': variant === 'warning'},
             className
           )}
-          to={href}
+          href={href}
           {...rest}
         >
           {children}
-        </Link>
+        </a>
       )}
       {type && (
         <button
@@ -57,7 +60,7 @@ const Simple = (props) => {
             },
             {'': size === 'lg'},
             {'text-white bg-[#3F99FF]': variant === 'primary'},
-            {'hover:bg-[#7A3FE4]': !disabled},
+            {'hover:shadow-[0px_4px_10px_rgba(0,0,0,0.4)]': !disabled},
             {'': variant === 'secondary'},
             {'': variant === 'danger'},
             {'text-white bg-[#FF5A26] hover:bg-[#FF6B3D]': variant === 'warning'},
@@ -65,6 +68,7 @@ const Simple = (props) => {
           )}
           disabled={disabled}
           type={type}
+          onClick={onClick}
           {...rest}
         >
           {children}

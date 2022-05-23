@@ -6,25 +6,25 @@ import {Field, FieldGroup} from "../form";
 import {SimpleButton} from "../buttons";
 
 const Basket = (props) => {
-  const {items, discountCode, setDiscountCode} = props
+  const {items, discountCode, setDiscountCode,discountPercentage} = props
   const [discount, setDiscount] = useState(false)
-  const [_discountCode, _setDiscountCode] = useState('')
 
-
-  const getTotal = () => {
-    let total = items.reduce((sum, cur) => {
-      return sum += cur.perItemPrice * cur.qty
+  const totalDiscount = () => {
+    let total = items.reduce((sum, cur, i) => {
+      return sum += cur.perItemPrice * cur.qty * (discountPercentage[5-i]/100000 )
     }, 0)
-
-    return total
+    return (
+      <>
+        {total}
+      </>
+    )
   }
 
   const total = () => {
-    let total = getTotal()
-
-    if (discount) {
-      total = total - ((total * 10) / 100)
-    }
+    let total = items.reduce((sum, cur, i) => {
+      return sum += cur.perItemPrice * cur.qty * ( (100000 - discountPercentage[5-i])/100000 )
+    }, 0)
+    // total = total - ((total * discountPercentage) / 100)
 
     return (
         <>
@@ -34,23 +34,14 @@ const Basket = (props) => {
   }
 
   const discountRender = () => {
-    const addCode = () => {
-      if (_discountCode) {
-        setDiscount(true)
-        setDiscountCode(_discountCode)
-      }
-    }
-
-    const removeCode = () => {
-      setDiscountCode('')
-      _setDiscountCode('')
-      setDiscount(false)
-    }
-
     return (
+      <>
+      {
+
+
         !discount
             ? <>
-              <FieldGroup className='mb-[24px]' label='Have a Promo Code?'>
+              {/* <FieldGroup className='mb-[24px]' label='Have a Promo Code?'>
                 <div className="relative">
                   <Field value={_discountCode} onChange={e => _setDiscountCode(e.target.value)} className='pr-[210px]' placeholder='Enter Your Promo Code Here' />
                   <SimpleButton
@@ -62,10 +53,12 @@ const Basket = (props) => {
                     Apply Code Now
                   </SimpleButton>
                 </div>
-              </FieldGroup>
+              </FieldGroup> */}
             </>
-        : <>
-            <div className='text-[14px] text-white/80 mb-[10px]'>Promo Code</div>
+        : null
+      }
+       <>
+            {/* <div className='text-[14px] text-white/80 mb-[10px]'>Promo Code</div>
             <div className="flex items-center justify-between mb-[26px]">
               <span className='text-white/80 text-[16px] uppercase'>{discountCode}</span>
               <button type='button' className='flex items-center text-[16px] text-[#3F99FF] font-bold'>
@@ -74,7 +67,7 @@ const Basket = (props) => {
                   <path d="M5 2V0H15V2H20V4H18V19C18 19.2652 17.8946 19.5196 17.7071 19.7071C17.5196 19.8946 17.2652 20 17 20H3C2.73478 20 2.48043 19.8946 2.29289 19.7071C2.10536 19.5196 2 19.2652 2 19V4H0V2H5ZM4 4V18H16V4H4ZM7 7H9V15H7V7ZM11 7H13V15H11V7Z" fill="#3F99FF"/>
                 </svg>
               </button>
-            </div>
+            </div> */}
 
           <div className="flex items-center justify-between border-b border-[#363738] pb-[8px] mb-[24px]">
            <span className='text-white/80 text-[16px]'>Discount</span>
@@ -93,16 +86,13 @@ const Basket = (props) => {
                />
              </svg>
 
-             - {(getTotal() * 10) / 100}
+             - {totalDiscount()}
            </div>
           </div>
           </>
+      </>
     )
   }
-
-  useEffect(() => {
-      setDiscount(discountCode.length)
-  }, [discountCode])
 
   return (
     <Fragment>

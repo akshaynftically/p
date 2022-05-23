@@ -1,8 +1,7 @@
 import { _landReserverAbi } from 'constants/landReserverAbi';
 import { _erc20Abi } from 'constants/erc20Abi';
-import { getWallet } from 'app/WalletSlice';
 
-import {Fragment, useEffect, useState, useMemo} from 'react'
+import {Fragment, useEffect, useState, useMemo, useContext} from 'react'
 import { ethers } from "ethers";
 import {components} from 'react-select'
 
@@ -19,17 +18,23 @@ import Faqs from './sections/Faqs'
 import LandUnits from './sections/LandUnits'
 
 // Toasts
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer} from 'react-toastify'
 
 // Modals
-import ConnectYourWallet from 'modals/ConnectYourWallet'
 import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet'
 import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
 import {Controller, useForm} from 'react-hook-form'
-import { landPrices } from './landPrices';
+import { getDiscountPercentage, getTotalParcelPrice, landPrices } from './landPrices';
 import countryList from 'react-select-country-list'
+import AppContext from 'components/AppContext';
+import { getChainData } from 'lib/appHelpers';
+import globalErrorNotifier from 'lib/globalNotifier';
+import AccountModal from 'modals/AccountModal';
+import { getUser,login } from 'app/UserSlice';
+import axios from 'lib/axiosHelper'
+
 
 const _tokenIcons = {
   'token_logo0': require('assets/img/tokens/token_logo0.png'),
@@ -126,11 +131,11 @@ const countrySelectOption = (props) => {
 const ReserveLand = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const appGlobals = useContext(AppContext)
   const { register, control, setValue, getValues, handleSubmit, formState: { errors } } = useForm({
     mode: 'onChange'
   })
   const transactionForm = useSelector(getTransactionForm)
-  const userWallet = useSelector(getWallet)
   const [basket, setBasket] = useState([
     {
       id: '1000',
@@ -174,13 +179,33 @@ const ReserveLand = () => {
   const [selectIndustry, setSelectIndustry] = useState(_selectIndustryOptions[0])
   const [selectCountry, setSelectCountry] = useState(null)
   const [selectToken, setSelectToken] = useState(_selectTokenOptions[0])
+  const [discountPercentage, setDiscountPercentage] = useState(0)
   const [areYouRepresenting, setAreYouRepresenting] = useState('individual')
-  const [isOpenedConnectYourWallet, setIsOpenedConnectYourWallet] = useState(false)
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
-  const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
+  const userInfo = useSelector(getUser)
+
+  const[txModalProps,setTxModalProps]= useState({
+    title:'',
+    mainHeading:'Please confirm the transaction with your wallet and then wait for the transaction to complete. ',
+    content:'To allow COMEARTH to reserve virtual land units for you in your currently connected wallet, you must authorize this transaction in your wallet. Please keep this tab open while we wait for the blockchain to confirm your action. This only needs to be done once per order.',
+    loading:true,
+    learn:'',
+    view:''
+  })
+  const [accountModalProps,setAccountModalProps] = useState({
+    openAccountModal:false,
+    address:'',
+    balance:'',
+  })
+  const handleAccountModalClose = () => {
+    setAccountModalProps({
+      openAccountModal:false,
+      address:'',
+      balance:'',
+    })
+  }
 
   useEffect(() => {
-    notify()
     if (transactionForm) {
       setValue('name', transactionForm.name)
       setValue('email', transactionForm.email)
@@ -211,12 +236,14 @@ const ReserveLand = () => {
   useEffect(() => {
     // currently load just once due to overwhelming console logs
     landPrices(selectToken,true).then((prices) => {
-      console.log(prices);
       setBasket((basket) => basket.map((elem, i) => ({
           ...elem,
           perItemPrice: prices[5-i]
         })))
     });
+    getDiscountPercentage().then((dis) => {
+      setDiscountPercentage(dis)
+    })
   }, [setValue, transactionForm])
 
   // commenting for now too much console logs
@@ -235,6 +262,10 @@ const ReserveLand = () => {
     return total
   }
 
+  const showTransactionModal = (obj) => {
+    setTxModalProps(obj)
+    setIsOpenedProgressWallet(true)
+  }
 
   // Handlers
 
@@ -251,71 +282,100 @@ const ReserveLand = () => {
   const handleChangeAreYouRepresenting = (val) => {
     setAreYouRepresenting(val)
   }
-  const handleToggleConnectYourWallet = () => {
-    setIsOpenedConnectYourWallet(!isOpenedConnectYourWallet)
-  }
   const handleProgressWallet = () => {
     setIsOpenedProgressWallet(!isOpenedProgressWallet)
   }
   const startTransactionFlow = async (provider) => {
-    setIsOpenedConnectYourWallet(false)
-    setIsOpenedProgressWallet(true)
-
+    
     let transaction;
     let receipt;
     let tNumber = 0;
+    let err;
     
+    // create user if not exits
+    // create user and order here
+    if(!userInfo){
+      try{
+        let resp = await axios.post('v1/users',{
+          name: transactionForm.name,
+          email: transactionForm.email,
+          country: transactionForm.country,
+          industry: transactionForm.industry.value,
+          country_code: transactionForm.country.value,
+        })
+        dispatch(login(resp.data))
+      }catch(error){
+        console.log(error)
+      }
+    }
+
     const signer = provider.getSigner()
-    const account = userWallet;
+    const account = (await provider.send("eth_accounts",[]))[0];
+    const networkConfig = await getChainData(provider)
     let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider);
     let signedContract = contract.connect(signer);
     let parcelQuantities = [...basket].reverse().map((el) => {
       return el.qty
     })
     // check for approval erc20
+    let totalPrice = await getTotalParcelPrice(basket,selectToken)
     if(selectToken.id !== 0){
       let erc20 = new ethers.Contract(selectToken.contract_address,_erc20Abi,provider);
+      console.log(erc20)
       let allowedAmt = await erc20.allowance(account, process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS);
-      if(!allowedAmt.gt(0)){
-          // ask to approve and procees further
-          setProgressModalTitle("Please approve for "+selectToken.label+" token")
-          let erc20Signed = erc20.connect(signer);
-          transaction = await erc20Signed.approve(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,'0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff');
-          // wait for transaction modal erc20
-          receipt = await transaction.wait();
+      // check for balance if balance is low then return low balance modal with balance
+      let balance = await erc20.balanceOf(account)
+      if(balance.lt(totalPrice)){
+        // initialize low balance modal
+        setAccountModalProps({openAccountModal:true,address:account,balance:balance.toNumber(),showLowBalance:true,tokenIcon : _tokenIcons[selectToken.logo]})
+        err = {scope:'comearth',message:'Your balance for '+selectToken.label+' less then total price'}
+        throw err
       }
+      if(!allowedAmt.gt(0)){
+        showTransactionModal({loading: false,mainHeading: 'Please confirm the transaction with your wallet and then wait for the transaction to complete',title:selectToken.label+" approval", content : "To unlock "+ selectToken.label+" to be used as payment token at COMEARTH, you must complete a free (plus gas) transaction. This needs to be done once only"})
+        // ask to approve and procees further
+        let erc20Signed = erc20.connect(signer);
+        transaction = await erc20Signed.approve(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,'0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff');
+        // wait for transaction modal erc20
+        showTransactionModal({content: '',learn: '',title:"Please wait",loading:true,mainHeading: "Please wait while we are confirming your transaction on the "+ networkConfig.name +" Blockchain",view: networkConfig.explorar+'tx/'+transaction.hash})
+        receipt = await transaction.wait();
+      }
+      totalPrice = 0
     }
 
     // initiate transaction modal
-    transaction = await signedContract.reserveLand(parcelQuantities,selectToken.contract_address,tNumber)
+    showTransactionModal({
+      title:'Reserve your Land',
+      mainHeading:'Please confirm the transaction with your wallet and then wait for the transaction to complete. ',
+      content:'To allow COMEARTH to reserve virtual land units for you in your currently connected wallet, you must authorize this transaction in your wallet. Please keep this tab open while we wait for the blockchain to confirm your action. This only needs to be done once per order.',
+      loading:false,
+      learn:'',
+      view:''
+    })
+    transaction = await signedContract.reserveLand(parcelQuantities,selectToken.id,tNumber,{value:totalPrice})
     // wait for transaction modal
+    showTransactionModal({content: '',learn: '',title:"Please wait",loading:true,mainHeading: "Please wait while we are confirming your transaction on the "+ networkConfig.name +" Blockchain",view: networkConfig.explorar+'tx/'+transaction.hash})
     receipt  = await transaction.wait()
     return receipt;
   }
   const onSubmit = (data) => {
     dispatch(setTransactionForm({...data, basket, discountCode}))
-    setIsOpenedConnectYourWallet(true)
+    let walletProvider  = appGlobals.getWalletProviderConfirmed()
+    walletProvider.then((provider) => {
+      let process = startTransactionFlow(provider)
+      process.then((tx) => {
+        navigate('/success')
+      }).catch((err) => {
+        setIsOpenedProgressWallet(false)
+        globalErrorNotifier(err)
+        // navigate('/faild')
+      })
+    })
   }
-
-
-  const notify = () => toast('Please wait while we redirect you to the payment page!', {
-    icon: () => <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M11.5145 0.0828645L16.2504 4.81786V11.5145L11.5145 16.2504H4.81786L0.0820312 11.5145V4.81786L4.81786 0.0820312H11.5145V0.0828645ZM7.1662 10.4995V12.1662H8.83286V10.4995H7.1662ZM7.1662 3.83286V8.83286H8.83286V3.83286H7.1662Z" fill="white" fillOpacity="0.8"/>
-</svg>
-,
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: 'dark'
-  });
 
   return (
     <Fragment>
-      <div className="sm:max-w-[90rem] 2xl:max-w-[105rem] sm:items-end w-full mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="sm:items-end w-full mx-auto px-4 sm:px-6 px-[20px] lg:px-[80px]">
         <div className='py-[120px] text-white'>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className='lg:grid md:grid-cols-2 md:gap-x-[7.5rem]'>
@@ -451,9 +511,10 @@ const ReserveLand = () => {
                     <LandUnits basket={basket} setBasket={setBasket} />
                   </FieldGroup>
 
-                  <BasketList items={basket} setBasket={setBasket} discountCode={discountCode} setDiscountCode={setDiscountCode} />
+                  <BasketList items={basket} setBasket={setBasket} discountCode={discountCode} discountPercentage={discountPercentage} setDiscountCode={setDiscountCode} />
                 </div>
-                <SimpleButton type='submit' className='mb-[27px]' block disabled={!getTotal()}>
+               
+                <SimpleButton type='submit' className='mb-[27px]' block disabled={!getTotal() || !appGlobals.isWrongNetwork}>
                   Buy Virtual Land
                 </SimpleButton>
 
@@ -474,8 +535,10 @@ const ReserveLand = () => {
         </div>
       </div>
 
-      {isOpenedConnectYourWallet && <ConnectYourWallet onClose={handleToggleConnectYourWallet} startTransactionFlow={startTransactionFlow} />}
-      {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} title={progressModalTitle} />}
+      {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} 
+      {...txModalProps}
+      />}
+      {accountModalProps.openAccountModal && <AccountModal {...accountModalProps} onClose={handleAccountModalClose}></AccountModal>}
     </Fragment>
   )
 }

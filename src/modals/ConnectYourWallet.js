@@ -1,99 +1,20 @@
 import {Link} from 'react-router-dom'
-import CoinbaseWalletSDK from '@coinbase/wallet-sdk'
-import logo from 'assets/img/logo.svg'
 // Components
 import {WalletListItem} from 'components/lists'
 import {FullScreenPopup} from 'components/popups'
 
 // Mockups
-import _tokenIcon1 from 'assets/icons/metamask.svg'
-import _tokenIcon2 from 'assets/icons/wallet-connect.svg'
-import _tokenIcon3 from 'assets/icons/coinbase.svg'
-import _tokenIcon4 from 'assets/icons/fortmatic.svg'
-import { ethers } from 'ethers';
-import Fortmatic from 'fortmatic'
-import {getWallet,setWallet} from 'app/WalletSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import WalletConnectProvider from '@walletconnect/web3-provider'
+import { _walletIcons } from 'constants/walletIcons'
+import { getWalletProvider } from 'lib/walletProviders'
 
-const _tokens = [
-  {
-    id: '1001',
-    title: 'MetaMask',
-    icon: _tokenIcon1,
-  },
-  {
-    id: '1002',
-    title: 'WalletConnect',
-    icon: _tokenIcon2,
-  },
-  {
-    id: '1003',
-    title: 'Coinbase Wallet',
-    icon: _tokenIcon3,
-  },
-  {
-    id: '1004',
-    title: 'Fortmatic',
-    icon: _tokenIcon4,
-  },
-]
 
 const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
 
-  const userWallet = useSelector(getWallet)
-  const dispatch = useDispatch()
   //handler for logging into wallet and handle transactions
   const handleWalletConnect = async(walletTitle) => {
-    let walletWeb3;
-    if(walletTitle === "MetaMask") {
-      // if wallet is metamask pluck only metamask provider
-      if(typeof window.ethereum.providers != "undefined"){
-        walletWeb3 = window.ethereum.providers.find((provider) => provider.isMetaMask);
-      }else{
-        walletWeb3 = window.ethereum;
-      }
-      if(walletWeb3) {
-        let accounts =  await walletWeb3.request({method: "eth_requestAccounts"})
-        // here we get accounts['address'] 
-      }
-    }
-    if(walletTitle === "Fortmatic") {
-      let fm = new Fortmatic(process.env.REACT_APP_FORTMATIC_API_KEY,{
-        rpcUrl: process.env.REACT_APP_POLYGON_RPC_PROVIDER,
-        chainId: process.env.REACT_CHAIN_ID
-      })
-      if(userWallet === null){
-        let accounts = await fm.user.login();
-        dispatch(setWallet(accounts[0]))
-      }
-      console.log(userWallet)
-      walletWeb3 = fm.getProvider();
-    }
-    if(walletTitle === "Coinbase Wallet"){
-      let coinbaseWallet = new CoinbaseWalletSDK({
-        appName: 'COMEARTH',
-        appLogoUrl: logo,
-        darkMode: false
-      })
-      walletWeb3 = coinbaseWallet.makeWeb3Provider(process.env.REACT_APP_POLYGON_RPC_PROVIDER,process.env.REACT_CHAIN_ID)
-      if(userWallet === null){
-        let accounts = await walletWeb3.enable();
-        dispatch(setWallet(accounts[0]))
-      }
-    }
-    if(walletTitle === "WalletConnect"){
-      let rpcObject = process.env.REACT_CHAIN_ID === 80001 ? {80001 : process.env.REACT_APP_POLYGON_RPC_PROVIDER} : {137 : process.env.REACT_APP_POLYGON_RPC_PROVIDER}
-      let walletWeb3 = new WalletConnectProvider({
-        rpc : rpcObject
-      })
-      if(userWallet === null){
-        let accounts = await walletWeb3.enable();
-        dispatch(setWallet(accounts[0]))
-      }
-    }
-    let provider = new ethers.providers.Web3Provider(walletWeb3);
-    startTransactionFlow(provider)
+    let provider = await getWalletProvider(walletTitle)
+    let connected = new CustomEvent('wallet:connected',{detail : { provider : provider}})
+    document.dispatchEvent(connected);
   }
 
   return (
@@ -112,7 +33,7 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
 
       <div className='bg-[#363738] rounded-lg mb-[18px]'>
         <div>
-          {_tokens.map((el) => (
+          {_walletIcons.map((el) => (
             <WalletListItem key={el.id} {...el} onClick={handleWalletConnect} />
           ))}
         </div>
