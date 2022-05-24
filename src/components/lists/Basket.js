@@ -10,14 +10,13 @@ const Basket = (props) => {
   const [discount, setDiscount] = useState(false)
 
   const totalDiscount = () => {
+
     let total = items.reduce((sum, cur, i) => {
       return sum += cur.perItemPrice * cur.qty * (discountPercentage[5-i]/100000 )
     }, 0)
-    return (
-      <>
-        {total}
-      </>
-    )
+
+
+    return total
   }
 
   const total = () => {
@@ -26,11 +25,7 @@ const Basket = (props) => {
     }, 0)
     // total = total - ((total * discountPercentage) / 100)
 
-    return (
-        <>
-          {total}
-        </>
-    )
+    return total
   }
 
   const discountRender = () => {
@@ -69,7 +64,9 @@ const Basket = (props) => {
               </button>
             </div> */}
 
-          <div className="flex items-center justify-between border-b border-[#363738] pb-[8px] mb-[24px]">
+    {
+      totalDiscount() != 0 && <>
+ <div className="flex items-center justify-between border-b border-[#363738] pb-[8px] mb-[24px]">
            <span className='text-white/80 text-[16px]'>Discount</span>
            <div  className='flex items-center'>
              <svg
@@ -86,9 +83,11 @@ const Basket = (props) => {
                />
              </svg>
 
-             - {totalDiscount()}
+             {totalDiscount()} %
            </div>
           </div>
+      </> 
+    }     
           </>
       </>
     )
