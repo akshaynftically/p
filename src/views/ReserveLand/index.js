@@ -272,7 +272,6 @@ const ReserveLand = () => {
   const handleTokenChange = (token) => {
     setSelectToken(token);
     landPrices(token,true).then((prices) => {
-      console.log(prices);
       setBasket((basket) => basket.map((elem, i) => ({
           ...elem,
           perItemPrice: prices[5-i]
@@ -290,7 +289,7 @@ const ReserveLand = () => {
     let transaction;
     let receipt;
     let tNumber = 0;
-    let err;
+    let err
     
     // create user if not exits
     // create user and order here
@@ -328,7 +327,7 @@ const ReserveLand = () => {
       if(balance.lt(totalPrice)){
         // initialize low balance modal
         setAccountModalProps({openAccountModal:true,address:account,balance:balance.toNumber(),showLowBalance:true,tokenIcon : _tokenIcons[selectToken.logo]})
-        err = {scope:'comearth',message:'Your balance for '+selectToken.label+' less then total price'}
+        err = {scope: 'comearth', message: 'Low erc20 balance'}
         throw err
       }
       if(!allowedAmt.gt(0)){
@@ -367,8 +366,9 @@ const ReserveLand = () => {
         navigate('/success')
       }).catch((err) => {
         setIsOpenedProgressWallet(false)
-        globalErrorNotifier(err)
-        // navigate('/faild')
+        if(globalErrorNotifier(err) === false){
+          navigate('/failed')
+        }
       })
     })
   }

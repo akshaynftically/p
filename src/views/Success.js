@@ -3,7 +3,7 @@ import {clearTransactionForm, getTransactionForm} from "../app/TransactionFormSl
 import {Fragment, useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom"
 
-const Faild = () => {
+const Failed = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const transactionForm = useSelector(getTransactionForm)
@@ -217,4 +217,4 @@ const Faild = () => {
     )
 }
 
-export default Faild
+export default Failed
