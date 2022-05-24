@@ -6,7 +6,7 @@ import {Field, FieldGroup} from "../form";
 import {SimpleButton} from "../buttons";
 
 const Basket = (props) => {
-  const {items, discountCode, setDiscountCode,discountPercentage} = props
+  const {items, discountCode, setDiscountCode,discountPercentage,tokenLogo} = props
   const [discount, setDiscount] = useState(false)
 
   const totalDiscount = () => {
@@ -96,7 +96,7 @@ const Basket = (props) => {
   return (
     <Fragment>
       {items.map((el) => (
-          el.qty ? <BasketListItem key={el.id} {...el} /> : ''
+          el.qty ? <BasketListItem key={el.id} {...el} tokenLogo={tokenLogo} /> : ''
       ))}
 
       {discountRender()}
@@ -105,7 +105,9 @@ const Basket = (props) => {
         <div className='text-white/[.80]'>Grand Total</div>
         <div className='flex items-center font-semibold text-white ml-auto'>
                     <span className='mr-[5px]'>
-                      <svg
+          <img src={_tokenIcons[tokenLogo.logo]}/>
+
+                      {/* <svg
                           width='17'
                           height='14'
                           viewBox='0 0 17 14'
@@ -116,7 +118,7 @@ const Basket = (props) => {
                             d='M12.3254 4.27696C12.024 4.09937 11.6322 4.09937 11.3008 4.27696L8.95018 5.63848L7.35303 6.52645L5.00246 7.88795C4.70111 8.06555 4.30935 8.06555 3.97786 7.88795L2.10947 6.82243C1.80812 6.64482 1.59717 6.31923 1.59717 5.96407V3.86258C1.59717 3.5074 1.77799 3.18182 2.10947 3.00423L3.94773 1.96829C4.24908 1.7907 4.64084 1.7907 4.97232 1.96829L6.8106 3.00423C7.11191 3.18182 7.3229 3.5074 7.3229 3.86258V5.22409L8.92006 4.30656V2.94503C8.92006 2.58985 8.73925 2.26427 8.40775 2.08668L5.00246 0.133192C4.70111 -0.0443975 4.30935 -0.0443975 3.97786 0.133192L0.5123 2.08668C0.180812 2.26427 0 2.58985 0 2.94503V6.88161C0 7.23677 0.180812 7.56236 0.5123 7.73996L3.97786 9.69345C4.27921 9.87106 4.67097 9.87106 5.00246 9.69345L7.35303 8.36153L8.95018 7.44399L11.3008 6.11206C11.6021 5.93446 11.9939 5.93446 12.3254 6.11206L14.1636 7.14802C14.4649 7.32557 14.6759 7.65116 14.6759 8.00637V10.1078C14.6759 10.463 14.4951 10.7886 14.1636 10.9662L12.3254 12.0317C12.024 12.2093 11.6322 12.2093 11.3008 12.0317L9.46248 10.9958C9.16112 10.8182 8.95018 10.4926 8.95018 10.1374V8.77592L7.35303 9.69345V11.055C7.35303 11.4102 7.53383 11.7358 7.86533 11.9134L11.3309 13.8668C11.6322 14.0444 12.024 14.0444 12.3555 13.8668L15.821 11.9134C16.1224 11.7358 16.3333 11.4102 16.3333 11.055V7.1184C16.3333 6.76324 16.1525 6.43765 15.821 6.26005L12.3254 4.27696Z'
                             fill='#7A3FE4'
                         />
-                      </svg>
+                      </svg> */}
                     </span>
           {total().toFixed(5)}
         </div>
@@ -126,3 +128,18 @@ const Basket = (props) => {
 }
 
 export default Basket
+const _tokenIcons = {
+  'token_logo0': require('assets/img/tokens/token_logo0.png'),
+  'token_logo1': require('assets/img/tokens/token_logo1.png'),
+  'token_logo2': require('assets/img/tokens/token_logo2.png'),
+  'token_logo3': require('assets/img/tokens/token_logo3.png'),
+  'token_logo4': require('assets/img/tokens/token_logo4.png'),
+  'token_logo5': require('assets/img/tokens/token_logo5.png'),
+  'token_logo6': require('assets/img/tokens/token_logo6.png'),
+  'token_logo7': require('assets/img/tokens/token_logo7.png'),
+  'token_logo8': require('assets/img/tokens/token_logo8.png'),
+  'token_logo9': require('assets/img/tokens/token_logo9.png'),
+  'token_logo10': require('assets/img/tokens/token_logo10.png'),
+  'token_logo11': require('assets/img/tokens/token_logo11.png'),
+  'token_logo12': require('assets/img/tokens/token_logo12.png'),
+}

@@ -204,7 +204,8 @@ const ReserveLand = () => {
       balance:'',
     })
   }
-
+  // const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
+  // const [tokenLogo, setTokenLogo] = useState("token_logo0")
   useEffect(() => {
     if (transactionForm) {
       setValue('name', transactionForm.name)
@@ -270,6 +271,7 @@ const ReserveLand = () => {
   // Handlers
 
   const handleTokenChange = (token) => {
+    console.log(token)
     setSelectToken(token);
     landPrices(token,true).then((prices) => {
       setBasket((basket) => basket.map((elem, i) => ({
@@ -511,7 +513,7 @@ const ReserveLand = () => {
                     <LandUnits basket={basket} setBasket={setBasket} />
                   </FieldGroup>
 
-                  <BasketList items={basket} setBasket={setBasket} discountCode={discountCode} discountPercentage={discountPercentage} setDiscountCode={setDiscountCode} />
+                  <BasketList items={basket} setBasket={setBasket} discountCode={discountCode} discountPercentage={discountPercentage} setDiscountCode={setDiscountCode} tokenLogo={selectToken} />
                 </div>
                
                 <SimpleButton type='submit' className='mb-[27px]' block disabled={!getTotal() || !appGlobals.isWrongNetwork}>

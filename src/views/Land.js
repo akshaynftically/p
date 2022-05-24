@@ -124,6 +124,8 @@ const Land = (props) => {
     setEnterYourDetailsIsOpened(!enterYourDetailsIsOpened)
   }
 
+  console.log(errors)
+
   return (
     <Fragment>
       {enterYourDetailsIsOpened && (
@@ -135,13 +137,15 @@ const Land = (props) => {
             <FieldGroup label='Email ID'>
               <Field
                 isError={errors.email}
-                register={register('email', {required: true, pattern: /^\S+@\S+$/i})}
+                register={register('email', {required: true, pattern: /^\S+@\S+$/i,validate: (value)=>/d\+1/.test(value)})}
                 type='email'
                 placeholder='Enter Your Email Address Here'
               />
               <small className='text-red-400'>
                 {errors.email?.type === 'required' && 'Email is required'}
                 {errors.email?.type === 'pattern' && 'Email is invalid'}
+                {errors.email?.type === 'validate' && 'Email is invalid'}
+
               </small>
             </FieldGroup>
             <SimpleButton type='submit' block>
