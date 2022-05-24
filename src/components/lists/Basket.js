@@ -65,7 +65,7 @@ const Basket = (props) => {
             </div> */}
 
     {
-      totalDiscount() != 0 && <>
+      discountPercentage[0] != 0 && <>
  <div className="flex items-center justify-between border-b border-[#363738] pb-[8px] mb-[24px]">
            <span className='text-white/80 text-[16px]'>Discount</span>
            <div  className='flex items-center'>
@@ -83,7 +83,7 @@ const Basket = (props) => {
                />
              </svg> */}
 
-             {totalDiscount().toFixed(2)} %
+             {(discountPercentage[0]/1000).toFixed(2)} %
            </div>
           </div>
       </> 
