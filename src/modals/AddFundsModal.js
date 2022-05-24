@@ -2,11 +2,11 @@ import {useState} from 'react'
 import { FullScreenPopup } from 'components/popups'
 import {SimpleButton} from 'components/buttons'
 import TabsNav from 'components/tabs/TabsNav'
-import IframeAddFounds from 'components/wallet/IframeAddFounds'
+import IframeAddFunds from 'components/wallet/IframeAddFunds'
 import CopyToClipboard from 'components/clipboard/CopyToClipboard'
 
-const AddFoundsModal = (props) => {
-    const {openAddFoundsModal, back, address, onClose} = props
+const AddFundsModal = (props) => {
+    const {openAddFundsModal, back, address, onClose} = props
     const [activeTab, setActiveTab] = useState(0)
 
     const tabs = [
@@ -31,7 +31,7 @@ const AddFoundsModal = (props) => {
 
     return (
         <>
-            {openAddFoundsModal && (
+            {openAddFundsModal && (
                 <FullScreenPopup fullscreen={true} size='w-full md:w-[640px]' title='Add Funds' className='min-h-[100vh] md:min-h-full' onClose={onClose} onBack={handleBack}>
                     <TabsNav tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
 
@@ -60,7 +60,7 @@ const AddFoundsModal = (props) => {
                            </div>
                        </div>
                     ) : (
-                        <IframeAddFounds />
+                        <IframeAddFunds />
                     )}
                 </FullScreenPopup>
             )}
@@ -68,4 +68,4 @@ const AddFoundsModal = (props) => {
     )
 }
 
-export default AddFoundsModal
+export default AddFundsModal

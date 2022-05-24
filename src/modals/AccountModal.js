@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { FullScreenPopup } from 'components/popups'
 import { SimpleButton } from 'components/buttons'
 import { Link } from 'react-router-dom'
-import AddFoundsModal from './AddFoundsModal'
+import AddFundsModal from './AddFundsModal'
 import CopyToClipboard from 'components/clipboard/CopyToClipboard'
 import { useDispatch, useSelector } from 'react-redux'
 import { getWallet, removeWallet } from 'app/WalletSlice'
@@ -11,17 +11,17 @@ import { _walletIcons } from 'constants/walletIcons'
 
 const AccountModal = (props) => {
     const {openAccountModal, address,addressExplorar, balance,showLowBalance ,tokenIcon , onClose} = props
-    const [openAddFoundsModal, setOpenAddFoundsModal] = useState(false)
+    const [openAddFundsModal, setOpenAddFundsModal] = useState(false)
     const userWallet = useSelector(getWallet)
     const appGlobals = useContext(AppContext)
     const walletInfo = (_walletIcons.filter(((el) =>{return el.title === userWallet.wallet})))[0]
     const dispatch = useDispatch()
-    const handleBackAddFoundsModal = () => {
-        setOpenAddFoundsModal(false)
+    const handleBackAddFundsModal = () => {
+        setOpenAddFundsModal(false)
     }
 
-    const handleCloseAddFoundsModal = () => {
-        setOpenAddFoundsModal(false)
+    const handleCloseAddFundsModal = () => {
+        setOpenAddFundsModal(false)
         onClose()
     }
 
@@ -36,7 +36,7 @@ const AccountModal = (props) => {
 
     return (
         <>
-            {(openAccountModal && !openAddFoundsModal) && (
+            {(openAccountModal && !openAddFundsModal) && (
                 <FullScreenPopup fullscreen={true} size='w-full md:w-[640px]' title='Account' className='min-h-[100vh] md:min-h-full' onClose={onClose}>
                     {showLowBalance && (
                         <div className='my-[20px]'>
@@ -70,7 +70,7 @@ const AccountModal = (props) => {
                                 <span className='text-[14px] text-white mr-[17px]'>Polygon (Mainnet)</span>
                             </div>
                             <div className='col-span-2 md:col-span-1'>
-                                <SimpleButton type='button' size='sm' className='block w-full' onClick={() => setOpenAddFoundsModal(true)}>Add Founds</SimpleButton>
+                                <SimpleButton type='button' size='sm' className='block w-full' onClick={() => setOpenAddFundsModal(true)}>Add Funds</SimpleButton>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@ const AccountModal = (props) => {
                 </FullScreenPopup>
             )}
 
-            <AddFoundsModal openAddFoundsModal={openAddFoundsModal} back={handleBackAddFoundsModal} address={address} onClose={handleCloseAddFoundsModal} />
+            <AddFundsModal openAddFundsModal={openAddFundsModal} back={handleBackAddFundsModal} address={address} onClose={handleCloseAddFundsModal} />
         </>
     )
 }
