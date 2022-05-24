@@ -1,4 +1,4 @@
-import { _chainVars } from "constants/chainVars"
+import { _chainVars } from "lib/constants/chainVars"
 
 export const getChainData = async (provider) => {
     let {chainId} = await provider.getNetwork()

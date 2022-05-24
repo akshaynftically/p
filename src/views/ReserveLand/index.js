@@ -1,12 +1,12 @@
-import { _landReserverAbi } from 'constants/landReserverAbi';
-import { _erc20Abi } from 'constants/erc20Abi';
+import { _landReserverAbi } from 'lib/constants/landReserverAbi';
+import { _erc20Abi } from 'lib/constants/erc20Abi';
 
 import {Fragment, useEffect, useState, useMemo, useContext} from 'react'
 import { ethers } from "ethers";
 import {components} from 'react-select'
 
 // Tokens list
-import { _selectTokenOptions } from 'constants/tokens'
+import { _selectTokenOptions } from 'lib/constants/tokens'
 
 // Components
 import {SimpleButton, PillButton} from 'components/buttons'

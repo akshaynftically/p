@@ -1,4 +1,4 @@
-import { _chainVars } from 'constants/chainVars';
+import { _chainVars } from 'lib/constants/chainVars';
 import globalErrorNotifier from './globalNotifier';
 import { getWalletProvider } from './walletProviders';
 

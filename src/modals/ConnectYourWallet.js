@@ -4,7 +4,7 @@ import {WalletListItem} from 'components/lists'
 import {FullScreenPopup} from 'components/popups'
 
 // Mockups
-import { _walletIcons } from 'constants/walletIcons'
+import { _walletIcons } from 'lib/constants/walletIcons'
 import { getWalletProvider } from 'lib/walletProviders'
 
 

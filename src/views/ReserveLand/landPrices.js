@@ -1,4 +1,4 @@
-import { _landReserverAbi } from 'constants/landReserverAbi';
+import { _landReserverAbi } from 'lib/constants/landReserverAbi';
 import { BigNumber, ethers } from 'ethers'
 
 export const landPrices = async (token,returnNumeric = false) => {

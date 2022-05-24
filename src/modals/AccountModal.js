@@ -7,7 +7,7 @@ import CopyToClipboard from 'components/clipboard/CopyToClipboard'
 import { useDispatch, useSelector } from 'react-redux'
 import { getWallet, removeWallet } from 'app/WalletSlice'
 import AppContext from 'components/AppContext'
-import { _walletIcons } from 'constants/walletIcons'
+import { _walletIcons } from 'lib/constants/walletIcons'
 
 const AccountModal = (props) => {
     const {openAccountModal, address,addressExplorar, balance,showLowBalance ,tokenIcon , onClose} = props
