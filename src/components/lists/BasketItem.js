@@ -21,7 +21,7 @@ const BasketItem = (props) => {
             />
           </svg>
         </span>
-        {qty * perItemPrice}
+        {(qty * perItemPrice).toFixed(5)}
       </div>
     </div>
   )
