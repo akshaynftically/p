@@ -8,6 +8,7 @@ import {components} from "react-select";
 import WrongNetworkModal from "../../modals/WrongNetworkModal";
 import AppContext from 'components/AppContext';
 import { useFieldArray } from 'react-hook-form';
+import { getChainData } from 'lib/appHelpers';
 
 const _networks = [
     {
@@ -96,6 +97,7 @@ const HeaderBalance = (props) => {
     const [wrongNetworkModal, setWrongNetworkModal] = useState(false)
     const [selectNetwork, setSelectNetwork] = useState(_networks[0])
     const appGlobals = useContext(AppContext)
+    const [addressExplorar, setAddressExplorar] = useState('')
 
 
     
@@ -130,8 +132,8 @@ const HeaderBalance = (props) => {
             let chainId = (await tempProvider.getNetwork()).chainId
             console.log('chainId',chainId)
             appGlobals.setIsWrongNetwork(chainId == process.env.REACT_APP_CHAIN_ID )
-
-
+            const networkConfig = await getChainData(tempProvider)
+            setAddressExplorar(networkConfig.explorar+'/address/'+address)
             const getNetwork=_networks.filter((el) => {return el.chainId === chainId})
             console.log(getNetwork)
             if(getNetwork.length!==0){
@@ -201,7 +203,7 @@ const HeaderBalance = (props) => {
                             </defs>
                         </svg>
                     </button>
-                    <AccountModal openAccountModal={accountModal} balance={balance} address={address} onClose={handleCloseAccountModal}/>
+                    <AccountModal openAccountModal={accountModal} addressExplorar={addressExplorar} balance={balance} address={address} onClose={handleCloseAccountModal}/>
                 </>
             ) : (
                 <>

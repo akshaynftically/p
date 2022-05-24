@@ -10,7 +10,7 @@ import AppContext from 'components/AppContext'
 import { _walletIcons } from 'constants/walletIcons'
 
 const AccountModal = (props) => {
-    const {openAccountModal, address, balance,showLowBalance ,tokenIcon , onClose} = props
+    const {openAccountModal, address,addressExplorar, balance,showLowBalance ,tokenIcon , onClose} = props
     const [openAddFoundsModal, setOpenAddFoundsModal] = useState(false)
     const userWallet = useSelector(getWallet)
     const appGlobals = useContext(AppContext)
