@@ -23,8 +23,13 @@ svg {
 	display: inline-block;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
 	outline: 0 none;
+}
+
+textarea {
+	border: 1px solid #6A6A6A;
 }
 
 input:not([type="radio"]),
