@@ -42,7 +42,12 @@ export class apiRepository {
     async createOrder(token_id,tNumber,discount,address){
         let form = JSON.parse(localStorage.getItem('transaction_form'))
         let items = form.basket.map((el,i) => {return el.qty})
-        return await axios.post('v1/orders',{
+        let order = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : null
+        let path = 'v1/orders'
+        if(order != null){
+            path+= '/'+order.id
+        }
+        order = await axios.post(path,{
             parcel_quantities: [...items].reverse(),
             tracking_number: tNumber,
             discount: discount,
@@ -50,10 +55,24 @@ export class apiRepository {
             erc20_payment_token_id: token_id,
             created_by: address
         })
+        order = order.data
+        localStorage.setItem('order',JSON.stringify(order))
+        return order
     }
 
-    async updateOrder(){
-
+    async updateOrderTx(data){
+        let form = JSON.parse(localStorage.getItem('transaction_form'))
+        let items = form.basket.map((el,i) => {return el.qty})
+        let order = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : null
+        return await axios.post('v1/orders/'+order.id,{
+            transactions: [{
+                parcel_quantities: [...items].reverse(),
+                amount_paid: data.amount,
+                bc_tx_id: data.bc_tx_id,
+                status: data.status,
+                from_address: data.address
+            }]
+        })
     }
 
 }

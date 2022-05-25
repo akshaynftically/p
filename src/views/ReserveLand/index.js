@@ -312,7 +312,6 @@ const ReserveLand = () => {
     let totalPrice = await getTotalParcelPrice(basket,selectToken)
     if(selectToken.id !== 0){
       let erc20 = new ethers.Contract(selectToken.contract_address,_erc20Abi,provider);
-      console.log(erc20)
       let allowedAmt = await erc20.allowance(account, process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS);
       // check for balance if balance is low then return low balance modal with balance
       let balance = await erc20.balanceOf(account)
@@ -346,6 +345,8 @@ const ReserveLand = () => {
     transaction = await signedContract.reserveLand(parcelQuantities,selectToken.id,tNumber,{value:totalPrice})
     // wait for transaction modal
     showTransactionModal({content: '',learn: '',title:"Please wait",loading:true,mainHeading: "Please wait while we are confirming your transaction on the "+ networkConfig.name +" Blockchain",view: networkConfig.explorar+'tx/'+transaction.hash})
+    await new apiRepository().updateOrderTx({amount:0,status:'pending',bc_tx_id: transaction.hash,address:account})
+    
     receipt  = await transaction.wait()
     return receipt;
   }
