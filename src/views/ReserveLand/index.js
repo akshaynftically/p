@@ -26,14 +26,14 @@ import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
 import {Controller, useForm} from 'react-hook-form'
-import { getDiscountPercentage, getTotalParcelPrice, landPrices } from './landPrices';
+import { getActualDiscount, getDiscountPercentage, getTotalParcelPrice, landPrices } from './landPrices';
 import countryList from 'react-select-country-list'
 import AppContext from 'components/AppContext';
 import { getChainData } from 'lib/appHelpers';
 import globalErrorNotifier from 'lib/globalNotifier';
 import AccountModal from 'modals/AccountModal';
-import { getUser,login } from 'app/UserSlice';
-import axios from 'lib/axiosHelper'
+import { getUser } from 'app/UserSlice';
+import apiRepository from 'lib/apiRepository';
 
 
 const _tokenIcons = {
@@ -293,23 +293,8 @@ const ReserveLand = () => {
     let tNumber = 0;
     let err
     
-    // create user if not exits
-    // create user and order here
-    if(!userInfo){
-      try{
-        let resp = await axios.post('v1/users',{
-          name: transactionForm.name,
-          email: transactionForm.email,
-          country: transactionForm.country,
-          industry: transactionForm.industry.value,
-          country_code: transactionForm.country.value,
-        })
-        dispatch(login(resp.data))
-      }catch(error){
-        console.log(error)
-      }
-    }
-
+    // await new apiRepository().createOrUpdateUser()
+    
     const signer = provider.getSigner()
     const account = (await provider.send("eth_accounts",[]))[0];
     const networkConfig = await getChainData(provider)
@@ -318,6 +303,11 @@ const ReserveLand = () => {
     let parcelQuantities = [...basket].reverse().map((el) => {
       return el.qty
     })
+
+    let discount = (await getActualDiscount())[0]/1000
+    
+    await new apiRepository().createOrder(selectToken.id,'10000000000000000000',discount,account)
+
     // check for approval erc20
     let totalPrice = await getTotalParcelPrice(basket,selectToken)
     if(selectToken.id !== 0){

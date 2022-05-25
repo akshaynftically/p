@@ -29,3 +29,7 @@ export const getDiscountPercentage = async () => {
     let contract  = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider)
     return await contract.getDiscountPercentages()
 }
+
+export const getActualDiscount = async () => {
+    return [0,0,0,0,0,0]
+}

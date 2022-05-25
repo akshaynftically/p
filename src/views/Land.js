@@ -19,6 +19,9 @@ import {getTransactionForm, setTransactionForm} from '../app/TransactionFormSlic
 import PopularBrands from '../components/land/PopularBrands'
 import Stores from '../components/land/Stores'
 import {useLocation} from "react-router";
+import axios from "lib/axiosHelper"
+import apiRepository from 'lib/apiRepository'
+import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet'
 
 const BackButton = ({back, className}) => {
   return (
@@ -64,9 +67,37 @@ const Land = (props) => {
   const dispatch = useDispatch()
   const sectionRef = useRef()
   const [enterYourDetailsIsOpened, setEnterYourDetailsIsOpened] = useState(false)
+  const [txModalProps,setTxModalProps] = useState({
+    title:'Already Registered',
+    mainHeading:'We have an account already registered with this email, Please check your email to proceed further.',
+    content:'',
+    loading:false,
+    learn:'',
+    view:''
+  })
+  const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
+
+  const handleProgressWallet =() =>{
+    setIsOpenedProgressWallet(!isOpenedProgressWallet)
+  }
   const onSubmit = (data) => {
     dispatch(setTransactionForm(data))
-    navigate('/reserve-land')
+    new apiRepository().createLead(data.email)
+    .then(res => {
+      // save lead in localstorage
+      console.log(res)
+      navigate('/reserve-land')
+    })
+    .catch(err => {
+      console.log(err)
+      if(err?.response?.status === 409){
+        navigate('/reserve-land')
+      }
+      if(err?.response?.status === 302){
+        handleToggleEnterYourDetails()
+        setIsOpenedProgressWallet(true)
+      }
+    })
   }
 
   // axios.get('https://e35df215-1476-4ed0-9a7b-a9053666b26c.mock.pstmn.io/metaverse/comearth')
@@ -137,7 +168,7 @@ const Land = (props) => {
             <FieldGroup label='Email ID'>
               <Field
                 isError={errors.email}
-                register={register('email', {required: true, pattern: /^\S+@\S+$/i,validate: (value)=>/d\+1/.test(value)})}
+                register={register('email', {required: true, pattern: /^\S+@\S+$/i})}
                 type='email'
                 placeholder='Enter Your Email Address Here'
               />
@@ -801,6 +832,9 @@ const Land = (props) => {
           {/* End Section */}
         </>
       )}
+      {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} 
+      {...txModalProps}
+      />}
     </Fragment>
   )
 }
