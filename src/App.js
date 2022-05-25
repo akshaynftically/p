@@ -71,8 +71,8 @@ const App = () => {
       <HeaderMenu />
       <Aside />
       <Routes />
-      {pathname !== '/' && pathname !== '/terms' && <Footer />}
-      {(pathname === '/' || pathname === '/terms') && <FooterAlt />}
+        {pathname !== '/' && pathname !== '/about-us' && pathname !== '/contact-us' && pathname !== '/terms' && <Footer />}
+        {(pathname === '/' || pathname === '/about-us' || pathname === '/contact-us' || pathname === '/terms') && <FooterAlt />}
       {isOpenedConnectYourWallet && <ConnectYourWallet onClose={handleToggleConnectYourWallet}/>}
       </AppContext.Provider>
     </main>

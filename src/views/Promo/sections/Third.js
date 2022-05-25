@@ -65,7 +65,7 @@ const Third = () => {
                   <div className='bg-gradient-to-r h-[1px] w-full from-[#D299FF] to-[#58C3FF] mb-[30px]'></div>
 
                   <p className='font-[JamGrotesque] text-[18px] lg:text-[24px] px-[24px] mb-[14px]'>Create memorable immersive experiences for  fans & consumers</p>
-                  <ul className='text-[14px] px-[24px] list-disc'>
+                  <ul className='text-[14px] pl-[40px] pr-[24px] list-disc'>
                     <li className='mb-2 lg:mb-[10px]'>Get started in minutes via templates</li>
                     <li className='mb-2 lg:mb-[10px]'>Create instant 3D products from 2D images</li>
                     <li className='mb-2 lg:mb-[10px]'>Use Key E-Commerce Features</li>
@@ -90,7 +90,7 @@ const Third = () => {
                   <div className='bg-gradient-to-r h-[1px] w-full from-[#D299FF] to-[#58C3FF] mb-[30px]'></div>
 
                   <p className='font-[JamGrotesque] text-[18px] lg:text-[24px] px-[24px] mb-[14px]'>Discover the best global products, events, and services in one Metaverse</p>
-                  <ul className='text-[14px] px-[24px] list-disc'>
+                  <ul className='text-[14px] pl-[40px] pr-[24px] list-disc'>
                     <li className='mb-2 lg:mb-[10px]'>Use social login and fiat payments</li>
                     <li className='mb-2 lg:mb-[10px]'>Hangout and have fun with friends and family</li>
                     <li className='mb-2 lg:mb-[10px]'>Promote sustainable products & services</li>
