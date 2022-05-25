@@ -20,6 +20,7 @@ import _imgInvestor13 from 'assets/img/brand-presence-comearth/13.png'
 import _imgInvestor14 from 'assets/img/brand-presence-comearth/14.png'
 import _imgInvestor15 from 'assets/img/brand-presence-comearth/15.png'
 import _imgInvestor16 from 'assets/img/brand-presence-comearth/16.png'
+import _imgInvestor17 from 'assets/img/brand-presence-comearth/17.png'
 
 const _investors = [
   {
@@ -88,28 +89,8 @@ const _investors = [
   },
   {
     id: '1017',
-    image: _imgInvestor11,
+    image: _imgInvestor17,
   },
-  {
-    id: '1018',
-    image: _imgInvestor12,
-  },
-  {
-    id: '1019',
-    image: _imgInvestor13,
-  },
-  {
-    id: '1020',
-    image: _imgInvestor14,
-  },
-  {
-    id: '1021',
-    image: _imgInvestor15,
-  },
-  {
-    id: '1022',
-    image: _imgInvestor16,
-  }
 ]
 
 const Fifth = () => {
@@ -159,10 +140,6 @@ const Fifth = () => {
               <br />
               COMEARTH
             </h2>
-            {/* <div className='leading-8 text-[14px]'>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s
-            </div> */}
           </div>
         </div>
         <div className='grid grid-cols-2 md:grid-cols-8 gap-[6px]'>

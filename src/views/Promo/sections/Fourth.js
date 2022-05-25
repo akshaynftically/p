@@ -14,25 +14,21 @@ const _banners = [
   {
     id: '1001',
     title: 'Drive Key Business Metrics',
-    text: 'Conduct end-to-end personalization based on user personas. Leverage AR/VR to create unforgettable shopping experiences',
     image: _imgBanner1,
   },
   {
     id: '1002',
     title: 'Use Metaverse for branding',
-    text: 'Conduct end-to-end personalization based on user personas. Leverage AR/VR to create unforgettable shopping experiences',
     image: _imgBanner2,
   },
   {
     id: '1003',
     title: 'Create out-of-this-world consumer experiences, literally',
-    text: 'Conduct end-to-end personalization based on user personas. Leverage AR/VR to create unforgettable shopping experiences',
     image: _imgBanner3,
   },
   {
     id: '1004',
     title: 'Metaverse’s hottest commercial real estate',
-    text: 'Conduct end-to-end personalization based on user personas. Leverage AR/VR to create unforgettable shopping experiences',
     image: _imgBanner4,
   },
 ]
@@ -175,9 +171,6 @@ const Fourth = () => {
                 <div className='absolute top-0 bottom-0 left-0 right-0 bg-black/[.50]' />
                 <div className='absolute top-[60px] md:top-[120px] left-0 right-0 p-[20px]'>
                   <div className='leading-tight font-black text-[14px] md:text-[24px]'>{el.title}</div>
-                </div>
-                <div className='z-[2] opacity-0 transition group-hover:opacity-100 absolute top-[100%] left-0 right-0 bg-[#262728] text-[14px] text-white/[.80] p-[16px]'>
-                  {el.text}
                 </div>
               </div>
           ))}

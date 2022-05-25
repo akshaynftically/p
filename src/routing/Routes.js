@@ -6,20 +6,24 @@ import Promo from 'views/Promo'
 import Home from 'views/Home'
 import Land from 'views/Land'
 import ReserveLand from 'views/ReserveLand'
-import Failed from 'views/Failed'
+import Faild from 'views/Failed'
 import Success from 'views/Success'
 import Terms from 'views/Terms'
+import About from 'views/About'
+import Contact from 'views/ContactUs'
 
 const Routes = () => {
   return (
     <Fragment>
       <RRDRoutes>
         <Route path='/' element={<Promo />} />
+        <Route path='/about-us' element={<About />} />
+        <Route path='/contact-us' element={<Contact />} />
         <Route path='/metaverse' element={<Home />}>
           <Route hash='land' path='land/:landId' element={<Land />} />
         </Route>
         <Route path='/reserve-land' element={<ReserveLand />} exact />
-        <Route path='/failed' element={<Failed />} exact />
+        <Route path='/faild' element={<Faild />} exact />
         <Route path='/success' element={<Success />} exact />
         <Route path='/terms' element={<Terms />} />
       </RRDRoutes>
