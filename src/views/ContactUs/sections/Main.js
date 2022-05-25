@@ -14,7 +14,9 @@ const Main = () => {
   const modelViewerRef = useRef()
   const [loading, setLoading] = useState(0)
 
+
   const {
+    register,
     handleSubmit,
     formState: {errors},
   } = useForm({
@@ -34,55 +36,101 @@ const Main = () => {
   }
 
   return (
-    <div className='bg-center bg-no-repeat bg-cover pt-[90px] pb-[40px] md:pt-[200px] md:pb-[80px] relative overflow-hidden'>
+    <div className='bg-center bg-no-repeat bg-cover pt-[90px] pb-[40px] md:pt-[200px] md:pb-[80px] relative '>
       <div className='mx-[20px] lg:mx-[80px] relative z-[2]'>
-        <div className='grid grid-cols-12 items-center gap-x-[30px]'>
-          <div className='order-2 md:order-1 col-span-12 md:col-span-6'>
+        <div className='grid grid-cols-12 gap-x-[30px]'>
+          <div className='relative z-[100] col-span-12 md:col-span-6'>
             <h1 className='leading-tight font-extrabold text-[32px] lg:text-[52px] mb-[24px]'>
               Contact Us
             </h1>
-            <div className='text-[16px] text-white/[.80] mb-[40px]'>
+            <div className='text-[16px] text-white/[.80] mb-[72px] lg:mb-[40px]'>
               We are on a mission to bring e-commerce to web3.0 & metaverse making the buying & selling of digital products & experiences a breeze through our DIY E-Commerce Metaverse COMEARTH.
             </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className='mb-[45px]'>
-                <FieldGroup className='relative'>
-                  {/* <Field
-                    isError={errors.email}
-                    register={register('email', {required: true, pattern: /^\S+@\S+$/i})}
-                    type='email'
-                    className='pr-[230px] py-[14px] lg:py-[14px] mb-[12px] lg:mb-0'
-                    placeholder='Enter Your Email Address'
-                  /> */}
-
-                  {/* <SimpleButton
-                    className='lg:absolute top-0 right-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold lg:rounded-l-none'
-                    type='submit'
-                  >
-                    Reserve Your Land Now
-                  </SimpleButton> */}
-                </FieldGroup>
-
-                <small className='text-red-400 block translate-y-[-15px]'>
-                  {errors.email?.type === 'required' && 'Email is required'}
-                  {errors.email?.type === 'pattern' && 'Email is invalid'}
-                </small>
-              </div>
-            </form>
           </div>
-          <div className='order-1 flex justify-center md:order-2 col-span-12 md:col-span-6 text-right metaverse-demo min-h-[300px] h-full relative'>
-            <div className='absolute w-full pt-[24px] z-[1000] bg-[#262728] rounded-[8px] px-[24px]'>
-              <h2 className='font-extrabold text-[36px]'>
+          <div className='flex justify-center md:order-2 col-span-12 md:col-span-6 text-right metaverse-demo min-h-[300px] h-full relative'>
+            <div className='w-full pt-[24px] z-[1000] bg-[#262728] rounded-[8px] px-[24px]'>
+              <h2 className='font-extrabold text-[24px] lg:text-[36px]'>
                 <div className="flex items-center">
                   Get in touch!
                 </div>
               </h2>
-              <hr className='border-[#363738] mb-[16px]' />
+              <hr className='border-[#363738] mt-[16px] lg:mt-0 mb-[16px]' />
+
+              <form onSubmit={handleSubmit(onSubmit)} className='text-left pb-7'>
+                <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-[16px]'>
+                  <FieldGroup className='col-span-2 lg:col-span-1' label='Full Name'>
+                    <Field
+                      className='bg-[#161718] border-[#363738] !shadow-none'
+                      isError={errors.first_name}
+                      register={register('first_name', {required: true})}
+                      type='text'
+                      placeholder='Enter Your First Name Here'
+                    />
+                    <small className='text-red-400'>
+                      {errors.first_name?.type === 'required' && 'First Name is required'}
+                    </small>
+                  </FieldGroup>
+
+                  <FieldGroup className='col-span-2 lg:col-span-1' label='Last Name'>
+                    <Field
+                      className='bg-[#161718] border-[#363738] !shadow-none'
+                      isError={errors.last_name}
+                      register={register('last_name', {required: true})}
+                      type='text'
+                      placeholder='Enter Your Last Name Here'
+                    />
+                    <small className='text-red-400'>
+                      {errors.last_name?.type === 'required' && 'Last Name is required'}
+                    </small>
+                  </FieldGroup>
+
+                  <FieldGroup className='col-span-2 lg:col-span-1' label='E-mail Address'>
+                    <Field
+                      className='bg-[#161718] border-[#363738] !shadow-none'
+                      isError={errors.email}
+                      register={register('email', {required: true, pattern: /^\S+@\S+$/i})}
+                      type='text'
+                      placeholder='Enter Your E-mail Address'
+                    />
+                    <small className='text-red-400'>
+                      {errors.email?.type === 'required' && 'Email is required'}
+                      {errors.email?.type === 'pattern' && 'Email is invalid'}
+                    </small>
+                  </FieldGroup>
+
+                  <FieldGroup className='col-span-2 lg:col-span-1' label='Subject'>
+                    <Field
+                      className='bg-[#161718] border-[#363738] !shadow-none'
+                      isError={errors.subject}
+                      register={register('subject', {required: true})}
+                      type='text'
+                      placeholder='Enter Subject'
+                    />
+                    <small className='text-red-400'>
+                      {errors.subject?.type === 'required' && 'Subject is required'}
+                    </small>
+                  </FieldGroup>
+
+                  <FieldGroup label='Message' className='col-span-2'>
+                    <Field
+                      className='bg-[#161718] border-[#363738] !shadow-none'
+                      isError={errors.message}
+                      register={register('message', {required: true})}
+                      type='textarea'
+                      placeholder='Enter Message Here'
+                    />
+                    <small className='text-red-400'>
+                      {errors.message?.type === 'required' && 'Message is required'}
+                    </small>
+                  </FieldGroup>
+                </div>
+
+                <SimpleButton type='submit' size='sm' block>Submit</SimpleButton>
+              </form>
             </div>
 
-            <div className='atmo w-[250px] h-[250px] md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px] 2xl:w-[500px] 2xl:h-[500px]'></div>
             <model-viewer
-              class='top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-[300px] h-[300px] md:w-[500px] md:h-[500px] lg:w-[550px] lg:h-[550px] 2xl:w-[600px] 2xl:h-[600px]'
+              class='top-0 right-0 -translate-y-[50px] lg:-translate-y-[200px] translate-x-[100px] w-[300px] h-[300px] md:w-[500px] md:h-[500px] lg:w-[550px] lg:h-[550px] 2xl:w-[600px] 2xl:h-[600px]'
               bounds='tight'
               src='/Old_shade_blue_comearth.glb'
               ar
