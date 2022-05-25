@@ -11,6 +11,8 @@ import Success from 'views/Success'
 import Terms from 'views/Terms'
 import About from 'views/About'
 import Contact from 'views/ContactUs'
+import NotFound from 'views/Errors/NotFound'
+import ServerError from 'views/Errors/ServerError'
 
 const Routes = () => {
   return (
@@ -19,6 +21,8 @@ const Routes = () => {
         <Route path='/' element={<Promo />} />
         <Route path='/about-us' element={<About />} />
         <Route path='/contact-us' element={<Contact />} />
+        <Route path='/500' element={<ServerError />} />
+        <Route path='/404' element={<NotFound />} />
         <Route path='/metaverse' element={<Home />}>
           <Route hash='land' path='land/:landId' element={<Land />} />
         </Route>
