@@ -146,7 +146,7 @@ const AsideLeft = () => {
               Blog
             </a>
             <a
-              href='mailto:hello@comearth.world'
+              href='contact-us'
               className='text-white text-[16px] md:text-[20px] hover:text-white/70 font-bold block border-b border-[#363738] py-[16px] md:py-[28px]'
             >
               Contact Us

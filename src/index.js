@@ -15,7 +15,7 @@ import store from 'app/store'
 // Components
 import App from 'App'
 
-const {PUBLIC_URL} = process.env
+const {PUBLIC_URL} = process.env.PUBLIC_URL
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
