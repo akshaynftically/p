@@ -200,7 +200,7 @@ const FooterAlt = () => {
           ))}
           <div className='col-span-12 md:col-span-4'>
             <div className='md:max-w-[214px] md:ml-auto'>
-              <SimpleButton className='w-full mb-[32px] md:mb-[20px]' href='mailto:hello@comearth.world' size='sm'>
+              <SimpleButton className='w-full mb-[32px] md:mb-[20px]' href='contact-us' size='sm'>
                 Contact Us
               </SimpleButton>
               <h4 className='capitalize text-center md:text-left font-semibold text-[14px] mb-[12px] md:mb-[8px]'>Follow us on</h4>
