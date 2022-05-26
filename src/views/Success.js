@@ -13,7 +13,8 @@ const Failed = () => {
             navigate('/reserve-land')
         }
 
-        // dispatch(clearTransactionForm())
+        dispatch(clearTransactionForm())
+        localStorage.removeItem('order')
     }, [dispatch, navigate, transactionForm])
 
     const getTotal = () => {
