@@ -20,23 +20,44 @@ export class apiRepository {
         if(!userInfo){
             try{
               let resp = await axios.post('v1/users',{
-                name: transactionForm.name,
-                email: transactionForm.email,
-                country: transactionForm.country,
-                industry: transactionForm.industry.value,
-                country_code: transactionForm.country.value,
+                name: transactionForm?.name,
+                email: transactionForm?.email,
+                country: transactionForm?.country,
+                industry: transactionForm?.industry?.value,
+                country_code: transactionForm?.country?.value,
               })
               localStorage.setItem('auth',JSON.stringify(resp.data))
             }catch(error){
-              console.log(error)
+                // update user here
+                console.log(error)
             }
         }else{
-
+            try{
+                let resp = await axios.post('v1/users/'+userInfo.id,{
+                  name: transactionForm?.name,
+                  email: transactionForm?.email,
+                  country: transactionForm?.country,
+                  industry: transactionForm?.industry?.value,
+                  country_code: transactionForm?.country?.value,
+                })
+                localStorage.setItem('auth',JSON.stringify(resp.data))
+              }catch(error){
+                  // update user here
+                  console.log(error)
+              }
         }
     }
 
-    async addWallets(){
-
+    async addWallets(data){
+        let userInfo = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null
+        await axios.post('v1/users/'+userInfo.id,{
+            id: userInfo.id,
+            wallets: [{
+                wallet_name: data.wallet,
+                wallet_address: data.address,
+                last_connected_at: new Date().getTime()
+            }]
+        })
     }
 
     async createOrder(token_id,tNumber,discount,address){
