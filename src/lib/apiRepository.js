@@ -65,6 +65,8 @@ export class apiRepository {
         let items = form.basket.map((el,i) => {return el.qty})
         let order = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : null
         let path = 'v1/orders'
+        let userInfo = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null
+
         if(order != null){
             path+= '/'+order.id
         }
@@ -74,7 +76,7 @@ export class apiRepository {
             discount: discount,
             status: 'open',
             erc20_payment_token_id: token_id,
-            created_by: address
+            created_by: userInfo.id
         })
         order = order.data
         localStorage.setItem('order',JSON.stringify(order))

@@ -294,6 +294,16 @@ const ReserveLand = () => {
     let err
     
     // await new apiRepository().createOrUpdateUser()
+
+    showTransactionModal({
+      title:'Please wait...',
+      mainHeading:'',
+      content:'',
+      loading:true,
+      learn:'',
+      view:''
+    })
+
     
     const signer = provider.getSigner()
     const account = (await provider.send("eth_accounts",[]))[0];
