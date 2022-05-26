@@ -46,10 +46,7 @@ const Ninth = () => {
   const swiperRef = useRef()
 
   const swiperSettings = {
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
+    slidesPerView: 6,
     breakpoints: {
       0: {
         slidesPerView: 1.5,
@@ -61,8 +58,7 @@ const Ninth = () => {
         slidesPerView: 6
       }
     },
-    loop: true,
-    modules: [Autoplay]
+    loop: true
   }
 
   // Handlers
