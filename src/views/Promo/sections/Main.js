@@ -18,6 +18,7 @@ import {useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 
 const Main = () => {
+  const isTimer=!(process.env.REACT_APP_IS_MAINNET_ENABLED == 'false')                    //converting  env data string into boolean
   const modelViewerRef = useRef()
   const navigate = useNavigate()
   const [loading, setLoading] = useState(0)
@@ -32,6 +33,7 @@ const Main = () => {
   })
 
   useEffect(() => {
+
     modelViewerRef.current.addEventListener('progress', (e) => {
       setLoading(e.detail.totalProgress * 180)
     })
@@ -64,26 +66,26 @@ const Main = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className='mb-[45px]'>
                 <FieldGroup className='relative'>
-                  {/* <Field
+                  <Field
                     isError={errors.email}
                     register={register('email', {required: true, pattern: /^\S+@\S+$/i})}
                     type='email'
                     className='pr-[230px] py-[14px] lg:py-[14px] mb-[12px] lg:mb-0'
                     placeholder='Enter Your Email Address'
-                  /> */}
+                  />
 
-                  {/* <SimpleButton
+                  <SimpleButton
                     className='lg:absolute top-0 right-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold lg:rounded-l-none'
                     type='submit'
                   >
                     Reserve Your Land Now
-                  </SimpleButton> */}
-                  <SimpleButton
+                  </SimpleButton>
+                  {/* <SimpleButton
                     className='lg:absolute top-0 left-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold'
                     type='submit'
                   >
                     Join Waiting List
-                  </SimpleButton>
+                  </SimpleButton> */}
                 </FieldGroup>
 
                 <small className='text-red-400 block translate-y-[-15px]'>
@@ -120,6 +122,8 @@ const Main = () => {
                 Hurry, <span className='text-gradient'>Sale Ends in:</span>
               </span>
             </div>
+            {
+              isTimer  && 
             <Countdown
               date={Date.now() + 1036800000}
               renderer={({days, hours, minutes, seconds}) => (
@@ -152,6 +156,7 @@ const Main = () => {
                 </div>
               )}
             />
+            }
           </div>
           <div className='order-1 flex justify-center md:order-2 col-span-12 md:col-span-6 text-right metaverse-demo min-h-[300px] h-full relative'>
             <div className='atmo w-[250px] h-[250px] md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px] 2xl:w-[500px] 2xl:h-[500px]'></div>
