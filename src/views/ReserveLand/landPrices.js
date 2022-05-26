@@ -33,3 +33,16 @@ export const getDiscountPercentage = async () => {
 export const getActualDiscount = async () => {
     return [0,0,0,0,0,0]
 }
+
+export const extractReceiptData = (receipt,token) =>{
+    let data
+    receipt.events.forEach((event,i) =>{
+        if(event.event === 'LandReserved'){
+            let parcel_quantities = event.args[0]
+            let amount = event.args[5]
+            parcel_quantities = parcel_quantities.map((n) => n.toNumber())
+            data = {p: parcel_quantities,a: ethers.utils.formatUnits(amount.toString(),token.decimals)}
+        }
+    })
+    return data
+}

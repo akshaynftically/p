@@ -50,7 +50,7 @@ export class apiRepository {
 
     async addWallets(data){
         let userInfo = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null
-        await axios.post('v1/users/'+userInfo.id,{
+        return await axios.post('v1/users/'+userInfo.id,{
             id: userInfo.id,
             wallets: [{
                 wallet_name: data.wallet,
@@ -82,12 +82,11 @@ export class apiRepository {
     }
 
     async updateOrderTx(data){
-        let form = JSON.parse(localStorage.getItem('transaction_form'))
-        let items = form.basket.map((el,i) => {return el.qty})
         let order = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : null
         return await axios.post('v1/orders/'+order.id,{
+            status: data.order_status,
             transactions: [{
-                parcel_quantities: [...items].reverse(),
+                parcel_quantities: data.parcel_quantities,
                 amount_paid: data.amount,
                 bc_tx_id: data.bc_tx_id,
                 status: data.status,

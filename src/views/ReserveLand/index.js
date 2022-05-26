@@ -26,7 +26,7 @@ import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
 import {Controller, useForm} from 'react-hook-form'
-import { getActualDiscount, getDiscountPercentage, getTotalParcelPrice, landPrices } from './landPrices';
+import { extractReceiptData, getActualDiscount, getDiscountPercentage, getTotalParcelPrice, landPrices } from './landPrices';
 import countryList from 'react-select-country-list'
 import AppContext from 'components/AppContext';
 import { getChainData } from 'lib/appHelpers';
@@ -345,9 +345,11 @@ const ReserveLand = () => {
     transaction = await signedContract.reserveLand(parcelQuantities,selectToken.id,tNumber,{value:totalPrice})
     // wait for transaction modal
     showTransactionModal({content: '',learn: '',title:"Please wait",loading:true,mainHeading: "Please wait while we are confirming your transaction on the "+ networkConfig.name +" Blockchain",view: networkConfig.explorar+'tx/'+transaction.hash})
-    await new apiRepository().updateOrderTx({amount:0,status:'pending',bc_tx_id: transaction.hash,address:account})
+    await new apiRepository().updateOrderTx({amount:0,status:'pending',bc_tx_id: transaction.hash,address:account,parcel_quantities: parcelQuantities})
     
     receipt  = await transaction.wait()
+    let actualData = extractReceiptData(receipt,selectToken)
+    await new apiRepository().updateOrderTx({status:'success',bc_tx_id: transaction.hash,address:account,order_status: 'fulfilled',parcel_quantities: actualData.p, amount:actualData.a})
     return receipt;
   }
   const onSubmit = (data) => {
@@ -358,9 +360,10 @@ const ReserveLand = () => {
       process.then((tx) => {
         navigate('/success')
       }).catch((err) => {
+        console.log(err)
         setIsOpenedProgressWallet(false)
         if(globalErrorNotifier(err) === false){
-          navigate('/failed')
+          // navigate('/failed')
         }
       })
     })
