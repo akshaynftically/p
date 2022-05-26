@@ -154,7 +154,7 @@ const Sixth = () => {
     <div className='lg:pt-[160px] lg:pb-[40px] mt-[70px] md:mt-0 relative'>
       <div className='lg:hidden bg-[#161718] h-[30px] absolute bottom-0 z-[1] left-0 w-full'></div>
       <h2 className='leading-tight font-black text-[32px] lg:text-[48px] mb-[16px] lg:mb-[32px] px-4 lg:px-12'>
-        <span className='text-gradient'>8 Continents and</span> and <span className='text-gradient'>6 </span> land sizes
+        8 Continents and 6 land sizes
       </h2>
 
       <div className='hidden xl:block'>
@@ -204,7 +204,7 @@ const Sixth = () => {
                       </div>
 
                       <div className='block w-full lg:flex-grow-1'>
-                        <div className='uppercase text-[72px] swiper-slide-prev:font-[JamGrotesque] swiper-slide-next:font-[JamGrotesque] swiper-slide-active:translate-y-0 swiper-slide-active:translate-x-0 translate-y-[150px] swiper-slide-prev:translate-x-[280px] swiper-slide-next:translate-x-[-320px] swiper-slide-active:text-[20px] transition-all duration-[1s] swiper-slide-active:text-white/[.80] text-white/[.40] mb-[12px]'>
+                        <div className='uppercase text-[62px] swiper-slide-prev:text-center swiper-slide-next:text-center swiper-slide-prev:font-[JamGrotesque] swiper-slide-next:font-[JamGrotesque] swiper-slide-active:translate-y-0 swiper-slide-active:translate-x-0 translate-y-[150px] swiper-slide-prev:translate-x-[20px] swiper-slide-next:translate-x-[-320px] swiper-slide-active:text-[20px] transition-all duration-[1s] swiper-slide-active:text-white/[.80] text-white/[.40] mb-[12px]'>
                           {el.title}
                         </div>
 
@@ -256,7 +256,7 @@ const Sixth = () => {
               backgroundImage: `url(${_bgSliderPrev})`,
             }}
           >
-            <div className='relative uppercase truncate font-black text-[72px] text-white/[.40] group-hover:text-white transition transition-all duration-[200ms] ease-in-out'>
+            <div className='relative uppercase truncate font-black text-[62px] text-white/[.40] group-hover:text-white transition transition-all duration-[200ms] ease-in-out'>
               {prevSlide.title}
             </div>
           </div>
@@ -268,7 +268,7 @@ const Sixth = () => {
               backgroundImage: `url(${_bgSliderNext})`,
             }}
           >
-            <div className='relative uppercase truncate font-black text-[72px] text-white/[.40] group-hover:text-white transition transition-all duration-[200ms] ease-in-out'>
+            <div className='relative uppercase truncate font-black text-[62px] text-white/[.40] group-hover:text-white transition transition-all duration-[200ms] ease-in-out'>
               {nextSlide.title}
             </div>
           </div>
