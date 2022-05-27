@@ -137,7 +137,7 @@ const Fourth = () => {
         <ReserveLandModal onClose={() => setOpenModal(false)} />
       )}
 
-      <div className='mx-[20px] relative z-[100] lg:mx-[80px]'>
+      <div className='mx-[20px] relative z-[29] lg:mx-[80px]'>
         <div className='grid grid-cols-4'>
           {_banners.map((el) => (
               <div

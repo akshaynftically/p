@@ -18,7 +18,7 @@ const _menu = {
     {
       id: '1002',
       title: 'About Us',
-      url: 'https://www.nftically.com/about-us',
+      url: 'about-us',
     },
     {
       id: '1003',
