@@ -35,6 +35,7 @@ import AccountModal from 'modals/AccountModal';
 import { getUser } from 'app/UserSlice';
 import apiRepository from 'lib/apiRepository';
 import WrongNetworkModal from 'modals/WrongNetworkModal';
+import AddFundsModal from 'modals/AddFundsModal';
 
 
 const _tokenIcons = {
@@ -153,6 +154,8 @@ const countrySelectOption = (props) => {
 const ReserveLand = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [openAddFundsModal, setOpenAddFundsModal] = useState(false)
+
   const appGlobals = useContext(AppContext)
   const { register, control, setValue, getValues, handleSubmit, formState: { errors } } = useForm({
     mode: 'onChange'
@@ -234,6 +237,16 @@ const ReserveLand = () => {
   }
   const handleCloseWrongNetworkModal = () => {
     setWrongNetworkModal(false)
+
+}
+
+const handleBackAddFundsModal = () => {
+  setOpenAddFundsModal(false)
+}
+
+const handleCloseAddFundsModal = () => {
+  setOpenAddFundsModal(false)
+  // onClose()
 }
   // const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
   // const [tokenLogo, setTokenLogo] = useState("token_logo0")
@@ -348,7 +361,8 @@ const ReserveLand = () => {
     const signer = provider.getSigner()
     const account = (await provider.send("eth_accounts",[]))[0];
     const networkConfig = await getChainData(provider)
-    console.log(networkConfig)
+    
+
     let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider);
     let signedContract = contract.connect(signer);
     let parcelQuantities = [...basket].reverse().map((el) => {
@@ -417,6 +431,12 @@ const ReserveLand = () => {
         setIsOpenedProgressWallet(false)
         if(globalErrorNotifier(err) === false){
           // navigate('/failed')
+        }else{
+         if((JSON.stringify(err)).includes('insufficient funds for gas')){
+           console.log('inside err')
+
+          setOpenAddFundsModal(true)
+         }
         }
       })
     })
@@ -605,6 +625,12 @@ const ReserveLand = () => {
       {...txModalProps}
       />}
       {accountModalProps.openAccountModal && <AccountModal {...accountModalProps} onClose={handleAccountModalClose}></AccountModal>}
+      {
+        openAddFundsModal &&  <AddFundsModal openAddFundsModal={openAddFundsModal} back={handleBackAddFundsModal} address={account} onClose={handleCloseAddFundsModal} />
+      }
+     
+
+
     </Fragment>
   )
 }

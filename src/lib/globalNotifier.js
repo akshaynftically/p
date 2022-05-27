@@ -10,6 +10,8 @@ const contractMessages = {
     "LandReserver: MATIC sent should be >= payable price":"MATIC sent should be >= payable price",
     "LandReserver: Not enough Premint Passes with Token Id:":"Not enough Premint Passes with Token Id:",
     "LandReserver: Invalid Payment Token":"Invalid Payment Token",
+    "insufficient funds for gas ":"Insufficient Funds in your wallet ",
+
 }
 
 const getPlainString = (resp) =>{
@@ -58,8 +60,11 @@ const notify = (message,type = '') => {
 const globalErrorNotifier = (err) => {
     // check if any blockchain error is comming
     let errorThrown = false
+  
+
     for (const [key, value] of Object.entries(contractMessages)) {
         if(getPlainString(err).includes(key)){
+      
             notify(value,'error')
             errorThrown = true
         }
