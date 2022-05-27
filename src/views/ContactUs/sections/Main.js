@@ -1,4 +1,6 @@
 import {useEffect, useRef, useState} from 'react'
+import axios from "../../../lib/axiosHelper";
+
 
 import '@google/model-viewer'
 
@@ -29,10 +31,19 @@ const Main = () => {
     })
   })
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
+    console.log(data)
+    let res = await axios.post('/v1/contact-us',{
+      first_name : data.first_name,
+      last_name : data.last_name,
+      email : data.email,
+      subject : data.subject,
+      message : data.message,
+
+  })
     // dispatch(setTransactionForm(data))
     // navigate('/reserve-land')
-    window.open(`${process.env.REACT_APP_JOIN_LINK}`, "_blank")
+    // window.open(`${process.env.REACT_APP_JOIN_LINK}`, "_blank")
   }
 
   return (
