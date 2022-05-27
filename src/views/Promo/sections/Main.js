@@ -16,11 +16,23 @@ import {useForm} from 'react-hook-form'
 import {setTransactionForm} from '../../../app/TransactionFormSlice'
 import {useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
+import apiRepository from '../../../lib/apiRepository'
+import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet'
+
 
 const Main = () => {
   const isTimer=!(process.env.REACT_APP_IS_MAINNET_ENABLED == 'false')                    //converting  env data string into boolean
   const modelViewerRef = useRef()
   const navigate = useNavigate()
+  const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
+  const [txModalProps,setTxModalProps] = useState({
+    title:'Already Registered',
+    mainHeading:'We have an account already registered with this email, Please check your email to proceed further.',
+    content:'',
+    loading:false,
+    learn:'',
+    view:''
+  })
   const [loading, setLoading] = useState(0)
   const dispatch = useDispatch()
 
@@ -31,6 +43,9 @@ const Main = () => {
   } = useForm({
     mode: 'onChange',
   })
+  const handleProgressWallet =() =>{
+    setIsOpenedProgressWallet(!isOpenedProgressWallet)
+  }
 
   useEffect(() => {
 
@@ -38,11 +53,29 @@ const Main = () => {
       setLoading(e.detail.totalProgress * 180)
     })
   })
+  
 
   const onSubmit = (data) => {
     // dispatch(setTransactionForm(data))
     // navigate('/reserve-land')
-    window.open(`${process.env.REACT_APP_JOIN_LINK}`, "_blank")
+    // window.open(`${process.env.REACT_APP_JOIN_LINK}`, "_blank")
+    dispatch(setTransactionForm(data))
+    new apiRepository().createLead(data.email)
+    .then(res => {
+      // save lead in localstorage
+      console.log(res)
+      navigate('/reserve-land')
+    })
+    .catch(err => {
+      console.log(err)
+      if(err?.response?.status === 409){
+        navigate('/reserve-land')
+      }
+      if(err?.response?.status === 302){
+        // handleToggleEnterYourDetails()
+        setIsOpenedProgressWallet(true)
+      }
+    })
   }
 
   return (
@@ -252,6 +285,9 @@ const Main = () => {
           </div>
         </div>
       </div>
+      {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} 
+      {...txModalProps}
+      />}
 
       <div className='bg-gradient-to-b from-[#161718]/0 to-[#161718] h-[40px] md:h-[107px] absolute bottom-0 left-0 w-full'></div>
     </div>

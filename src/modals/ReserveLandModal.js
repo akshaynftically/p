@@ -7,11 +7,23 @@ import Field from '../components/form/Field'
 import {getTransactionForm, setTransactionForm} from '../app/TransactionFormSlice'
 import {useForm} from 'react-hook-form'
 import {useDispatch, useSelector} from 'react-redux'
+import apiRepository from 'lib/apiRepository'
+import ProgressConnectYourWallet from './ProgressConnectYourWallet'
 
 
 const ReserveLandModal = (props) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const [txModalProps,setTxModalProps] = useState({
+        title:'Already Registered',
+        mainHeading:'We have an account already registered with this email, Please check your email to proceed further.',
+        content:'',
+        loading:false,
+        learn:'',
+        view:''
+      })
+  const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
+
     const transactionForm = useSelector(getTransactionForm)
     const {
         register,
@@ -28,10 +40,32 @@ const ReserveLandModal = (props) => {
             setValue('email', transactionForm.email)
         }
     }, [])
+    const handleProgressWallet =() =>{
+        setIsOpenedProgressWallet(!isOpenedProgressWallet)
+      }
 
     const onSubmit = (data) => {
         dispatch(setTransactionForm(data))
-        navigate('/reserve-land')
+        new apiRepository().createLead(data.email)
+        .then(res => {
+          // save lead in localstorage
+          console.log(res)
+          onClose()
+          navigate('/reserve-land')
+        })
+        .catch(err => {
+          console.log(err)
+          if(err?.response?.status === 409){
+            onClose()
+
+            navigate('/reserve-land')
+          }
+          if(err?.response?.status === 302){
+            // handleToggleEnterYourDetails()
+            // onClose()
+            setIsOpenedProgressWallet(true)
+          }
+        })
     }
 
     return (
@@ -55,6 +89,9 @@ const ReserveLandModal = (props) => {
                   </SimpleButton>
               </form>
           </>
+          {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} 
+      {...txModalProps}
+      />}
       </FullScreenPopup>
     )
 }

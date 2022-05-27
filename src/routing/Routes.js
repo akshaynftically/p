@@ -23,8 +23,8 @@ const Routes = () => {
         <Route path='/contact-us' element={<Contact />} />
         <Route path='/500' element={<ServerError />} />
         <Route path='/404' element={<NotFound />} />
-        <Route path='/metaverse' element={<Navigate to="/" />}>
-          <Route hash='land' path='land/:landId' element={<Navigate to="/" />} />
+        <Route path='/metaverse' element={<Home />}>
+          <Route hash='land' path='land/:landId' element={<Land />} />
         </Route>
         <Route path='/reserve-land' element={<ReserveLand />} exact />
         <Route path='/faild' element={<Faild />} exact />
