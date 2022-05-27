@@ -100,7 +100,9 @@ const countrySelectValue = (props) => {
         {props.getValue().length ? (
             <div className='flex items-center'>
               <div className='mr-[8px]'>
-                <img className='h-[20px] w-[20px]' src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${props.getValue()[0].value}.svg`} alt="token logo" />
+        
+
+                <img className='h-[20px] w-[20px]' src={`https://flagcdn.com/${(props.getValue()[0].value).toLowerCase()}.svg`} alt="token logo" />
               </div>
 
               <span>{props.getValue()[0].label}</span>
@@ -119,7 +121,8 @@ const countrySelectOption = (props) => {
       <components.Option {...props}>
         <div className='flex items-center'>
           <div className='mr-[8px]'>
-            <img className='h-[20px] w-[20px]' src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${props.data.value}.svg`} alt="token logo" />
+       
+            <img className='h-[20px] w-[20px]' src={`https://flagcdn.com/${(props.data.value).toLowerCase()}.svg`} alt="token logo" />
           </div>
 
           <span>{props.data.label}</span>
