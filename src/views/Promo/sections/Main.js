@@ -127,7 +127,7 @@ const Main = () => {
                 </small>
               </div>
             </form>
-            <div className='flex items-center mb-[12px] mt-[100px]'>
+            <div className='flex items-center mb-[12px]'>
               <svg
                 className='stroke-white mr-[8px]'
                 width='24'

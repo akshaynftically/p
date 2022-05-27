@@ -56,9 +56,27 @@ const _tokenIcons = {
 
 const _selectIndustryOptions = [
   {value: 'Ecommerce', label: 'Ecommerce'},
-  {value: 'Option2', label: 'Option 2'},
-  {value: 'Option3', label: 'Option 3'},
+  {value: 'Creators/Artists', label: 'Creators/Artists'},
+  {value: 'Media & Entertainment', label: 'Media & Entertainment'},
+  {value: 'Events & Conference', label: 'Events & Conference'},
+  {value: 'Crypto & Blockchain', label: 'Crypto & Blockchain'},
+  {value: 'Gaming', label: 'Gaming'},
+  {value: 'eSports', label: 'eSports'},
+  {value: 'Sports', label: 'Sports'},
+  {value: 'Real Estate', label: 'Real Estate'},
+  {value: 'Fashion', label: 'Fashion'},
+  {value: 'Retail', label: 'Retail'},
+  {value: 'Social Causes', label: 'Social Causes'},
+  {value: 'Art Gallery, Museums', label: 'Art Gallery, Museums'},
+  {value: 'Governments', label: 'Governments'},
+  {value: 'OpenSource Communities', label: 'OpenSource Communities'},
+  {value: 'Social Communities', label: 'Social Communities'},
+  {value: 'Others', label: 'Others'},
+
+
 ]
+
+
 
 const tokenSelectOption = (props) => {
   return (
