@@ -278,6 +278,17 @@ const handleCloseAddFundsModal = () => {
     setValue('industry', _selectIndustryOptions[0])
   }, [])
 
+
+
+  useEffect(() => {
+    (async () => {
+      getDiscountPercentage(account).then((dis) => {
+        setDiscountPercentage(dis)
+      })
+    })()
+}, [account])
+
+
   useEffect(() => {
     // currently load just once due to overwhelming console logs
     landPrices(selectToken,true).then((prices) => {
@@ -286,9 +297,9 @@ const handleCloseAddFundsModal = () => {
           perItemPrice: prices[5-i]
         })))
     });
-    getDiscountPercentage().then((dis) => {
-      setDiscountPercentage(dis)
-    })
+    // getDiscountPercentage(account).then((dis) => {
+    //   setDiscountPercentage(dis)
+    // })
   }, [setValue, transactionForm])
 
   // commenting for now too much console logs
@@ -374,7 +385,7 @@ const handleCloseAddFundsModal = () => {
     await new apiRepository().createOrder(selectToken.id,'10000000000000000000',discount,account)
 
     // check for approval erc20
-    let totalPrice = await getTotalParcelPrice(basket,selectToken)
+    let totalPrice = await getTotalParcelPrice(basket,selectToken, account)
     if(selectToken.id !== 0){
       let erc20 = new ethers.Contract(selectToken.contract_address,_erc20Abi,provider);
       let allowedAmt = await erc20.allowance(account, process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS);
