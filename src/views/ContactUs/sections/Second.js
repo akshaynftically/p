@@ -3,7 +3,7 @@ import {Fragment} from 'react'
 const Second = () => {
   return (
     <Fragment>
-      <div className='pb-[25px] mx-[20px] lg:mx-[80px] mt-[20px] lg:mt-[80px] lg:mt-0'>
+      <div className='pb-[25px] mx-[20px] lg:mx-[80px] mt-[20px] lg:mt-[80px] lg:mt-0 bg-[#161718] relative z-[100]'>
         <div className='bg-[#161718] pt-[50px] md:pt-[80px] mb-[40px] relative'>
           <div>
             <h2 className='leading-tight font-extrabold text-[32px] lg:text-[52px] mb-[40px]'>Get in Touch</h2>
