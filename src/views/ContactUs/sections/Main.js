@@ -11,6 +11,8 @@ import {Field, FieldGroup} from 'components/form'
 // Sources
 import _bgEarth from 'assets/img/earth-md.png'
 import {useForm} from 'react-hook-form'
+import { toast,ToastContainer } from 'react-toastify';
+
 
 const Main = () => {
   const modelViewerRef = useRef()
@@ -41,6 +43,21 @@ const Main = () => {
       message : data.message,
 
   })
+  if(res.status== 201){
+  console.log(res)
+
+    toast.success('Thank you for contacting us. We will reach out to you soon.', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'dark'
+  });
+
+  }
     // dispatch(setTransactionForm(data))
     // navigate('/reserve-land')
     // window.open(`${process.env.REACT_APP_JOIN_LINK}`, "_blank")
@@ -232,7 +249,7 @@ const Main = () => {
           </div>
         </div>
       </div>
-
+      <ToastContainer />
       <div className='bg-gradient-to-b from-[#161718]/0 to-[#161718] h-[40px] md:h-[107px] absolute bottom-0 left-0 w-full'></div>
     </div>
   )
