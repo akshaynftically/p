@@ -2,7 +2,7 @@ import React from 'react'
 import { toast } from 'react-toastify';
 
 const contractMessages = {
-    // contract messeage => actual notify message
+    // contract message => actual notify message
     "LandReserver: is not running" : "Currentry stopped land reservation",
     "LandReserver: Payment Token is not valid or disabled":"Payment Token is not valid or disabled",
     "LandReserver: Buyer not whitelisted":"You are not eligible to reserve land",
@@ -11,7 +11,7 @@ const contractMessages = {
     "LandReserver: Not enough Premint Passes with Token Id:":"Not enough Premint Passes with Token Id:",
     "LandReserver: Invalid Payment Token":"Invalid Payment Token",
     "insufficient funds for gas ":"Insufficient Funds in your wallet ",
-
+    "LandReserver: Payment Token is not valid or disabled": "Payment Token is not valid",
 }
 
 const getPlainString = (resp) =>{

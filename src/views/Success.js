@@ -2,6 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {clearTransactionForm, getTransactionForm} from "../app/TransactionFormSlice";
 import {Fragment, useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom"
+import ReferalLink from 'components/cards/ReferalLink'
 
 const Failed = () => {
     const navigate = useNavigate()
@@ -101,6 +102,8 @@ const Failed = () => {
 
                     <h2 className='font-[900] text-[24px] lg:text-[36px] mb-[8px]'>Congratulations!</h2>
                     <h5 className='text-[16px] lg:text-[32px] mb-[20px]'>You now own a real estate in Comearth</h5>
+
+                    <ReferalLink />
 
                     <div className="bg-[#262728] px-[32px] py-[24px] rounded-[8px] mb-[24px]">
                         <div className="border-b border-[#363738] pb-[8px] mb-[16px]">
