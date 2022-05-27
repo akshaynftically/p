@@ -1,4 +1,4 @@
-import {Fragment, useRef} from 'react'
+import {Fragment, useRef, useState} from 'react'
 import {Link} from 'react-router-dom'
 import {Swiper, SwiperSlide} from 'swiper/react'
 import {Autoplay, Pagination} from 'swiper'
@@ -18,6 +18,7 @@ import _imgLand16x16 from 'assets/img/lands/16x16.svg'
 import _imgLand32x32 from 'assets/img/lands/32x32.svg'
 import _imgLand64x64 from 'assets/img/lands/64x64.svg'
 import _bgVideo from '../../../assets/videos/retro.mp4'
+import ReserveLandModal from 'modals/ReserveLandModal'
 
 // Mocks
 const _lands = [
@@ -54,6 +55,8 @@ const _lands = [
 ]
 
 const Seventh = () => {
+  const [openModal, setOpenModal] = useState(false)
+
   const swiperRef = useRef()
   const sliderSettings = {
     autoplay: {
@@ -134,7 +137,7 @@ const Seventh = () => {
               >
                 {_lands.map((el, i) => (
                   <SwiperSlide key={el.id} className='!w-[265px] group'>
-                    <Link to='/reserve-land'>
+                    <div onClick={() => setOpenModal(true)}>
                       <div className='relative cursor-pointer flex items-center justify-center w-[265px] h-[240px] overflow-hidden border-bottom-sq-gradient--active mb-[10px]'>
                         <div className='absolute -top-[22px] -bottom-[22px] -left-[22px] -right-[22px]'>
                           {[...Array(11)].map((el, i) => (
@@ -161,9 +164,9 @@ const Seventh = () => {
                           <span className='font-black text-[36px]'>{el.title}</span>
                         </div>
                       </div>
-                      <Link
-                        className='opacity-0 swiper-slide-active:opacity-100 transition duration-[.5s] text-[16px] text-white/[.80] underline hover:no-underline underline-offset-8 decoration-[#3F99FF]'
-                        to='/reserve-land'
+                      <div
+                        className='cursor-pointer opacity-0 swiper-slide-active:opacity-100 transition duration-[.5s] text-[16px] text-white/[.80] underline hover:no-underline underline-offset-8 decoration-[#3F99FF]'
+                        
                       >
                         Reserve Your Land Now
                         <svg
@@ -176,8 +179,8 @@ const Seventh = () => {
                         >
                           <path d='M8.05047 7.35909L2.39447 13.0171L0.980469 11.6021L6.63747 5.94609L1.68747 0.996094H13.0005V12.3091L8.05047 7.35909Z' />
                         </svg>
-                      </Link>
-                    </Link>
+                      </div>
+                    </div>
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -208,7 +211,7 @@ const Seventh = () => {
         <Swiper {...mobileSliderSettings} className='mb-[12px] pb-[100px]'>
           {_lands.map((el, i) => (
               <SwiperSlide key={el.id} className='!w-[265px] group'>
-                <Link  to='/reserve-land'>
+                <div  onClick={() => setOpenModal(true)}>
                   <div className='relative cursor-pointer flex items-center justify-center mb-2 w-[265px] h-[240px] overflow-hidden border-bottom-sq-gradient--active'>
                     <div className='absolute -top-[22px] -bottom-[22px] -left-[22px] -right-[22px]'>
                       {[...Array(11)].map((el, i) => (
@@ -236,9 +239,9 @@ const Seventh = () => {
                     </div>
                   </div>
 
-                  <Link
-                    className='opacity-0 transition group-hover:opacity-100 text-[16px] text-white/[.80] underline hover:no-underline underline-offset-8 decoration-[#3F99FF]'
-                    to='/reserve-land'
+                  <div
+                    className='cursor-pointer opacity-0 transition group-hover:opacity-100 text-[16px] text-white/[.80] underline hover:no-underline underline-offset-8 decoration-[#3F99FF]'
+                    
                   >
                     Reserve Your Land Now
                     <svg
@@ -251,14 +254,17 @@ const Seventh = () => {
                     >
                       <path d='M8.05047 7.35909L2.39447 13.0171L0.980469 11.6021L6.63747 5.94609L1.68747 0.996094H13.0005V12.3091L8.05047 7.35909Z' />
                     </svg>
-                  </Link>
-                </Link>
+                  </div>
+                </div>
               </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
       <div className='bg-gradient-to-b z-[10] from-[#161718]/0 to-[#161718] md:h-[107px] absolute bottom-0 left-0 w-full'></div>
+      {openModal && (
+        <ReserveLandModal onClose={() => setOpenModal(false)} />
+      )}
     </div>
   )
 }
