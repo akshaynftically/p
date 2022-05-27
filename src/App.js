@@ -18,7 +18,7 @@ import registerWalletEvents from 'lib/registerWalletEvents'
 const App = () => {
   const {pathname} = useLocation()
   const [isOpenedConnectYourWallet, setIsOpenedConnectYourWallet ] = useState(false)
-  const [isWrongNetwork, setIsWrongNetwork ] = useState(null)
+  const [isWrongNetwork, setIsWrongNetwork ] = useState('null')
 
 
   const handleToggleConnectYourWallet = () => {

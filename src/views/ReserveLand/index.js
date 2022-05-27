@@ -34,6 +34,7 @@ import globalErrorNotifier from 'lib/globalNotifier';
 import AccountModal from 'modals/AccountModal';
 import { getUser } from 'app/UserSlice';
 import apiRepository from 'lib/apiRepository';
+import WrongNetworkModal from 'modals/WrongNetworkModal';
 
 
 const _tokenIcons = {
@@ -139,6 +140,8 @@ const ReserveLand = () => {
     mode: 'onChange'
   })
   const transactionForm = useSelector(getTransactionForm)
+  const [wrongNetworkModal, setWrongNetworkModal] = useState(false)
+
   const [basket, setBasket] = useState([
     {
       id: '1000',
@@ -186,6 +189,10 @@ const ReserveLand = () => {
   const [areYouRepresenting, setAreYouRepresenting] = useState('individual')
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
   const userInfo = useSelector(getUser)
+  const [account, setAccount] = useState(null)
+  const [isWrongNetwork, setIsWrongNetwork ] = useState(null)
+
+
 
   const[txModalProps,setTxModalProps]= useState({
     title:'',
@@ -207,6 +214,9 @@ const ReserveLand = () => {
       balance:'',
     })
   }
+  const handleCloseWrongNetworkModal = () => {
+    setWrongNetworkModal(false)
+}
   // const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
   // const [tokenLogo, setTokenLogo] = useState("token_logo0")
   useEffect(() => {
@@ -265,6 +275,15 @@ const ReserveLand = () => {
 
     return total
   }
+  useEffect(() => {
+    (async () => {
+        let tempProvider = await appGlobals.hasWalletProvider()
+        if(!tempProvider) return
+        const accountsList = await tempProvider.send("eth_accounts", [])
+      
+        setAccount(accountsList[0])
+    })()
+}, [appGlobals])
 
   const showTransactionModal = (obj) => {
     setTxModalProps(obj)
@@ -311,6 +330,7 @@ const ReserveLand = () => {
     const signer = provider.getSigner()
     const account = (await provider.send("eth_accounts",[]))[0];
     const networkConfig = await getChainData(provider)
+    console.log(networkConfig)
     let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider);
     let signedContract = contract.connect(signer);
     let parcelQuantities = [...basket].reverse().map((el) => {
@@ -367,8 +387,10 @@ const ReserveLand = () => {
   }
   const onSubmit = (data) => {
     dispatch(setTransactionForm({...data, basket, discountCode}))
+    
     let walletProvider  = appGlobals.getWalletProviderConfirmed()
     walletProvider.then((provider) => {
+      
       let process = startTransactionFlow(provider)
       process.then((tx) => {
         navigate('/success')
@@ -522,10 +544,27 @@ const ReserveLand = () => {
 
                   <BasketList items={basket} setBasket={setBasket} discountCode={discountCode} discountPercentage={discountPercentage} setDiscountCode={setDiscountCode} tokenLogo={selectToken} />
                 </div>
-               
-                <SimpleButton type='submit' className='mb-[27px]' block disabled={!getTotal() || !appGlobals.isWrongNetwork}>
+               {
+                account && !appGlobals.isWrongNetwork ? <>
+                 <SimpleButton size='sm' type='button' variant='warning'  className='mb-[27px] w-[100]' onClick={() => setWrongNetworkModal(true)}>
+                     <svg className='mr-[9px]' width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M11.8666 0.999956L21.3926 17.5C21.4804 17.652 21.5266 17.8244 21.5266 18C21.5266 18.1755 21.4804 18.3479 21.3926 18.4999C21.3048 18.652 21.1786 18.7782 21.0266 18.866C20.8746 18.9537 20.7021 19 20.5266 19H1.47458C1.29905 19 1.12661 18.9537 0.974593 18.866C0.822577 18.7782 0.696343 18.652 0.608578 18.4999C0.520812 18.3479 0.474608 18.1755 0.474609 18C0.47461 17.8244 0.520817 17.652 0.608584 17.5L10.1346 0.999956C10.2224 0.847949 10.3486 0.721722 10.5006 0.633962C10.6526 0.546202 10.8251 0.5 11.0006 0.5C11.1761 0.5 11.3485 0.546202 11.5006 0.633962C11.6526 0.721722 11.7788 0.847949 11.8666 0.999956ZM10.0006 14V16H12.0006V14H10.0006ZM10.0006 6.99996V12H12.0006V6.99996H10.0006Z" fill="white" fill-opacity="0.8"/>
+                     </svg>
+
+                     Wrong Network
+                 </SimpleButton>
+
+                 <WrongNetworkModal openWrongNetworkModal={wrongNetworkModal} onClose={handleCloseWrongNetworkModal} />
+             </>
+                 :
+
+                 <>
+                 <SimpleButton type='submit' className='mb-[27px]' block disabled={!getTotal()}>
                   Buy Virtual Land
                 </SimpleButton>
+                 </>
+               }
+                
 
                 <div className='lg:hidden bg-[#262728] rounded-lg py-[20px] px-[24px] mb-[27px]'>
                   <h2 className='font-semibold text-[20px] mb-[20px]'>FAQs</h2>
