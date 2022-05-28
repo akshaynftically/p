@@ -57,7 +57,7 @@ const _tokenIcons = {
 
 
 const _selectIndustryOptions = [
-  {value: 'Ecommerce', label: 'Ecommerce'},
+  {value: 'Ecommerce', label: 'E-commerce'},
   {value: 'Creators/Artists', label: 'Creators/Artists'},
   {value: 'Media & Entertainment', label: 'Media & Entertainment'},
   {value: 'Events & Conference', label: 'Events & Conference'},
@@ -340,6 +340,8 @@ const handleCloseAddFundsModal = () => {
         const accountsList = await tempProvider.send("eth_accounts", [])
       
         setAccount(accountsList[0])
+      console.log('account',account)
+
     })()
 }, [appGlobals])
 
@@ -489,21 +491,21 @@ const handleCloseAddFundsModal = () => {
                     >
                       <path d='M7.828 10.9997H20V12.9997H7.828L13.192 18.3637L11.778 19.7777L4 11.9997L11.778 4.22168L13.192 5.63568L7.828 10.9997Z' />
                     </svg>
-                    Back to Comearth
+                    Back to COMEARTH
                   </PillButton>
                 </div>
 
-                <h2 className='font-extrabold text-[24px] mb-[16px]'>Reserve Your Land</h2>
+                <h2 className='font-extrabold text-[24px] mb-[16px]'>Reserve Virtual Land in COMEARTH</h2>
                 <hr className='border-[#363738] my-[16px]' />
 
-                <FieldGroup label='Name'>
+                <FieldGroup label='Name*:'>
                   <Field placeholder='Enter Your Full Name Here'
                          isError={errors.name}
                          register={register("name", { required: true})}
                   />
                   <small className='text-red-400'>{errors.name?.type === 'required' && "Name is required"}</small>
                 </FieldGroup>
-                <FieldGroup label='Email ID'>
+                <FieldGroup label='Email ID*:'>
                   <Field type='email'
                          isError={errors.email}
                          register={register("email", { required: true, pattern: /^\S+@\S+$/i })}
@@ -530,7 +532,7 @@ const handleCloseAddFundsModal = () => {
 
                   <small className='text-red-400'>{errors.industry?.type === 'required' && "Industry is required"}</small>
                 </FieldGroup>
-                <FieldGroup label='Are you representing'>
+                <FieldGroup label='I am representing'>
                   <div className='grid md:grid-cols-2'>
                     <div>
                       <Radio
@@ -564,7 +566,7 @@ const handleCloseAddFundsModal = () => {
                     </FieldGroup>
                 )}
 
-                <FieldGroup label='Select Country' className='md:mb-[40px]'>
+                <FieldGroup label='Select Country*' className='md:mb-[40px]'>
                   <Controller
                       name='country'
                       control={control}
@@ -606,7 +608,7 @@ const handleCloseAddFundsModal = () => {
 
                   <div className='ml-[8px]'>
                     <div className='text-white text-[16px] font-[500] mb-[8px]'>Congratulations!!! Your wallet is already whitelisted</div>
-                    <div className='text-white text-[14px]'>Currently you are whitelisted to reserve 1 parcel of 4x4 & 1 pacel of 8x8. </div>
+                    <div className='text-white text-[14px]'>Currently you are whitelisted to reserve 1 parcel of 4x4 & 1 parcel of 8x8. </div>
                   </div>
                 </div>
 
@@ -624,7 +626,7 @@ const handleCloseAddFundsModal = () => {
                     />
                   </FieldGroup>
 
-                  <FieldGroup label='Select Land Units'>
+                  <FieldGroup label='Select Virtual Land Parcels'>
                     <LandUnits basket={basket} setBasket={setBasket} />
                   </FieldGroup>
 
@@ -646,7 +648,7 @@ const handleCloseAddFundsModal = () => {
 
                  <>
                  <SimpleButton type='submit' className='mb-[27px]' block disabled={!getTotal()}>
-                  Buy Virtual Land
+                  Reserve Virtual Land
                 </SimpleButton>
                  </>
                }

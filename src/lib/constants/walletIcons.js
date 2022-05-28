@@ -9,19 +9,19 @@ export const _walletIcons = [
       title: 'MetaMask',
       icon: _tokenIcon1,
     },
-    {
-      id: '1002',
-      title: 'WalletConnect',
-      icon: _tokenIcon2,
-    },
+    // {
+    //   id: '1002',
+    //   title: 'WalletConnect',
+    //   icon: _tokenIcon2,
+    // },
     {
       id: '1003',
       title: 'Coinbase Wallet',
       icon: _tokenIcon3,
     },
-    {
-      id: '1004',
-      title: 'Fortmatic',
-      icon: _tokenIcon4,
-    },
+    // {
+    //   id: '1004',
+    //   title: 'Fortmatic',
+    //   icon: _tokenIcon4,
+    // },
   ]

@@ -2,7 +2,9 @@ import {Field, FieldGroup} from 'components/form'
 import CopyToClipboard from 'components/clipboard/CopyToClipboard'
 
 const ReferalLink = () => {
-  const referalLink = 'https://www.comearth.world/userName1163'
+  let authData=JSON.parse(localStorage.getItem('auth'))
+  console.log(authData)
+  const referalLink = `${window.location.origin}?ref=${authData.referral_code}`
 
   return (
     <div className='pseudo-border-gradient rounded-[8px] p-[20px] md:pt-[24px] md:px-[32px] md:pb-[21px] mb-[35px] md:mb-[32px]'>

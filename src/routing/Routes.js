@@ -27,7 +27,7 @@ const Routes = () => {
           <Route hash='land' path='land/:landId' element={<Navigate to="/" />} />
         </Route>
         <Route path='/reserve-land' element={<ReserveLand />} exact />
-        <Route path='/faild' element={<Faild />} exact />
+        <Route path='/failed' element={<Faild />} exact />
         <Route path='/success' element={<Success />} exact />
         <Route path='/terms' element={<Terms />} />
         <Route path='*' element={<Navigate to="404"/>} />
