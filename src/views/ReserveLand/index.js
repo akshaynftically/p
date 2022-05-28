@@ -594,7 +594,7 @@ const handleCloseAddFundsModal = () => {
 
                   <div className='ml-[8px]'>
                     <div className='text-white text-[16px] font-[500] mb-[8px]'>Congratulations!!! Your wallet is already whitelisted</div>
-                    <div className='text-white text-[14px]'>Currently you are whitelisted to reserve 1 parcel of 4x4 & 1 pacel of 8x8. </div>
+                    <div className='text-white text-[14px]'>Currently you are whitelisted to reserve 1 parcel of 4x4 & 1 parcel of 8x8. </div>
                   </div>
                 </div>
 
