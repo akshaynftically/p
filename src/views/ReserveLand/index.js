@@ -4,6 +4,7 @@ import { _erc20Abi } from 'lib/constants/erc20Abi';
 import {Fragment, useEffect, useState, useMemo, useContext} from 'react'
 import { ethers } from "ethers";
 import {components} from 'react-select'
+import { useCookies } from "react-cookie";
 
 // Tokens list
 import { _selectTokenOptions } from 'lib/constants/tokens'
@@ -155,6 +156,7 @@ const ReserveLand = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [openAddFundsModal, setOpenAddFundsModal] = useState(false)
+  const [cookies, setCookie] = useCookies()
 
   const appGlobals = useContext(AppContext)
   const { register, control, setValue, getValues, handleSubmit, formState: { errors } } = useForm({
@@ -278,6 +280,17 @@ const handleCloseAddFundsModal = () => {
     setValue('industry', _selectIndustryOptions[0])
   }, [])
 
+
+
+  useEffect(() => {
+    (async () => {
+      getDiscountPercentage(account).then((dis) => {
+        setDiscountPercentage(dis)
+      })
+    })()
+}, [account])
+
+
   useEffect(() => {
     // currently load just once due to overwhelming console logs
     landPrices(selectToken,true).then((prices) => {
@@ -286,10 +299,9 @@ const handleCloseAddFundsModal = () => {
           perItemPrice: prices[5-i]
         })))
     });
-    getDiscountPercentage().then((dis) => {
-      console.log('account',account)
-      setDiscountPercentage(dis)
-    })
+    // getDiscountPercentage(account).then((dis) => {
+    //   setDiscountPercentage(dis)
+    // })
   }, [setValue, transactionForm])
 
   // commenting for now too much console logs
@@ -374,10 +386,11 @@ const handleCloseAddFundsModal = () => {
 
     let discount = (await getActualDiscount())[0]/1000
     
-    await new apiRepository().createOrder(selectToken.id,'10000000000000000000',discount,account)
+    await new apiRepository().createOrder(selectToken.id, '10000000000000000000', discount, 
+      cookies.referral_first_touch, cookies.referral_last_touch, cookies.utm_first_touch, cookies.utm_last_touch, account)
 
     // check for approval erc20
-    let totalPrice = await getTotalParcelPrice(basket,selectToken)
+    let totalPrice = await getTotalParcelPrice(basket,selectToken, account)
     if(selectToken.id !== 0){
       let erc20 = new ethers.Contract(selectToken.contract_address,_erc20Abi,provider);
       let allowedAmt = await erc20.allowance(account, process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS);

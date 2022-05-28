@@ -5,9 +5,12 @@ import {Main, Second, Third, Fourth, Fifth, Sixth, Seventh, Eighth, Ninth} from 
 import apiRepsitory from 'lib/apiRepository'
 import { useDispatch } from 'react-redux'
 import { setTransactionForm } from 'app/TransactionFormSlice'
+
 const Promo = () => {
   const [searchParams,setSearchParams] = useSearchParams()
   const otp = searchParams.get('otp')
+  const referralCode = searchParams.get('ref')
+  const cookieDuration = 10 // in days
   const navigate = useNavigate()
   const dispatch = useDispatch()
   
@@ -62,7 +65,20 @@ const Promo = () => {
 				createCookie('utm_first_touch', utmParams, 365);
 			}
 			// create/update last touch UTM cookie
-			if (utmParams !== 'false') createCookie('utm_last_touch', utmParams, 10);
+			if (utmParams !== 'false') createCookie('utm_last_touch', utmParams, cookieDuration);
+
+      if(referralCode != null) {
+			// create referral cookie
+			let referralCookieExists = isCookieExists('referral_first_touch')
+
+			// create/update first touch referral cookie
+			if (!referralCookieExists) {
+				createCookie('referral_first_touch', referralCode, cookieDuration);
+			}
+      
+			// create/update last touch referral cookie
+			createCookie('referral_last_touch', referralCode, cookieDuration);
+    }
 
       if(otp != null){
         let resp = await new apiRepsitory().getOtpData(otp)
