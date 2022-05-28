@@ -11,7 +11,6 @@ const contractMessages = {
     "LandReserver: Not enough Premint Passes with Token Id:":"Not enough Premint Passes with Token Id:",
     "LandReserver: Invalid Payment Token":"Invalid Payment Token",
     "insufficient funds for gas ":"Insufficient Funds in your wallet ",
-    "LandReserver: Payment Token is not valid or disabled": "Payment Token is not valid",
 }
 
 const getPlainString = (resp) =>{
@@ -72,6 +71,11 @@ const globalErrorNotifier = (err) => {
     // check for user rejected action
     if(typeof err != "undefined" && typeof err.code != "undefined" && err.code === 4001){
         notify("Transaction rejected",'error')
+        errorThrown = true
+    }
+    // show notifier for comearth scope
+    if(typeof err != "undefined" && typeof err.scope != "undefined" && err.scope === 'comearth:notify'){
+        notify(err.message)
         errorThrown = true
     }
     // show notifier for comearth scope

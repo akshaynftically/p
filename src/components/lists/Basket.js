@@ -12,7 +12,7 @@ const Basket = (props) => {
   const totalDiscount = () => {
 
     let total = items.reduce((sum, cur, i) => {
-      return sum += cur.perItemPrice * cur.qty * (discountPercentage[5-i]/100000 )
+      return sum += cur.perItemPrice * cur.qty * (discountPercentage[i]/100000 )
     }, 0)
 
 
@@ -21,7 +21,7 @@ const Basket = (props) => {
 
   const total = () => {
     let total = items.reduce((sum, cur, i) => {
-      return sum += cur.perItemPrice * cur.qty * ( (100000 - discountPercentage[5-i])/100000 )
+      return sum += cur.perItemPrice * cur.qty * ( (100000 - discountPercentage[i])/100000 )
     }, 0)
     // total = total - ((total * discountPercentage) / 100)
 
