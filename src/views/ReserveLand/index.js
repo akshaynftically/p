@@ -4,6 +4,7 @@ import { _erc20Abi } from 'lib/constants/erc20Abi';
 import {Fragment, useEffect, useState, useMemo, useContext} from 'react'
 import { ethers } from "ethers";
 import {components} from 'react-select'
+import { useCookies } from "react-cookie";
 
 // Tokens list
 import { _selectTokenOptions } from 'lib/constants/tokens'
@@ -155,6 +156,7 @@ const ReserveLand = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [openAddFundsModal, setOpenAddFundsModal] = useState(false)
+  const [cookies, setCookie] = useCookies()
 
   const appGlobals = useContext(AppContext)
   const { register, control, setValue, getValues, handleSubmit, formState: { errors } } = useForm({
@@ -382,7 +384,8 @@ const handleCloseAddFundsModal = () => {
 
     let discount = (await getActualDiscount())[0]/1000
     
-    await new apiRepository().createOrder(selectToken.id,'10000000000000000000',discount,account)
+    await new apiRepository().createOrder(selectToken.id, '10000000000000000000', discount, 
+      cookies.referral_first_touch, cookies.referral_last_touch, cookies.utm_first_touch, cookies.utm_last_touch, account)
 
     // check for approval erc20
     let totalPrice = await getTotalParcelPrice(basket,selectToken, account)
