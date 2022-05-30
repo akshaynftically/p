@@ -101,7 +101,7 @@ export class apiRepository {
             path+= '/'+order.id
         }
         order = await axios.post(path,{
-            parcel_quantities: [...items].reverse(),
+            parcel_quantities: items,
             tracking_number: tNumber,
             discount: discount,
             status: 'open',

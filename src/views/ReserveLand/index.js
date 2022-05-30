@@ -19,7 +19,7 @@ import Faqs from './sections/Faqs'
 import LandUnits from './sections/LandUnits'
 
 // Toasts
-import { ToastContainer} from 'react-toastify'
+import { toast, ToastContainer} from 'react-toastify'
 
 // Modals
 import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet'
@@ -27,7 +27,7 @@ import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
 import {Controller, useForm} from 'react-hook-form'
-import { extractReceiptData, getActualDiscount, getDiscountPercentage, getTotalParcelPrice, landPrices } from './landPrices';
+import { extractReceiptData, getActualDiscount, getDiscountPercentage, getParcelAvailabilityForBuyer, getTotalParcelPrice, landPrices } from './landPrices';
 import countryList from 'react-select-country-list'
 import AppContext from 'components/AppContext';
 import { getChainData } from 'lib/appHelpers';
@@ -167,27 +167,9 @@ const ReserveLand = () => {
 
   const [basket, setBasket] = useState([
     {
-      id: '1000',
+      id: '1006',
       qty: 0,
-      type: '32x32',
-      perItemPrice: 0,
-    },
-    {
-      id: '1001',
-      qty: 0,
-      type: '16x16',
-      perItemPrice: 0,
-    },
-    {
-      id: '1002',
-      qty: 0,
-      type: '8x8',
-      perItemPrice: 0,
-    },
-    {
-      id: '1004',
-      qty: 0,
-      type: '4x4',
+      type: '1x1',
       perItemPrice: 0,
     },
     {
@@ -197,9 +179,27 @@ const ReserveLand = () => {
       perItemPrice: 0,
     },
     {
-      id: '1006',
+      id: '1004',
       qty: 0,
-      type: '1x1',
+      type: '4x4',
+      perItemPrice: 0,
+    },
+    {
+      id: '1002',
+      qty: 0,
+      type: '8x8',
+      perItemPrice: 0,
+    },
+    {
+      id: '1001',
+      qty: 0,
+      type: '16x16',
+      perItemPrice: 0,
+    },
+    {
+      id: '1000',
+      qty: 0,
+      type: '32x32',
       perItemPrice: 0,
     }
   ])
@@ -296,7 +296,7 @@ const handleCloseAddFundsModal = () => {
     landPrices(selectToken,true).then((prices) => {
       setBasket((basket) => basket.map((elem, i) => ({
           ...elem,
-          perItemPrice: prices[5-i]
+          perItemPrice: prices[i]
         })))
     });
     // getDiscountPercentage(account).then((dis) => {
@@ -311,6 +311,20 @@ const handleCloseAddFundsModal = () => {
   useEffect(() => {
     dispatch(setTransactionForm({...getValues(), basket, discountCode}))
   }, [basket, discountCode, dispatch, getValues])
+
+  useEffect(() => {
+    getParcelAvailabilityForBuyer(account).then((pieces) => {
+      basket.forEach((item,i) => {
+        if(item.qty > pieces[i] && account != null){
+          setBasket((basket) => basket.map((elem, subIndex) => ({
+            ...elem,
+            qty: subIndex === i ? pieces[i] : elem.qty 
+          })))
+          pieces[i] === 0 ? globalErrorNotifier({message:"You can't reserve land unit of size "+basket[i].type, scope: "comearth:notify"}) : globalErrorNotifier({message:"You can reserve max "+pieces[i]+" units of land size "+basket[i].type, scope: "comearth:notify"})
+        }
+      })
+    })
+  }, [basket,account])
 
   const getTotal = () => {
     let total = basket.reduce((sum, cur) => {
@@ -344,7 +358,7 @@ const handleCloseAddFundsModal = () => {
     landPrices(token,true).then((prices) => {
       setBasket((basket) => basket.map((elem, i) => ({
           ...elem,
-          perItemPrice: prices[5-i]
+          perItemPrice: prices[i]
         })))
     });
   }
@@ -380,11 +394,11 @@ const handleCloseAddFundsModal = () => {
 
     let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider);
     let signedContract = contract.connect(signer);
-    let parcelQuantities = [...basket].reverse().map((el) => {
+    let parcelQuantities = basket.map((el) => {
       return el.qty
     })
 
-    let discount = (await getActualDiscount())[0]/1000
+    let discount = (await getDiscountPercentage())[0]/1000
     
     let order=await new apiRepository().createOrder(selectToken.id, '10000000000000000000', discount, 
       cookies.referral_first_touch, cookies.referral_last_touch, cookies.utm_first_touch, cookies.utm_last_touch, account)
@@ -435,7 +449,11 @@ console.log(order)
   }
   const onSubmit = (data) => {
     dispatch(setTransactionForm({...data, basket, discountCode}))
-    
+    let total_qty = basket.reduce((sum, el) => { return sum+= parseInt(el.qty)},0)
+    if(total_qty === 0 ){
+      globalErrorNotifier({scope:'comearth:notify', message: 'You need to select at least 1 parcel to reserve virtual land'})
+      return
+    }
     let walletProvider  = appGlobals.getWalletProviderConfirmed()
     walletProvider.then((provider) => {
       
@@ -633,7 +651,7 @@ console.log(order)
                  :
 
                  <>
-                 <SimpleButton type='submit' className='mb-[27px]' block disabled={!getTotal()}>
+                 <SimpleButton type='submit' className='mb-[27px]' block>
                   Reserve Virtual Land
                 </SimpleButton>
                  </>

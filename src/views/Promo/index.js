@@ -1,10 +1,11 @@
 // Sections
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import {Main, Second, Third, Fourth, Fifth, Sixth, Seventh, Eighth, Ninth} from './sections'
 import apiRepsitory from 'lib/apiRepository'
 import { useDispatch } from 'react-redux'
 import { setTransactionForm } from 'app/TransactionFormSlice'
+import countryList from 'react-select-country-list'
 
 const Promo = () => {
   const [searchParams,setSearchParams] = useSearchParams()
@@ -13,7 +14,8 @@ const Promo = () => {
   const cookieDuration = 10 // in days
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  
+  const _selectCountryOptions = useMemo(() => countryList().getData(), [])
+
   const getUtmParameters =()  => {
     let utmData = {};
     let utmParamProvided = false;
@@ -86,7 +88,8 @@ const Promo = () => {
         if(resp.status === 200){
           let user = resp.data[0]
           localStorage.setItem('auth',JSON.stringify(user))
-          dispatch(setTransactionForm({name: user.name, email: user.email}))
+          let country = _selectCountryOptions.filter((el) => {return el.value === user.country_code})
+          dispatch(setTransactionForm({name: user.name, email: user.email, country : country[0], company: user.company, representing: user.company != null ? "company":"individual" }))
           navigate('reserve-land')
         }
       }
