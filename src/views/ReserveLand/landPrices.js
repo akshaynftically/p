@@ -61,6 +61,5 @@ export const checkInWhiteList = async(address) =>{
     let contract  = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider)
     let whiteListManager = await contract.getWhitelistManager()
     let whiteListContract = new ethers.Contract(whiteListManager,_whitelistManagerAbi,provider)
-    return {atleastOneWhitelistApplied:true, buyerWhitelistId:0}
     return await whiteListContract.getBuyerApplicableWhitelistId(!!address ? address : "0x0000000000000000000000000000000000000000")
 }
