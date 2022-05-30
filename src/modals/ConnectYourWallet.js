@@ -47,7 +47,7 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
       </div>
 
       <div className='px-[10px]'>
-        <Link className='flex items-center text-[14px] text-[#3F99FF] hover:underline' to={process.env.REACT_APP_LEARN_HOW_TO_RESERVE_LAND}>
+        <a className='flex items-center text-[14px] text-[#3F99FF] hover:underline' href={process.env.REACT_APP_LEARN_HOW_TO_RESERVE_LAND} rel="noreferrer">
           <span className='mr-[5px]'>
             <svg
               width='20'
@@ -63,7 +63,7 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
             </svg>
           </span>
           Learn how to reserve land
-        </Link>
+        </a>
       </div>
     </FullScreenPopup>
   )
