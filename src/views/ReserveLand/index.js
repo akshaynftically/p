@@ -57,7 +57,7 @@ const _tokenIcons = {
 
 
 const _selectIndustryOptions = [
-  {value: 'Ecommerce', label: 'E-commerce'},
+  {value: 'Ecommerce', label: 'E-Commerce'},
   {value: 'Creators/Artists', label: 'Creators/Artists'},
   {value: 'Media & Entertainment', label: 'Media & Entertainment'},
   {value: 'Events & Conference', label: 'Events & Conference'},
