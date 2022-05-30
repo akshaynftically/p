@@ -2,7 +2,7 @@ import {FullScreenPopup} from "components/popups";
 import {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 
-const ProgressConnectYourWallet = ({onClose, title,loading=true, mainHeading,content,learn=null,view=null}) => {
+const ProgressConnectYourWallet = ({onClose, title,loading=true, mainHeading,content,learn=null,view=null,learn_more_text = 'Learn More'}) => {
 
   return (
     <FullScreenPopup title={title} size='w-[520px]' onClose={onClose}>
@@ -39,7 +39,7 @@ const ProgressConnectYourWallet = ({onClose, title,loading=true, mainHeading,con
       <p className='text-white/80 text-[14px]'>{content}</p>
      <div className="flex">
        {
-         learn &&  <a className='text-[#3F99FF] underline' href={learn} target="_blank" rel="noreferrer">Learn More</a>
+         learn &&  <a className='text-[#3F99FF] underline' href={learn} target="_blank" rel="noreferrer">{learn_more_text}</a>
 
        }
        {

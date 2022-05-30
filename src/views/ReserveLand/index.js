@@ -27,7 +27,7 @@ import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
 import {Controller, useForm} from 'react-hook-form'
-import { extractReceiptData, getActualDiscount, getDiscountPercentage, getParcelAvailabilityForBuyer, getTotalParcelPrice, landPrices } from './landPrices';
+import { checkInWhiteList, extractReceiptData, getActualDiscount, getDiscountPercentage, getParcelAvailabilityForBuyer, getTotalParcelPrice, landPrices } from './landPrices';
 import countryList from 'react-select-country-list'
 import AppContext from 'components/AppContext';
 import { getChainData } from 'lib/appHelpers';
@@ -164,6 +164,7 @@ const ReserveLand = () => {
   })
   const transactionForm = useSelector(getTransactionForm)
   const [wrongNetworkModal, setWrongNetworkModal] = useState(false)
+  const [isWhiteListed, setIsWhiteListed] = useState(false)
 
   const [basket, setBasket] = useState([
     {
@@ -214,6 +215,7 @@ const ReserveLand = () => {
   const userInfo = useSelector(getUser)
   const [account, setAccount] = useState(null)
   const [isWrongNetwork, setIsWrongNetwork ] = useState(null)
+  const [parcelAvailabilityForBuyer, setParcelAvailabilityForBuyer ] = useState('')
 
 
 
@@ -287,6 +289,37 @@ const handleCloseAddFundsModal = () => {
       getDiscountPercentage(account).then((dis) => {
         setDiscountPercentage(dis)
       })
+      let {atleastOneWhitelistApplied, buyerWhitelistId} = await checkInWhiteList(account)
+      if(atleastOneWhitelistApplied === true){
+        if(parseInt(buyerWhitelistId) === 0){
+          // join waiting list modal
+          setIsWhiteListed(false)
+          showTransactionModal({
+            title:'Join Whitelist',
+            mainHeading:'Currently you are not whitelisted in current sale, To whitelist yourself please follow steps to join whitelist on below link.',
+            content:'',
+            loading:false,
+            learn:process.env.REACT_APP_JOIN_WHITELIST_LINK,
+            view:'',
+            learn_more_text: 'Join Whitelist'
+          })
+        }else{
+          // check for avalability
+          let allowed = await getParcelAvailabilityForBuyer(account)
+          if(allowed.reduce((sum,el) => {return sum+=el},0) >= 0){
+            // congratulations modal
+            let nonZeroParcels = ''
+            allowed.forEach((el,i) =>{
+              if(el !== 0){
+                nonZeroParcels+= (i===0 ? '':', ') + el+' units of size '+basket[i]['type']
+              }
+            })
+            setParcelAvailabilityForBuyer(nonZeroParcels)
+            setIsWhiteListed(true)
+          }
+        }
+      }
+      // else it is a normal sale
     })()
 }, [account])
 
@@ -454,24 +487,26 @@ console.log(order)
       globalErrorNotifier({scope:'comearth:notify', message: 'You need to select at least 1 parcel to reserve virtual land'})
       return
     }
-    let walletProvider  = appGlobals.getWalletProviderConfirmed()
-    walletProvider.then((provider) => {
-      
-      let process = startTransactionFlow(provider)
-      process.then((tx) => {
-        navigate('/success')
-      }).catch((err) => {
-        console.log(err)
-        setIsOpenedProgressWallet(false)
-        if(globalErrorNotifier(err) === false){
-          // navigate('/failed')
-        }else{
-         if((JSON.stringify(err)).includes('insufficient funds for gas')){
-           console.log('inside err')
-
-          setOpenAddFundsModal(true)
-         }
-        }
+    (new apiRepository().createOrUpdateUser()).then(() => {
+      let walletProvider  = appGlobals.getWalletProviderConfirmed()
+      walletProvider.then((provider) => {
+        
+        let process = startTransactionFlow(provider)
+        process.then((tx) => {
+          navigate('/success')
+        }).catch((err) => {
+          console.log(err)
+          setIsOpenedProgressWallet(false)
+          if(globalErrorNotifier(err) === false){
+            // navigate('/failed')
+          }else{
+           if((JSON.stringify(err)).includes('insufficient funds for gas')){
+             console.log('inside err')
+  
+            setOpenAddFundsModal(true)
+           }
+          }
+        })
       })
     })
   }
@@ -597,6 +632,7 @@ console.log(order)
               </div>
               <div>
 
+                {isWhiteListed && 
                 <div className='border border-[#0BB783] bg-[#0BB783]/10 flex px-[20px] py-[16px] pb-[20px] rounded-[8px] mb-[14px]'>
                   <div>
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -609,12 +645,12 @@ console.log(order)
                       </defs>
                     </svg>
                   </div>
-
                   <div className='ml-[8px]'>
                     <div className='text-white text-[16px] font-[500] mb-[8px]'>Congratulations!!! Your wallet is already whitelisted</div>
-                    <div className='text-white text-[14px]'>Currently you are whitelisted to reserve 1 parcel of 4x4 & 1 parcel of 8x8. </div>
+                    <div className='text-white text-[14px]'>Currently you are whitelisted to reserve {parcelAvailabilityForBuyer} </div>
                   </div>
                 </div>
+                }
 
                 <div className='bg-[#262728] rounded-lg py-[30px] px-[32px] mb-[20px]'>
                   <h2 className='font-extrabold text-[24px] mb-[20px]'>Cart Summary</h2>

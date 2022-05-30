@@ -1,4 +1,5 @@
 import { _landReserverAbi } from 'lib/constants/landReserverAbi';
+import {_whitelistManagerAbi} from 'lib/constants/whitelistManagerAbi';
 import { BigNumber, ethers } from 'ethers'
 
 export const landPrices = async (token,returnNumeric = false) => {
@@ -53,4 +54,12 @@ export const extractReceiptData = (receipt,token) =>{
         }
     })
     return data
+}
+
+export const checkInWhiteList = async(address) =>{
+    let provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_POLYGON_RPC_PROVIDER);
+    let contract  = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider)
+    let whiteListManager = await contract.getWhitelistManager()
+    let whiteListContract = new ethers.Contract(whiteListManager,_whitelistManagerAbi,provider)
+    return await whiteListContract.getBuyerApplicableWhitelistId(!!address ? address : "0x0000000000000000000000000000000000000000")
 }
