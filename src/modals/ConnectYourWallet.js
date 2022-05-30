@@ -47,7 +47,7 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
       </div>
 
       <div className='px-[10px]'>
-        <a className='flex items-center text-[14px] text-[#3F99FF] hover:underline' href={process.env.REACT_APP_LEARN_HOW_TO_RESERVE_LAND} rel="noreferrer">
+        <a className='flex items-center text-[14px] text-[#3F99FF] hover:underline' rel='noreferrer' target='_blank' href={process.env.REACT_APP_LEARN_HOW_TO_RESERVE_LAND}>
           <span className='mr-[5px]'>
             <svg
               width='20'
