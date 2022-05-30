@@ -19,7 +19,7 @@ const ReserveLandModal = (props) => {
         mainHeading:'We have an account already registered with this email, Please check your email to proceed further.',
         content:'',
         loading:false,
-        learn:'',
+learn:process.env.REACT_APP_PROGRESS_CONNECT_LEARN_MORE,
         view:''
       })
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
