@@ -440,8 +440,10 @@ const handleCloseAddFundsModal = () => {
     })
 
     let discount = (await getDiscountPercentage(account))[0]/1000
+    let prices = await landPrices(selectToken,true)
+    console.log(prices)
     let order=await new apiRepository().createOrder(selectToken.id, discount, 
-      cookies.referral_first_touch, cookies.referral_last_touch, cookies.utm_first_touch, cookies.utm_last_touch, account)
+      cookies.referral_first_touch, cookies.referral_last_touch, cookies.utm_first_touch, cookies.utm_last_touch, account,prices)
     // check for approval erc20
     let totalPrice = await getTotalParcelPrice(basket,selectToken, account)
     if(selectToken.id !== 0){
