@@ -23,7 +23,7 @@ const _menu = {
     {
       id: '1004',
       title: 'Contact Us',
-      url: 'contact--us',
+      url: 'contact-us',
     },
     {
       id: '1005',
