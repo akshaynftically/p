@@ -487,7 +487,8 @@ const handleCloseAddFundsModal = () => {
     return receipt;
   }
   const onSubmit = (data) => {
-    dispatch(setTransactionForm({...data, basket, discountCode}))
+    let discount =(discountPercentage[0]/1000).toFixed(2)
+    dispatch(setTransactionForm({...data, basket, discount}))
     let total_qty = basket.reduce((sum, el) => { return sum+= parseInt(el.qty)},0)
     if(total_qty === 0 ){
       globalErrorNotifier({scope:'comearth:notify', message: 'You need to select at least 1 parcel to reserve virtual land'})
