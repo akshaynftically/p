@@ -21,11 +21,11 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
     <FullScreenPopup title='Connect Your Wallet' size='w-full sm:w-[520px]' onClose={onClose}>
       <div className='text-[14px] text-white/[.80] mb-[24px]'>
         By connecting a wallet, you agree to NFTICALLY’s{' '}
-        <Link className='font-bold text-[#3E97FC] hover:underline' to='/'>
+        <Link className='font-bold text-[#3E97FC] hover:underline' to={{pathname:'//www.nftically.com/terms'}} target="_blank">
           Terms of Service
         </Link>{' '}
         and{' '}
-        <Link className='font-bold text-[#3E97FC] hover:underline' to='/'>
+        <Link className='font-bold text-[#3E97FC] hover:underline' to={{pathname:'//www.nftically.com/privacy-policy'}} target="_blank">
           Privacy Policy that
         </Link>{' '}
         you have read and understand.
@@ -37,11 +37,11 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
             <WalletListItem key={el.id} {...el} onClick={handleWalletConnect} />
           ))}
         </div>
-        <div className='flex items-center justify-center min-h-[54px] py-[10px] px-[20px]'>
+        {/* <div className='flex items-center justify-center min-h-[54px] py-[10px] px-[20px]'>
           <Link className='text-[16px] text-[#3F99FF] hover:underline' to='/'>
             Show More Options
           </Link>
-        </div>
+        </div> */}
       </div>
 
       <div className='px-[10px]'>
@@ -60,7 +60,7 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
               />
             </svg>
           </span>
-          Learn how to use various wallets
+          Learn how to reserve land
         </Link>
       </div>
     </FullScreenPopup>

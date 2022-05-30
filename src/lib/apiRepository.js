@@ -112,6 +112,7 @@ export class apiRepository {
             utm_first_touch: utmFirstTouch,
             utm_last_touch: utmLastTouch
         })
+        debugger;
         order = order.data
         localStorage.setItem('order',JSON.stringify(order))
         return order
