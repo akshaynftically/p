@@ -165,9 +165,9 @@ const Failed = () => {
           <p className='mb-[20px]'>Your transaction couldn’t be completed.</p>
           <p className='mb-[32px]'>
             You can retry your payment.{' '}
-            <Link className='text-[#3F99FF] underline' to={process.to.REACT_APP_FAILED_LEARN_MORE}>
+            <a className='text-[#3F99FF] underline' rel="noreferrer" href={process.to.REACT_APP_FAILED_LEARN_MORE}>
               Learn More
-            </Link>
+            </a>
           </p>
 
           <SimpleButton className='max-w-[439px] w-full' href='/reserve-land'>
