@@ -8,7 +8,6 @@ import apiRepository from "./apiRepository";
 export const getWalletProvider = async (walletTitle) =>{
     let walletWeb3;
     let userWallet = localStorage.getItem('wallet') ? JSON.parse(localStorage.getItem('wallet')) : null
-    await new apiRepository().createOrUpdateUser()
     if(walletTitle === "MetaMask") {
       // if wallet is metamask pluck only metamask provider
       if(typeof window.ethereum.providers != "undefined"){
