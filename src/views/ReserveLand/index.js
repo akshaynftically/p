@@ -571,7 +571,7 @@ console.log(order)
 
                   <small className='text-red-400'>{errors.industry?.type === 'required' && "Industry is required"}</small>
                 </FieldGroup>
-                <FieldGroup label='I am representing'>
+                <FieldGroup label='I am representing' required={true}>
                   <div className='grid md:grid-cols-2'>
                     <div>
                       <Radio
@@ -666,7 +666,7 @@ console.log(order)
                     />
                   </FieldGroup>
 
-                  <FieldGroup label='Select Virtual Land Parcels'>
+                  <FieldGroup label='Select Virtual Land Parcels' required={true}>
                     <LandUnits basket={basket} setBasket={setBasket} />
                   </FieldGroup>
 
