@@ -209,7 +209,7 @@ const Failed = () => {
 
                     <p className='text-white/80'>
                         Please ensure to confirm your email id by clicking on the link in our email. In case, you are not abel to find our email, please make sure you check your spam folder too.
-                        <Link className='text-[#3F99FF] underline ml-1' to=''>Learn More</Link>
+                        <Link className='text-[#3F99FF] underline ml-1' to={process.env.REACT_APP_SUCCESS_LEARN_MORE}>Learn More</Link>
                     </p>
                 </div>
             )}

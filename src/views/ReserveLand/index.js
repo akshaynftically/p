@@ -57,7 +57,7 @@ const _tokenIcons = {
 
 
 const _selectIndustryOptions = [
-  {value: 'Ecommerce', label: 'E-commerce'},
+  {value: 'Ecommerce', label: 'E-Commerce'},
   {value: 'Creators/Artists', label: 'Creators/Artists'},
   {value: 'Media & Entertainment', label: 'Media & Entertainment'},
   {value: 'Events & Conference', label: 'Events & Conference'},
@@ -433,9 +433,9 @@ const handleCloseAddFundsModal = () => {
 
     let discount = (await getDiscountPercentage())[0]/1000
     
-    await new apiRepository().createOrder(selectToken.id, '10000000000000000000', discount, 
+    let order=await new apiRepository().createOrder(selectToken.id, '10000000000000000000', discount, 
       cookies.referral_first_touch, cookies.referral_last_touch, cookies.utm_first_touch, cookies.utm_last_touch, account)
-
+console.log(order)
     // check for approval erc20
     let totalPrice = await getTotalParcelPrice(basket,selectToken, account)
     if(selectToken.id !== 0){
@@ -537,14 +537,14 @@ const handleCloseAddFundsModal = () => {
                 <h2 className='font-extrabold text-[24px] mb-[16px]'>Reserve Virtual Land in COMEARTH</h2>
                 <hr className='border-[#363738] my-[16px]' />
 
-                <FieldGroup label='Name*:'>
+                <FieldGroup label='Name' required={true}>
                   <Field placeholder='Enter Your Full Name Here'
                          isError={errors.name}
                          register={register("name", { required: true})}
                   />
                   <small className='text-red-400'>{errors.name?.type === 'required' && "Name is required"}</small>
                 </FieldGroup>
-                <FieldGroup label='Email ID*:'>
+                <FieldGroup label='Email' required={true}>
                   <Field type='email'
                          isError={errors.email}
                          register={register("email", { required: true, pattern: /^\S+@\S+$/i })}
@@ -554,7 +554,7 @@ const handleCloseAddFundsModal = () => {
                     {errors.email?.type === 'pattern' && "Email is invalid"}
                   </small>
                 </FieldGroup>
-                <FieldGroup label='Select Industry'>
+                <FieldGroup label='Select Industry' required={true}>
                   <Controller
                       name='industry'
                       control={control}
@@ -597,7 +597,7 @@ const handleCloseAddFundsModal = () => {
                 </FieldGroup>
 
                 {areYouRepresenting !== 'individual' && (
-                    <FieldGroup label='Company Name'>
+                    <FieldGroup label='Company Name' >
                       <Field isError={errors.company}
                              register={register("company", { required: true })}
                              placeholder='Enter Your Company or Brand Name Here' />
@@ -605,7 +605,7 @@ const handleCloseAddFundsModal = () => {
                     </FieldGroup>
                 )}
 
-                <FieldGroup label='Select Country*' className='md:mb-[40px]'>
+                <FieldGroup label='Select Country' required={true} className='md:mb-[40px]'>
                   <Controller
                       name='country'
                       control={control}

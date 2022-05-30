@@ -9,19 +9,24 @@ import _logoNftcally from 'assets/img/logo-nftically.svg'
 
 // Mocks
 const _menu = {
-  comearth: [
-    {
-      id: '1001',
-      title: 'Join Waiting List',
-      url: 'https://discord.gg/comearth',
-    },
+  COMEARTH: [
     {
       id: '1002',
+      title: 'Reserve Virtual Land ',
+      url: 'reserve-land',
+    },
+    {
+      id: '1003',
       title: 'About Us',
       url: 'about-us',
     },
     {
-      id: '1003',
+      id: '1004',
+      title: 'Contact Us',
+      url: 'contact--us',
+    },
+    {
+      id: '1005',
       title: 'Visit NFTICALLY',
       url: 'https://www.nftically.com',
     },
