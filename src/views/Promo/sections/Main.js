@@ -107,7 +107,7 @@ const Main = () => {
                     isError={errors.email}
                     register={register('email', {required: true, pattern: /^\S+@\S+$/i})}
                     type='email'
-                    className='pr-[230px] py-[14px] lg:py-[14px] mb-[12px] lg:mb-0'
+                    className=' py-[14px] lg:py-[14px] mb-[12px] lg:mb-0'
                     placeholder='Enter Your Email Address'
                   />
 
