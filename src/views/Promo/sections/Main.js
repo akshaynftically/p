@@ -59,6 +59,10 @@ const Main = () => {
     // dispatch(setTransactionForm(data))
     // navigate('/reserve-land')
     // window.open(`${process.env.REACT_APP_JOIN_LINK}`, "_blank")
+    // remove any cached localstorage
+    localStorage.removeItem('order')
+    localStorage.removeItem('wallet')
+    localStorage.removeItem('transactionForm')
     dispatch(setTransactionForm(data))
     new apiRepository().createLead(data.email)
     .then(res => {

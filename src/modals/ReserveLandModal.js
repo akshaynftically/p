@@ -45,6 +45,10 @@ learn:'',
       }
 
     const onSubmit = (data) => {
+        // remove any cached localstorage
+        localStorage.removeItem('order')
+        localStorage.removeItem('wallet')
+        localStorage.removeItem('transactionForm')
         dispatch(setTransactionForm(data))
         new apiRepository().createLead(data.email)
         .then(res => {

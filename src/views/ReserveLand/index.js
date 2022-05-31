@@ -327,7 +327,7 @@ const handleCloseAddFundsModal = () => {
               setIsWhiteListed(false)
               setDisabledReserveLand(true)
               setWhiteListError({
-                heading: 'Oops!!! Limit Reached',
+                heading: 'Oops!!! You have exhausted your parcel limit!',
                 claimed_all: true
               })
             }
@@ -679,7 +679,7 @@ const handleCloseAddFundsModal = () => {
                         <div className='ml-[18px]'>
                           <div className='text-white text-[16px] font-[500] mb-[8px]'>{whiteListError.heading}</div>
                           { whiteListError.claimed_all ?
-                            <div className='text-white text-[14px]'>You have already reached parcel limits allowed to you.</div>
+                            <div className='text-white text-[14px]'>You have already reserved maximum parcel quantity allocated to you.</div>
                             :
                             <div className='text-white text-[14px]'>Either connect the right wallet or 
                               <a className='font-bold text-[#3E97FC] hover:underline' rel='noreferrer' href={process.env.REACT_APP_JOIN_WHITELIST_LINK} target="_blank"> click here </a>to join whitelist
