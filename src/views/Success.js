@@ -31,8 +31,8 @@ const order=JSON.parse(localStorage.getItem('order'))
     const total = () => {
         let total = getTotal()
 
-        if (transactionForm.discountCode) {
-            total = total - ((total * 10) / 100)
+        if (transactionForm.discount) {
+            total = total - ((total * transactionForm.discount) / 100)
         }
 
         return total
