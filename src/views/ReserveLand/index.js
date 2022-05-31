@@ -165,6 +165,7 @@ const ReserveLand = () => {
   const transactionForm = useSelector(getTransactionForm)
   const [wrongNetworkModal, setWrongNetworkModal] = useState(false)
   const [isWhiteListed, setIsWhiteListed] = useState(false)
+  const [disabledReserveLand, setDisabledReserveLand] = useState(false)
 
   const [basket, setBasket] = useState([
     {
@@ -290,11 +291,15 @@ const handleCloseAddFundsModal = () => {
         setDiscountPercentage(dis)
       })
       if(account != null){
+        let provider = await appGlobals.hasWalletProvider()
+        let chainId = (await provider.getNetwork()).chainId
+        if( chainId != process.env.REACT_APP_CHAIN_ID) return
         let {atleastOneWhitelistApplied, buyerWhitelistId} = await checkInWhiteList(account)
         if(atleastOneWhitelistApplied === true){
           if(parseInt(buyerWhitelistId) === 0){
             // join waiting list modal
             setIsWhiteListed(false)
+            setDisabledReserveLand(true)
             showTransactionModal({
               title:'Join Whitelist',
               mainHeading:'Currently you are not whitelisted in current sale, To whitelist yourself please follow steps to join whitelist on below link.',
@@ -320,8 +325,10 @@ const handleCloseAddFundsModal = () => {
               }
               setParcelAvailabilityForBuyer(nonZeroParcels)
               setIsWhiteListed(true)
+              setDisabledReserveLand(false)
             }else{
               setIsWhiteListed(false)
+              setDisabledReserveLand(true)
               globalErrorNotifier({scope:'comearth:notify', message: "You have already claimed all the available quantities of parcels for you."})
             }
           }
@@ -382,7 +389,9 @@ const handleCloseAddFundsModal = () => {
       
         setAccount(accountsList[0])
       console.log('account',account)
-
+      if(appGlobals.isWrongNetwork){
+        setDisabledReserveLand(true)
+      }
     })()
 }, [appGlobals])
 
@@ -441,7 +450,6 @@ const handleCloseAddFundsModal = () => {
 
     let discount = (await getDiscountPercentage(account))[0]/1000
     let prices = await landPrices(selectToken,true)
-    console.log(prices)
     let order=await new apiRepository().createOrder(selectToken.id, discount, 
       cookies.referral_first_touch, cookies.referral_last_touch, cookies.utm_first_touch, cookies.utm_last_touch, account,prices)
     // check for approval erc20
@@ -696,7 +704,7 @@ const handleCloseAddFundsModal = () => {
                  :
 
                  <>
-                 <SimpleButton type='submit' className='mb-[27px]' block disabled={!isWhiteListed}>
+                 <SimpleButton type='submit' className='mb-[27px]' block disabled={disabledReserveLand}>
                   Reserve Virtual Land
                 </SimpleButton>
                  </>
