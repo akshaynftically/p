@@ -32,7 +32,6 @@ export const getDiscountPercentage = async (account) => {
     let provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_POLYGON_RPC_PROVIDER);
     let contract  = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider)
     let discount = await contract.getApplicableDiscountPercentages(!!account ? account : "0x0000000000000000000000000000000000000000")
-    console.log(discount)
     return discount
 }
 
@@ -58,8 +57,6 @@ export const extractReceiptData = (receipt,token) =>{
 
 export const checkInWhiteList = async(address) =>{
     let provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_POLYGON_RPC_PROVIDER);
-    let contract  = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider)
-    let whiteListManager = await contract.getWhitelistManager()
-    let whiteListContract = new ethers.Contract(whiteListManager,_whitelistManagerAbi,provider)
+    let whiteListContract = new ethers.Contract(process.env.REACT_APP_WHITELIST_CONTRACT_ADDRESS,_whitelistManagerAbi,provider)
     return await whiteListContract.getBuyerApplicableWhitelistId(!!address ? address : "0x0000000000000000000000000000000000000000")
 }

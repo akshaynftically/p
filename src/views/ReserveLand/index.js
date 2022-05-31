@@ -289,37 +289,45 @@ const handleCloseAddFundsModal = () => {
       getDiscountPercentage(account).then((dis) => {
         setDiscountPercentage(dis)
       })
-      let {atleastOneWhitelistApplied, buyerWhitelistId} = await checkInWhiteList(account)
-      if(atleastOneWhitelistApplied === true){
-        if(parseInt(buyerWhitelistId) === 0){
-          // join waiting list modal
-          setIsWhiteListed(false)
-          showTransactionModal({
-            title:'Join Whitelist',
-            mainHeading:'Currently you are not whitelisted in current sale, To whitelist yourself please follow steps to join whitelist on below link.',
-            content:'',
-            loading:false,
-            learn:process.env.REACT_APP_JOIN_WHITELIST_LINK,
-            view:'',
-            learn_more_text: 'Join Whitelist'
-          })
-        }else{
-          // check for avalability
-          let allowed = await getParcelAvailabilityForBuyer(account)
-          if(allowed.reduce((sum,el) => {return sum+=el},0) >= 0){
-            // congratulations modal
-            let nonZeroParcels = ''
-            allowed.forEach((el,i) =>{
-              if(el !== 0){
-                nonZeroParcels+= (i===0 ? '':', ') + el+' units of size '+basket[i]['type']
-              }
+      if(account != null){
+        let {atleastOneWhitelistApplied, buyerWhitelistId} = await checkInWhiteList(account)
+        if(atleastOneWhitelistApplied === true){
+          if(parseInt(buyerWhitelistId) === 0){
+            // join waiting list modal
+            setIsWhiteListed(false)
+            showTransactionModal({
+              title:'Join Whitelist',
+              mainHeading:'Currently you are not whitelisted in current sale, To whitelist yourself please follow steps to join whitelist on below link.',
+              content:'',
+              loading:false,
+              learn:process.env.REACT_APP_JOIN_WHITELIST_LINK,
+              view:'',
+              learn_more_text: 'Join Whitelist'
             })
-            setParcelAvailabilityForBuyer(nonZeroParcels)
-            setIsWhiteListed(true)
+          }else{
+            // check for avalability
+            let allowed = await getParcelAvailabilityForBuyer(account)
+            if(allowed.reduce((sum,el) => {return sum+=el},0) > 0){
+              // congratulations modal
+              let nonZeroParcels = ''
+              allowed.forEach((el,i) =>{
+                if(el !== 0){
+                  nonZeroParcels+= (i===0 ? '':', ') + el+' units of size '+basket[i]['type']
+                }
+              })
+              if(nonZeroParcels.length > 0 && nonZeroParcels[0] === ','){
+                nonZeroParcels = nonZeroParcels.substring(1)
+              }
+              setParcelAvailabilityForBuyer(nonZeroParcels)
+              setIsWhiteListed(true)
+            }else{
+              setIsWhiteListed(false)
+              globalErrorNotifier({scope:'comearth:notify', message: "You have already claimed all the available quantities of parcels for you."})
+            }
           }
         }
+        // else it is a normal sale
       }
-      // else it is a normal sale
     })()
 }, [account])
 
@@ -431,11 +439,11 @@ const handleCloseAddFundsModal = () => {
       return el.qty
     })
 
-    let discount = (await getDiscountPercentage())[0]/1000
-    
-    let order=await new apiRepository().createOrder(selectToken.id, '10000000000000000000', discount, 
-      cookies.referral_first_touch, cookies.referral_last_touch, cookies.utm_first_touch, cookies.utm_last_touch, account)
-console.log(order)
+    let discount = (await getDiscountPercentage(account))[0]/1000
+    let prices = await landPrices(selectToken,true)
+    console.log(prices)
+    let order=await new apiRepository().createOrder(selectToken.id, discount, 
+      cookies.referral_first_touch, cookies.referral_last_touch, cookies.utm_first_touch, cookies.utm_last_touch, account,prices)
     // check for approval erc20
     let totalPrice = await getTotalParcelPrice(basket,selectToken, account)
     if(selectToken.id !== 0){
@@ -688,7 +696,7 @@ console.log(order)
                  :
 
                  <>
-                 <SimpleButton type='submit' className='mb-[27px]' block>
+                 <SimpleButton type='submit' className='mb-[27px]' block disabled={!isWhiteListed}>
                   Reserve Virtual Land
                 </SimpleButton>
                  </>
