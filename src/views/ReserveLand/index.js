@@ -165,6 +165,7 @@ const ReserveLand = () => {
   const transactionForm = useSelector(getTransactionForm)
   const [wrongNetworkModal, setWrongNetworkModal] = useState(false)
   const [isWhiteListed, setIsWhiteListed] = useState(false)
+  const [whiteListError, setWhiteListError] = useState(null)
   const [disabledReserveLand, setDisabledReserveLand] = useState(false)
 
   const [basket, setBasket] = useState([
@@ -300,14 +301,9 @@ const handleCloseAddFundsModal = () => {
             // join waiting list modal
             setIsWhiteListed(false)
             setDisabledReserveLand(true)
-            showTransactionModal({
-              title:'Join Whitelist',
-              mainHeading:'Currently you are not whitelisted in current sale, To whitelist yourself please follow steps to join whitelist on below link.',
-              content:'',
-              loading:false,
-              learn:process.env.REACT_APP_JOIN_WHITELIST_LINK,
-              view:'',
-              learn_more_text: 'Join Whitelist'
+            setWhiteListError({
+              heading: 'Oops!!! This wallet is not whitelisted',
+              claimed_all: false
             })
           }else{
             // check for avalability
@@ -326,10 +322,14 @@ const handleCloseAddFundsModal = () => {
               setParcelAvailabilityForBuyer(nonZeroParcels)
               setIsWhiteListed(true)
               setDisabledReserveLand(false)
+              setWhiteListError(null)
             }else{
               setIsWhiteListed(false)
               setDisabledReserveLand(true)
-              globalErrorNotifier({scope:'comearth:notify', message: "You have already claimed all the available quantities of parcels for you."})
+              setWhiteListError({
+                heading: 'Oops!!! Limit Reached',
+                claimed_all: true
+              })
             }
           }
         }
@@ -666,6 +666,28 @@ const handleCloseAddFundsModal = () => {
                     <div className='text-white text-[16px] font-[500] mb-[8px]'>Congratulations!!! Your wallet is already whitelisted</div>
                     <div className='text-white text-[14px]'>Currently you are whitelisted to reserve {parcelAvailabilityForBuyer} </div>
                   </div>
+                </div>
+                }
+                {whiteListError &&
+                <div className='my-[20px]'>
+                    <div className='flex items-center bg-[#514638] rounded-[8px] border border-[#FFC179] py-[8px] px-[16px]'>
+                        <div>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.8666 2.99996L22.3926 19.5C22.4804 19.652 22.5266 19.8244 22.5266 20C22.5266 20.1755 22.4804 20.3479 22.3926 20.4999C22.3048 20.652 22.1786 20.7782 22.0266 20.866C21.8746 20.9537 21.7021 21 21.5266 21H2.47458C2.29905 21 2.12661 20.9537 1.97459 20.866C1.82258 20.7782 1.69634 20.652 1.60858 20.4999C1.52081 20.3479 1.47461 20.1755 1.47461 20C1.47461 19.8244 1.52082 19.652 1.60858 19.5L11.1346 2.99996C11.2224 2.84795 11.3486 2.72172 11.5006 2.63396C11.6526 2.5462 11.8251 2.5 12.0006 2.5C12.1761 2.5 12.3485 2.5462 12.5006 2.63396C12.6526 2.72172 12.7788 2.84795 12.8666 2.99996ZM11.0006 16V18H13.0006V16H11.0006ZM11.0006 8.99996V14H13.0006V8.99996H11.0006Z" fill="#FFC179" fillOpacity="0.8"/>
+                            </svg>
+                        </div>
+                        <div className='ml-[18px]'>
+                          <div className='text-white text-[16px] font-[500] mb-[8px]'>{whiteListError.heading}</div>
+                          { whiteListError.claimed_all ?
+                            <div className='text-white text-[14px]'>You have already reached parcel limits allowed to you.</div>
+                            :
+                            <div className='text-white text-[14px]'>Either connect the right wallet or 
+                              <a className='font-bold text-[#3E97FC] hover:underline' rel='noreferrer' href={process.env.REACT_APP_JOIN_WHITELIST_LINK} target="_blank"> click here </a>to join whitelist
+                            </div>
+                          }
+                        </div>
+                        {/* <span className='text-[14px] text-white/80 ml-[12px]'>You do not have sufficient funds in your wallet to make this transaction. Please add some relevant coins/tokens to your wallet. Click on Add Funds button below. make sure you have at least 0.2 MATIC for transaction gas fee</span> */}
+                    </div>
                 </div>
                 }
 
