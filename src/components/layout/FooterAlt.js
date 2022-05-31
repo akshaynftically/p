@@ -174,7 +174,7 @@ const FooterAlt = () => {
         <div className='grid grid-cols-12 border-t-[1px] md:border-none border-[#363738] pt-[24px] md:pt-0'>
           <div className='col-span-12 text-center md:text-left md:col-span-4 mb-[24px] md:mb-0'>
             <div className='mb-[20px] md:mb-[24px]'>
-              <img className='inline-block max-w-full' src={_logoComearth} alt='Comearth' />
+              <img className='inline-block max-w-full' src={_logoComearth} alt='COMEARTH' />
             </div>
 
             <div className='flex justify-center md:justify-start'>
