@@ -53,12 +53,42 @@ const App = () => {
      setIsWrongNetwork
   }
 
-  useEffect(() => {
-    (async() => {
-     let wp =await appGlobals.hasWalletProvider()
-     registerWalletEvents(wp)
-    })() 
-   },[])
+  // useEffect(async() => {
+  //   let wp =await appGlobals.hasWalletProvider()
+
+  //   registerWalletEvents(wp)
+
+  //   (async() => {
+  //    let wp =await appGlobals.hasWalletProvider()
+  //    registerWalletEvents(wp)
+  //   })() 
+  //  },[])
+
+   useEffect(() => {
+    async function initWeb3() {
+      try {
+        let wp =await appGlobals.hasWalletProvider()
+        registerWalletEvents(wp)
+       // then add logic here
+     } catch (error) {
+       // handle error
+     }
+   }
+    initWeb3();
+    return () => removeListener(window.ethereum);
+   }, []);
+ 
+   
+   const removeListener = (ethereum) => {
+     alert('close')
+     ethereum.removeListener("chainChanged", pageReload);
+     ethereum.removeListener("accountsChanged", pageReload);
+
+   };
+ 
+   function pageReload() {
+     window.location.reload();
+   }
 
   return (
     <main
