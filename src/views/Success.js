@@ -103,7 +103,7 @@ const order=JSON.parse(localStorage.getItem('order'))
                     </div>
 
                     <h2 className='font-[900] text-[24px] lg:text-[36px] mb-[8px]'>Congratulations!</h2>
-                    <h5 className='text-[16px] lg:text-[32px] mb-[20px]'>You now own a real estate in Comearth</h5>
+                    <h5 className='text-[16px] lg:text-[32px] mb-[20px]'>You now own a real estate in COMEARTH</h5>
 
                     <ReferalLink />
 

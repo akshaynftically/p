@@ -332,7 +332,7 @@ export function Aside() {
             <div className='text-right'>
               <div className='text-[16px] font-bold text-white/80 mb-[8px]'>COMEARTH Address</div>
               <div className='text-[14px] font-bold text-white/80'>
-                4877 Ethels Lane, Polk City,  Tosh, Comearth Pin - 880067
+                4877 Ethels Lane, Polk City, Tosh, COMEARTH Pin - 880067
               </div>
             </div>
           </div>
