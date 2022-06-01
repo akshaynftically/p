@@ -96,7 +96,7 @@ export const _selectTokenOptions = [
          "id":1,
          "logo":"token_logo4",
          "value":"wMATIC",
-         "label":"wMATIC",
+         "label":"wMATIC ERC20 on Polygon Network",
          "contract_address":getData('wMATIC'), 
          "decimals":18
       },
@@ -104,7 +104,7 @@ export const _selectTokenOptions = [
          "id":2,
          "logo":"token_logo1",
          "value":"USDT ERC20",
-         "label":"USDT ERC20",
+         "label":"USDT ERC20 on Polygon Network",
          "contract_address":getData('USDT'),
          "decimals":6
       },
@@ -112,7 +112,7 @@ export const _selectTokenOptions = [
          "id":3,
          "logo":"token_logo2",
          "value":"USDC ERC20",
-         "label":"USDC ERC20",
+         "label":"USDC ERC20 on Polygon Network",
          "contract_address":getData('USDC'),
          "decimals":6
       },
@@ -120,7 +120,7 @@ export const _selectTokenOptions = [
          "id":4,
          "logo":"token_logo3",
          "value":"BUSD ERC20",
-         "label":"BUSD ERC20",
+         "label":"BUSD ERC20 on Polygon Network",
          "contract_address":getData('BUSD'),
          "decimals":18
       },
@@ -128,7 +128,7 @@ export const _selectTokenOptions = [
          "id":5,
          "logo":"token_logo5",
          "value":"ETH",
-         "label":"ETH",
+         "label":"ETH ERC20 on Polygon Network",
          "contract_address":getData('ETH'),
          "decimals":18
       },
@@ -136,7 +136,7 @@ export const _selectTokenOptions = [
          "id":6,
          "logo":"token_logo6",
          "value":"BTC",
-         "label":"BTC",
+         "label":"BTC ERC20 on Polygon Network",
          "contract_address":getData('BTC'),
          "decimals":18
       },
@@ -144,7 +144,7 @@ export const _selectTokenOptions = [
          "id":7,
          "logo":"token_logo7",
          "value":"BNB",
-         "label":"BNB",
+         "label":"BNB ERC20 on Polygon Network",
          "contract_address":getData('BNB'),
          "decimals":18
       },
@@ -152,7 +152,7 @@ export const _selectTokenOptions = [
          "id":8,
          "logo":"token_logo8",
          "value":"Aave",
-         "label":"Aave",
+         "label":"Aave ERC20 on Polygon Network",
          "contract_address":getData('Aave'),
          "decimals":18
       },
@@ -160,7 +160,7 @@ export const _selectTokenOptions = [
          "id":9,
          "logo":"token_logo9",
          "value":"LINK",
-         "label":"LINK",
+         "label":"LINK ERC20 on Polygon Network",
          "contract_address":getData('LINK'),
          "decimals":18
       },
@@ -168,7 +168,7 @@ export const _selectTokenOptions = [
          "id":10,
          "logo":"token_logo11",
          "value":"MANA",
-         "label":"MANA",
+         "label":"MANA ERC20 on Polygon Network",
          "contract_address":getData('MANA'),
          "decimals":18
       },
@@ -176,7 +176,7 @@ export const _selectTokenOptions = [
          "id":11,
          "logo":"token_logo12",
          "value":"SAND",
-         "label":"SAND",
+         "label":"SAND ERC20 on Polygon Network",
          "contract_address":getData('SAND'),
          "decimals":18
       }
