@@ -9,7 +9,7 @@ import 'swiper/css/navigation'
 import LandUnit from 'components/cards/LandUnit'
 
 const LandUnits = (props) => {
-  const {basket, setBasket,} = props
+  const {basket, setBasket,disableCounter} = props
 
   const settings = {
     spaceBetween: 12,
@@ -40,7 +40,7 @@ const LandUnits = (props) => {
     <Swiper {...settings} className='mb-[34px]'>
       {props.basket.map((el, index) => (
         <SwiperSlide key={el.id}>
-          <LandUnit {...el} index={index} onChange={qty => onChange(qty, index)} />
+          <LandUnit {...el} index={index} onChange={qty => onChange(qty, index)} disableCounter={disableCounter} />
         </SwiperSlide>
       ))}
     </Swiper>

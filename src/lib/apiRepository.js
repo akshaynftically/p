@@ -47,6 +47,7 @@ export class apiRepository {
                 country: transactionForm?.country,
                 industry: transactionForm?.industry?.value,
                 country_code: transactionForm?.country?.value,
+                company: transactionForm.company,
                 first_referred_by: firstReferredBy,
                 referred_by: referredBy,
                 utm_first_touch: utmFirstTouch,
@@ -68,7 +69,8 @@ export class apiRepository {
                   first_referred_by: firstReferredBy,
                   referred_by: referredBy,
                   utm_first_touch: utmFirstTouch,
-                  utm_last_touch: utmLastTouch
+                  utm_last_touch: utmLastTouch,
+                  company: transactionForm.company,
                 })
                 localStorage.setItem('auth',JSON.stringify(resp.data))
               }catch(error){

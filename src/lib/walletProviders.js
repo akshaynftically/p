@@ -12,8 +12,8 @@ export const getWalletProvider = async (walletTitle) =>{
     if(isMobile){
       let userInfo = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null
       let userString = window.location.search === '' ? '?user_id='+userInfo.id : '&user_id='+userInfo.id
-      if(walletTitle === 'MetaMask' && typeof window.ethereum !== "undefined"){
-        let locat= 'https://metamask.app.link/'+window.location.host+window.location.pathname+userString
+      if(walletTitle === 'MetaMask' && typeof window.ethereum === "undefined"){
+        let locat= 'https://metamask.app.link/dapp/'+window.location.host+window.location.pathname+userString
         window.location = locat
         return
       }

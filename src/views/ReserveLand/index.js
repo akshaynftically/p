@@ -389,6 +389,7 @@ const handleCloseAddFundsModal = () => {
       
         setAccount(accountsList[0])
       if(process.env.REACT_APP_CHAIN_ID != (await tempProvider.getNetwork())['chainId'] ){
+        setIsWrongNetwork(true)
         setDisabledReserveLand(true)
       }
     })()
@@ -705,7 +706,7 @@ const handleCloseAddFundsModal = () => {
                   </FieldGroup>
 
                   <FieldGroup label='Select Virtual Land Parcels' required={true}>
-                    <LandUnits basket={basket} setBasket={setBasket} />
+                    <LandUnits basket={basket} setBasket={setBasket} disableCounter={disabledReserveLand}/>
                   </FieldGroup>
 
                   <BasketList items={basket} setBasket={setBasket} discountCode={discountCode} discountPercentage={discountPercentage} setDiscountCode={setDiscountCode} tokenLogo={selectToken} />
