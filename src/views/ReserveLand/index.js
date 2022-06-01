@@ -502,7 +502,7 @@ const handleCloseAddFundsModal = () => {
     
     receipt  = await transaction.wait()
     let actualData = extractReceiptData(receipt,selectToken)
-    await new apiRepository().updateOrderTx({status:'success',bc_tx_id: transaction.hash,address:account,order_status: 'fulfilled',parcel_quantities: actualData.p, amount:actualData.a})
+    await new apiRepository().updateOrderTx({status:'success',bc_tx_id: transaction.hash,address:account,order_status: 'fulfilled',parcel_quantities: actualData.p, amount:actualData.a, conversion_factor: actualData.c})
     return receipt;
   }
   const onSubmit = (data) => {
