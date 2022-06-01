@@ -23,7 +23,7 @@ import { ToastContainer} from 'react-toastify'
 
 // Modals
 import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useSearchParams} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
 import {Controller, useForm} from 'react-hook-form'
@@ -217,6 +217,8 @@ const ReserveLand = () => {
   const [account, setAccount] = useState(null)
   const [isWrongNetwork, setIsWrongNetwork ] = useState(null)
   const [parcelAvailabilityForBuyer, setParcelAvailabilityForBuyer ] = useState('')
+  const [searchParams,setSearchParams] = useSearchParams()
+  const user_id_mobile = searchParams.get('user_id')
 
 
 
@@ -283,7 +285,25 @@ const handleCloseAddFundsModal = () => {
     setValue('industry', _selectIndustryOptions[0])
   }, [])
 
-
+  useEffect(() => {
+    (async() => {
+      if(user_id_mobile != null){
+        let resp = await new apiRepository().getUserById(user_id_mobile)
+        if(resp.status === 200){
+          let user = resp.data
+          localStorage.removeItem('auth')
+          localStorage.removeItem('transaction_form')
+          localStorage.removeItem('order')
+          localStorage.removeItem('wallet')
+          localStorage.setItem('auth',JSON.stringify(user))
+          let country = _selectCountryOptions.filter((el) => {return el.value === user.country_code})
+          dispatch(setTransactionForm({name: user.name, email: user.email, country : country[0], company: user.company, representing: user.company != null ? "company":"individual" }))
+          navigate('/reserve-land')
+          window.location.reload()
+        }
+      }
+    })()
+  })
 
   useEffect(() => {
     (async () => {
