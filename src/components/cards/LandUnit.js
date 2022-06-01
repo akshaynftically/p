@@ -17,7 +17,7 @@ const LandUnit = (props) => {
   const {type, img, index, qty, onChange,disableCounter} = props
 
   return (
-    <div className='flex flex-col bg-[#161718] rounded-lg pt-[8px] pb-[16px] px-[14px]'>
+    <div className='flex flex-col bg-[#161718] rounded-lg pt-[8px] pb-[16px] px-[14px] w-[125px]'>
       <div className='mb-[8px] mx-auto'>
         <img src={_landUnits[index]} alt={type} />
       </div>

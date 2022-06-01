@@ -166,6 +166,14 @@ const ReserveLand = () => {
   const [isWhiteListed, setIsWhiteListed] = useState(false)
   const [whiteListError, setWhiteListError] = useState(null)
   const [disabledReserveLand, setDisabledReserveLand] = useState(false)
+  const [emailReadOnly, setEmailReadOnly] = useState(null)
+  const [email, setEmail] = useState('')
+  const [authData, setAuthData] = useState(null)
+
+  const [transactionFormData, setTransactionFormData] = useState(null)
+
+
+
 
   const [basket, setBasket] = useState([
     {
@@ -258,11 +266,14 @@ const handleCloseAddFundsModal = () => {
   // const [progressModalTitle, setProgressModalTitle] = useState("Please confirm the transaction")
   // const [tokenLogo, setTokenLogo] = useState("token_logo0")
   useEffect(() => {
+    console.log(transactionForm)
     if (transactionForm) {
       setValue('name', transactionForm.name)
       setValue('email', transactionForm.email)
       setValue('company', transactionForm.company)
       setValue('country', transactionForm.country)
+      setEmail(transactionForm.email)
+setEmailReadOnly(true)      
 
       // Other fields
       if (transactionForm.token) {
@@ -283,6 +294,11 @@ const handleCloseAddFundsModal = () => {
     }
 
     setValue('industry', _selectIndustryOptions[0])
+
+    if(email){
+      setEmailReadOnly(false)
+    }
+
   }, [])
 
   useEffect(() => {
@@ -526,8 +542,12 @@ const handleCloseAddFundsModal = () => {
     return receipt;
   }
   const onSubmit = (data) => {
+
     let discount =(discountPercentage[0]/1000).toFixed(2)
     dispatch(setTransactionForm({...data, basket, discount}))
+    setEmailReadOnly(true)
+
+
     let total_qty = basket.reduce((sum, el) => { return sum+= parseInt(el.qty)},0)
     if(total_qty === 0 ){
       globalErrorNotifier({scope:'comearth:notify', message: 'You need to select at least 1 parcel to reserve virtual land'})
@@ -578,6 +598,28 @@ const handleCloseAddFundsModal = () => {
       }
     })
   }
+  const handleEmailEdit=()=>{
+    setEmailReadOnly(!emailReadOnly)
+
+
+    
+  }
+  useEffect(() => {
+    setAuthData(JSON.parse(localStorage.getItem('auth')))
+   setTransactionFormData(JSON.parse(localStorage.getItem('transaction_form')))
+console.log(emailReadOnly)
+    if(emailReadOnly === false ) {
+      localStorage.removeItem('auth')
+      localStorage.removeItem('transaction_form')
+      setValue('email', '')
+
+
+    }else{
+      setTransactionFormData({...transactionForm,email:email})
+      console.log(email)
+       localStorage.setItem('transaction_form',JSON.stringify({...transactionFormData,email:email}))
+    }
+}, [emailReadOnly])
 
   return (
     <Fragment>
@@ -612,16 +654,26 @@ const handleCloseAddFundsModal = () => {
                   />
                   <small className='text-red-400'>{errors.name?.type === 'required' && "Name is required"}</small>
                 </FieldGroup>
+                <div className='position: relative'>
+
                 <FieldGroup label='Email' required={true}>
                   <Field type='email'
+                  disabled={emailReadOnly}
                          isError={errors.email}
                          register={register("email", { required: true, pattern: /^\S+@\S+$/i })}
+                  onKeyUp={(evt)=>{setEmail(evt.target.value)}}
+
                          placeholder='Enter Your Email Address Here' />
                   <small className='text-red-400'>
                     {errors.email?.type === 'required' && "Email is required"}
                     {errors.email?.type === 'pattern' && "Email is invalid"}
                   </small>
-                </FieldGroup>
+                </FieldGroup> 
+                {
+                  email &&  <p className='position: absolute top-[-0.25rem] left-[3.75rem] cursor-pointer' onClick={handleEmailEdit}> {emailReadOnly && <span style={{fontSize:11,color:'#3f99ff'}}>Use another email</span>}</p>
+
+                }
+                </div>
                 <FieldGroup label='Select Industry' required={true}>
                   <Controller
                       name='industry'
