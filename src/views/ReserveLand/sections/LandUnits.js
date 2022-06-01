@@ -2,8 +2,8 @@ import {Swiper, SwiperSlide} from 'swiper/react'
 import {Navigation} from 'swiper'
 
 // Plugins styles
-import 'swiper/css'
-import 'swiper/css/navigation'
+// import 'swiper/css'
+// import 'swiper/css/navigation'
 
 // Components
 import LandUnit from 'components/cards/LandUnit'
@@ -37,13 +37,13 @@ const LandUnits = (props) => {
   }
 
   return (
-    <Swiper {...settings} className='mb-[34px]'>
+    <div  className='mb-[34px] flex gap-[10px] justify-center flex-wrap'>
       {props.basket.map((el, index) => (
-        <SwiperSlide key={el.id}>
+        <div key={el.id}>
           <LandUnit {...el} index={index} onChange={qty => onChange(qty, index)} disableCounter={disableCounter} />
-        </SwiperSlide>
+        </div>
       ))}
-    </Swiper>
+    </div>
   )
 }
 
