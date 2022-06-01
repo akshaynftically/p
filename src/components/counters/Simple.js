@@ -16,7 +16,7 @@ const Simple = (props) => {
   }, [value])
 
   return (
-    <div className='flex items-center justify-items-stretch'>
+    <div className='ml-auto flex items-center justify-items-stretch'>
       <span
         className={clsx(
           'inline-flex w-[24px] h-[24px] rounded-full mr-[10px]',
@@ -40,7 +40,7 @@ const Simple = (props) => {
           />
         </svg>
       </span>
-      <div className='grow font-extrabold text-[24px] text-white text-center'>{currentValue}</div>
+      <div className='grow font-extrabold lg:text-[24px] text-white text-center'>{currentValue}</div>
       <span
         className='inline-flex w-[24px] h-[24px] bg-[#3F99FF] rounded-full ml-[10px]'
         onClick={() => change(currentValue + 1)}
