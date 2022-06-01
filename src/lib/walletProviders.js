@@ -17,7 +17,7 @@ export const getWalletProvider = async (walletTitle) =>{
         window.location = locat
         return
       }
-      if(walletTitle === 'Coinbase Wallet' && typeof window.ethereum !== "undefined"){
+      if(walletTitle === 'Coinbase Wallet' && typeof window.ethereum === "undefined"){
         let locat= 'https://go.cb-w.com/dapp?cb_url='+window.location.host+window.location.pathname+userString
         window.location = locat
         return

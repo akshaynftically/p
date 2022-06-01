@@ -78,6 +78,10 @@ export class apiRepository {
         }
     }
 
+    async getUserById(id){
+        return await axios.get('/v1/users/'+id)
+    }
+
     async addWallets(data){
         let userInfo = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null
         return await axios.post('v1/users/'+userInfo.id,{
