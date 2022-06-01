@@ -802,7 +802,7 @@ console.log(emailReadOnly)
                 <div className='bg-[#262728] rounded-lg py-[30px] px-[32px] mb-[20px]'>
                   <h2 className='font-extrabold text-[24px] mb-[20px]'>Cart Summary</h2>
 
-                  <FieldGroup label='Select a* Token you want to pay with'>
+                  <FieldGroup label='Select a Token you want to pay with'>
                     <Select
                         defaultValue={selectToken}
                         options={_selectTokenOptions}
