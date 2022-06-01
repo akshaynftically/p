@@ -80,7 +80,7 @@ const App = () => {
  
    
    const removeListener = (ethereum) => {
-     alert('close')
+  
      ethereum.removeListener("chainChanged", pageReload);
      ethereum.removeListener("accountsChanged", pageReload);
 
