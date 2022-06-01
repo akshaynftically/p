@@ -1,20 +1,23 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { FullScreenPopup } from 'components/popups'
 import { SimpleButton } from 'components/buttons'
 import { Link } from 'react-router-dom'
 import AddFundsModal from './AddFundsModal'
 import CopyToClipboard from 'components/clipboard/CopyToClipboard'
 import { useDispatch, useSelector } from 'react-redux'
-import { getWallet, removeWallet } from 'app/WalletSlice'
+import { getWallet, removeWallet, setWallet } from 'app/WalletSlice'
 import AppContext from 'components/AppContext'
 import { _walletIcons } from 'lib/constants/walletIcons'
 
 const AccountModal = (props) => {
     const {openAccountModal, address,addressExplorar, balance,showLowBalance ,tokenIcon , onClose} = props
     const [openAddFundsModal, setOpenAddFundsModal] = useState(false)
+  const[wallet,setWallet]=useState(null)
+
     const userWallet = useSelector(getWallet)
     const appGlobals = useContext(AppContext)
-    const walletInfo = (_walletIcons.filter(((el) =>{return el.title === userWallet.wallet})))[0]
+    // const walletInfo = (_walletIcons.filter(((el) =>{return el.title === userWallet.wallet})))[0]
+    const [walletInfo,setWalletInfo]=useState((_walletIcons.filter(((el) =>{return el.title === userWallet.wallet})))[0])
     const dispatch = useDispatch()
     const handleBackAddFundsModal = () => {
         setOpenAddFundsModal(false)
@@ -24,7 +27,12 @@ const AccountModal = (props) => {
         setOpenAddFundsModal(false)
         onClose()
     }
+const getWalletInfo=()=>{
 
+    let wallet= JSON.parse(localStorage.getItem('wallet'))
+    return (_walletIcons.filter(((el) =>{return el.title === wallet.wallet})))[0]
+
+}
     const handleChangeWallet = async () => {
         // logic to disconnect wallet if has any
         if(userWallet.wallet === 'MetaMask' || userWallet.wallet === 'Coinbase Wallet'){
@@ -33,6 +41,10 @@ const AccountModal = (props) => {
             await appGlobals.getWalletProviderConfirmed()
         }
     }
+    useEffect(() => {
+        setWallet(appGlobals.walletData)
+      }, [appGlobals])
+    
 
     return (
         <>
@@ -77,10 +89,10 @@ const AccountModal = (props) => {
                     <div className='pt-[24px] px-[24px] pb-[25px] bg-[#363738] rounded-[8px]'>
                         <div className='flex items-center justify-between flex-wrap'>
                             <div className="flex items-center">
-                                <img className='max-h-full' src={walletInfo.icon} alt={walletInfo.title} />
+                                <img className='max-h-full' src={getWalletInfo().icon} alt={getWalletInfo().title} />
                                 
 
-                                <span className='text-white/80 text-[16px] ml-[10px]'>Connected with {walletInfo.title}</span>
+                                <span className='text-white/80 text-[16px] ml-[10px]'>Connected with {getWalletInfo().title}</span>
                             </div>
 
                             <SimpleButton type='button' size='sm' className='block w-full mt-3 sm:w-auto sm:inline sm:mt-0' onClick={handleChangeWallet}>Change Wallet</SimpleButton>

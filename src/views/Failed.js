@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import {SimpleButton} from '../components/buttons'
 
 const Failed = () => {
@@ -164,7 +165,7 @@ const Failed = () => {
           <p className='mb-[20px]'>Your transaction couldn’t be completed.</p>
           <p className='mb-[32px]'>
             You can retry your payment.{' '}
-            <a className='text-[#3F99FF] underline' href='#'>
+            <a className='text-[#3F99FF] underline' rel="noreferrer" href={process.env.REACT_APP_FAILED_LEARN_MORE}>
               Learn More
             </a>
           </p>

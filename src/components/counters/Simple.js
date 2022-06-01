@@ -2,11 +2,13 @@ import {useEffect, useState} from 'react'
 import clsx from 'clsx'
 
 const Simple = (props) => {
-  const {value, onChange} = props
-  const [currentValue, setCurrentValue] = useState(value)
+  const {value, onChange, disableCounter=false} = props
+  const [currentValue, setCurrentValue] = useState(disableCounter?0:value)
   function change (val) {
+    if(!disableCounter){
       setCurrentValue(val)
       onChange(val)
+    }
   }
 
   useEffect(() => {

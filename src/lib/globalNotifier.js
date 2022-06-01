@@ -2,7 +2,7 @@ import React from 'react'
 import { toast } from 'react-toastify';
 
 const contractMessages = {
-    // contract messeage => actual notify message
+    // contract message => actual notify message
     "LandReserver: is not running" : "Currentry stopped land reservation",
     "LandReserver: Payment Token is not valid or disabled":"Payment Token is not valid or disabled",
     "LandReserver: Buyer not whitelisted":"You are not eligible to reserve land",
@@ -10,6 +10,7 @@ const contractMessages = {
     "LandReserver: MATIC sent should be >= payable price":"MATIC sent should be >= payable price",
     "LandReserver: Not enough Premint Passes with Token Id:":"Not enough Premint Passes with Token Id:",
     "LandReserver: Invalid Payment Token":"Invalid Payment Token",
+    "insufficient funds for gas ":"Insufficient Funds in your wallet ",
 }
 
 const getPlainString = (resp) =>{
@@ -58,8 +59,11 @@ const notify = (message,type = '') => {
 const globalErrorNotifier = (err) => {
     // check if any blockchain error is comming
     let errorThrown = false
+  
+
     for (const [key, value] of Object.entries(contractMessages)) {
         if(getPlainString(err).includes(key)){
+      
             notify(value,'error')
             errorThrown = true
         }
@@ -67,6 +71,11 @@ const globalErrorNotifier = (err) => {
     // check for user rejected action
     if(typeof err != "undefined" && typeof err.code != "undefined" && err.code === 4001){
         notify("Transaction rejected",'error')
+        errorThrown = true
+    }
+    // show notifier for comearth scope
+    if(typeof err != "undefined" && typeof err.scope != "undefined" && err.scope === 'comearth:notify'){
+        notify(err.message)
         errorThrown = true
     }
     // show notifier for comearth scope

@@ -55,9 +55,9 @@ const AddFundsModal = (props) => {
                                </div>
                            </div>
 
-                           <div className='text-center mb-[10px]'>
+                           {/* <div className='text-center mb-[10px]'>
                                <SimpleButton type='button' className='block w-full md:w-auto' size='sm'>Done</SimpleButton>
-                           </div>
+                           </div> */}
                        </div>
                     ) : (
                         <IframeAddFunds />

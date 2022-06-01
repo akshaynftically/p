@@ -9,19 +9,24 @@ import _logoNftcally from 'assets/img/logo-nftically.svg'
 
 // Mocks
 const _menu = {
-  comearth: [
-    {
-      id: '1001',
-      title: 'Join Waiting List',
-      url: 'https://discord.gg/comearth',
-    },
+  COMEARTH: [
     {
       id: '1002',
-      title: 'About Us',
-      url: 'https://www.nftically.com/about-us',
+      title: 'Reserve Virtual Land ',
+      url: 'reserve-land',
     },
     {
       id: '1003',
+      title: 'About Us',
+      url: 'about-us',
+    },
+    {
+      id: '1004',
+      title: 'Contact Us',
+      url: 'contact-us',
+    },
+    {
+      id: '1005',
       title: 'Visit NFTICALLY',
       url: 'https://www.nftically.com',
     },
@@ -169,7 +174,7 @@ const FooterAlt = () => {
         <div className='grid grid-cols-12 border-t-[1px] md:border-none border-[#363738] pt-[24px] md:pt-0'>
           <div className='col-span-12 text-center md:text-left md:col-span-4 mb-[24px] md:mb-0'>
             <div className='mb-[20px] md:mb-[24px]'>
-              <img className='inline-block max-w-full' src={_logoComearth} alt='Comearth' />
+              <img className='inline-block max-w-full' src={_logoComearth} alt='COMEARTH' />
             </div>
 
             <div className='flex justify-center md:justify-start'>
@@ -200,7 +205,7 @@ const FooterAlt = () => {
           ))}
           <div className='col-span-12 md:col-span-4'>
             <div className='md:max-w-[214px] md:ml-auto'>
-              <SimpleButton className='w-full mb-[32px] md:mb-[20px]' href='mailto:hello@comearth.world' size='sm'>
+              <SimpleButton className='w-full mb-[32px] md:mb-[20px]' href='contact-us' size='sm'>
                 Contact Us
               </SimpleButton>
               <h4 className='capitalize text-center md:text-left font-semibold text-[14px] mb-[12px] md:mb-[8px]'>Follow us on</h4>

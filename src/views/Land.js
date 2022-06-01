@@ -81,6 +81,11 @@ const Land = (props) => {
     setIsOpenedProgressWallet(!isOpenedProgressWallet)
   }
   const onSubmit = (data) => {
+    // remove any cached localstorage
+    localStorage.removeItem('order')
+    localStorage.removeItem('wallet')
+    localStorage.removeItem('transaction_form')
+    localStorage.removeItem('auth')
     dispatch(setTransactionForm(data))
     new apiRepository().createLead(data.email)
     .then(res => {

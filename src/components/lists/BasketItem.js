@@ -4,7 +4,7 @@ const BasketItem = (props) => {
   return (
     <div className='flex border-solid border-b-[1px] border-b-[#363738] text-[16px] pb-[10px] mb-[22px]'>
       <div className='text-white/[.80]'>
-        {qty} units - {type} land
+        {qty} Parcel(s) - {type} Size
       </div>
       <div className='flex items-center text-white ml-auto'>
         <span className='mr-[5px]'>

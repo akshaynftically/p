@@ -132,6 +132,19 @@ const AsideLeft = () => {
               Whitepaper
             </a>
             <a
+              href='about-us'
+              className='text-white text-[16px] md:text-[20px] hover:text-white/70 font-bold block border-b border-[#363738] py-[16px] md:py-[28px]'
+            >
+              About Us
+            </a>
+            <a
+              href='contact-us'
+              className='text-white text-[16px] md:text-[20px] hover:text-white/70 font-bold block border-b border-[#363738] py-[16px] md:py-[28px]'
+            >
+              Contact Us
+            </a>
+           
+            <a
               href='https://www.nftically.com'
               target='_blank'
               className='text-white text-[16px] md:text-[20px] hover:text-white/70 font-bold block border-b border-[#363738] py-[16px] md:py-[28px]'
@@ -145,12 +158,7 @@ const AsideLeft = () => {
             >
               Blog
             </a>
-            <a
-              href='mailto:hello@comearth.world'
-              className='text-white text-[16px] md:text-[20px] hover:text-white/70 font-bold block border-b border-[#363738] py-[16px] md:py-[28px]'
-            >
-              Contact Us
-            </a>
+          
           </nav>
 
           <div className='absolute bottom-0 w-full'>

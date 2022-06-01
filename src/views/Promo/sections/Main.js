@@ -16,10 +16,23 @@ import {useForm} from 'react-hook-form'
 import {setTransactionForm} from '../../../app/TransactionFormSlice'
 import {useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
+import apiRepository from '../../../lib/apiRepository'
+import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet'
+
 
 const Main = () => {
+  const isTimer=!(process.env.REACT_APP_IS_MAINNET_ENABLED == 'false')                    //converting  env data string into boolean
   const modelViewerRef = useRef()
   const navigate = useNavigate()
+  const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
+  const [txModalProps,setTxModalProps] = useState({
+    title:'Already Registered',
+    mainHeading:'We have an account already registered with this email, Please check your email to proceed further.',
+    content:'',
+    loading:false,
+    learn:'',
+    view:''
+  })
   const [loading, setLoading] = useState(0)
   const dispatch = useDispatch()
 
@@ -30,17 +43,44 @@ const Main = () => {
   } = useForm({
     mode: 'onChange',
   })
+  const handleProgressWallet =() =>{
+    setIsOpenedProgressWallet(!isOpenedProgressWallet)
+  }
 
   useEffect(() => {
+
     modelViewerRef.current.addEventListener('progress', (e) => {
       setLoading(e.detail.totalProgress * 180)
     })
   })
+  
 
   const onSubmit = (data) => {
     // dispatch(setTransactionForm(data))
     // navigate('/reserve-land')
-    window.open(`${process.env.REACT_APP_JOIN_LINK}`, "_blank")
+    // window.open(`${process.env.REACT_APP_JOIN_LINK}`, "_blank")
+    // remove any cached localstorage
+    localStorage.removeItem('order')
+    localStorage.removeItem('wallet')
+    localStorage.removeItem('transaction_form')
+    localStorage.removeItem('auth')
+    dispatch(setTransactionForm(data))
+    new apiRepository().createLead(data.email)
+    .then(res => {
+      // save lead in localstorage
+      console.log(res)
+      navigate('/reserve-land')
+    })
+    .catch(err => {
+      console.log(err)
+      if(err?.response?.status === 409){
+        navigate('/reserve-land')
+      }
+      if(err?.response?.status === 302){
+        // handleToggleEnterYourDetails()
+        setIsOpenedProgressWallet(true)
+      }
+    })
   }
 
   return (
@@ -64,26 +104,26 @@ const Main = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className='mb-[45px]'>
                 <FieldGroup className='relative'>
-                  {/* <Field
+                  <Field
                     isError={errors.email}
                     register={register('email', {required: true, pattern: /^\S+@\S+$/i})}
                     type='email'
-                    className='pr-[230px] py-[14px] lg:py-[14px] mb-[12px] lg:mb-0'
+                    className=' py-[14px] lg:py-[14px] mb-[12px] lg:mb-0'
                     placeholder='Enter Your Email Address'
-                  /> */}
+                  />
 
-                  {/* <SimpleButton
+                  <SimpleButton
                     className='lg:absolute top-0 right-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold lg:rounded-l-none'
                     type='submit'
                   >
                     Reserve Your Land Now
-                  </SimpleButton> */}
-                  <SimpleButton
+                  </SimpleButton>
+                  {/* <SimpleButton
                     className='lg:absolute top-0 left-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold'
                     type='submit'
                   >
                     Join Waiting List
-                  </SimpleButton>
+                  </SimpleButton> */}
                 </FieldGroup>
 
                 <small className='text-red-400 block translate-y-[-15px]'>
@@ -92,7 +132,7 @@ const Main = () => {
                 </small>
               </div>
             </form>
-            <div className='flex items-center mb-[12px] mt-[100px]'>
+            <div className='flex items-center mb-[12px]'>
               <svg
                 className='stroke-white mr-[8px]'
                 width='24'
@@ -120,6 +160,8 @@ const Main = () => {
                 Hurry, <span className='text-gradient'>Sale Ends in:</span>
               </span>
             </div>
+            {
+              isTimer  && 
             <Countdown
               date={Date.now() + 1036800000}
               renderer={({days, hours, minutes, seconds}) => (
@@ -152,6 +194,7 @@ const Main = () => {
                 </div>
               )}
             />
+            }
           </div>
           <div className='order-1 flex justify-center md:order-2 col-span-12 md:col-span-6 text-right metaverse-demo min-h-[300px] h-full relative'>
             <div className='atmo w-[250px] h-[250px] md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px] 2xl:w-[500px] 2xl:h-[500px]'></div>
@@ -247,6 +290,9 @@ const Main = () => {
           </div>
         </div>
       </div>
+      {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} 
+      {...txModalProps}
+      />}
 
       <div className='bg-gradient-to-b from-[#161718]/0 to-[#161718] h-[40px] md:h-[107px] absolute bottom-0 left-0 w-full'></div>
     </div>
