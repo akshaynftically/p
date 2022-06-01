@@ -2,7 +2,7 @@ import { _landReserverAbi } from 'lib/constants/landReserverAbi';
 import { _erc20Abi } from 'lib/constants/erc20Abi';
 
 import {Fragment, useEffect, useState, useMemo, useContext} from 'react'
-import { ethers } from "ethers";
+import { ethers, utils } from "ethers";
 import {components} from 'react-select'
 import { useCookies } from "react-cookie";
 
@@ -295,6 +295,7 @@ const handleCloseAddFundsModal = () => {
         let provider = await appGlobals.hasWalletProvider()
         let chainId = (await provider.getNetwork()).chainId
         if( chainId != process.env.REACT_APP_CHAIN_ID) return
+        setDisabledReserveLand(true)
         let {atleastOneWhitelistApplied, buyerWhitelistId} = await checkInWhiteList(account)
         if(atleastOneWhitelistApplied === true){
           if(parseInt(buyerWhitelistId) === 0){
@@ -302,7 +303,7 @@ const handleCloseAddFundsModal = () => {
             setIsWhiteListed(false)
             setDisabledReserveLand(true)
             setWhiteListError({
-              heading: 'Oops!!! This wallet is not whitelisted',
+              heading: 'Sorry!! This wallet is not whitelisted',
               claimed_all: false
             })
           }else{
@@ -327,7 +328,7 @@ const handleCloseAddFundsModal = () => {
               setIsWhiteListed(false)
               setDisabledReserveLand(true)
               setWhiteListError({
-                heading: 'Oops!!! You have exhausted your parcel limit!',
+                heading: 'Oops!! You have exhausted your parcel limit!',
                 claimed_all: true
               })
             }
@@ -418,6 +419,15 @@ const handleCloseAddFundsModal = () => {
   const handleProgressWallet = () => {
     setIsOpenedProgressWallet(!isOpenedProgressWallet)
   }
+
+  const openAccountModalDynamic = async (e) => {
+    e.preventDefault()
+    let provider = await appGlobals.hasWalletProvider()
+    let networkConfig = await getChainData(provider)
+    let balance = utils.formatEther(await provider.getBalance(account))
+    setAccountModalProps({openAccountModal:true,address:account,balance:balance,addressExplorar: networkConfig.explorar+'/address/'+account})
+  }
+
   const startTransactionFlow = async (provider) => {
     
     let transaction;
@@ -450,7 +460,7 @@ const handleCloseAddFundsModal = () => {
 
     let discount = (await getDiscountPercentage(account))[0]/1000
     let prices = await landPrices(selectToken,true)
-    let order=await new apiRepository().createOrder(selectToken.id, discount, 
+    await new apiRepository().createOrder(selectToken.id, discount, 
       cookies.referral_first_touch, cookies.referral_last_touch, cookies.utm_first_touch, cookies.utm_last_touch, account,prices)
     // check for approval erc20
     let totalPrice = await getTotalParcelPrice(basket,selectToken, account)
@@ -681,8 +691,10 @@ const handleCloseAddFundsModal = () => {
                           { whiteListError.claimed_all ?
                             <div className='text-white text-[14px]'>You have already reserved maximum parcel quantity allocated to you.</div>
                             :
-                            <div className='text-white text-[14px]'>Either connect the right wallet or 
-                              <a className='font-bold text-[#3E97FC] hover:underline' rel='noreferrer' href={process.env.REACT_APP_JOIN_WHITELIST_LINK} target="_blank"> click here </a>to join whitelist
+                            <div className='text-white text-[14px]'>Either 
+                              <button className='font-bold text-[#3E97FC] hover:underline' onClick={openAccountModalDynamic}>&nbsp; change wallet &nbsp;</button>
+                              or 
+                              <a className='font-bold text-[#3E97FC] hover:underline' rel='noreferrer' href={process.env.REACT_APP_JOIN_WHITELIST_LINK} target="_blank"> click here </a>to join the whitelist
                             </div>
                           }
                         </div>
