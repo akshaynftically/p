@@ -34,7 +34,7 @@ import { getChainData } from 'lib/appHelpers';
 import globalErrorNotifier from 'lib/globalNotifier';
 import AccountModal from 'modals/AccountModal';
 import { getUser } from 'app/UserSlice';
-import apiRepository from 'lib/apiRepository';
+import apiRepository from 'lib/apiRepository'; 
 import AddFundsModal from 'modals/AddFundsModal';
 
 
@@ -273,7 +273,10 @@ const handleCloseAddFundsModal = () => {
       setValue('company', transactionForm.company)
       setValue('country', transactionForm.country)
       setEmail(transactionForm.email)
-setEmailReadOnly(true)      
+      if(transactionForm.email){
+
+        setEmailReadOnly(true)      
+      }
 
       // Other fields
       if (transactionForm.token) {
