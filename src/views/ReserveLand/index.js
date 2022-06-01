@@ -231,7 +231,7 @@ const ReserveLand = () => {
   const[txModalProps,setTxModalProps]= useState({
     title:'',
     mainHeading:'Please confirm the transaction with your wallet and then wait for the transaction to complete. ',
-    content:'To allow COMEARTH to reserve virtual land units for you in your currently connected wallet, you must authorize this transaction in your wallet. Please keep this tab open while we wait for the blockchain to confirm your action. This only needs to be done once per order.',
+    content:'To allow COMEARTH to reserve virtual land Parcel(s) for you in your currently connected wallet, you must authorize this transaction in your wallet. Please keep this tab open while we wait for the blockchain to confirm your action. This only needs to be done once per order.',
     loading:true,
     learn:'',
     view:''
@@ -329,7 +329,7 @@ setEmailReadOnly(true)
               let nonZeroParcels = ''
               allowed.forEach((el,i) =>{
                 if(el !== 0){
-                  nonZeroParcels+= (i===0 ? '':', ') + el+' units of size '+basket[i]['type']
+                  nonZeroParcels+= (i===0 ? '':', ') + el+' Parcel(s) of size '+basket[i]['type']
                 }
               })
               if(nonZeroParcels.length > 0 && nonZeroParcels[0] === ','){
@@ -384,7 +384,7 @@ setEmailReadOnly(true)
             ...elem,
             qty: subIndex === i ? pieces[i] : elem.qty 
           })))
-          pieces[i] === 0 ? globalErrorNotifier({message:"You can't reserve land unit of size "+basket[i].type, scope: "comearth:notify"}) : globalErrorNotifier({message:"You can reserve max "+pieces[i]+" units of land size "+basket[i].type, scope: "comearth:notify"})
+          pieces[i] === 0 ? globalErrorNotifier({message:"You can't reserve land Parcel(s) of size "+basket[i].type, scope: "comearth:notify"}) : globalErrorNotifier({message:"You can reserve max "+pieces[i]+" Parcel(s) of land size "+basket[i].type, scope: "comearth:notify"})
         }
       })
     })
@@ -506,7 +506,7 @@ setEmailReadOnly(true)
     showTransactionModal({
       title:'Reserve your Land',
       mainHeading:'Please confirm the transaction with your wallet and then wait for the transaction to complete. ',
-      content:'To allow COMEARTH to reserve virtual land units for you in your currently connected wallet, you must authorize this transaction in your wallet. Please keep this tab open while we wait for the blockchain to confirm your action. This only needs to be done once per order.',
+      content:'To allow COMEARTH to reserve virtual land Parcel(s) for you in your currently connected wallet, you must authorize this transaction in your wallet. Please keep this tab open while we wait for the blockchain to confirm your action. This only needs to be done once per order.',
       loading:false,
       learn:'',
       view:''
@@ -808,8 +808,8 @@ console.log(emailReadOnly)
 
                 <div className='py-[34px] px-[32px] text-[14px] text-white/70 bg-[#262728] rounded-[8px]'>
                   <div className='font-[900] mb-1'>Important:</div>
-                  <p className='mb-5'>Currently you are pre-reserving the land units in the COMEARTH. You will be getting the pre-mint NFT Pass in your connected wallet which you can later swap against the exact land units in the COMEARTH Metaverse.</p>
-                  <p>Once the landscape is launched, you, the pre-mint NFT Pass holder, will be offered the first right to select & fix your units’ exact location on the map before they are opened for general public.</p>
+                  <p className='mb-5'>Currently you are pre-reserving the land Parcel(s) in the COMEARTH. You will be getting the pre-mint NFT Pass in your connected wallet which you can later swap against the exact land Parcel(s) in the COMEARTH Metaverse.</p>
+                  <p>Once the landscape is launched, you, the pre-mint NFT Pass holder, will be offered the first right to select & fix your Parcel(s) exact location on the map before they are opened for general public.</p>
                 </div>
               </div>
             </div>
