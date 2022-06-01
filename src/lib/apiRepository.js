@@ -55,8 +55,7 @@ export class apiRepository {
               })
               localStorage.setItem('auth',JSON.stringify(resp.data))
             }catch(error){
-                // update user here
-                console.log(error)
+                throw error
             }
         }else{
             try{
@@ -74,8 +73,7 @@ export class apiRepository {
                 })
                 localStorage.setItem('auth',JSON.stringify(resp.data))
               }catch(error){
-                  // update user here
-                  console.log(error)
+                  throw error
               }
         }
     }

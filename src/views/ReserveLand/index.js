@@ -19,7 +19,7 @@ import Faqs from './sections/Faqs'
 import LandUnits from './sections/LandUnits'
 
 // Toasts
-import { toast, ToastContainer} from 'react-toastify'
+import { ToastContainer} from 'react-toastify'
 
 // Modals
 import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet'
@@ -27,7 +27,7 @@ import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getTransactionForm, setTransactionForm} from 'app/TransactionFormSlice'
 import {Controller, useForm} from 'react-hook-form'
-import { checkInWhiteList, extractReceiptData, getActualDiscount, getDiscountPercentage, getParcelAvailabilityForBuyer, getTotalParcelPrice, landPrices } from './landPrices';
+import { checkInWhiteList, extractReceiptData, getDiscountPercentage, getParcelAvailabilityForBuyer, getTotalParcelPrice, landPrices } from './landPrices';
 import countryList from 'react-select-country-list'
 import AppContext from 'components/AppContext';
 import { getChainData } from 'lib/appHelpers';
@@ -35,7 +35,6 @@ import globalErrorNotifier from 'lib/globalNotifier';
 import AccountModal from 'modals/AccountModal';
 import { getUser } from 'app/UserSlice';
 import apiRepository from 'lib/apiRepository';
-import WrongNetworkModal from 'modals/WrongNetworkModal';
 import AddFundsModal from 'modals/AddFundsModal';
 
 
@@ -535,6 +534,28 @@ const handleCloseAddFundsModal = () => {
           }
         })
       })
+    }).catch((err) => {
+      if(err?.response?.status === 409){
+        //user directly here so send lead request first
+        new apiRepository().createLead(data.email)
+        .then(res => {
+          // save lead in localstorage
+          console.log(res)
+          navigate('/reserve-land')
+        })
+        .catch(err => {
+          if(err?.response?.status === 302){
+            showTransactionModal({
+              title:'Already Registered',
+              mainHeading:'We have an account already registered with this email, Please check your email to proceed further.',
+              content:'',
+              loading:false,
+              learn:'',
+              view:''
+            })
+          }
+        })
+      }
     })
   }
 
