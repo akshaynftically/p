@@ -55,8 +55,7 @@ export class apiRepository {
               })
               localStorage.setItem('auth',JSON.stringify(resp.data))
             }catch(error){
-                // update user here
-                console.log(error)
+                throw error
             }
         }else{
             try{
@@ -74,8 +73,7 @@ export class apiRepository {
                 })
                 localStorage.setItem('auth',JSON.stringify(resp.data))
               }catch(error){
-                  // update user here
-                  console.log(error)
+                  throw error
               }
         }
     }
@@ -124,6 +122,7 @@ export class apiRepository {
         let order = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : null
         return await axios.post('v1/orders/'+order.id,{
             status: data.order_status,
+            conversion_factor: data.conversion_factor,
             transactions: [{
                 parcel_quantities: data.parcel_quantities,
                 amount_paid: data.amount,

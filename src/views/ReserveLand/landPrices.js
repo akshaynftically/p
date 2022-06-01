@@ -48,8 +48,9 @@ export const extractReceiptData = (receipt,token) =>{
         if(event.event === 'LandReserved'){
             let parcel_quantities = event.args[0]
             let amount = event.args[5]
+            let conversion_factor = event.args[3]
             parcel_quantities = parcel_quantities.map((n) => n.toNumber())
-            data = {p: parcel_quantities,a: ethers.utils.formatUnits(amount.toString(),token.decimals)}
+            data = {p: parcel_quantities,a: ethers.utils.formatUnits(amount.toString(),token.decimals),c: conversion_factor.toString()}
         }
     })
     return data

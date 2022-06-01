@@ -84,7 +84,8 @@ const Land = (props) => {
     // remove any cached localstorage
     localStorage.removeItem('order')
     localStorage.removeItem('wallet')
-    localStorage.removeItem('transactionForm')
+    localStorage.removeItem('transaction_form')
+    localStorage.removeItem('auth')
     dispatch(setTransactionForm(data))
     new apiRepository().createLead(data.email)
     .then(res => {
