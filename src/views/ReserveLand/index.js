@@ -169,6 +169,8 @@ const ReserveLand = () => {
   const [emailReadOnly, setEmailReadOnly] = useState(null)
   const [email, setEmail] = useState('')
   const [authData, setAuthData] = useState(null)
+  const [openModal, setOpenModal] = useState(false)
+
 
   const [transactionFormData, setTransactionFormData] = useState(null)
 
@@ -545,6 +547,7 @@ const handleCloseAddFundsModal = () => {
     return receipt;
   }
   const onSubmit = (data) => {
+   
 
     let discount =(discountPercentage[0]/1000).toFixed(2)
     dispatch(setTransactionForm({...data, basket, discount}))
@@ -607,6 +610,18 @@ const handleCloseAddFundsModal = () => {
 
     
   }
+
+  useEffect(() => {
+    if(email.match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    )){
+    dispatch(setTransactionForm({email:email, basket}))
+
+
+    }
+}, [email])
+
+
   useEffect(() => {
     setAuthData(JSON.parse(localStorage.getItem('auth')))
    setTransactionFormData(JSON.parse(localStorage.getItem('transaction_form')))
@@ -848,6 +863,7 @@ console.log(emailReadOnly)
       {
         openAddFundsModal &&  <AddFundsModal openAddFundsModal={openAddFundsModal} back={handleBackAddFundsModal} address={account} onClose={handleCloseAddFundsModal} />
       }
+     
      
 
 
