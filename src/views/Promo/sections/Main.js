@@ -21,7 +21,7 @@ import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet'
 
 
 const Main = () => {
-  const isTimer=!(process.env.REACT_APP_IS_MAINNET_ENABLED == 'false')                    //converting  env data string into boolean
+  const isTimer=!(process.env.REACT_APP_IS_TIMMER == 'false')                    
   const modelViewerRef = useRef()
   const navigate = useNavigate()
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
