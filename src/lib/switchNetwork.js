@@ -26,7 +26,9 @@ const switchNetwork = (chainId) => {
                             decimals: chain.decimals,
                         }
                     }],
-                ).catch((addError) => {
+                ).then(() => {
+                    window.location.reload()
+                }).catch((addError) => {
                 // handle "add" error
                 });
             }
