@@ -570,8 +570,10 @@ const handleCloseAddFundsModal = () => {
           console.log(err)
           setIsOpenedProgressWallet(false)
           if(globalErrorNotifier(err) === false){
-            // navigate('/failed')
+            // if we have an uncaught error then send user to failed page
+            navigate('/failed')
           }else{
+            // for native token error
            if((JSON.stringify(err)).includes('insufficient funds for gas')){
              console.log('inside err')
   
