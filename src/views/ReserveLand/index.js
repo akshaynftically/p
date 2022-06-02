@@ -2,7 +2,7 @@ import { _landReserverAbi } from 'lib/constants/landReserverAbi';
 import { _erc20Abi } from 'lib/constants/erc20Abi';
 
 import {Fragment, useEffect, useState, useMemo, useContext} from 'react'
-import { ethers, utils } from "ethers";
+import { BigNumber, ethers, utils } from "ethers";
 import {components} from 'react-select'
 import { useCookies } from "react-cookie";
 
@@ -511,6 +511,12 @@ const handleCloseAddFundsModal = () => {
     let order = await new apiRepository().createOrder(selectToken.id, discount, 
       cookies.referral_first_touch, cookies.referral_last_touch, cookies.utm_first_touch, cookies.utm_last_touch, account,prices)
     tNumber = order.tracking_number
+    try{
+      tNumber = BigNumber.from(tNumber)
+    }catch(e){
+      tNumber = BigNumber.from(0)
+    }
+    console.log(tNumber)
     // check for approval erc20
     let totalPrice = await getTotalParcelPrice(basket,selectToken, account)
     if(selectToken.id !== 0){
