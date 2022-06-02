@@ -16,8 +16,8 @@ const order=JSON.parse(localStorage.getItem('order'))
             navigate('/reserve-land')
         }
 
-        // dispatch(clearTransactionForm())
-        // localStorage.removeItem('order')
+        dispatch(clearTransactionForm())
+        localStorage.removeItem('order')
     }, [dispatch, navigate, transactionForm])
 
     const getTotal = () => {

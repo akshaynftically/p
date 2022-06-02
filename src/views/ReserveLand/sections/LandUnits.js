@@ -37,7 +37,7 @@ const LandUnits = (props) => {
   }
 
   return (
-    <div  className='mb-[34px] flex gap-[10px] justify-center flex-wrap'>
+    <div  className='mb-[34px] gap-[10px]'>
       {props.basket.map((el, index) => (
         <div key={el.id}>
           <LandUnit {...el} index={index} onChange={qty => onChange(qty, index)} disableCounter={disableCounter} />
