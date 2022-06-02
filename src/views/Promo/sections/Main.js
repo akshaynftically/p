@@ -163,7 +163,7 @@ const Main = () => {
             {
               isTimer  && 
             <Countdown
-              date={process.env.REACT_APP_SALE_ENDS_TIMESTAMP}
+              date={parseInt(process.env.REACT_APP_SALE_ENDS_TIMESTAMP)}
               renderer={({days, hours, minutes, seconds}) => (
                 <div className='bg-[#262728] pseudo-border-gradient-1 relative rounded-lg p-[8px]'>
                   <div className='absolute w-full h-full top-0 left-0 bg-gradient-to-b from-[#BCDCF5]/20 to-[#BCDCF5]/0'></div>
