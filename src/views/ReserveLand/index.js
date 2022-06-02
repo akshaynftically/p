@@ -315,7 +315,8 @@ const handleCloseAddFundsModal = () => {
           localStorage.removeItem('auth')
           localStorage.removeItem('transaction_form')
           localStorage.removeItem('order')
-          localStorage.removeItem('wallet')
+          // prevent removing wallet to disconnecting user on buy more
+          // localStorage.removeItem('wallet')
           localStorage.setItem('auth',JSON.stringify(user))
           let country = _selectCountryOptions.filter((el) => {return el.value === user.country_code})
           dispatch(setTransactionForm({name: user.name, email: user.email, country : country[0], company: user.company, representing: user.company != null ? "company":"individual" }))

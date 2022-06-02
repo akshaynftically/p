@@ -10,7 +10,8 @@ const Failed = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const transactionForm = useSelector(getTransactionForm)
-const order=JSON.parse(localStorage.getItem('order'))
+    const order=JSON.parse(localStorage.getItem('order'))
+    const auth=JSON.parse(localStorage.getItem('auth'))
     useEffect(() => {
         if (!transactionForm) {
             navigate('/reserve-land')
@@ -104,7 +105,11 @@ const order=JSON.parse(localStorage.getItem('order'))
 
                     <h2 className='font-[900] text-[24px] lg:text-[36px] mb-[8px]'>Congratulations!</h2>
                     <h5 className='text-[16px] lg:text-[32px] mb-[20px]'>You now own a real estate in COMEARTH</h5>
-
+                    <div className=''>
+                        <button className='bg-[#3F99FF] mt-[6px] mb-[30px] md:mt-0 block w-full md:w-auto px-[50px] py-[10px] rounded-l-[4px] md:rounded-l-0 rounded-r-[4px] text-[14px]'>
+                            <Link to={'/reserve-land?user_id='+auth.id}>Buy More</Link>
+                        </button>
+                    </div>
                     <ReferalLink />
 
                     <div className="bg-[#262728] px-[32px] py-[24px] rounded-[8px] mb-[24px]">
