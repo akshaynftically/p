@@ -39,7 +39,7 @@ const CONSTANT={
            "TOKEN ADDRESS": "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6",
            "CONVERSION(Not approved (Need to be checked))": "2.887E+13",
            "FIXED CONVERSION": "2.717E+13",
-           "DECIMALS": "18"
+           "DECIMALS": "8" // no use of this decimal
        },
        "BNB":  {
            "TOKEN NAME": "BNB",
@@ -138,7 +138,7 @@ export const _selectTokenOptions = [
          "value":"WBTC",
          "label":"WBTC ERC20 on Polygon Network",
          "contract_address":getData('WBTC'),
-         "decimals":18
+         "decimals":8
       },
       {
          "id":7,
