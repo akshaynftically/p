@@ -1,7 +1,18 @@
-import { Link } from 'react-router-dom'
+import { getTransactionForm } from 'app/TransactionFormSlice'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import {SimpleButton} from '../components/buttons'
 
 const Failed = () => {
+  const transactionForm = useSelector(getTransactionForm)
+  const navigate = useNavigate()
+  const order=JSON.parse(localStorage.getItem('order'))
+  useEffect(() => {
+    if (!(order && transactionForm)) {
+      navigate('/reserve-land')
+    }
+  },[])
   return (
     <fragment>
       <div className='py-[120px] sm:max-w-[90rem] 2xl:max-w-[105rem] flex flex-wrap basis-full items-center w-full mx-auto px-4 sm:px-6 lg:px-[80px] text-white'>
