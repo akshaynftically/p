@@ -1,7 +1,7 @@
 
 const CONSTANT={
       
-   "wMATIC":{
+   "WMATIC":{
            "TOKEN NAME": "WMATIC",
            "TOKEN ADDRESS": "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
            "CONVERSION(Not approved (Need to be checked))": "1E+18",
@@ -14,7 +14,7 @@ const CONSTANT={
            "FIXED CONVERSION": "897334",
            "DECIMALS": "6"
        },
-       "USDC ":     {
+       "USDC":     {
            "TOKEN NAME": "USDC ",
            "TOKEN ADDRESS": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
            "CONVERSION(Not approved (Need to be checked))": "103504",
