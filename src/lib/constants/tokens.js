@@ -34,8 +34,8 @@ const CONSTANT={
            "FIXED CONVERSION": "3.758E+14",
            "DECIMALS": "18"
        },
-       "BTC":  {
-           "TOKEN NAME": "BTC",
+       "WBTC":  {
+           "TOKEN NAME": "WBTC",
            "TOKEN ADDRESS": "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6",
            "CONVERSION(Not approved (Need to be checked))": "2.887E+13",
            "FIXED CONVERSION": "2.717E+13",
@@ -95,9 +95,9 @@ export const _selectTokenOptions = [
       {
          "id":1,
          "logo":"token_logo4",
-         "value":"wMATIC",
-         "label":"wMATIC ERC20 on Polygon Network",
-         "contract_address":getData('wMATIC'), 
+         "value":"WMATIC",
+         "label":"WMATIC ERC20 on Polygon Network",
+         "contract_address":getData('WMATIC'), 
          "decimals":18
       },
       {
@@ -116,14 +116,14 @@ export const _selectTokenOptions = [
          "contract_address":getData('USDC'),
          "decimals":6
       },
-      {
-         "id":4,
-         "logo":"token_logo3",
-         "value":"BUSD ERC20",
-         "label":"BUSD ERC20 on Polygon Network",
-         "contract_address":getData('BUSD'),
-         "decimals":18
-      },
+      // {
+      //    "id":4,
+      //    "logo":"token_logo3",
+      //    "value":"BUSD ERC20",
+      //    "label":"BUSD ERC20 on Polygon Network",
+      //    "contract_address":getData('BUSD'),
+      //    "decimals":18
+      // },
       {
          "id":5,
          "logo":"token_logo5",
@@ -135,9 +135,9 @@ export const _selectTokenOptions = [
       {
          "id":6,
          "logo":"token_logo6",
-         "value":"BTC",
-         "label":"BTC ERC20 on Polygon Network",
-         "contract_address":getData('BTC'),
+         "value":"WBTC",
+         "label":"WBTC ERC20 on Polygon Network",
+         "contract_address":getData('WBTC'),
          "decimals":18
       },
       {
@@ -196,7 +196,7 @@ export const _selectTokenOptions = [
          }
         // code block
         break;
-        case 'wMATIC':
+        case 'WMATIC':
          if(process.env.REACT_APP_WMATIC_CONTRACT_ADDRESS){
             return process.env.REACT_APP_WMATIC_CONTRACT_ADDRESS
 
@@ -243,12 +243,12 @@ export const _selectTokenOptions = [
          }
         // code block
         break;
-        case 'BTC':
+        case 'WBTC':
          if(process.env.REACT_APP_BTC_CONTRACT_ADDRESS){
             return process.env.REACT_APP_BTC_CONTRACT_ADDRESS
 
          }else{
-            return CONSTANT.BTC["TOKEN ADDRESS"]
+            return CONSTANT.WBTC["TOKEN ADDRESS"]
          }
         // code block
         break;
