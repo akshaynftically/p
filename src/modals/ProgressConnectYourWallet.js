@@ -45,7 +45,7 @@ const ProgressConnectYourWallet = ({onClose, title,loading=true, mainHeading,con
        }
        {
          view && <div className='flex justify-center items-center text-[#3F99FF] text-[16px]'>
-         <SimpleButton type='submit' className='mb-[27px]' href={view} target='_blank' >
+         <SimpleButton className='mb-[27px]' href={view} target='_blank' >
        
 
            <span className='ml-[3px] '>View on Explorer</span>
