@@ -4,12 +4,12 @@ import CopyToClipboard from 'components/clipboard/CopyToClipboard'
 const ReferalLink = () => {
   let authData=JSON.parse(localStorage.getItem('auth'))
   console.log(authData)
-  const referalLink = `${window.location.origin}?ref=${authData.referral_code}`
+  const referalLink = `${window.location.origin}?r=${authData.referral_code}`
 
   return (
     <div className='pseudo-border-gradient rounded-[8px] p-[20px] md:pt-[24px] md:px-[32px] md:pb-[21px] mb-[35px] md:mb-[32px]'>
       <div className='border-b border-dashed border-[#363738] mb-[16px] md:mb-[24px]'>
-        <h5 className='text-[16px] md:text-[24px] font-[900] text-white font-[JamGrotesque] mb-[16px]'>Referral link</h5>
+        <h5 className='text-[16px] md:text-[24px] font-[900] text-white font-[JamGrotesque] mb-[16px]'>Refer & Earn</h5>
         <p className='text-white/80 text-[14px] mb-[19px] md:mb-[12px]'>Share this referral link and earn a 1x1 land on every 50 transaction through your link!</p>
         <FieldGroup className='relative'>
           <Field value={referalLink} className='!text-white !text-[14px]' readonly />

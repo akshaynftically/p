@@ -2,7 +2,7 @@ import { _landReserverAbi } from 'lib/constants/landReserverAbi';
 import { _erc20Abi } from 'lib/constants/erc20Abi';
 
 import {Fragment, useEffect, useState, useMemo, useContext} from 'react'
-import { ethers, utils } from "ethers";
+import { BigNumber, ethers, utils } from "ethers";
 import {components} from 'react-select'
 import { useCookies } from "react-cookie";
 
@@ -315,7 +315,8 @@ const handleCloseAddFundsModal = () => {
           localStorage.removeItem('auth')
           localStorage.removeItem('transaction_form')
           localStorage.removeItem('order')
-          localStorage.removeItem('wallet')
+          // prevent removing wallet to disconnecting user on buy more
+          // localStorage.removeItem('wallet')
           localStorage.setItem('auth',JSON.stringify(user))
           let country = _selectCountryOptions.filter((el) => {return el.value === user.country_code})
           dispatch(setTransactionForm({name: user.name, email: user.email, country : country[0], company: user.company, representing: user.company != null ? "company":"individual" }))
@@ -326,56 +327,64 @@ const handleCloseAddFundsModal = () => {
     })()
   })
 
+  const checkAddressInWhiteList = async (account) => {
+    if(account != null){
+      let provider = await appGlobals.hasWalletProvider()
+      let chainId = (await provider.getNetwork()).chainId
+      if( chainId != process.env.REACT_APP_CHAIN_ID) return false
+      setDisabledReserveLand(true)
+      let {atleastOneWhitelistApplied, buyerWhitelistId} = await checkInWhiteList(account)
+      if(atleastOneWhitelistApplied === true){
+        if(parseInt(buyerWhitelistId) === 0){
+          // join waiting list modal
+          setIsWhiteListed(false)
+          setDisabledReserveLand(true)
+          setWhiteListError({
+            heading: 'Sorry!! This wallet is not whitelisted',
+            claimed_all: false
+          })
+          return false
+        }else{
+          // check for avalability
+          let allowed = await getParcelAvailabilityForBuyer(account)
+          if(allowed.reduce((sum,el) => {return sum+=el},0) > 0){
+            // congratulations modal
+            let nonZeroParcels = ''
+            allowed.forEach((el,i) =>{
+              if(el !== 0){
+                nonZeroParcels+= (i===0 ? '':', ') + el+' Parcel(s) of size '+basket[i]['type']
+              }
+            })
+            if(nonZeroParcels.length > 0 && nonZeroParcels[0] === ','){
+              nonZeroParcels = nonZeroParcels.substring(1)
+            }
+            setParcelAvailabilityForBuyer(nonZeroParcels)
+            setIsWhiteListed(true)
+            setDisabledReserveLand(false)
+            setWhiteListError(null)
+            return true
+          }else{
+            setIsWhiteListed(false)
+            setDisabledReserveLand(true)
+            setWhiteListError({
+              heading: 'Oops!! You have exhausted your parcel limit!',
+              claimed_all: true
+            })
+            return false
+          }
+        }
+      }
+      // else it is a normal sale
+      return true
+    }
+  }
+
   useEffect(() => {
     (async () => {
       getDiscountPercentage(account).then((dis) => {
         setDiscountPercentage(dis)
       })
-      if(account != null){
-        let provider = await appGlobals.hasWalletProvider()
-        let chainId = (await provider.getNetwork()).chainId
-        if( chainId != process.env.REACT_APP_CHAIN_ID) return
-        setDisabledReserveLand(true)
-        let {atleastOneWhitelistApplied, buyerWhitelistId} = await checkInWhiteList(account)
-        if(atleastOneWhitelistApplied === true){
-          if(parseInt(buyerWhitelistId) === 0){
-            // join waiting list modal
-            setIsWhiteListed(false)
-            setDisabledReserveLand(true)
-            setWhiteListError({
-              heading: 'Sorry!! This wallet is not whitelisted',
-              claimed_all: false
-            })
-          }else{
-            // check for avalability
-            let allowed = await getParcelAvailabilityForBuyer(account)
-            if(allowed.reduce((sum,el) => {return sum+=el},0) > 0){
-              // congratulations modal
-              let nonZeroParcels = ''
-              allowed.forEach((el,i) =>{
-                if(el !== 0){
-                  nonZeroParcels+= (i===0 ? '':', ') + el+' Parcel(s) of size '+basket[i]['type']
-                }
-              })
-              if(nonZeroParcels.length > 0 && nonZeroParcels[0] === ','){
-                nonZeroParcels = nonZeroParcels.substring(1)
-              }
-              setParcelAvailabilityForBuyer(nonZeroParcels)
-              setIsWhiteListed(true)
-              setDisabledReserveLand(false)
-              setWhiteListError(null)
-            }else{
-              setIsWhiteListed(false)
-              setDisabledReserveLand(true)
-              setWhiteListError({
-                heading: 'Oops!! You have exhausted your parcel limit!',
-                claimed_all: true
-              })
-            }
-          }
-        }
-        // else it is a normal sale
-      }
+      await checkAddressInWhiteList(account)
     })()
 }, [account])
 
@@ -500,8 +509,15 @@ const handleCloseAddFundsModal = () => {
 
     let discount = (await getDiscountPercentage(account))[0]/1000
     let prices = await landPrices(selectToken,true)
-    await new apiRepository().createOrder(selectToken.id, discount, 
+    let order = await new apiRepository().createOrder(selectToken.id, discount, 
       cookies.referral_first_touch, cookies.referral_last_touch, cookies.utm_first_touch, cookies.utm_last_touch, account,prices)
+    tNumber = order.tracking_number
+    try{
+      tNumber = BigNumber.from(tNumber)
+    }catch(e){
+      tNumber = BigNumber.from(0)
+    }
+    console.log(tNumber)
     // check for approval erc20
     let totalPrice = await getTotalParcelPrice(basket,selectToken, account)
     if(selectToken.id !== 0){
@@ -563,22 +579,30 @@ const handleCloseAddFundsModal = () => {
     (new apiRepository().createOrUpdateUser()).then(() => {
       let walletProvider  = appGlobals.getWalletProviderConfirmed()
       walletProvider.then((provider) => {
-        
-        let process = startTransactionFlow(provider)
-        process.then((tx) => {
-          navigate('/success',{state:{tokenLogo:selectToken}})
-        }).catch((err) => {
-          console.log(err)
-          setIsOpenedProgressWallet(false)
-          if(globalErrorNotifier(err) === false){
-            // navigate('/failed')
-          }else{
-           if((JSON.stringify(err)).includes('insufficient funds for gas')){
-             console.log('inside err')
-  
-            setOpenAddFundsModal(true)
-           }
-          }
+        provider.send("eth_accounts",[]).then((accounts) => {
+          checkAddressInWhiteList(accounts[0]).then((status) => {
+            if(!status){
+              return
+            }
+            let process = startTransactionFlow(provider)
+            process.then((tx) => {
+              navigate('/success',{state:{tokenLogo:selectToken}})
+            }).catch((err) => {
+              console.log(err)
+              setIsOpenedProgressWallet(false)
+              if(globalErrorNotifier(err) === false){
+                // if we have an uncaught error then send user to failed page
+                navigate('/failed')
+              }else{
+                // for native token error
+               if((JSON.stringify(err)).includes('insufficient funds for gas')){
+                 console.log('inside err')
+      
+                setOpenAddFundsModal(true)
+               }
+              }
+            })
+          })
         })
       })
     }).catch((err) => {
