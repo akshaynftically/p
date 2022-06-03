@@ -550,6 +550,7 @@ const handleCloseAddFundsModal = () => {
    
 
     let discount =(discountPercentage[0]/1000).toFixed(2)
+    console.log(discount)
     dispatch(setTransactionForm({...data, basket, discount}))
     setEmailReadOnly(true)
 
@@ -565,7 +566,7 @@ const handleCloseAddFundsModal = () => {
         
         let process = startTransactionFlow(provider)
         process.then((tx) => {
-          navigate('/success')
+          navigate('/success',{state:{tokenLogo:selectToken}})
         }).catch((err) => {
           console.log(err)
           setIsOpenedProgressWallet(false)
