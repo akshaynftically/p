@@ -27,8 +27,10 @@ const Failed = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const transactionForm = useSelector(getTransactionForm)
+    console.log(transactionForm)
     const order=JSON.parse(localStorage.getItem('order'))
     const auth=JSON.parse(localStorage.getItem('auth'))
+    const discount=JSON.parse(localStorage.getItem('discount'))
     useEffect(() => {
         if (!transactionForm) {
             navigate('/reserve-land')
@@ -36,6 +38,8 @@ const Failed = () => {
 
         dispatch(clearTransactionForm())
         localStorage.removeItem('order')
+    console.log(transactionForm)
+
     }, [dispatch, navigate, transactionForm])
 
     const getTotal = () => {
@@ -201,13 +205,13 @@ const Failed = () => {
                                     </td>
                                 </tr> : ''
                             ))}
-                            {transactionForm.discount && (
+                            {discount && (
                                 <tr className='border-b border-[#363738]'>
                                     <td className='text-wrap pb-[8px] pt-[22px]'>Discount</td>
                                     <td className='text-right pb-[8px] pt-[22px]'>
                                         <div className="flex items-center justify-end">
                                             
-                                            <span> {transactionForm.discount}%</span>
+                                            <span> {discount}%</span>
                                         </div>
                                     </td>
                                 </tr>

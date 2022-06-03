@@ -566,7 +566,7 @@ const handleCloseAddFundsModal = () => {
    
 
     let discount =(discountPercentage[0]/1000).toFixed(2)
-    console.log(discount)
+    localStorage.setItem('discount',JSON.stringify(discount))
     dispatch(setTransactionForm({...data, basket, discount}))
     setEmailReadOnly(true)
 
