@@ -25,8 +25,8 @@ const LandUnit = (props) => {
       <div className='mr-[20px]'>
         <img src={_landUnits[index]} alt={type} />
       </div>
-      <div className='text-[16px] text-white/[.80] text-center mb-[8px]'>size: <span className='lg:text-[24px]'>{type}</span></div>
-      <SimpleCounter onChange={onChange} value={qty} />
+      <div className='text-[16px] text-white/[.80] text-center mb-[8px]'>Size: <span className='lg:text-[24px]'>{type}</span></div>
+      <SimpleCounter onChange={onChange} value={qty} disableCounter={disableCounter}/>
     </div>
   )
 }

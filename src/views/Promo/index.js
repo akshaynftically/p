@@ -10,7 +10,7 @@ import countryList from 'react-select-country-list'
 const Promo = () => {
   const [searchParams,setSearchParams] = useSearchParams()
   const otp = searchParams.get('otp')
-  const referralCode = searchParams.get('ref')
+  const referralCode = searchParams.get('r')
   const cookieDuration = 10 // in days
   const navigate = useNavigate()
   const dispatch = useDispatch()

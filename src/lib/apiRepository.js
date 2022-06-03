@@ -36,8 +36,8 @@ export class apiRepository {
 
         let firstReferredBy = this.getCookie('referral_first_touch')
         let referredBy = this.getCookie('referral_last_touch')
-        let utmFirstTouch = this.getCookie('utm_first_touch')
-        let utmLastTouch = this.getCookie('utm_last_touch')
+        let utmFirstTouch = this.getCookie('utm_first_touch') === '' ? undefined : JSON.parse(this.getCookie('utm_first_touch'))
+        let utmLastTouch = this.getCookie('utm_last_touch') === '' ? undefined :JSON.parse(this.getCookie('utm_last_touch'))
 
         if(!userInfo){
             try{
