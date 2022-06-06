@@ -28,6 +28,13 @@ const Basket = (props) => {
     return total
   }
 
+  const totalUSD = () => {
+    let total = items.reduce((sum, cur, i) => {
+      return sum += cur.perItemPriceUSD * cur.qty * ( (100000 - discountPercentage[i])/100000 )
+    }, 0)
+    return total
+  }
+
   const discountRender = () => {
     return (
       <>
@@ -95,14 +102,21 @@ const Basket = (props) => {
 
   return (
     <Fragment>
-      {items.map((el) => (
-          el.qty ? <BasketListItem key={el.id} {...el} tokenLogo={tokenLogo} /> : ''
-      ))}
+      {/*{items.map((el) => (*/}
+      {/*    el.qty ? <BasketListItem key={el.id} {...el} tokenLogo={tokenLogo} /> : ''*/}
+      {/*))}*/}
 
       {discountRender()}
 
+      <div className='flex text-[20px] mb-[20px]'>
+        <div className='text-white/[.80]'>Grand Total (USD)</div>
+        <div className='font-semibold text-white ml-auto'>
+          ${totalUSD().toLocaleString()}
+        </div>
+      </div>
+
       <div className='flex text-[20px]'>
-        <div className='text-white/[.80]'>Grand Total</div>
+        <div className='text-white/[.80]'>Grand Total (Tokens)</div>
         <div className='flex items-center font-semibold text-white ml-auto'>
                     <span className='mr-[5px]'>
           <img src={_tokenIcons[tokenLogo.logo]}/>
