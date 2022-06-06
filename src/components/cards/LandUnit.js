@@ -18,15 +18,25 @@ const _landUnits = [
     _landUnit6Img,
 ]
 const LandUnit = (props) => {
-  const {type, img, index, qty, onChange,disableCounter} = props
+  const {type, img, index, qty, onChange,disableCounter, perItemPriceUSD} = props
 
   return (
-    <div className='flex bg-[#161718] w-full items-center rounded-lg pt-[8px] pb-[16px] px-[14px] mb-[4px]'>
+    <div className='flex bg-[#161718] w-full items-center rounded-lg pt-[8px] pb-[16px] px-[14px] mb-[8px]'>
       <div className='mr-[20px]'>
         <img src={_landUnits[index]} alt={type} />
       </div>
-      <div className='text-[16px] text-white/[.80] text-center mb-[8px]'>Size: <span className='lg:text-[24px]'>{type}</span></div>
-      <SimpleCounter onChange={onChange} value={qty} disableCounter={disableCounter}/>
+       <div className='w-full'>
+         <div className='flex items-center'>
+           <div className='text-[16px] text-white/[.80] text-center'>Size: <span className='lg:text-[24px]'>{type}</span></div>
+           <div className='hidden xl:block bg-gradient-to-r from-[#D299FF] to-[#58C3FF] py-[3px] px-[14px] mx-auto text-[12px] text-[#363738] rounded-full'>Unlocked Units: 20,000</div>
+           <SimpleCounter onChange={onChange} value={qty} disableCounter={disableCounter}/>
+         </div>
+         <div className='mb-[11px] mt-[15px] border-t border-[#363738]' />
+         <div className='flex justify-between'>
+           <span>Price: <span className='font-bold text-[14px]'>${perItemPriceUSD.toLocaleString()}</span></span>
+           <span>Total: <span className='font-bold text-[14px]'>${(perItemPriceUSD * qty).toLocaleString()}</span></span>
+         </div>
+       </div>
     </div>
   )
 }
