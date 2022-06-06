@@ -8,7 +8,7 @@ import {components} from "react-select";
 import WrongNetworkModal from "../../modals/WrongNetworkModal";
 import AppContext from 'components/AppContext';
 import { useFieldArray } from 'react-hook-form';
-import { getChainData } from 'lib/appHelpers';
+import { getChainData, onNetwork } from 'lib/appHelpers';
 import switchNetwork from 'lib/switchNetwork';
 
 const _networks = [
@@ -132,9 +132,8 @@ const HeaderBalance = (props) => {
             let tempProvider = await appGlobals.hasWalletProvider()
             if(!tempProvider) return
             let chainId = (await tempProvider.getNetwork()).chainId
-            console.log('chainId',chainId)
-            appGlobals.setIsWrongNetwork(chainId == process.env.REACT_APP_CHAIN_ID )
-            if(chainId == process.env.REACT_APP_CHAIN_ID){
+            appGlobals.setIsWrongNetwork(onNetwork(chainId) )
+            if(onNetwork(chainId)){
                 const networkConfig = await getChainData(tempProvider)
                 setAddressExplorar(networkConfig.explorar+'/address/'+address)
             }

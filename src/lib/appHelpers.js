@@ -7,5 +7,5 @@ export const getChainData = async (provider) => {
 
 export const onNetwork = (chainId) => {
     let supports = (process.env.REACT_APP_CHAIN_ID).split(',')
-    return (supports.filter((chain) => {return chain == chainId})).length > 1
+    return (supports.filter((chain) => {return chain == chainId})).length >= 1
 }

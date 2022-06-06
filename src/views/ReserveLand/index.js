@@ -30,7 +30,7 @@ import {Controller, useForm} from 'react-hook-form'
 import { checkInWhiteList, extractReceiptData, getDiscountPercentage, getParcelAvailabilityForBuyer, getTotalParcelPrice, landPrices } from './landPrices';
 import countryList from 'react-select-country-list'
 import AppContext from 'components/AppContext';
-import { getChainData } from 'lib/appHelpers';
+import { getChainData, onNetwork } from 'lib/appHelpers';
 import globalErrorNotifier from 'lib/globalNotifier';
 import AccountModal from 'modals/AccountModal';
 import { getUser } from 'app/UserSlice';
@@ -331,7 +331,7 @@ const handleCloseAddFundsModal = () => {
     if(account != null){
       let provider = await appGlobals.hasWalletProvider()
       let chainId = (await provider.getNetwork()).chainId
-      if( chainId != process.env.REACT_APP_CHAIN_ID) return false
+      if(!onNetwork(chainId)) return false
       setDisabledReserveLand(true)
       let {atleastOneWhitelistApplied, buyerWhitelistId} = await checkInWhiteList(account)
       if(atleastOneWhitelistApplied === true){
@@ -438,7 +438,7 @@ const handleCloseAddFundsModal = () => {
         const accountsList = await tempProvider.send("eth_accounts", [])
       
         setAccount(accountsList[0])
-      if(process.env.REACT_APP_CHAIN_ID != (await tempProvider.getNetwork())['chainId'] ){
+      if(!onNetwork((await tempProvider.getNetwork())['chainId'])){
         setIsWrongNetwork(true)
         setDisabledReserveLand(true)
       }
