@@ -13,6 +13,7 @@ import ReserveLandModal from '../../../modals/ReserveLandModal'
 import _imgRewardBanner1 from 'assets/img/rewards/1.png'
 import _imgRewardBanner2 from 'assets/img/rewards/2.png'
 import _imgRewardBanner3 from 'assets/img/rewards/3.png'
+import { useNavigate } from 'react-router-dom'
 
 const _banners = [
   {
@@ -74,6 +75,7 @@ const _rewards = [
 ]
 
 const Fourth = () => {
+  const navigate = useNavigate()
   const [openModal, setOpenModal] = useState(false)
 
   return (
@@ -126,7 +128,7 @@ const Fourth = () => {
 
           <div className='flex items-end justify-center text-center mb-[50px] relative z-[100]'>
             <SimpleButton className='!px-[24px] md:mb-[55px]' type='button'
-                          onClick={() => setOpenModal(true)}>
+                          onClick={() =>   navigate('/reserve-land')}>
               Start Your Metaverse Journey Now
             </SimpleButton>
           </div>

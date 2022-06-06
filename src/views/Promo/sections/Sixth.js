@@ -23,6 +23,7 @@ import _imgContinentRohin from 'assets/img/continents/rohin.svg'
 import _imgContinentTosh from 'assets/img/continents/tosh.svg'
 import _imgContinentHorus from 'assets/img/continents/horus.svg'
 import ReserveLandModal from '../../../modals/ReserveLandModal'
+import { useNavigate } from 'react-router-dom'
 
 // Mocks
 const _continents = [
@@ -85,6 +86,8 @@ const _continents = [
 ]
 
 const Sixth = () => {
+  const navigate = useNavigate()
+
   const sliderSettings = {
     slidesPerView: 1,
     loop: true,
@@ -216,7 +219,7 @@ const Sixth = () => {
                           <SimpleButton type='button'
                                         className='block w-full md:w-auto py-[15px] md:py-3'
                                         size='sm'
-                                        onClick={() => setOpenModal(true)}
+                                        onClick={() => navigate('/reserve-land')}
                           >
                             Reserve Land Now
                           </SimpleButton>

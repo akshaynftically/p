@@ -1,5 +1,5 @@
 import {Fragment, useRef, useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {Swiper, SwiperSlide} from 'swiper/react'
 import {Autoplay, Pagination} from 'swiper'
 
@@ -55,6 +55,8 @@ const _lands = [
 ]
 
 const Seventh = () => {
+  const navigate = useNavigate()
+
   const [openModal, setOpenModal] = useState(false)
 
   const swiperRef = useRef()
@@ -137,7 +139,7 @@ const Seventh = () => {
               >
                 {_lands.map((el, i) => (
                   <SwiperSlide key={el.id} className='!w-[265px] group'>
-                    <div onClick={() => setOpenModal(true)}>
+                    <div onClick={() => navigate('/reserve-land')}>
                       <div className='relative cursor-pointer flex items-center justify-center w-[265px] h-[240px] overflow-hidden border-bottom-sq-gradient--active mb-[10px]'>
                         <div className='absolute -top-[22px] -bottom-[22px] -left-[22px] -right-[22px]'>
                           {[...Array(11)].map((el, i) => (
