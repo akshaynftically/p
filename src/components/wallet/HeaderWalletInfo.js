@@ -42,15 +42,15 @@ const HeaderWalletInfo = () => {
       }
 
     const connectWallet = async ()  => {
-let transaction_form=JSON.parse(localStorage.getItem('transaction_form'))
-if(!transaction_form){
-    setIsOpenedProgressWallet(true)
-    return
+// let transaction_form=JSON.parse(localStorage.getItem('transaction_form'))
+// if(!transaction_form){
+//     setIsOpenedProgressWallet(true)
+//     return
     
-}else if(!transaction_form.email){
-    setIsOpenedProgressWallet(true)
-    return
-}
+// }else if(!transaction_form.email){
+//     setIsOpenedProgressWallet(true)
+//     return
+// }
 
         let tempProvider = await appGlobals.getWalletProviderConfirmed()
         setProvider(tempProvider)
