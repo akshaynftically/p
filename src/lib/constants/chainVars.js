@@ -7,8 +7,8 @@ export const _chainVars = [
         currency_name:'ETH',
         currency_code:'ETH',
         decimals:18,
-        land_reserver_contract: process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS_ETHEREUM,
-        whitelist_contract: process.env.REACT_APP_WHITELIST_CONTRACT_ADDRESS_ETHEREUM
+        land_reserver_contract: process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS_ETHEREUEM,
+        whitelist_contract: process.env.REACT_APP_WHITELIST_CONTRACT_ADDRESS_ETHEREUEM
     },
     {
         chainId: 4,
@@ -18,8 +18,8 @@ export const _chainVars = [
         currency_name:'ETH',
         currency_code:'ETH',
         decimals:18,
-        land_reserver_contract: process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS_ETHEREUM,
-        whitelist_contract: process.env.REACT_APP_WHITELIST_CONTRACT_ADDRESS_ETHEREUM
+        land_reserver_contract: process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS_ETHEREUEM,
+        whitelist_contract: process.env.REACT_APP_WHITELIST_CONTRACT_ADDRESS_ETHEREUEM
     },
     {
         chainId: 137,

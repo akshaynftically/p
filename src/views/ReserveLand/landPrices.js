@@ -57,18 +57,23 @@ export const extractReceiptData = (receipt,token) =>{
 }
 
 export const checkInWhiteList = async(address) =>{
-    let whiteListContract = await getWhiteListContract()
-    return await whiteListContract.getBuyerApplicableWhitelistId(!!address ? address : "0x0000000000000000000000000000000000000000")
+    let contract = await getWhiteListContract()
+    console.log(!!address ? address : "0x0000000000000000000000000000000000000000")
+    return await contract.getBuyerApplicableWhitelistId(!!address ? address : "0x0000000000000000000000000000000000000000")
 }
 
 export const getWhiteListContract = async () =>{
     let provider = await getProvider()
     let chain = await getChainData(provider)
-    return new ethers.Contract(chain.whitelist_contract,_whitelistManagerAbi,provider)
+    let contract =new ethers.Contract(chain.whitelist_contract,_whitelistManagerAbi,provider)
+    console.log(contract)
+    return contract
 }
 
 export const getLandReserverContract = async () =>{
     let provider = await getProvider()
     let chain = await getChainData(provider)
-    return new ethers.Contract(chain.land_reserver_contract,_whitelistManagerAbi,provider)
+    let contract = new ethers.Contract(chain.land_reserver_contract,_landReserverAbi,provider)
+    console.log(contract)
+    return contract
 }
