@@ -34,29 +34,29 @@ Please seek guidance from a professional adviser if you have any confusion.
 exposure to Virtual Assets.
       </p>
 <ul>
-<li className='text-[14px] mb-[60px] list-disc'>
+<li className='text-[14px] mb-[20px] list-disc'>
   The Virtual Assets Service is unregulated.
   </li>
-  <li className='text-[14px] mb-[60px] list-disc'>
+  <li className='text-[14px] mb-[20px] list-disc'>
   Trading in virtual assets carries special risks.
   </li>
-  <li className='text-[14px] mb-[60px] list-disc'>
+  <li className='text-[14px] mb-[20px] list-disc'>
   The value of Virtual Assets is highly volatile.
   </li>
-  <li className='text-[14px] mb-[60px] list-disc'>
+  <li className='text-[14px] mb-[20px] list-disc'>
   NFT Marketplace, Metaverses or Exchanges are vulnerable to cyber attacks, errors, and hacking.
   </li>
-  <li className='text-[14px] mb-[60px] list-disc'>
+  <li className='text-[14px] mb-[20px] list-disc'>
   The Cryptocurrency Exchange, Metaverse or NFT Marketplaces may suspend or terminate its
 service at any time.
   </li>
-  <li className='text-[14px] mb-[60px] list-disc'>
+  <li className='text-[14px] mb-[20px] list-disc'>
   The legal status of virtual assets is uncertain and constantly evolving.
   </li>
-  <li className='text-[14px] mb-[60px] list-disc'>
+  <li className='text-[14px] mb-[20px] list-disc'>
   The functioning of the Virtual Assets network is outside our control.
   </li>
-  <li className='text-[14px] mb-[60px] list-disc'>
+  <li className='text-[14px] mb-[20px] list-disc'>
   Risk of others copying your digital items
   </li>
 </ul>

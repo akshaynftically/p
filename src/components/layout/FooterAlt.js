@@ -55,7 +55,7 @@ const _secondMenu = [
   {
     id: '1002',
     title: 'Risk Policy',
-    url: 'https://www.nftically.com/terms',
+    url: '/risk',
     className: 'text-right md:text-left'
   },
   {
@@ -67,7 +67,7 @@ const _secondMenu = [
   {
     id: '1004',
     title: 'Privacy Policy',
-    url: 'https://www.nftically.com/privacy-policy',
+    url: '/policy',
     className: 'text-right md:text-left'
   },
 ]
