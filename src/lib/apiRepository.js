@@ -2,17 +2,19 @@ import axios from "./axiosHelper";
 
 export class apiRepository {
 
-    async createLead(email){
-        return axios.post('/v1/leads',{
-            email: email
-        })
-    }
+    // async createLead(email){
+    //     return
+    //     return axios.post('/v1/leads',{
+    //         email: email
+    //     })
+    // }
 
-    async getOtpData(otp){
-        return await axios.get('/v1/users',{params:{
-            otp : otp
-        }})
-    }
+    // async getOtpData(otp){
+    //     return
+    //     return await axios.get('/v1/users',{params:{
+    //         otp : otp
+    //     }})
+    // }
 
     getCookie(cookieName) {
         let name = cookieName + "=";
@@ -30,10 +32,8 @@ export class apiRepository {
         return "";
     }
 
-    async createOrUpdateUser(){
-        let transactionForm = localStorage.getItem('transaction_form') ? JSON.parse(localStorage.getItem('transaction_form')) : null
+    async createOrUpdateUser(data){
         let userInfo = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null
-
         let firstReferredBy = this.getCookie('referral_first_touch')
         let referredBy = this.getCookie('referral_last_touch')
         let utmFirstTouch = this.getCookie('utm_first_touch') === '' ? undefined : JSON.parse(this.getCookie('utm_first_touch'))
@@ -42,17 +42,21 @@ export class apiRepository {
         if(!userInfo){
             try{
               let resp = await axios.post('v1/users',{
-                name: transactionForm?.name,
-                email: transactionForm?.email,
-                country: transactionForm?.country,
-                industry: transactionForm?.industry?.value,
-                country_code: transactionForm?.country?.value,
-                company: transactionForm.company,
                 first_referred_by: firstReferredBy,
                 referred_by: referredBy,
                 utm_first_touch: utmFirstTouch,
-                utm_last_touch: utmLastTouch
+                utm_last_touch: utmLastTouch,
+                wallets: [{
+                    wallet_name: data.wallet,
+                    wallet_address: data.address,
+                    last_connected_at: new Date().getTime()
+                }]
               })
+              if(resp.status.code === '200'){
+                  console.log('user updated')
+              }else if(resp.status.code === '201'){
+                  console.log('user created')
+              }
               localStorage.setItem('auth',JSON.stringify(resp.data))
             }catch(error){
                 throw error
@@ -60,16 +64,15 @@ export class apiRepository {
         }else{
             try{
                 let resp = await axios.post('v1/users/'+userInfo.id,{
-                  name: transactionForm?.name,
-                  email: transactionForm?.email,
-                  country: transactionForm?.country,
-                  industry: transactionForm?.industry?.value,
-                  country_code: transactionForm?.country?.value,
                   first_referred_by: firstReferredBy,
                   referred_by: referredBy,
                   utm_first_touch: utmFirstTouch,
                   utm_last_touch: utmLastTouch,
-                  company: transactionForm.company,
+                  wallets: [{
+                    wallet_name: data.wallet,
+                    wallet_address: data.address,
+                    last_connected_at: new Date().getTime()
+                }]
                 })
                 localStorage.setItem('auth',JSON.stringify(resp.data))
               }catch(error){

@@ -611,8 +611,6 @@ const ReserveLand = () => {
     let tNumber = 0
     let err
 
-    // await new apiRepository().createOrUpdateUser()
-
     showTransactionModal({
       title: 'Please wait...',
       mainHeading: '',
@@ -628,7 +626,7 @@ const ReserveLand = () => {
     const networkConfig = await getChainData(provider)
 
 
-    let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS, _landReserverAbi, provider)
+    let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS_POLYGON, _landReserverAbi, provider)
     let signedContract = contract.connect(signer)
     let parcelQuantities = basket.map((el) => {
       return el.qty
@@ -649,7 +647,7 @@ const ReserveLand = () => {
     let totalPrice = await getTotalParcelPrice(basket, selectToken, account)
     if (selectToken.id !== 0) {
       let erc20 = new ethers.Contract(selectToken.contract_address, _erc20Abi, provider)
-      let allowedAmt = await erc20.allowance(account, process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS)
+      let allowedAmt = await erc20.allowance(account, process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS_POLYGON)
       // check for balance if balance is low then return low balance modal with balance
       let balance = await erc20.balanceOf(account)
       if (balance.lt(totalPrice)) {
@@ -674,7 +672,7 @@ const ReserveLand = () => {
         })
         // ask to approve and procees further
         let erc20Signed = erc20.connect(signer)
-        transaction = await erc20Signed.approve(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS, '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
+        transaction = await erc20Signed.approve(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS_POLYGON, '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
         // wait for transaction modal erc20
         showTransactionModal({
           content: '',
@@ -746,57 +744,33 @@ const ReserveLand = () => {
       })
       return
     }
-    (new apiRepository().createOrUpdateUser()).then(() => {
-      let walletProvider = appGlobals.getWalletProviderConfirmed()
-      walletProvider.then((provider) => {
-        provider.send('eth_accounts', []).then((accounts) => {
-          checkAddressInWhiteList(accounts[0]).then((status) => {
-            if (!status) {
-              return
-            }
-            let process = startTransactionFlow(provider)
-            process.then((tx) => {
-              navigate('/success', {state: {tokenLogo: selectToken}})
-            }).catch((err) => {
-              console.log(err)
-              setIsOpenedProgressWallet(false)
-              if (globalErrorNotifier(err) === false) {
-                // if we have an uncaught error then send user to failed page
-                navigate('/failed')
-              } else {
-                // for native token error
-                if ((JSON.stringify(err)).includes('insufficient funds for gas')) {
-                  console.log('inside err')
+    let walletProvider = appGlobals.getWalletProviderConfirmed()
+    walletProvider.then((provider) => {
+      provider.send('eth_accounts', []).then((accounts) => {
+        checkAddressInWhiteList(accounts[0]).then((status) => {
+          if (!status) {
+            return
+          }
+          let process = startTransactionFlow(provider)
+          process.then((tx) => {
+            navigate('/success', {state: {tokenLogo: selectToken}})
+          }).catch((err) => {
+            console.log(err)
+            setIsOpenedProgressWallet(false)
+            if (globalErrorNotifier(err) === false) {
+              // if we have an uncaught error then send user to failed page
+              navigate('/failed')
+            } else {
+              // for native token error
+              if ((JSON.stringify(err)).includes('insufficient funds for gas')) {
+                console.log('inside err')
 
-                  setOpenAddFundsModal(true)
-                }
+                setOpenAddFundsModal(true)
               }
-            })
+            }
           })
         })
       })
-    }).catch((err) => {
-      if (err?.response?.status === 409) {
-        //user directly here so send lead request first
-        new apiRepository().createLead(data.email)
-          .then(res => {
-            // save lead in localstorage
-            console.log(res)
-            navigate('/reserve-land')
-          })
-          .catch(err => {
-            if (err?.response?.status === 302) {
-              showTransactionModal({
-                title: 'Already Registered',
-                mainHeading: 'We have an account already registered with this email, Please check your email to proceed further.',
-                content: '',
-                loading: false,
-                learn: '',
-                view: ''
-              })
-            }
-          })
-      }
     })
   }
   const handleEmailEdit = () => {

@@ -13,7 +13,6 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
 
   //handler for logging into wallet and handle transactions
   const handleWalletConnect = async(walletTitle) => {
-    await new apiRepository().createOrUpdateUser()
     let provider = await getWalletProvider(walletTitle)
     let connected = new CustomEvent('wallet:connected',{detail : { provider : provider}})
     document.dispatchEvent(connected);

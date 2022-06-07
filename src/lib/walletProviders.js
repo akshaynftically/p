@@ -33,7 +33,7 @@ export const getWalletProvider = async (walletTitle) =>{
       if(walletWeb3) {
         let accounts =  await walletWeb3.request({method: "eth_requestAccounts"})
         if(userWallet === null){
-            await new apiRepository().addWallets({address : accounts[0], wallet : 'MetaMask'})
+            await new apiRepository().createOrUpdateUser({address : accounts[0], wallet : 'MetaMask'})
             localStorage.setItem('wallet', JSON.stringify({address : accounts[0], wallet : 'MetaMask'}))
         }
       }
@@ -45,7 +45,7 @@ export const getWalletProvider = async (walletTitle) =>{
       })
       if(userWallet === null){
         let accounts = await fm.user.login();
-        await new apiRepository().addWallets({address : accounts[0], wallet : 'Fortmatic'})
+        await new apiRepository().createOrUpdateUser({address : accounts[0], wallet : 'Fortmatic'})
         localStorage.setItem('wallet', JSON.stringify({address : accounts[0], wallet : 'Fortmatic'}))
       }
       walletWeb3 = fm.getProvider();
@@ -59,7 +59,7 @@ export const getWalletProvider = async (walletTitle) =>{
       walletWeb3 = coinbaseWallet.makeWeb3Provider(process.env.REACT_APP_POLYGON_RPC_PROVIDER,process.env.REACT_CHAIN_ID)
       if(userWallet === null){
         let accounts = await walletWeb3.enable();
-        await new apiRepository().addWallets({address : accounts[0], wallet : 'Coinbase Wallet'})
+        await new apiRepository().createOrUpdateUser({address : accounts[0], wallet : 'Coinbase Wallet'})
         localStorage.setItem('wallet', JSON.stringify({address : accounts[0], wallet : 'Coinbase Wallet'}))
       }
     }
@@ -70,10 +70,25 @@ export const getWalletProvider = async (walletTitle) =>{
       })
       if(userWallet === null){
         let accounts = await walletWeb3.enable();
-        await new apiRepository().addWallets({address : accounts[0], wallet : 'WalletConnect'})
+        await new apiRepository().createOrUpdateUser({address : accounts[0], wallet : 'WalletConnect'})
         localStorage.setItem('wallet', JSON.stringify({address : accounts[0], wallet : 'WalletConnect'}))
       }
     }
     let provider = new ethers.providers.Web3Provider(walletWeb3);
     return provider
+}
+
+export const isConnected = async () => {
+  let userWallet = localStorage.getItem('wallet') ? JSON.parse(localStorage.getItem('wallet')) : null
+  return userWallet ? await getWalletProvider(userWallet.wallet) : null
+}
+
+export const getProvider = async () => {
+  let provider
+  // default provider first
+  if(!(provider = await isConnected())){
+      // fallback provider if no wallet connected
+      return provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_ETHERUEM_RPC_PROVIDER);
+  }
+  return provider
 }
