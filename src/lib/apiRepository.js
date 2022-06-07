@@ -3,12 +3,14 @@ import axios from "./axiosHelper";
 export class apiRepository {
 
     async createLead(email){
+        return
         return axios.post('/v1/leads',{
             email: email
         })
     }
 
     async getOtpData(otp){
+        return
         return await axios.get('/v1/users',{params:{
             otp : otp
         }})
@@ -31,6 +33,7 @@ export class apiRepository {
     }
 
     async createOrUpdateUser(){
+        return
         let transactionForm = localStorage.getItem('transaction_form') ? JSON.parse(localStorage.getItem('transaction_form')) : null
         let userInfo = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null
 
@@ -79,10 +82,12 @@ export class apiRepository {
     }
 
     async getUserById(id){
+        return
         return await axios.get('/v1/users/'+id)
     }
 
     async addWallets(data){
+        return
         let userInfo = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null
         return await axios.post('v1/users/'+userInfo.id,{
             id: userInfo.id,
@@ -95,6 +100,7 @@ export class apiRepository {
     }
 
     async createOrder(token_id,discount, firstReferredBy, referredBy, utmFirstTouch, utmLastTouch, address,prices){
+        return
         let form = JSON.parse(localStorage.getItem('transaction_form'))
         let items = form.basket.map((el,i) => {return el.qty})
         let order = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : null
@@ -123,6 +129,7 @@ export class apiRepository {
     }
 
     async updateOrderTx(data){
+        return
         let order = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : null
         return await axios.post('v1/orders/'+order.id,{
             status: data.order_status,

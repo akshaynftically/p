@@ -77,3 +77,18 @@ export const getWalletProvider = async (walletTitle) =>{
     let provider = new ethers.providers.Web3Provider(walletWeb3);
     return provider
 }
+
+export const isConnected = async () => {
+  let userWallet = localStorage.getItem('wallet') ? JSON.parse(localStorage.getItem('wallet')) : null
+  return userWallet ? await getWalletProvider(userWallet.wallet) : null
+}
+
+export const getProvider = async () => {
+  let provider
+  // default provider first
+  if(!(provider = await isConnected())){
+      // fallback provider if no wallet connected
+      return provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_ETHERUEM_RPC_PROVIDER);
+  }
+  return provider
+}

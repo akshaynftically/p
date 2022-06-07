@@ -628,7 +628,7 @@ const ReserveLand = () => {
     const networkConfig = await getChainData(provider)
 
 
-    let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS, _landReserverAbi, provider)
+    let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS_POLYGON, _landReserverAbi, provider)
     let signedContract = contract.connect(signer)
     let parcelQuantities = basket.map((el) => {
       return el.qty
@@ -649,7 +649,7 @@ const ReserveLand = () => {
     let totalPrice = await getTotalParcelPrice(basket, selectToken, account)
     if (selectToken.id !== 0) {
       let erc20 = new ethers.Contract(selectToken.contract_address, _erc20Abi, provider)
-      let allowedAmt = await erc20.allowance(account, process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS)
+      let allowedAmt = await erc20.allowance(account, process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS_POLYGON)
       // check for balance if balance is low then return low balance modal with balance
       let balance = await erc20.balanceOf(account)
       if (balance.lt(totalPrice)) {
@@ -674,7 +674,7 @@ const ReserveLand = () => {
         })
         // ask to approve and procees further
         let erc20Signed = erc20.connect(signer)
-        transaction = await erc20Signed.approve(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS, '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
+        transaction = await erc20Signed.approve(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS_POLYGON, '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
         // wait for transaction modal erc20
         showTransactionModal({
           content: '',

@@ -1,10 +1,12 @@
 import { _landReserverAbi } from 'lib/constants/landReserverAbi';
 import {_whitelistManagerAbi} from 'lib/constants/whitelistManagerAbi';
 import { BigNumber, ethers } from 'ethers'
+import { getProvider } from 'lib/walletProviders';
+import { _chainVars } from 'lib/constants/chainVars';
+import { getChainData } from 'lib/appHelpers';
 
 export const landPrices = async (token,returnNumeric = false) => {
-    let provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_POLYGON_RPC_PROVIDER);
-    let contract  = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider)
+    let contract  = await getLandReserverContract()
     let prices = await contract.getParcelPrices(token.id)
     if(returnNumeric){
         prices = prices.map((n) => {
@@ -29,15 +31,13 @@ export const getTotalParcelPrice = async (basket,token, account) => {
 }
 
 export const getDiscountPercentage = async (account) => {
-    let provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_POLYGON_RPC_PROVIDER);
-    let contract  = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider)
+    let contract  = await getLandReserverContract()
     let discount = await contract.getApplicableDiscountPercentages(!!account ? account : "0x0000000000000000000000000000000000000000")
     return discount
 }
 
 export const getParcelAvailabilityForBuyer = async (account) => {
-    let provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_POLYGON_RPC_PROVIDER);
-    let contract  = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS,_landReserverAbi,provider)
+    let contract = await getLandReserverContract()
     let sizes = await contract.getParcelAvailabilityForBuyer(!!account ? account : "0x0000000000000000000000000000000000000000")
     return sizes.map((el) => { return parseInt(el)})
 }
@@ -57,7 +57,18 @@ export const extractReceiptData = (receipt,token) =>{
 }
 
 export const checkInWhiteList = async(address) =>{
-    let provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_POLYGON_RPC_PROVIDER);
-    let whiteListContract = new ethers.Contract(process.env.REACT_APP_WHITELIST_CONTRACT_ADDRESS,_whitelistManagerAbi,provider)
+    let whiteListContract = await getWhiteListContract()
     return await whiteListContract.getBuyerApplicableWhitelistId(!!address ? address : "0x0000000000000000000000000000000000000000")
+}
+
+export const getWhiteListContract = async () =>{
+    let provider = await getProvider()
+    let chain = await getChainData(provider)
+    return new ethers.Contract(chain.whitelist_contract,_whitelistManagerAbi,provider)
+}
+
+export const getLandReserverContract = async () =>{
+    let provider = await getProvider()
+    let chain = await getChainData(provider)
+    return new ethers.Contract(chain.land_reserver_contract,_whitelistManagerAbi,provider)
 }
