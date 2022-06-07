@@ -3,42 +3,64 @@ import {Fragment} from 'react'
 const RiskPolicy = () => {
   return (
     <Fragment>
-      <h1 className='font-black text-[48px]'>Risk Policy</h1>
+      <div className='font-white p-5'>
 
-      <div className='mb-[34px]'>
+      <h1 className='font-white text-[48px] mt-[5rem]'>Risk Policy</h1>
+
+      <div className='mb-[34px] font-white'>
         <span className='inline-block font-medium text-[14px] bg-black py-[6px] px-[32px] rounded-[32px]'>
-          Last updated on September 21st, 2021
+          Last updated on 06 June 2022
         </span>
       </div>
 
       <p className='text-[14px] mb-[30px]'>
-        Thank you for visiting 1 (the “Website”). Your privacy is important to us. This Privacy
-        Policy (the “Policy”) describes the types of information Kamoto Labs, Inc. (“NFTically”,
-        “us”, “we”, or “our”) may collect from you or that you may provide when you visit the
-        Website and the products, features, materials, and services we offer (collectively with the
-        Website, the “Services”). This Policy also describes our policies and procedures for
-        collecting, using, maintaining, protecting, and disclosing that information.
+      Please read this risk disclaimer carefully before using the NFT, Crypto Assets, Virtual Assets, Virtual Land
+and Cryptocurrency Services. This risk disclaimer must always be read along with the Terms of Use.
       </p>
       <p className='text-[14px] mb-[30px]'>
-        This Policy applies to information we collect on the Website and through your use of the
-        Services generally (including when you register for an account), and through communications
-        between you and the Website (including email, text, and other electronic messages).
+      This risk disclaimer provides you with information about the risks associated with using the Non-fungible
+tokens, crypto tokens, cryptocurrency, crypto assets, virtual assets, virtual lands, or any other cryptographically
+generated assets (herein referred to as “Virtual Assets”) related services, which allows you to buy or sell
+interests in Virtual Assets via this marketplace or any of its associate application or interface.
+          </p>
+      <p className='text-[14px] mb-[30px]'>
+      The trading of Virtual Assets (including the Supported Virtual Assets) entails certain risks. This disclaimer
+provides you with the disclosure of the risk involved in dealing with Virtual Asset. Whether dealing in Virtual
+Assets is right for you or not is the sole responsibility of the user of this metaverse, store or marketplace.
+Please seek guidance from a professional adviser if you have any confusion.
       </p>
       <p className='text-[14px] mb-[30px]'>
-        This Policy does not apply to information collected by third parties, including any
-        websites, services, and applications that you elect to access through the Services. [It also
-        does not apply to any information collected by the Company offline or through any other
-        means, including any other website operated by us or any third party (including our
-        affiliates and subsidiaries).]
+      You must carefully assess whether your financial situation and tolerance for risk are suitable for any form of
+exposure to Virtual Assets.
       </p>
-      <p className='text-[14px] mb-[30px]'>
-        Please review this Policy carefully. By accessing or using the Services (or by clicking on
-        “accept” or “agree” to this Policy when prompted), you agree to the terms of this Policy on
-        behalf of yourself or the entity or organization that you represent. If you do not agree to
-        any term in this Policy, you should refrain from further use of our Services.
-      </p>
-
-      <h2 className='font-bold text-[24px] mb-[12px]'>
+<ul>
+<li className='text-[14px] mb-[60px] list-disc'>
+  The Virtual Assets Service is unregulated.
+  </li>
+  <li className='text-[14px] mb-[60px] list-disc'>
+  Trading in virtual assets carries special risks.
+  </li>
+  <li className='text-[14px] mb-[60px] list-disc'>
+  The value of Virtual Assets is highly volatile.
+  </li>
+  <li className='text-[14px] mb-[60px] list-disc'>
+  NFT Marketplace, Metaverses or Exchanges are vulnerable to cyber attacks, errors, and hacking.
+  </li>
+  <li className='text-[14px] mb-[60px] list-disc'>
+  The Cryptocurrency Exchange, Metaverse or NFT Marketplaces may suspend or terminate its
+service at any time.
+  </li>
+  <li className='text-[14px] mb-[60px] list-disc'>
+  The legal status of virtual assets is uncertain and constantly evolving.
+  </li>
+  <li className='text-[14px] mb-[60px] list-disc'>
+  The functioning of the Virtual Assets network is outside our control.
+  </li>
+  <li className='text-[14px] mb-[60px] list-disc'>
+  Risk of others copying your digital items
+  </li>
+</ul>
+      {/* <h2 className='font-bold text-[24px] mb-[12px]'>
         1. Children Using or Accessing the Services.
       </h2>
       <p className='text-[14px] mb-[60px]'>
@@ -64,7 +86,8 @@ const RiskPolicy = () => {
         telegram Group or through a notice on the Website home page. Your continued use of the
         Services after we make changes is deemed to be acceptance of those changes, so please check
         the Policy periodically for updates.
-      </p>
+      </p> */}
+      </div>
     </Fragment>
   )
 }
