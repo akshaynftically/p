@@ -611,8 +611,6 @@ const ReserveLand = () => {
     let tNumber = 0
     let err
 
-    // await new apiRepository().createOrUpdateUser()
-
     showTransactionModal({
       title: 'Please wait...',
       mainHeading: '',
@@ -746,57 +744,33 @@ const ReserveLand = () => {
       })
       return
     }
-    (new apiRepository().createOrUpdateUser()).then(() => {
-      let walletProvider = appGlobals.getWalletProviderConfirmed()
-      walletProvider.then((provider) => {
-        provider.send('eth_accounts', []).then((accounts) => {
-          checkAddressInWhiteList(accounts[0]).then((status) => {
-            if (!status) {
-              return
-            }
-            let process = startTransactionFlow(provider)
-            process.then((tx) => {
-              navigate('/success', {state: {tokenLogo: selectToken}})
-            }).catch((err) => {
-              console.log(err)
-              setIsOpenedProgressWallet(false)
-              if (globalErrorNotifier(err) === false) {
-                // if we have an uncaught error then send user to failed page
-                navigate('/failed')
-              } else {
-                // for native token error
-                if ((JSON.stringify(err)).includes('insufficient funds for gas')) {
-                  console.log('inside err')
+    let walletProvider = appGlobals.getWalletProviderConfirmed()
+    walletProvider.then((provider) => {
+      provider.send('eth_accounts', []).then((accounts) => {
+        checkAddressInWhiteList(accounts[0]).then((status) => {
+          if (!status) {
+            return
+          }
+          let process = startTransactionFlow(provider)
+          process.then((tx) => {
+            navigate('/success', {state: {tokenLogo: selectToken}})
+          }).catch((err) => {
+            console.log(err)
+            setIsOpenedProgressWallet(false)
+            if (globalErrorNotifier(err) === false) {
+              // if we have an uncaught error then send user to failed page
+              navigate('/failed')
+            } else {
+              // for native token error
+              if ((JSON.stringify(err)).includes('insufficient funds for gas')) {
+                console.log('inside err')
 
-                  setOpenAddFundsModal(true)
-                }
+                setOpenAddFundsModal(true)
               }
-            })
+            }
           })
         })
       })
-    }).catch((err) => {
-      if (err?.response?.status === 409) {
-        //user directly here so send lead request first
-        new apiRepository().createLead(data.email)
-          .then(res => {
-            // save lead in localstorage
-            console.log(res)
-            navigate('/reserve-land')
-          })
-          .catch(err => {
-            if (err?.response?.status === 302) {
-              showTransactionModal({
-                title: 'Already Registered',
-                mainHeading: 'We have an account already registered with this email, Please check your email to proceed further.',
-                content: '',
-                loading: false,
-                learn: '',
-                view: ''
-              })
-            }
-          })
-      }
     })
   }
   const handleEmailEdit = () => {
