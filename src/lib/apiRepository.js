@@ -97,7 +97,7 @@ export class apiRepository {
         })
     }
 
-    async createOrder(token_id,discount, firstReferredBy, referredBy, utmFirstTouch, utmLastTouch, address,prices){
+    async createOrder(token_id,discount, firstReferredBy, referredBy, utmFirstTouch, utmLastTouch, address,prices,chain_id){
         let form = JSON.parse(localStorage.getItem('transaction_form'))
         let items = form.basket.map((el,i) => {return el.qty})
         let order = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : null
@@ -108,6 +108,7 @@ export class apiRepository {
             path+= '/'+order.id
         }
         order = await axios.post(path,{
+            chain_id: chain_id,
             parcel_quantities: items,
             parcel_prices: prices,
             discount: discount,

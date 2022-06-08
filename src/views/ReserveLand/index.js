@@ -393,6 +393,7 @@ const ReserveLand = () => {
   const handleSelectNetwork = async (val) => {
     switchNetwork(val.chainId)
     document.addEventListener('network:changed',function (ev) {
+      localStorage.removeItem('order')
       window.location.reload()
     })
     document.removeEventListener('network:changed',{},false)
@@ -699,7 +700,7 @@ const ReserveLand = () => {
     let discount = (await getDiscountPercentage(account))[0] / 1000
     let prices = await landPrices(selectToken, true)
     let order = await new apiRepository().createOrder(selectToken.id, discount,
-      cookies.referral_first_touch, cookies.referral_last_touch, cookies.utm_first_touch, cookies.utm_last_touch, account, prices)
+      cookies.referral_first_touch, cookies.referral_last_touch, cookies.utm_first_touch, cookies.utm_last_touch, account, prices, networkConfig.chain_id)
     tNumber = order.tracking_number
     try {
       tNumber = BigNumber.from(tNumber)

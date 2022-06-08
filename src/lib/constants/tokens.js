@@ -281,7 +281,7 @@ export const _selectTokenOptions = {
             //    "logo":"token_logo11",
             //    "value":"MANA",
             //    "label":"MANA ERC20 on Ethereum Network",
-            //    "contract_address":"0xFd09Cf7cFffa9932e33668311C4777Cb9db3c9Be",
+            //    "contract_address":"0x0F5D2fB29fb7d3CFeE444a200298f468908cC942",
             //    "decimals":18
             // },
             // {
