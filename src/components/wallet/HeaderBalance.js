@@ -158,14 +158,14 @@ const HeaderBalance = (props) => {
         setAccountModal(true)
     }
 
-    const handleSelectNetwork = async (val) => {
-        switchNetwork(val.chainId)
-        setSelectNetwork(val)
-    }
+    // const handleSelectNetwork = async (val) => {
+    //     switchNetwork(val.chainId)
+    //     setSelectNetwork(val)
+    // }
 
     return (
         <div className='flex items-center'>
-            <Select value={selectNetwork}
+            {/* <Select value={selectNetwork}
                     options={_networks.filter(item=>item.mainnet==mainnetType)}
                     customStyles={customSelectStyles}
                     placeholder='Please Select Token'
@@ -174,7 +174,7 @@ const HeaderBalance = (props) => {
                     onChange={handleSelectNetwork}
                     components={{SingleValue: networkSelectValueContainer}}
                     Option={networkSelectOption}>
-            </Select>
+            </Select> */}
             {appGlobals.isWrongNetwork? (
                 <>
                     <div className='cursor-pointer hidden md:flex bg-[#262728] items-center rounded-[8px] pl-[24px] h-[44px]' onClick={handleOpenAccountModal}>

@@ -16,6 +16,13 @@ export const landPrices = async (token,returnNumeric = false) => {
     return prices
 }
 
+export const getUSDPrices = async () => {
+    let contract  = await getLandReserverContract()
+    let prices = await contract.getParcelPricesInUSD()
+    return prices.map((price) => {return parseInt(price)})
+    
+}
+
 export const getTotalParcelPrice = async (basket,token, account) => {
     let prices = await landPrices(token);
     let sum = BigNumber.from("0")
@@ -58,7 +65,6 @@ export const extractReceiptData = (receipt,token) =>{
 
 export const checkInWhiteList = async(address) =>{
     let contract = await getWhiteListContract()
-    console.log(!!address ? address : "0x0000000000000000000000000000000000000000")
     return await contract.getBuyerApplicableWhitelistId(!!address ? address : "0x0000000000000000000000000000000000000000")
 }
 
@@ -66,7 +72,6 @@ export const getWhiteListContract = async () =>{
     let provider = await getProvider()
     let chain = await getChainData(provider)
     let contract =new ethers.Contract(chain.whitelist_contract,_whitelistManagerAbi,provider)
-    console.log(contract)
     return contract
 }
 
@@ -74,6 +79,5 @@ export const getLandReserverContract = async () =>{
     let provider = await getProvider()
     let chain = await getChainData(provider)
     let contract = new ethers.Contract(chain.land_reserver_contract,_landReserverAbi,provider)
-    console.log(contract)
     return contract
 }
