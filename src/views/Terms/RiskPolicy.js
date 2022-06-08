@@ -5,7 +5,7 @@ const RiskPolicy = () => {
     <Fragment>
       <div className='font-white p-5'>
 
-      <h1 className='font-white text-[48px] mt-[5rem]'>Risk Policy</h1>
+      <h1 className='font-white text-[48px] mt-[5rem]'>Risk Disclaimer</h1>
 
       <div className='mb-[34px] font-white'>
         <span className='inline-block font-medium text-[14px] bg-black py-[6px] px-[32px] rounded-[32px]'>
