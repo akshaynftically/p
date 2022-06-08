@@ -581,14 +581,1115 @@ participating in, facilitating, assisting, or knowingly transacting with any poo
                   
                       </span>
                     </li>
+
+                    <li className='li pl-2 mb-3'>
+                <span className='pl-2 mb-3'>
+                It will be your responsibility to make sure that COMEARTH is able to monetize and received the Platform Commission. In the event, COMEARTH does not receive the Platform Commission, in addition to other remedies, COMEARTH, may sole at its discretion, suspend or terminate your Account and you will not be able acquire any rights in the said Virtual Land. 
+
+                </span>
+              </li>
+              <li className='li pl-2 mb-3'>
+                <span className='pl-2 mb-3'>
+                In certain instances, COMEARTH at its own discretion may accept, process, and settle payments made in cryptocurrency. 
+                </span>
+              </li>
+              <li className='li pl-2 mb-3'>
+                <span className='pl-2 mb-3'>
+                It will be your responsibility to make sure that COMEARTH is able to monetize and received the Platform Commission. In the event, COMEARTH does not receive the Platform Commission, in addition to other remedies, COMEARTH, may sole at its discretion, suspend or terminate your Account and you will not be able acquire any rights in the said Virtual Land. 
+
+                </span>
+              </li>
+              <li className='li pl-2 mb-3'>
+                <span className='pl-2 mb-3'>
+                COMEARTH shall provide with standard ‘Know your Customer’ (KYC) verification to User purchasing the certain plans as per the pricing available at Pricing Page. For those plans, Users KYC verification is conducted for limited numbers of buyers as described in the pricing page, the appropriate details of such buyers are recorded in compliance with laws and shall be submitted to you for your review. If you choose not to implement KYC verification for any specific buyer and approves to grant access to such buyer, then COMEARTH will not be responsible for any damages caused by not conducting the KYC verification of the buyer. You acknowledge and agree that KYC verification conducted by COMEARTH is only applicable if the User is registered on COMEARTH. 
+                </span>
+              </li>
+              <li className='li pl-2 mb-3'>
+                <span className='pl-2 mb-3'>
+                All transactions on COMEARTH, including without limitation minting, tokenizing, bidding, listing, offering, selling, or confirming, are may or may not be facilitated by smart contracts. If it happens on Blockchain, the Blockchain network requires the payment of a transaction fee (a “Gas fee”) for every transaction that occurs on the Blockchain network, if COMEARTH chose to sponsor the Gas fees for you then you don’t need to pay any Gas Fee for the minting of NFTs via COMEARTH.
+
+                </span>
+              </li>
+              <li className='li pl-2 mb-3'>
+                <span className='pl-2 mb-3'>
+                Taxes. Users are responsible to pay any and all sales, use, value-added and other taxes, duties, and assessments now or hereafter claimed or imposed by any governmental authority, “associated with your use of COMEARTH (including, without limitation, any taxes that may become payable as the result of your ownership, transfer, or sale of Virtual Land ). The COMEARTH does not, and will not, have any insight into or control over any transactions conducted by you in COMEARTH, and thus is not responsible for determining the taxes that apply to your transactions entered through the Tools. 
+
+
+                </span>
+              </li>
+              <li className='li pl-2 mb-3'>
+                <span className='pl-2 mb-3'>
+                COMEARTH may, solely in its own discretion, add or change any pricing, plans and payment terms at any time. Any updated pricing will apply to any sales or other transactions that occur following the effective date of the updated pricing and you agree to adhere to such updated pricing. Such changes may be subject to additional terms or conditions. Whether a particular cryptocurrency is accepted as a payment method by COMEARTH is subject to change at any time in COMEARTH’s sole discretion.
+
+                </span>
+              </li>
+              <li className='li pl-2 mb-3'>
+                <span className='pl-2 mb-3'>
+                COMEARTH uses non-custodial wallets for the purpose of buying, or selling Virtual Land, thus granting you 100% control over the access to the fund. You understand and agree that wallets are not operated by, maintained by, or affiliated with COMEARTH, and COMEARTH does not have custody or control over the contents of your wallet and COMEARTH has no ability to retrieve or control the transactions, nor do we have the ability to reverse any transactions. 
+<br/>
+<br/>
+We accept no responsibility for, or liability to you, in connection with your use of a wallet and make no representations or warranties regarding how the Tools will operate with any specific wallet. You are solely responsible for keeping your wallet secure and you should never share your wallet credentials with anyone. If you discover an issue related to your wallet, please contact your wallet provider. You are solely responsible for your wallet and we are not liable for any acts or omissions by you in connection with your wallet being compromised.
+
+                </span>
+              </li>
+              <li className='li pl-2 mb-3'>
+                <span className='pl-2 mb-3'>
+                Any Platform Commission paid by you to COMEARTH for engaging in transactions in the Metaverse is non-refundable. Under no circumstances shall any form of refund be entertained and you will not be entitled to a refund for any amount that has been paid by you to COMEARTH. We do not provide refunds for purchase of any Virtual Land or any transaction that you might make on or through COMEARTH Metaverse. A fulfilled transaction for the purchase of a Virtual Land cannot be reversed. COMEARTH reserves the right to modify this rules of refunds.
+
+                </span>
+              </li>
                     
             </ol>
             </li>
+
+            <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+           Ownership, Modifications and Rights of Third Parties
+            </span>
+            <ol type='1' className='ol'>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      By using the Tools, you hereby appoint COMEARTH as your limited payments agent for the sole purpose of receiving, holding, and settling payments due and owed to you arising out of (i) sale, leasing, use and purchase of any Virtual Land; and (ii) any commercial activity undertaken by you in the COMEARTH. Subject to these terms, COMEARTH will process such payments and settle payments that are actually received by COMEARTH, less any amounts owed to COMEARTH, including taxes, fees, and other obligations. You agree that a payment received by COMEARTH      on your behalf satisfies the payor’s obligation to make payment to you, regardless of whether COMEARTH actually settles such payment to you. 
+
+                  
+                      </span>
+                    </li>
+            </ol>
+        </li>
+
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            Ownership, Modifications and Rights of Third Parties
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      Unless otherwise indicated in writing by us, and except to the extent of the User Content, the Tools, Platform, and all content and other materials contained therein, including, without limitation, the COMEARTH logo and all designs, text, graphics, pictures, information, data, software, sound files, other files and the selection and arrangement thereof (collectively, “Platform Content”) are the proprietary property of COMEARTH or our affiliates, licensors, or Users, as applicable. 
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      Except as expressly authorized by COMEARTH, you agree not to modify, copy, frame, scrape, rent, lease, loan, sell, distribute, or create derivative works based on the Platform Content, in whole or in part. In connection with your use of the Platform or Tools you will not engage in or use any data mining, robots, scraping, or similar data gathering or extraction methods. If you are blocked by COMEARTH from accessing the Platform (including by blocking your IP address) or the Tools, you agree not to implement any measures to circumvent such blocking (e.g., by masking your IP address or using a proxy IP address). Any use of the Platform Content other than as specifically authorized herein is strictly prohibited. The technology and software underlying the Platform or Tools distributed in connection therewith are the property of COMEARTH, our affiliates and our partners (the “Software”). You agree not to copy, modify, create a derivative work of, reverse engineer, reverse assemble, disassemble, decompile, or otherwise attempt to discover any source code or structure, sell, assign, sublicense, or otherwise transfer any right in the Software. Any rights not expressly granted herein are reserved by COMEARTH.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      You understand and agree that any purchase of Virtual Land, whether via the Tools or otherwise, does not give you any rights or licenses in or to the Platform Content (including, without limitation, the COMEARTH’s copyright in and to the art and drawings associated with that Virtual Land) other than those expressly contained in these Terms.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                     The COMEARTH logo and any COMEARTH product or service names, logos or slogans that may appear on the Platform or the Tools are trademarks of COMEARTH or our affiliates and shall not be copied, imitated, or used, in whole or in part, without our prior written permission. You shall not use any metatags or other “hidden text” utilizing “COMEARTH”, or any other name, trademark or product or service name of COMEARTH, or our affiliates without our prior written permission. In addition, the look and feel of the Platform Content, including, without limitation, all page headers, custom graphics, button icons and scripts, constitute the service mark, trademark, or trade dress of COMEARTH and may not be copied, imitated, or used, in whole or in part, without our prior written permission. All other trademarks, registered trademarks, product names and COMEARTH names or logos mentioned on the Tools are the property of their respective owners and may not be copied, imitated, or used, in whole or in part, without the permission of the applicable trademark holder. Reference to any products, services, processes or other information by name, trademark, manufacturer, supplier or otherwise does not constitute or imply endorsement, sponsorship, or recommendation by COMEARTH. We accept no responsibility or liability for any damage, direct or indirect, resulting from the prohibited use of any Platform Content, delivered on the Platform or the Tools.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      Under no circumstances will COMEARTH be liable in any way for any content or materials of any third parties including, but not limited to, for any errors or omissions in any content, or for any loss or damage of any kind incurred as a result of the use of any such content. You acknowledge that COMEARTH does not have a duty to pre-screen content, but that COMEARTH will have the right (but not the obligation) to refuse or remove any content that is available via the Platform or the Tools if COMEARTH makes a decision to restrict such content. Without limiting the foregoing, COMEARTH will have the right to remove any content that violates these Terms, to be otherwise objectionable. 
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      You may, at your sole discretion, provide your input, or comments, or suggestion for creation, correction, change and modification to the Tools and other feedback (including but not limited to quotations of written or oral feedback), ideas, concepts, information, and reports to COMEARTH      (collectively “Feedback”). You hereby agree and acknowledge that COMEARTH shall own all the rights in the Feedback, together with rights in all improvements, updates, modifications, or enhancements, whether made, created, or developed by COMEARTH or otherwise relating to Feedback (collectively, “Revisions”). All Feedback and Revisions shall be the sole and exclusive property of COMEARTH and COMEARTH may use and disclose Feedback and/or Revisions in any manner and for any purpose whatsoever without further notice or compensation to you and without retention by you of any proprietary or other right or claim. You hereby assign to COMEARTH any and all rights, titles and interests (including, but not limited to, any patent, copyright, future copyright, trade secret, trademark, show-how, know-how and any and all other intellectual property right) that you may have in and to any and all Feedback and Revisions. You hereby agree to waive any moral rights you may have in any and all Feedback and Revisions. At COMEARTH’s request, you will cooperate fully with COMEARTH to execute any document and such other acts as are necessary to give effect to this provision.
+
+                  
+                      </span>
+                    </li>
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            Beta Platforms
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      Certain features on COMEARTH may be offered while still in “beta” form (“Beta Platforms”). COMEARTH will utilize best efforts to identify the Beta Platforms by labelling on its Platform. By accepting these Terms or using the Beta Platforms, you understand and acknowledge that the Beta Platforms are being provided as a “Beta” version and made available on an “As Is” or “As Available” basis. The Beta Platforms may contain bugs, errors, and other problems.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      YOU ASSUME ALL RISKS AND ALL COSTS ASSOCIATED WITH YOUR USE OF THE BETA PLATFORMS, INCLUDING, WITHOUT LIMITATION, ANY INTERNET ACCESS FEES, BACK-UP EXPENSES, COSTS INCURRED FOR THE USE OF YOUR DEVICE AND PERIPHERALS, AND ANY DAMAGE TO ANY EQUIPMENT, SOFTWARE, INFORMATION, MONEY, CRYPTOCURRENCY, VIRTUAL LAND OR DATA. COMEARTH or its representatives shall not be responsible for any damage caused to your brand, reputation, revenue, and income because of the beta nature of the Platform. In addition, we are not obligated to provide any maintenance, technical, or other support for the Beta Platforms.
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      COMEARTH will fix bugs on the Platforms within the following time frames: (a) “Critical Bug” will be addressed on the highest priority and will be fixed as soon as possible after COMEARTH      becomes aware of such bug through bug automatic reporting process; (b) “other Bugs” will be fixed within a reasonable timeframe (given the nature of the bug) after COMEARTH becomes aware of such bug. 
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+    You will inform COMEARTH about presence of a bug as soon as you become aware by sending an e-mail to support@comearth.world or raising a support ticket from your store dashboard. Only a reporting of presence of bug or a support ticket generated through this designated channel shall be considered valid. 
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                     After receiving the e-mail or support ticket, COMEARTH will fix the bug within reasonable timeframe in accordance with the foregoing. COMEARTH reserves the right to decide the nature of the bugs and will accordingly set order of priority to fix the bug. You agree to adhere to COMEARTH’s process of reporting and fixing the bug.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+     Any bug reported outside email or support ticket will not be considered as a reported bug.
+                  
+                      </span>
+                    </li>
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            Third-Party Services/Terms
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      The Tools may contain links to third-party properties (“Third-Party Properties”) and applications (“Third-Party Applications”). When you click on a link to a Third-Party Property or Third-Party Application, you are subject to the terms and conditions (including privacy policies) of another property or application. Such Third-Party Properties and Third-Party Applications and are not under the control of COMEARTH. COMEARTH is not responsible for any Third-Party Properties or Third-Party Applications. COMEARTH provides links to these Third-Party Properties and Third-Party Applications only as a convenience and does not review, approve, monitor, endorse, warrant, or make any representations with respect to Third-Party Properties or Third-Party Applications, or their products or services. You use all links in Third-Party Properties, and Third-Party Applications at your own risk. When you leave our Tools or Platform, our Terms and policies no longer govern. You should review all applicable agreements and policies, including privacy and data gathering practices, of any Third-Party Properties or Third-Party Applications, and should make whatever investigation you feel necessary or appropriate before proceeding with any transaction with any third party.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      The Platform Content may include components, including software components, that are provided by a third party and that are subject to separate license terms, in which case those license terms will govern your access to and use of such components. Our Tools and/or any Third-Party Property may include terms governing the use of such NFTs, including license terms.
+
+                      </span>
+                    </li>
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            Guidelines
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      COMEARTH has the right, but not obligation, to remove any User Content at any time.  COMEARTH exercises its sole judgment in allowing or disallowing certain assets, listings, smart contracts, and collections.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+     COMEARTH employs best efforts to prevent Users from uploading any unpleasant content on COMEARTH Metaverse and COMEARTH shall not be held liable for not being able to stop them entirely on the Platform or the Tools. You understand that you are liable for all your User Contents, in whatever form, that you provide or otherwise make us available through the Tools, including to other Users of the Tools.
+     
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+     
+You agree that you will (i) not do anything which violates any of these Terms; (ii) not do anything that does not comply with generally accepted internet etiquette including (without limitation) the excessive use of capitalised text, the use of inflammatory or antagonistic criticism (“flaming”), or wastefully and unnecessarily including previous communications in any postings; (iii) not commit fraud; (iv) not use the Platform for reasons other than those provided for hereunder, including (without limitation), reformat and display the results of a search; mirror our home page or result pages on your website, or add a search box on your website; (v) not repeatedly or in a rapid manner transmit content in such a manner as to have the effect of harassing a recipient; (vi) not fail to comply with applicable domestic, national and international laws, rules and regulations;  (vii) not send automated queries to our system without our express prior consent, including (without limitation) meta-searches and performing off-line searches on our system; (viii) not distribute viruses, worms, defects, corrupted files, hoxes or any other items of destructive nature; (ix) not impersonate another person (via the use of an email address or otherwise); (x) not use the Tools to violate legal rights of others; (xi) not interfere with others enjoyment of the Tools; (xii) not exploit the Tools for any unauthorized commercial purpose; (xii) not create user accounts by automated means or under false or fraudulent pretences; and (xiii) not access or use the Tools for the purpose of creating a product or service that is competitive with any of our product or Services. 
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+     
+                      You agree not to use the Tools improperly or unethically to post, transmit, upload, and replicate any User Content, whether included in or made available through Virtual Land that:
+                      <ol type='1' className='ol'>
+                      <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      is suggestive of indecent, abusive, violent, or derogatory of any ethnic, racial, gender, religious, professional or age group, or any dangerous activity across jurisdictions; 
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      is sexually explicit or contains profane or pornographic, prostitution or escort activities, nudity, obscenity, child abuse, child harassment, or child sexual harassment;
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      promotes alcohol, illegal drugs, firearms/weapons (or the use of any of the foregoing), any activities that may appear unsafe or dangerous, or any particular political agenda or message;
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+    endorses any form of hate, intolerance, cruelty, or hate group; 
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      contains copyrighted materials owned by others (including but not limited to music, photographs, sculptures, paintings and other works of art or images published on or in websites, television, movies, or other media) without written permission; 
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      contains materials embodying the names, images, likenesses, photographs, or other indicia identifying any person, living or dead, without written permission;
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+    defames, misrepresents, or contains disparaging remarks;
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      you do not have a right to make available under any law or under contractual or fiduciary relations; and
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      interferes with or disrupts the Tools or that contains viruses or any other computer code, files or programs that interrupt, destroy, or limit the functionality of or to otherwise interact with the Tools in a manner not permitted by these Terms.
+
+
+                  
+                      </span>
+                    </li>
+                    </ol>
+<li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      
+User Content or any subsequent modification or alteration to the User Content, that COMEARTH decides inappropriate, disruptive, or illegal are prohibited on the Tools. COMEARTH reserves the rights to determine the appropriateness of listings on its site and may remove any User Content, at any time if it determines in its sole discretion to be in violation of these Terms. If you create User Content or conduct yourself in a manner that is in violation of these policies, we reserve the right to take corrective actions, as appropriate, including but not limited to removing the User Content, deleting your Account, and permanently withholding payments due and owed to you. COMEARTH reserves the right to destroy inappropriate or illegal metadata stored on our servers.
+                      
+                  
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      COMEARTH retains the absolute right to terminate the Account and remove the User Content of any User of the Tools who violates or infringes our rights or those of any third party. 
+
+                      
+                  
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+   If you become aware of the creation, listing, selling, or trading of any kind of assets or commercial activity in violation of any of the terms specified in the above sections, please contact us at support@comearth.world to report it.
+                      
+                  
+                      </span>
+                    </li>
+
+                      </span>
+                    </li>
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            Investigations
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      If COMEARTH becomes aware of any possible violations by you of these Terms, COMEARTH      reserves the right to investigate such violations. If, as a result of the investigation, COMEARTH      believes that criminal activity may have occurred, COMEARTH reserves the right to refer the matter to, and to cooperate with, any and all applicable legal authorities. COMEARTH is entitled, except to the extent prohibited by applicable law, to disclose any information or materials on or in the Tools, including User Content and Virtual Land in COMEARTH’s possession in connection with your use of the Tools, to (i) comply with applicable laws, legal process or governmental request; (ii) enforce these Terms, (iii) respond to any claims that User Content or Virtual Land violates the rights of third parties, (iv) respond to your requests for User support service, or (v) protect the rights, property or personal safety of COMEARTH, its Users, or the public, and all law enforcement or other government officials, as COMEARTH in its sole discretion believes to be necessary or appropriate. By agreeing to these Terms, you hereby provide your irrevocable consent to such monitoring. You acknowledge and agree that you have no expectation of privacy concerning your use of the Tools, including without limitation text, voice, or video communications.
+
+                  
+                      </span>
+                    </li>
+                  
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            Third-Party Services/Terms
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      You hereby release and forever discharge COMEARTH, and our parent company, affiliates, subsidiaries, related companies, officers, directors, employees, agents, licensors, successors, and assigns (the “COMEARTH  Entities”) from, and hereby waive and relinquish, each and every past, present and future dispute, claim, controversy, demand, right, obligation, liability, action and cause of action of every kind and nature (including personal injuries, death, and property damage), that has arisen or arises directly or indirectly out of, or that relates directly or indirectly to, the use of Tools or the Platform; your violation of these Terms; and any of your acts or omissions (including any interactions with, or act or omission of, other Users or any Third-Party Properties or Third Party Applications). If there is a dispute between participants on the Platform, or between Users and any third party, you agree that COMEARTH is under no obligation to become involved. COMEARTH reserves the right, at its own expense, to assume exclusive defense and control of any matter otherwise subject to indemnification by you and, in such case, you agree to cooperate with the COMEARTH in the defense of such matter.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      IF YOU ARE A CALIFORNIA RESIDENT, YOU HEREBY WAIVE CALIFORNIA CIVIL CODE SECTION 1542 IN CONNECTION WITH THE FOREGOING, WHICH STATES: “A GENERAL RELEASE DOES NOT EXTEND TO CLAIMS WHICH THE CREDITOR DOES NOT KNOW OR SUSPECT TO EXIST IN HIS OR HER FAVOR AT THE TIME OF EXECUTING THE RELEASE, WHICH IF KNOWN BY HIM OR HER MUST HAVE MATERIALLY AFFECTED HIS OR HER SETTLEMENT WITH THE DEBTOR.”
+                      </span>
+                    </li>
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            Assumption of Risk Related to Virtual Land
+
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      You acknowledge and agree that your access and use of COMEARTH and Virtual Land is subject to certain risks, including without limitation:
+                      <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      The prices of digital assets are extremely volatile. Fluctuations in the price of other digital assets could materially and adversely affect the Virtual Land, which may also be subject to significant price volatility.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      You are solely responsible for determining what, if any, taxes apply to transactions involving your Virtual Land. The COMEARTH Entities are not responsible for determining the taxes that may apply to transactions involving Virtual Land .
+                      
+                                          </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      Virtual Land exist and can be transferred only by virtue of the ownership record maintained on the blockchain supporting such Virtual Land. Any transfer of Virtual Land occurs within the supporting blockchain and not on the Tools.
+
+                                          </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      You have no alienable property rights in any Virtual Land offered on COMEARTH, and those Virtual Land have no use outside of the Metaverse;
+
+                                          </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      There are risks associated with using digital currency, including but not limited to, the risk of hardware, software and internet connections, the risk of malicious software introduction, and the risk that third parties may obtain unauthorized access to information stored within your digital wallet.
+
+                                          </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      Transactions involving Virtual Land may be irreversible, and losses due to fraudulent or accidental transactions may not be recoverable. 
+
+                                          </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      The value of Virtual Land may be derived from the continued willingness of market participants to exchange fiat currency or digital assets for Virtual Land, and therefore the value of Virtual Land is subject to the potential for permanent or total loss of value should the market for NFT disappear. 
+
+                                          </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      The legal and regulatory regime governing blockchain technologies, cryptocurrencies, metaverse and tokens is uncertain, and new regulations or policies may materially adversely affect the development of the Tools and the utility of Virtual Land .
+                      
+                                          </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      COMEARTH reserves the right to hide collections, contracts, and assets that COMEARTH      suspects or believes may violate these Terms.
+
+                                          </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      Upgrades by Polygon to the Polygon platform, or a change in how transactions are confirmed on the Polygon platform may have unintended, adverse effects on all blockchains.
+                                          </span>
+                    </li>
+
+                    
+            </ol>
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      You understand and agree that you are solely responsible for determining the nature, potential value, suitability, and appropriateness of these risks for yourself. COMEARTH does not give any advice or recommendations regarding the Virtual Land. You understand and agree that your access and use of COMEARTH’s Platform and Tools are at your own risk. You understand and agree that COMEARTH will not be responsible for any communication failures, disruptions, errors, or distortions you may experience when using the Platform or Tools. 
+
+                      </span>
+                    </li>
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            Indemnification
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      To the fullest extent permitted by applicable law, you agree to indemnify, defend, and hold harmless COMEARTH Entities from and against all actual or alleged third party claims, damages, awards, judgments, losses, liabilities, obligations, penalties, interest, fees, expenses (including, without limitation, attorneys’ fees and expenses) and costs (including, without limitation, court costs, costs of settlement, and costs of or associated with pursuing indemnification and insurance), of every kind and nature whatsoever arising out of or related to these Terms or your use of the Tools or Platform or any of your acts and omissions, whether known or unknown, foreseen or unforeseen, matured or unmatured, or suspected or unsuspected, in law or equity, whether in tort, contract or otherwise (collectively, “Claims”), including, but not limited to, damages to property or personal injury, that are caused by, arise out of or are related to (a) your use or misuse of the Platform Content including the Tools and Platform, (b) any Feedback you provide, (c) your breach or violation of these Terms or applicable laws, rules, or regulations in connection with your access to or use of the Platform Content including the Tools and Platform, (d) your violation of the rights of any third party, including another User and (e ) unauthorized access to your Account or the Platform. You agree to promptly notify COMEARTH of any third-party Claims and cooperate with the COMEARTH Entities in defending such Claims. You further agree that the COMEARTH Entities shall have control of the defence or settlement of any third-party Claims. THIS INDEMNITY IS IN ADDITION TO, AND NOT IN LIEU OF, ANY OTHER INDEMNITIES SET FORTH IN A SEPARATE WRITTEN AGREEMENT BETWEEN YOU AND THE COMEARTH ENTITIES.
+
+                  
+                      </span>
+                    </li>                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            Indemnification
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      THE PLATFORM CONTENT INCLUDING TOOLS AND PLATFORM CONTAINED THEREIN, AND  VIRTUAL LAND LISTED THEREIN ARE PROVIDED ON AN “AS IS” AND “AS AVAILABLE” BASIS WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED. COMEARTH MAKES NO WARRANTY THAT THE PLATFORM CONTENT INCLUDING TOOLS AND PLATFORM: (A) WILL MEET YOUR REQUIREMENTS; (B) WILL BE AVAILABLE ON AN UNINTERRUPTED, TIMELY, SECURE, OR ERROR-FREE BASIS; OR (C) WILL BE ACCURATE, RELIABLE, COMPLETE, LEGAL, OR SAFE. YOU ACKNOWLEDGE AND AGREE THAT YOU ASSUME FULL RESPONSIBILITY FOR YOUR USE OF THE PLATFORM CONTENT INCLUDING TOOLS AND PLATFORM .
+
+                  
+                      </span>
+                    </li>
+
+                     <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      TO THE FULLEST EXTENT PROVIDED BY LAW, COMEARTH HEREBY DISCLAIMS ALL OTHER WARRANTIES OR CONDITIONS, EXPRESS OR IMPLIED, INCLUDING, WITHOUT LIMITATION, IMPLIED WARRANTIES OR CONDITIONS OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT AS TO THE PLATFORM CONTENT INCLUDING TOOLS AND PLATFORM ANY OTHER MATERIAL CONTAINED THEREIN
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+   COMEARTH DOES NOT REPRESENT OR WARRANT THAT CONTENT ON THE PLATFORM OR TOOL IS ACCURATE, COMPLETE, RELIABLE, CURRENT, OR ERROR-FREE. WE WILL NOT BE LIABLE FOR ANY LOSS OF ANY KIND FROM ANY ACTION TAKEN IN RELIANCE ON CONTENT OR MATERIAL OR INFORMATION CONTAINED ON THE PLATFORM OR TOOLS.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      WHILE COMEARTH ATTEMPTS TO MAKE YOUR ACCESS TO AND USE OF THE PLATFORM CONTENT INCLUDING TOOLS AND PLATFORM SAFE, COMEARTH CANNOT AND DOES NOT REPRESENT OR WARRANT THAT THE PLATFORM CONTENT INCLUDING TOOLS AND PLATFORM,  OR VIRTUAL LAND  LISTED ON OUR TOOLS OR OUR SERVERS ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS. WE CANNOT GUARANTEE THE SECURITY OF ANY DATA THAT YOU DISCLOSE ONLINE. YOU ACCEPT THE INHERENT SECURITY RISKS OF PROVIDING INFORMATION AND DEALING ONLINE OVER THE INTERNET AND WILL NOT HOLD THE COMEARTH ENTITIES RESPONSIBLE FOR ANY BREACH OF SECURITY UNLESS IT IS DUE TO OUR GROSS NEGLIGENCE.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                     COMEARTH ENTITIES WILL NOT BE RESPONSIBLE OR LIABLE TO YOU FOR ANY LOSSES YOU SUSTAIN AS A RESULT OF YOUR USE OF THE TOOLS OR ACCESS TO THE PLATFORM OR ON CONTRARY FROM THE IMPOSSIBILITY OF ACCESSING IT. WE TAKE NO RESPONSIBILITY FOR, AND WILL NOT BE LIABLE TO YOU FOR, ANY USE OF USER CONTENT, INCLUDING BUT NOT LIMITED TO ANY LOSSES, DAMAGES OR CLAIMS ARISING FROM: (I) USER ERROR SUCH AS FORGOTTEN PASSWORDS, INCORRECTLY CONSTRUCTED TRANSACTIONS, OR MISTYPED ADDRESSES; (II) SERVER FAILURE OR DATA LOSS; (III) CORRUPTED DIGITAL WALLET FILES; (IV) UNAUTHORIZED ACCESS TO APPLICATIONS OR ACCOUNT; OR (V) ANY UNAUTHORIZED THIRD PARTY ACTIVITIES, INCLUDING WITHOUT LIMITATION THE USE OF VIRUSES, PHISHING, BRUTE FORCING OR OTHER MEANS OF ATTACK AGAINST THE PLATFORM CONTENT INCLUDING TOOLS AND PLATFORM OR VIRTUAL LAND. FROM TIME TO TIME, COMEARTH MAY OFFER NEW “BETA” FEATURES OR TOOLS. SUCH FEATURES OR TOOLS ARE OFFERED “AS IS” AND WITH ALL FAULTS, SOLELY FOR EXPERIMENTAL PURPOSES AND WITHOUT ANY WARRANTY OF ANY KIND, AND MAY BE MODIFIED OR DISCONTINUED AT COMEARTH’S SOLE DISCRETION. THE PROVISIONS OF THIS SECTION APPLY WITH FULL FORCE TO SUCH FEATURES OR TOOLS.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      VIRTUAL LAND ARE INTANGIBLE DIGITAL ASSETS. THEY EXIST ONLY BY VIRTUE OF THE OWNERSHIP RECORD MAINTAINED IN THE BLOCKCHAIN NETWORK. ANY TRANSFER OF TITLE THAT MIGHT OCCUR IN ANY UNIQUE DIGITAL ASSET OCCURS ON THE DECENTRALIZED LEDGER WITHIN THE APPLICABLE BLOCKCHAIN PLATFORM. WE DO NOT GUARANTEE THAT ANY COMEARTH ENTITIES CAN AFFECT THE TRANSFER OF TITLE OR RIGHT IN ANY VIRTUAL LAND  OR TOKENS . 
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                     COMEARTH Entities are not responsible for any losses or harms sustained by you due to/ use of  blockchain, or any other feature of the polygon network or any other network that we may support or the electronic wallet, including but not limited to vulnerability or any kind of failure, abnormal behavior of software (e.g., wallet, smart contract), blockchains, or any other features of or inherent to the NFTs. COMEARTH Entities are not responsible for casualties due to developers or representatives delay or failure to report any issues with any blockchain supporting NFTs, including without limitation forks, technical node issues, or any other issues that result in losses of any sort.
+
+                  
+                      </span>
+                    </li>                    
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+     You acknowledge and agree that the COMEARTH Entities have no obligation to take any action regarding which User gain access to or use of the Tools; what effects the Tools may have on you; the Virtual Land you own; how you may interpret or use the Tools; or what actions you may take or fail to take as a result of having been exposed to the Tools. COMEARTH Entities are not responsible for any losses or harms sustained by you due to the foregoing.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                     COMEARTH Entities do not guarantee 100% delivery of the Virtual Land to you in the event of sale or purchase, as you understand that the transaction takes place virtually and they are inherent to risk. COMEARTH Entities are not responsible for any losses or harms sustained by you in the event if delivery of the Virtual Land fails for unknow reason. COMEARTH Entities assume no responsibility for the quality of Virtual Land parcels you sell or buy, it is solely the responsibility of the User to whom the Virtual Land parcels belongs.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+     As you understand and assume the risk that the legal and regulatory regime governing blockchain technologies, metaverse, cryptocurrencies, and tokens is uncertain, and new regulations or policies may materially adversely affect the development of the Tools and the utility of NFTs, hence, COMEARTH Entities assume no liability in the event you suffer any loss or damage due to change in law in the jurisdiction where you hold and access NFTs.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                     Nothing in these Terms shall exclude or limit liability of either party for fraud, death or bodily injury caused by negligence, violation of laws, or any other activity that cannot be limited or excluded under the laws applicable to your jurisdiction. SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF IMPLIED WARRANTIES IN CONTRACTS WITH CONSUMERS, SO THE ABOVE EXCLUSION MAY NOT APPLY TO YOU.
+                  
+                      </span>
+                    </li>
+
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            Limitation of Liability
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      TO THE FULLEST EXTENT PERMITTED BY LAW, IN NO EVENT WILL THE COMEARTH ENTITIES BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY LOST PROFIT OR ANY INDIRECT, CONSEQUENTIAL, EXEMPLARY, INCIDENTAL, SPECIAL OR PUNITIVE DAMAGES ARISING FROM THESE TERMS, ANY PLATFORM CONTENT INCLUDING TOOLS AND PLATFORM, OR VIRTUAL LAND, OR FOR ANY DAMAGES RELATED TO LOSS OF REVENUE, LOSS OF PROFITS, LOSS OF BUSINESS OR ANTICIPATED SAVINGS, LOSS OF USE, LOSS OF GOODWILL, LOSS OF DATA, ANY ACTIONS COMEARTH TAKES OR FAILS TO TAKE AS A RESULT OF COMMUNICATIONS YOU SEND, HUMAN ERRORS, TECHNICAL MALFUNCTIONS, FAILURES, INCLUDING PUBLIC UTILITY OR TELEPHONE OUTAGES, OMISSIONS, INTERRUPTIONS, LATENCY, DELETIONS OR DEFECTS OF ANY DEVICE OR NETWORK PROVIDERS OR SOFTWARE, DATA THAT IS PROCESSED LATE OR INCORRECTLY OR IS INCOMPLETE, TYPOGRAPHICAL, PRINTING OR OTHER ERRORS, OR ANY COMBINATION THEREOF, OR ANY OTHER MATTER RELATING TO THE PLAFTORM OR TOOLS AND WHETHER CAUSED BY TORT (INCLUDING NEGLIGENCE), BREACH OF CONTRACT, OR OTHERWISE, EVEN IF FORESEEABLE AND EVEN IF THE COMEARTH ENTITIES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. ACCESS TO, AND USE OF, THE PLATFORM CONTENT INCLUDING TOOLS AND PLATFORM IS UNDERTAKEN BY YOU AT YOUR OWN DISCRETION AND RISK, AND YOU WILL BE SOLELY RESPONSIBLE FOR ANY DAMAGE TO YOUR COMPUTER SYSTEM OR MOBILE DEVICE OR LOSS OF DATA RESULTING THEREFROM.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+   NOTWITHSTANDING ANYTHING TO THE CONTRARY CONTAINED HEREIN, IN NO EVENT SHALL THE MAXIMUM AGGREGATE LIABILITY OF COMEARTH ENTITIES ARISING OUT OF OR IN ANY WAY RELATED TO THESE TERMS, YOUR ACCESS TO AND USE OF THE PLATFORM CONTENT INCLUDING TOOLS AND PLATFORM, OR ANY VIRTUAL LAND SOLD THROUGH THE TOOLS EXCEED THE GREATER OF (A) $100 OR (B) THE AMOUNT ACTUALLY PAID TO COMEARTH BY YOU UNDER THESE TERMS IN THE 12 MONTH PERIOD PRECEDING THE DATE THE CLAIM AROSE.
+   
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      YOU ACKNOWLEDGE AND AGREE THAT WE HAVE MADE THE TOOLS AND PLATFORM AVAIABLE TO YOU AND ENETERED INTO THESE TERMS IN RELIANCE UPON THE WARRANTY DISCLAIMERS AND LIMITATION OF LIABLITY SET FORTH HEREIN, WHICH REFLETS A REASONABLE AND FAIR ALLOCATION OF RISK BETWEEN THE PARTIES AND FORM AN ESSENTIAL BASIS OF THE BRAGAIN BETWEEN US. WE WOULD NOT BE ABLE TO PROVIDE THE TOOLS AND PLATFORM TO YOU WITHOUT THESE LIMITATIONS.
+
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+IF YOU ARE DISSATISFIED WITH ANY PORTION OF THE PLATFORM OR WITH THESE TERMS OF PLATFORM, YOUR SOLE AND EXCLUSIVE REMEDY IS TO DISCONTINUE USE OF THE PLATFORM.   
+                      </span>
+                    </li>
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            Right to suspend or terminate your Account
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      You agree that COMEARTH, without prior notice, may suspend or terminate your Account (or any part thereof) or use of the Platform and remove and discard any User Content within the Platform, for any reason, including, without limitation, for lack of use or if COMEARTH believes that you have violated or acted inconsistently with the letter or spirit of these Terms or for non-payment of Platform Commission or charges to COMEARTH for using the Tools or due to unauthorised access to your Account. Any suspected fraudulent, abusive, or illegal activity that may be grounds for termination of your use of Platform, may be referred to appropriate law enforcement authorities. COMEARTH may also in its sole discretion and at any time discontinue providing the Platform, or any part thereof, with or without notice. COMEARTH is entitled to suspend the Tools during periods of repair, essential maintenance or alteration or improvement to the Tools or Platform.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      We may elect to compulsorily acquire Virtual Land from you without notice if COMEARTH considers that you have violated or acted inconsistently with the letter or spirit of these Terms or violated the guidelines of these Terms.
+
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      We, at COMEARTH, strive to promote an environment of peace and respect in the workplace and we aspire to create a positive work culture among our workforces. Harassment of our workforce in particular, is an unwelcome action by any person, in particular, by you, or your employee, or team members, or vendors, or any person related to you professionally or personally, whether verbal or physical, on a single or repeated basis, which humiliates, insults, or mentally, emotional, or professionally harasses, or degrades any of our workforce. As harassment is cruel and destructive behaviour against others that can have devastating effects, we do not tolerate it, and to ensure COMEARTH's workplace is free of harassment, we reserve the right to terminate your Account with immediate effect on receiving compliant from any of our workforce about any kind harassment. This will supersede all your rights provided herein. contrary to our basic union principles of solidarity and equality. Harassment can be defined as
+
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      You agree that any termination of your access to the Platform under any provision of this Terms may occur without prior notice, and you acknowledge and agree that COMEARTH may immediately deactivate or delete your Account and all related information and files in your Account and/or bar any further access to such files or the Platform. Further, you agree that COMEARTH      will not be liable to you or any third party for any suspension or termination of your access to the Platform.
+                                           </span>
+                    </li>
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            User Support Service
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      For User support service or additional information regarding your Account, please contact us at: 
+                      <br/>
+                      <br/>
+                      By E-mail: support@comearth.world available 24x7.
+                      <br/>
+                      <br/>
+                      For support on Bugs: Send emails on support@comearth.world available 24x7 [use Subject Line – “BUG ASSISTANCE”]
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      COMEARTH will use commercially reasonable efforts to provide technical support to assist the User in using the Platform. Our User support will respond within reasonable time to inquiries received from the Users. 
+                      
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      You understand that:
+                      <ol type='1' className='ol'>
+                      <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                     there may be delay in response from our User support due to high volume of inquires or due to any other reason beyond our control;
+ 
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      our User support response will depend on complexity of inquiry and support request volume;
+
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      any User support shall be provided in our sole discretion without any guarantee or warranty of any kind;
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      we do not offer and shall have no obligation to provide live chat support to Users or visitors;
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      we do not control the internet network and we disclaim any liability under any theory of law for any damages and/or partial or total interruption or malfunction of the Platform or associated services related to discontinuance of operation of any portion of internet or possible regulation of internet and/or any third-party hacking;
+
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      we make no warranty on accuracy and/or completeness non-infringement and/or suitability for any particular purpose and/or uninterrupted availability of the data;
+
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+       the Platform and the data which are part of it may be protected by copyright laws. For avoidance of any doubt such data is and shall remain property of the respective licensors;
+
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      resolution of any issues of the User do not apply to integrations, service interruptions (such as internet disruption) and/or degradations outside of our immediate control; and
+
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      you shall be responsible for the cost of the system requirements to run the Platform, including but not limited to internet connectivity; supported versions of Chrome, Safari, Mozilla Firefox, or Internet Explorer 11.
+                      </span>
+                    </li>
+                    </ol>
+
+                      </span>
+                    </li>
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            Audit and Security Scan
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      COMEARTH reserves the right to perform audits of the Platform and/or Tools to the extent necessary to ensure compliance with the applicable laws, rules, and regulation.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+    You shall seek written approval of COMEARTH ninety (90) days prior to conducting any audit and security scan of the Platform and/or Tools and it is hereby clarified that, COMEARTH is under no obligation to grant you an approval for the same. This audit and security scan must be performed by you or a third-party approved by COMEARTH in writing at your expense. In the event, a third-party is conducting the audit and security scan on your behalf, you shall assume all the obligations and liabilities of such third-party hereunder. 
+
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      You will specify the kind of tool and time at which any tool is used for audit to COMEARTH in writing prior to conducting the audit and security scan, if COMEARTH believes that such tool may affect system performance, you will not be allowed to use such tool. The audit will be coordinated through the COMEARTH’s internal team and COMEARTH will be entitled to observe all audit activity. You will not perform any action that may interfere with the uptime or stability of COMEARTH’s systems or networks. 
+
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      Any violation of this provision will lead to termination of your Account and your access to the Platform and/or Tools shall be blocked in perpetuity. COMEARTH shall be entitled to any remedy that may be available to the COMEARTH under applicable laws.
+
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      COMEARTH reserves the right to require you to provide the results of the audit and security scan conducted of the Platform and/or Tools to COMEARTH. The performance of the audit and security scan, audit report and any non-public data obtained by you during audit and security scan process shall be treated as a confidential information at all times and you shall not, for any reason, in any fashion, either directly or indirectly, use, sell, lend, lease, distribute, license, give, transfer, assign, show, disclose, disseminate, reproduce, copy, misappropriate or otherwise communicate any such confidential information to any person or entity for any purpose. The audit report and any information gathered by you of COMEARTH during the audit and security scan process shall be the wholly owned property of COMEARTH. You agree and acknowledge that in the event of any breach or threatened breach by you of this provision will cause irreparable damage to COMEARTH. COMEARTH shall be entitled to any remedy that may be available to the COMEARTH under applicable laws, including without limitation, to seek (i) a decree or order of specific performance or mandamus to enforce the observance and performance of such obligation, (ii) an injunction restraining such breach or threatened breach; and/or (iii) recover all the losses incurred by COMEARTH. These remedies available to COMEARTH are cumulative and are in addition to any other rights and remedies that COMEARTH may have at law or in equity.
+
+                      </span>
+                    </li>
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            EXPORT LAWS 
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                      By accepting these Terms, you represent that neither you nor any of your affiliates are listed in any list of sanctioned persons of any sanction authority (including without limitation the list of Specially Designated Nationals and Sectorial or Sanctions Identifications) or owned or controlled by such sanctioned person (together as "Sanctioned Person") and undertake at all times to conduct your business in compliance with applicable sanctions and export control laws and regulations ("Export Laws").
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      You acknowledge that the use of the Platform or the Virtual Land may be subject to Export Laws in the country of your residence or place of business and you agree to apply for relevant import authorization and/or export licenses, as applicable to you. You shall indemnify and hold us and each of our affiliates harmless against any losses, damages, fees, or monetary sanctions imposed as a result of your failure to comply with Export Laws. 
+
+                      </span>
+                    </li>
+                
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            COMPLIANCE WITH ANTI-MONEY LAUNDERING LAWS
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                      You shall comply with all applicable laws and regulations as applicable to prevention of money laundering including without limitation the Anti-Money Laundering Act, 2020 (USA); Proceeds of Crime Act, 2002 (UK); the European Union (EU) Anti-Money Laundering Directive; and the Prevention of Money Laundering Act, 2002 (India). 
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      You shall not use, directly, indirectly, or remotely, the Platform; the Tools; the Virtual Lands; or the User Content, in any manner whatsoever for any illegal or unauthorised purposes including for the purposes of giving or receiving bribes, promoting, or supporting corruption or corrupt practices, for laundering money or financial instruments including cryptocurrency or to violate laws or regulations in force. 
+
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                      We have a no tolerance policy for breach of any laws and your association shall stand terminated in case of violation of this provision. In such eventuality, we reserve the right to share all User Account information or any information relating to you as available to us with any law enforcement agencies.
+
+                      </span>
+                    </li>
+                
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            Dispute Resolution/Arbitration 
+            </span>
+           <br/>
+           <br/>
+           <p className='font-bold'>
+           PLEASE READ THE ARBITRATION AGREEMENT IN THIS SECTION (“ARBITRATION AGREEMENT”) CAREFULLY. IT CONTAINS PROCEDURES FOR MANDATORY BINDING ARBITRATION AND A CLASS ACTION WAIVER.
+
+           </p>
+           <ol type='1' className='ol'>
+           <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Applicability of Arbitration Agreement
+                        </strong>
+                        You agree that all claims and disputes (excluding claims for injunctive or other equitable relief as set forth below) in connection with these Terms or the use of any Tools provided by COMEARTH that cannot be resolved informally or in small claims court shall be resolved by binding arbitration on an individual basis under the terms of this Arbitration Agreement. Unless otherwise agreed to, all arbitration proceedings shall be held in English. This Arbitration Agreement applies to you and COMEARTH, and to any subsidiaries, affiliates, agents, employees, predecessors in interest, successors, and assigns, as well as all authorized or unauthorized Users or beneficiaries of Tools or goods provided under these Terms.
+                  
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Notice Requirement and Informal Dispute Resolution
+                        </strong>
+                        Before either party may seek arbitration, the party must first send to the other party a written notice describing the nature and basis of the claim or dispute and the requested relief (“Notice of Dispute”). A Notice of Dispute to COMEARTH should be sent to: support@comearth.world. After the Notice of Dispute is received, you and COMEARTH may attempt to resolve the claim or dispute informally. If you and COMEARTH do not resolve the claim or dispute within thirty (30) days after the Notice of Dispute is received, either party may begin an arbitration proceeding. The amount of any settlement offer made by any party may not be disclosed to the arbitrator until after the arbitrator has determined the amount of the award, if any, to which either party is entitled.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Arbitration Rules
+                        </strong>
+                        Arbitration shall be initiated through the American Arbitration Association (“AAA”), an established alternative dispute resolution provider (“ADR Provider”) that offers arbitration as set forth in this section. If AAA is not available to arbitrate, the parties shall agree to select an alternative ADR Provider. The rules of the ADR Provider shall govern all aspects of the arbitration, including but not limited to the method of initiating and/or demanding arbitration, except to the extent such rules are in conflict with these Terms. The AAA Consumer Arbitration Rules (“Arbitration Rules”) governing the arbitration are available online at www.adr.org. The arbitration shall be conducted by a single, neutral arbitrator. Any claims or disputes where the total amount of the award sought is less than Five Thousand U.S. Dollars (US $5,000.00) may be resolved through binding non-appearance-based arbitration, at the option of the party seeking relief. For claims or disputes where the total amount of the award sought is Five Thousand U.S. Dollars (US $5,000.00) or more, the right to a hearing will be determined by the Arbitration Rules. Any hearing will be held in a location within 100 miles of your residence, unless you reside outside of the United States, and unless the parties agree otherwise. If you reside outside of the U.S., the arbitrator shall give the parties reasonable notice of the date, time, and place of any oral hearings. Any judgment on the award rendered by the arbitrator may be entered in any court of competent jurisdiction. If the arbitrator grants you an award that is greater than the last settlement offers that COMEARTH made to you prior to the initiation of arbitration, COMEARTH will pay you the greater of the award or $2,500.00. Each party shall bear its own costs (including attorney’s fees) and disbursements arising out of the arbitration and shall pay an equal share of the fees and costs of the ADR Provider.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Additional Rules for Non-Appearance Based Arbitration
+                        </strong>
+                        If non-appearance-based arbitration is elected, the arbitration shall be conducted by telephone, online and/or based solely on written submissions; the specific manner shall be chosen by the party initiating the arbitration. The arbitration shall not involve any personal appearance by the parties or witnesses unless otherwise agreed by the parties.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Time Limits
+                        </strong>
+                        If you or COMEARTH pursues arbitration, the arbitration action must be initiated and/or demanded within the statute of limitations (i.e., the legal deadline for filing a claim) and within any deadline imposed under the AAA Rules for the pertinent claim.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Authority of Arbitrator
+                        </strong>
+                         If arbitration is initiated, the arbitrator will decide the rights and liabilities, if any, of you and COMEARTH, and the dispute will not be consolidated with any other matters or joined with any other cases or parties. The arbitrator shall have exclusive authority to (i) determine the scope and enforceability of this Arbitration Agreement; and (ii) resolve any dispute related to the interpretation, applicability, enforceability, or formation of this Arbitration Agreement including, but not limited to, any claim that all or any part of this Arbitration Agreement is void or voidable; and shall also have the authority to grant motions dispositive of all or part of any claim. The exceptions to the preceding sentence are (1) all disputes arising out of or relating to the class action waiver, including any claim that all or part of the class action waiver is unenforceable, illegal, void or voidable, or such class action waiver has been breached, shall be decided by a court of competent jurisdiction and not by an arbitrator; (2) all disputes arising out of or relating to the payment of arbitration fees shall be decided only by a court of competent jurisdiction and not by an arbitrator; and (3) all disputes arising out of or relating to whether either party has satisfied any condition precedent to arbitration shall be decided only by a court of competent jurisdiction and not by an arbitrator. The arbitrator shall have the authority to award monetary damages, and to grant any non-monetary remedy or relief available to an individual under applicable law, the AAA Rules, and these Terms. The arbitrator shall issue a written award and statement of decision describing the essential findings and conclusions on which the award is based, including the calculation of any damages awarded. The arbitrator has the same authority to award relief on an individual basis that a judge in a court of law would have. The award of the arbitrator is final and binding upon you and COMEARTH. Any judgment on the award rendered by the arbitrator may be entered in any court of competent jurisdiction.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                   Waiver of Jury Trial
+                        </strong>
+                        THE PARTIES HEREBY WAIVE THEIR CONSTITUTIONAL AND STATUTORY RIGHTS TO GO TO COURT AND HAVE A TRIAL IN FRONT OF A JUDGE OR A JURY, instead electing that all claims and disputes shall be resolved by arbitration under this Arbitration Agreement. Arbitration procedures are typically more limited, more efficient, and less costly than rules applicable in a court and are subject to very limited review by a court. In the event any litigation should arise between you and COMEARTH in any state or federal court in a suit to vacate or enforce an arbitration award or otherwise, YOU AND COMEARTH WAIVE ALL RIGHTS TO A JURY TRIAL, instead electing that the dispute be resolved by a judge.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Waiver of Class or Consolidated Actions
+                        </strong>
+                        ALL CLAIMS AND DISPUTES WITHIN THE SCOPE OF THIS ARBITRATION AGREEMENT MUST BE ARBITRATED OR LITIGATED ON AN INDIVIDUAL BASIS AND NOT ON A CLASS BASIS, AND CLAIMS OF MORE THAN ONE CUSTOMER OR USER CANNOT BE ARBITRATED OR LITIGATED JOINTLY OR CONSOLIDATED WITH THOSE OF ANY OTHER CUSTOMER OR USER. If a decision is issued stating that applicable law precludes enforcement of any of this subsection’s limitations as to a given claim for relief, then the claim must be severed from the arbitration and brought into the courts of USA. All other claims shall be arbitrated.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Confidentiality
+                        </strong>
+                        All aspects of the arbitration proceeding, including but not limited to the award of the arbitrator and compliance therewith, shall be strictly confidential. The parties agree to maintain confidentiality unless otherwise required by law. This paragraph shall not prevent a party from submitting to a court of law any information necessary to enforce this Agreement, to enforce an arbitration award, or to seek injunctive or equitable relief.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Severability
+                        </strong>
+                        If any part or parts of this Arbitration Agreement are found under the law to be invalid or unenforceable by a court of competent jurisdiction, then such specific part or parts shall be of no force and effect and shall be severed and the remainder of the Arbitration Agreement shall continue in full force and effect.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Right to opt Out
+                        </strong>
+                        You have the right to opt out of this Arbitration Agreement by sending written notice of your decision to opt out to: support@comearth.world. Such notice must be given within 30 days after first becoming subject to a version of these Terms containing an arbitration provision. Your notice must include your name and address, your Account username (if any), Virtual Land URL, Store or marketplace URL, the email address & wallet address you used to set up your Account (if you have one), and an unequivocal statement that you want to opt out of this Arbitration Agreement. If you opt out of arbitration, all other parts of these Terms will continue to apply to you. Opting out of arbitration has no effect on any other arbitration agreements that you may currently have, or may enter into in the future, with us.
+
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Right to Waive
+                        </strong>
+                        Any or all of the rights and limitations set forth in this Arbitration Agreement may be waived by the party against whom the claim is asserted. Such waiver shall not waive or affect any other portion of this Arbitration Agreement.
+
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Survival of Agreement
+                        </strong>
+                        This Arbitration Agreement will survive the termination of your relationship with COMEARTH.
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Small Claims Court
+                        </strong>
+                        Notwithstanding the foregoing, either you or COMEARTH may bring an individual action in small claims court.
+
+                      </span>
+                    </li>
+
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Emergency Equitable Relief
+                        </strong>
+                        Notwithstanding the foregoing, either party may seek emergency equitable relief before a state or federal court in order to maintain the status quo pending arbitration. A request for interim measures shall not be deemed a waiver of any other rights or obligations under this Arbitration Agreement.
+
+                      </span>
+                    </li>
+
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Claims Not Subject to Arbitration
+                        </strong>
+                        Notwithstanding the foregoing, claims of defamation, violation of the Computer Fraud and Abuse Act, and infringement or misappropriation of the other party’s patent, copyright, trademark, or trade secrets shall not be subject to this Arbitration Agreement.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Courts
+                        </strong>
+                        In any circumstances where the foregoing Arbitration Agreement permits the parties to litigate in court, the parties hereby agree to submit to the personal jurisdiction of the courts located within USA, for such purpose.
+
+                      </span>
+                    </li>
+
+
+                    
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            General
+            </span>
+            <br/>
+            <br/>
+            
+                      <span className='pl-2 mb-3'>
+
+                      We reserve the right in our sole discretion to modify, suspend, or discontinue the Tools, or any features or parts thereof, whether temporarily or permanently, at any time with or without notice to you in our sole discretion. The words “include” “including” or “includes” are used herein in an illustrative sense and not in a limiting sense and they shall be deemed to be followed by the words “without limitation”. The headings, underlined, bold typeface, and titles in these Terms are indicative and shall not be deemed part thereof or be taken into consideration in the interpretation or construction of these Terms. No provision of these Terms shall be interpreted in favour of, or against, any of the parties by reason of the extent to which any such party has put forward these Terms or any part of it. We will not be liable for any failure or delayed performance of our obligations that result from any condition beyond our reasonable control, including, but not limited to, governmental action, acts of terrorism, earthquake, fire, flood, acts of God, labor conditions, power failures, internet disturbances, or acts or omissions of third parties. These Terms constitute the entire legal agreement between you and COMEARTH, govern your access to and use of the Platform and/or Tools, and completely replace any prior or contemporaneous agreements between the parties related to your access to or use of the Platform and/or Tools, whether oral or written. These Terms, and your access to and use of the Tools, shall be governed by and construed and enforced in accordance with the laws of the USA without regard to any conflict of law rules or principles that would cause the application of the laws of any other jurisdiction. Any dispute between the parties that is not subject to arbitration or cannot be heard in small claims court, shall be resolved in the courts of the USA. Notwithstanding anything contained in these Terms, we reserve the right, without notice and in our sole discretion, to terminate your right to access or use the Tool at any time and for any or no reason, and you acknowledge and agree that COMEARTH Entities shall have no liability or obligation to you in such event and that you will not be entitled to a refund of any amounts that you have already paid to us, to the fullest extent permitted by applicable law. If any term, section, or provision of these Terms is held invalid or unenforceable, then that term, section or provision will be severable from these Terms and will not affect the validity or enforceability of any remaining part of that term, section or provision, or any other term, section, or provision of these Terms. Your relationship to COMEARTH is that of an independent contractor, and neither party is an agent or partner of the other. These Terms, and any rights and licenses granted hereunder, may not be transferred, or assigned by you without the prior written consent of COMEARTH, however, we may cede, assign, or otherwise transfer our rights or obligations under these Terms to any third party without your consent and without notice to you. You can only transfer your rights in a Virtual Land in accordance with these Terms. All sections including indemnity and limitation of liability, which by their nature should survive the termination of these Terms shall continue in full force and effect subsequent to and notwithstanding any termination of these Terms by COMEARTH or you. COMEARTH’s failure to assert any right or provision under these Terms shall not constitute a waiver of such right or provision. Except as otherwise provided herein, these Terms are intended solely for the benefit of COMEARTH and you and are not intended to confer third party beneficiary rights upon any other person or entity. 
+
+                  
+                      </span>
+                   
+        </li>
 
             
           
            
   </ol>
+  <span className='font-bold'>
+  You want more information or have a question or query for us, then please click Contact Us
+  </span>
     </Fragment>
   )
 }
