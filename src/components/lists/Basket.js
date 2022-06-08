@@ -20,6 +20,9 @@ const Basket = (props) => {
   }
 
   const total = () => {
+    if(discountPercentage ===0 ){
+      return 0
+    }
     let total = items.reduce((sum, cur, i) => {
       return sum += cur.perItemPrice * cur.qty * ( (100000 - discountPercentage[i])/100000 )
     }, 0)
@@ -29,6 +32,9 @@ const Basket = (props) => {
   }
 
   const totalUSD = () => {
+    if(discountPercentage ===0 ){
+      return 0
+    }
     let total = items.reduce((sum, cur, i) => {
       return sum += cur.perItemPriceUSD * cur.qty * ( (100000 - discountPercentage[i])/100000 )
     }, 0)
@@ -71,7 +77,7 @@ const Basket = (props) => {
               </button>
             </div> */}
 
-    {
+    { discountPercentage !== 0 &&
       discountPercentage[0] != 0 && <>
  <div className="flex items-center justify-between border-b border-[#363738] pb-[8px] mb-[24px]">
            <span className='text-white/80 text-[16px]'>Discount</span>

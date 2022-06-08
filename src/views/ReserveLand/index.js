@@ -287,7 +287,7 @@ const ReserveLand = () => {
   const navigate = useNavigate()
   const [openAddFundsModal, setOpenAddFundsModal] = useState(false)
   const [cookies, setCookie] = useCookies()
-  const [selectNetwork, setSelectNetwork] = useState(_networks[0])
+  const [selectNetwork, setSelectNetwork] = useState(process.env.REACT_APP_IS_MAINNET_ENABLED == 'true' ?_networks[2] :_networks[3])
   const mainnetType=!(process.env.REACT_APP_IS_MAINNET_ENABLED == 'false')
 
   const appGlobals = useContext(AppContext)
@@ -394,6 +394,7 @@ const ReserveLand = () => {
     switchNetwork(val.chainId)
     localStorage.removeItem("order")
     document.addEventListener('network:changed',function (ev) {
+      setSelectNetwork(val.chainId)
       setTimeout(() => {
         window.location.reload()
       }, 2000);
@@ -427,14 +428,12 @@ const ReserveLand = () => {
         if(getNetwork.length!==0){
             setSelectNetwork(getNetwork[0])
             setTokenList(_selectTokenOptions[getNetwork[0].chainId])
-            console.log(_selectTokenOptions[getNetwork[0].chainId][0])
             setSelectToken(_selectTokenOptions[getNetwork[0].chainId][0])
         }
     })()
 }, [appGlobals,selectNetwork])
 
   useEffect(() => {
-    console.log(transactionForm)
     if (transactionForm) {
       setValue('name', transactionForm.name)
       setValue('email', transactionForm.email)
@@ -642,7 +641,6 @@ const ReserveLand = () => {
   // Handlers
 
   const handleTokenChange = (token) => {
-    console.log(token)
     setSelectToken(token)
     landPrices(token, true).then((prices) => {
       setBasket((basket) => basket.map((elem, i) => ({
@@ -692,7 +690,6 @@ const ReserveLand = () => {
     const account = (await provider.send('eth_accounts', []))[0]
     const networkConfig = await getChainData(provider)
 
-
     let contract = new ethers.Contract(process.env.REACT_APP_LAND_RESERVER_CONTRACT_ADDRESS_POLYGON, _landReserverAbi, provider)
     let signedContract = contract.connect(signer)
     let parcelQuantities = basket.map((el) => {
@@ -709,7 +706,6 @@ const ReserveLand = () => {
     } catch (e) {
       tNumber = BigNumber.from(0)
     }
-    console.log(tNumber)
     // check for approval erc20
     let totalPrice = await getTotalParcelPrice(basket, selectToken, account)
     if (selectToken.id !== 0) {
@@ -861,7 +857,6 @@ const ReserveLand = () => {
   useEffect(() => {
     setAuthData(JSON.parse(localStorage.getItem('auth')))
     setTransactionFormData(JSON.parse(localStorage.getItem('transaction_form')))
-    console.log(emailReadOnly)
     if (emailReadOnly === false) {
       localStorage.removeItem('auth')
       localStorage.removeItem('transaction_form')

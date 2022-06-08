@@ -78,7 +78,6 @@ export const getWhiteListContract = async () =>{
 export const getLandReserverContract = async () =>{
     let provider = await getProvider()
     let chain = await getChainData(provider)
-    console.log(chain)
     let contract = new ethers.Contract(chain.land_reserver_contract,_landReserverAbi,provider)
     return contract
 }
