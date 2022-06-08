@@ -88,7 +88,7 @@ export const getProvider = async () => {
   // default provider first
   if(!(provider = await isConnected())){
       // fallback provider if no wallet connected
-      return provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_ETHERUEM_RPC_PROVIDER);
+      return provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_ETHEREUM_RPC_PROVIDER);
   }
   return provider
 }
