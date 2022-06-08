@@ -21,74 +21,111 @@ import _imgInvestor14 from 'assets/img/brand-presence-comearth/14.png'
 import _imgInvestor15 from 'assets/img/brand-presence-comearth/15.png'
 import _imgInvestor16 from 'assets/img/brand-presence-comearth/16.png'
 import _imgInvestor17 from 'assets/img/brand-presence-comearth/17.png'
+import _imgInvestor18 from 'assets/img/brand-presence-comearth/polygon.png'
+import _imgInvestor19 from 'assets/img/brand-presence-comearth/ceat.png'
+import _imgInvestor20 from 'assets/img/brand-presence-comearth/metrobrands.png'
+import _imgInvestor21 from 'assets/img/brand-presence-comearth/digital-fashion.png'
+import _imgInvestor22 from 'assets/img/brand-presence-comearth/dragon-gateway.png'
+import _imgInvestor23 from 'assets/img/brand-presence-comearth/zipmex.png'
+import _imgInvestor24 from 'assets/img/brand-presence-comearth/safle.png'
+
+
 
 const _investors = [
   {
     id: '1001',
-    image: _imgInvestor1,
+    image: _imgInvestor18,
   },
   {
     id: '1002',
-    image: _imgInvestor2,
+    image: _imgInvestor19,
   },
   {
     id: '1003',
-    image: _imgInvestor3,
+    image: _imgInvestor20,
   },
   {
     id: '1004',
-    image: _imgInvestor4,
+    image: _imgInvestor21,
   },
   {
     id: '1005',
-    image: _imgInvestor5,
+    image: _imgInvestor22,
   },
   {
     id: '1006',
-    image: _imgInvestor6,
+    image: _imgInvestor23,
   },
   {
     id: '1007',
-    image: _imgInvestor7,
+    image: _imgInvestor24,
   },
   {
     id: '1008',
-    image: _imgInvestor8,
+    image: _imgInvestor1,
   },
+  // {
+  //   id: '1009',
+  //   image: _imgInvestor2,
+  // },
   {
-    id: '1009',
-    image: _imgInvestor9,
-  },
-  {
-    id: '10010',
-    image: _imgInvestor10,
+    id: '1010',
+    image: _imgInvestor3,
   },
   {
     id: '1011',
-    image: _imgInvestor11,
+    image: _imgInvestor4,
   },
   {
     id: '1012',
-    image: _imgInvestor12,
+    image: _imgInvestor5,
   },
   {
     id: '1013',
-    image: _imgInvestor13,
+    image: _imgInvestor6,
   },
   {
     id: '1014',
-    image: _imgInvestor14,
+    image: _imgInvestor7,
   },
-  {
-    id: '1015',
-    image: _imgInvestor15,
-  },
+  // {
+  //   id: '1015',
+  //   image: _imgInvestor8,
+  // },
   {
     id: '1016',
-    image: _imgInvestor16,
+    image: _imgInvestor9,
   },
   {
     id: '1017',
+    image: _imgInvestor10,
+  },
+  {
+    id: '1018',
+    image: _imgInvestor11,
+  },
+  {
+    id: '1019',
+    image: _imgInvestor12,
+  },
+  {
+    id: '1020',
+    image: _imgInvestor13,
+  },
+  {
+    id: '1021',
+    image: _imgInvestor14,
+  },
+  {
+    id: '1022',
+    image: _imgInvestor15,
+  },
+  {
+    id: '1023',
+    image: _imgInvestor16,
+  },
+  {
+    id: '1024',
     image: _imgInvestor17,
   },
 ]
