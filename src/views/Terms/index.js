@@ -21,14 +21,9 @@ const _menu = [
     url: '#privacy-policy',
   },
   {
-    id: '1003',
-    title: 'Community Guidelines',
-    url: '#community-guidelines',
-  },
-  {
     id: '1004',
-    title: 'Risk Policy',
-    url: '#risk-policy',
+    title: 'Risk Disclaimer',
+    url: '#risk-disclaimer',
   },
 ]
 
@@ -64,8 +59,7 @@ const Terms = () => {
 
         {hash === '#terms' && <TermsAndConditions />}
         {hash === '#privacy-policy' && <PrivacyPolicy />}
-        {hash === '#community-guidelines' && <CommunityGuidelines />}
-        {hash === '#risk-policy' && <RiskPolicy />}
+        {hash === '#risk-disclaimer' && <RiskPolicy />}
       </div>
     </div>
   )

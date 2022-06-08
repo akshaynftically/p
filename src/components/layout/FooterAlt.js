@@ -47,27 +47,21 @@ const _menu = {
 const _menuCategories = Object.keys(_menu)
 const _secondMenu = [
   {
-    id: '1001',
-    title: 'Community Guidelines',
-    url: 'https://www.nftically.com/terms',
-    className: ''
-  },
-  {
     id: '1002',
-    title: 'Risk Policy',
-    url: '/risk',
+    title: 'Risk Disclaimer',
+    url: '/terms#risk-disclaimer',
     className: 'text-right md:text-left'
   },
   {
     id: '1003',
     title: 'Terms',
-    url: 'https://www.nftically.com/terms',
+    url: 'terms#terms',
     className: ''
   },
   {
     id: '1004',
     title: 'Privacy Policy',
-    url: '/policy',
+    url: '/terms#privacy-policy',
     className: 'text-right md:text-left'
   },
 ]
