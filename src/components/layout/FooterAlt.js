@@ -57,7 +57,7 @@ const _secondMenu = [
     id: '1002',
     title: 'Risk Disclaimer',
     url: '/terms#risk-disclaimer',
-    className: 'text-right md:text-left'
+    className: ' md:text-left'
   },
   {
     id: '1003',
@@ -69,7 +69,7 @@ const _secondMenu = [
     id: '1004',
     title: 'Privacy Policy',
     url: '/terms#privacy-policy',
-    className: 'text-right md:text-left'
+    className: ' md:text-left'
   },
 ]
 const _socialMenu = [
