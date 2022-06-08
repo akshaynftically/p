@@ -36,8 +36,8 @@ const Failed = () => {
             navigate('/reserve-land')
         }
 
-        dispatch(clearTransactionForm())
-        localStorage.removeItem('order')
+        // dispatch(clearTransactionForm())
+        // localStorage.removeItem('order')
     console.log(transactionForm)
 
     }, [dispatch, navigate, transactionForm])
@@ -158,7 +158,7 @@ const Failed = () => {
                         </div>
                     </div>
 
-                    <div className="bg-[#262728] px-[32px] py-[24px] rounded-[8px] mb-[24px]">
+                    {/* <div className="bg-[#262728] px-[32px] py-[24px] rounded-[8px] mb-[24px]">
                         <div className="border-b border-[#363738] pb-[8px] mb-[16px]">
                             <h5 className='text-[20px] font-bold'>Customer Details</h5>
                         </div>
@@ -178,10 +178,10 @@ const Failed = () => {
                             </div>
                             <div>
                                 <div className='text-left font-normal text-white/60 mb-[4px]'>Country</div>
-                                <div>{transactionForm.country.label}</div>
+                                 <div>{transactionForm.country.label}</div> 
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="bg-[#262728] px-[32px] py-[24px] rounded-[8px] mb-[24px]">
                         <div className="border-b border-[#363738] pb-[8px]">
