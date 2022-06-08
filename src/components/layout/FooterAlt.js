@@ -6,6 +6,7 @@ import {SimpleButton} from 'components/buttons'
 // Sources
 import _logoComearth from 'assets/img/logo-comearth.svg'
 import _logoNftcally from 'assets/img/logo-nftically.svg'
+import { Link } from 'react-router-dom'
 
 // Mocks
 const _menu = {
@@ -14,21 +15,25 @@ const _menu = {
       id: '1002',
       title: 'Reserve Virtual Land ',
       url: 'reserve-land',
+      target:false
     },
     {
       id: '1003',
       title: 'About Us',
       url: 'about-us',
+      target:false
     },
     {
       id: '1004',
       title: 'Contact Us',
       url: 'contact-us',
+      target:false
     },
     {
       id: '1005',
       title: 'Visit NFTICALLY',
       url: 'https://www.nftically.com',
+      target:true
     },
   ],
   resources: [
@@ -36,11 +41,13 @@ const _menu = {
       id: '1004',
       title: 'Whitepaper',
       url: 'https://docs.comearth.world/whitepaper',
+      target:true
     },
     {
       id: '1005',
       title: 'Blog',
       url: 'https://www.comearth.world/blog',
+      target:true
     },
   ],
 }
@@ -50,7 +57,7 @@ const _secondMenu = [
     id: '1002',
     title: 'Risk Disclaimer',
     url: '/terms#risk-disclaimer',
-    className: 'text-right md:text-left'
+    className: ' md:text-left'
   },
   {
     id: '1003',
@@ -62,7 +69,7 @@ const _secondMenu = [
     id: '1004',
     title: 'Privacy Policy',
     url: '/terms#privacy-policy',
-    className: 'text-right md:text-left'
+    className: ' md:text-left'
   },
 ]
 const _socialMenu = [
@@ -188,7 +195,7 @@ const FooterAlt = () => {
                     <a
                       className='text-[14px] text-white/[.80] hover:text-white transition duration-[200ms] ease-in-out'
                       href={elI.url}
-                      target='_blank'
+                      target={elI.target ? '_blank' : '_self' }
                     >
                       {elI.title}
                     </a>
@@ -242,16 +249,16 @@ const FooterAlt = () => {
               © NFTICALLY {new Date().getFullYear()} | All Rights Reserved. Built with Love on
               planet Earth.
             </div>
-            <ul className='grid grid-cols-2 md:flex items-center md:-mx-[16px] mb-[24px] md:mb-0 w-full md:w-auto'>
+            <ul className='grid grid-cols-3 text-center md:flex items-center md:-mx-[16px] mb-[24px] md:mb-0 w-full md:w-auto'>
               {_secondMenu.map((el) => (
                 <li key={el.id} className={`md:mx-[16px] ${el.className}`}>
-                  <a
+                  <Link
                     className='text-[12px] text-white/[.65] hover:text-white transition duration-[200ms] ease-in-out'
-                    href={el.url}
-                    target='_blank'
+                    to={el.url}
+                   
                   >
                     {el.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

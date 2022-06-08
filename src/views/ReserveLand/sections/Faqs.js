@@ -12,7 +12,7 @@ const _faqs = [
   {
     id: '1002',
     title: 'How soon can I start building on my reserved land?',
-    text: 'We will be launching the public Beta version of our DIY E-Commerce by October. You will be able to start utilizing.the land to launch your business on COMEARTH latest by October 2022.',
+    text: 'We will be launching the public Beta version of our DIY E-Commerce by October. You will be able to start utilizing the land to launch your business on COMEARTH latest by October 2022.',
   },
   {
     id: '1003',
