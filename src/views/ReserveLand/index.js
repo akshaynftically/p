@@ -879,7 +879,7 @@ const ReserveLand = () => {
       <div className='sm:items-end w-full mx-auto px-4 sm:px-6 px-[20px] lg:px-[80px]'>
         <div className='py-[120px] text-white'>
           <div className='mb-[14px] lg:mb-[20px]'>
-            <div className='mb-[19px]'>
+            {/* <div className='mb-[19px]'>
               <PillButton className='md:pr-[30px]' href='/metaverse'>
                 <svg
                   width='24'
@@ -894,7 +894,7 @@ const ReserveLand = () => {
                 </svg>
                 Back to COMEARTH
               </PillButton>
-            </div>
+            </div> */}
 
             {isWhiteListed &&
               <div
@@ -961,9 +961,9 @@ const ReserveLand = () => {
 
 
                 <div className='bg-[#262728] rounded-lg py-[30px] px-[32px] mb-[20px]'>
-                  <h2 className='font-extrabold text-[24px] mb-[20px]'>Cart Summary</h2>
+                  <h2 className='font-extrabold text-[24px] mb-[20px]'>Reserve Land Parcel on COMEARTH</h2>
 
-                  <FieldGroup label='Select the Blockchain network you want to pay inh'>
+                  <FieldGroup label='Select the Blockchain network you want to pay in'>
                     <Select value={selectNetwork}
                             defaultValue={selectNetwork}
                             options={_networks.filter(item=>item.mainnet === mainnetType)}

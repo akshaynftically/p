@@ -17,9 +17,12 @@ const _landUnits = [
     _landUnit5Img,
     _landUnit6Img,
 ]
+
+const _unlockedUnits = [5000,2500,2500,50,10,2]
+
 const LandUnit = (props) => {
   const {type, img, index, qty, onChange,disableCounter, perItemPriceUSD} = props
-
+  
   return (
     <div className='flex bg-[#161718] w-full items-center rounded-lg pt-[8px] pb-[16px] px-[14px] mb-[8px]'>
       <div className='mr-[20px]'>
@@ -28,7 +31,7 @@ const LandUnit = (props) => {
        <div className='w-full'>
          <div className='flex items-center'>
            <div className='text-[16px] text-white/[.80] text-center'>Size: <span className='lg:text-[24px]'>{type}</span></div>
-           <div className='hidden xl:block bg-gradient-to-r from-[#D299FF] to-[#58C3FF] py-[3px] px-[14px] mx-auto text-[12px] text-[#363738] rounded-full'>Unlocked Units: 20,000</div>
+           <div className='hidden xl:block bg-gradient-to-r from-[#D299FF] to-[#58C3FF] py-[3px] px-[14px] mx-auto text-[12px] text-[#363738] rounded-full'>Unlocked Units: {_unlockedUnits[index]}</div>
            <SimpleCounter onChange={onChange} value={qty} disableCounter={disableCounter}/>
          </div>
          <div className='mb-[11px] mt-[15px] border-t border-[#363738]' />
