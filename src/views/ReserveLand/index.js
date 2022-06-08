@@ -791,6 +791,7 @@ const ReserveLand = () => {
     return receipt
   }
   const onSubmit = (data) => {
+    console.log(discountPercentage)
     let discount = (discountPercentage[0] / 1000).toFixed(2)
     localStorage.setItem('discount', JSON.stringify(discount))
     dispatch(setTransactionForm({...data, basket, discount}))
