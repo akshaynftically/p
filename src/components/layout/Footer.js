@@ -18,13 +18,13 @@ const Footer = () => {
           <ul className='flex'>
             
             <li className='mr-[16px] md:mr-[38px]'>
-              <Link target="_self" to='/risk'>Risk Disclaimer</Link>
+              <Link target="_self" to='/terms#risk-disclaimer'>Risk Disclaimer</Link>
             </li>
             <li className='mr-[16px] md:mr-[38px]'>
-              <Link to='/terms'>Terms</Link>
+              <Link to='/terms#terms'>Terms</Link>
             </li>
             <li>
-              <Link to='/policy'>Privacy Policy</Link>
+              <Link to='/terms#privacy-policy'>Privacy Policy</Link>
             </li>
           </ul>
         </nav>

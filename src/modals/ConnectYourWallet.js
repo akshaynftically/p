@@ -22,11 +22,11 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
     <FullScreenPopup title='Connect Your Wallet' size='w-full sm:w-[520px]' onClose={onClose}>
       <div className='text-[14px] text-white/[.80] mb-[10px]'>
         By connecting a wallet, you agree to NFTICALLY’s{' '}
-        <a className='font-bold text-[#3E97FC] hover:underline' rel='noreferrer' href='//www.nftically.com/terms' target="_blank">
+        <a className='font-bold text-[#3E97FC] hover:underline' rel='noreferrer' href='/terms#terms'>
           Terms of Service
         </a>{' '}
         and{' '}
-        <a className='font-bold text-[#3E97FC] hover:underline' rel='noreferrer' href='//www.nftically.com/privacy-policy' target="_blank">
+        <a className='font-bold text-[#3E97FC] hover:underline' rel='noreferrer' href='/terms#privacy-policy' >
           Privacy Policy that
         </a>{' '}
         you have read and understand.
