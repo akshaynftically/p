@@ -37,9 +37,10 @@ const Main = () => {
 
             <SimpleButton
               className='md:w-[210px] lg:min-h-full lg:text-[14px] text-bold'
-              type='submit'
+             
+              href="/reserve-land"
             >
-              Create A Store Now
+              Reserve Your Land Now
             </SimpleButton>
           </div>
           <div className='hidden lg:block order-1 flex justify-center md:order-2 col-span-12 md:col-span-6 text-right metaverse-demo min-h-[300px] h-full relative'>
