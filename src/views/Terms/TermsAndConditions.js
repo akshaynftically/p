@@ -1374,11 +1374,322 @@ IF YOU ARE DISSATISFIED WITH ANY PORTION OF THE PLATFORM OR WITH THESE TERMS OF 
             </ol>
         </li>
 
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            Audit and Security Scan
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      COMEARTH reserves the right to perform audits of the Platform and/or Tools to the extent necessary to ensure compliance with the applicable laws, rules, and regulation.
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+    You shall seek written approval of COMEARTH ninety (90) days prior to conducting any audit and security scan of the Platform and/or Tools and it is hereby clarified that, COMEARTH is under no obligation to grant you an approval for the same. This audit and security scan must be performed by you or a third-party approved by COMEARTH in writing at your expense. In the event, a third-party is conducting the audit and security scan on your behalf, you shall assume all the obligations and liabilities of such third-party hereunder. 
+
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      You will specify the kind of tool and time at which any tool is used for audit to COMEARTH in writing prior to conducting the audit and security scan, if COMEARTH believes that such tool may affect system performance, you will not be allowed to use such tool. The audit will be coordinated through the COMEARTH’s internal team and COMEARTH will be entitled to observe all audit activity. You will not perform any action that may interfere with the uptime or stability of COMEARTH’s systems or networks. 
+
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      Any violation of this provision will lead to termination of your Account and your access to the Platform and/or Tools shall be blocked in perpetuity. COMEARTH shall be entitled to any remedy that may be available to the COMEARTH under applicable laws.
+
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      COMEARTH reserves the right to require you to provide the results of the audit and security scan conducted of the Platform and/or Tools to COMEARTH. The performance of the audit and security scan, audit report and any non-public data obtained by you during audit and security scan process shall be treated as a confidential information at all times and you shall not, for any reason, in any fashion, either directly or indirectly, use, sell, lend, lease, distribute, license, give, transfer, assign, show, disclose, disseminate, reproduce, copy, misappropriate or otherwise communicate any such confidential information to any person or entity for any purpose. The audit report and any information gathered by you of COMEARTH during the audit and security scan process shall be the wholly owned property of COMEARTH. You agree and acknowledge that in the event of any breach or threatened breach by you of this provision will cause irreparable damage to COMEARTH. COMEARTH shall be entitled to any remedy that may be available to the COMEARTH under applicable laws, including without limitation, to seek (i) a decree or order of specific performance or mandamus to enforce the observance and performance of such obligation, (ii) an injunction restraining such breach or threatened breach; and/or (iii) recover all the losses incurred by COMEARTH. These remedies available to COMEARTH are cumulative and are in addition to any other rights and remedies that COMEARTH may have at law or in equity.
+
+                      </span>
+                    </li>
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            EXPORT LAWS 
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                      By accepting these Terms, you represent that neither you nor any of your affiliates are listed in any list of sanctioned persons of any sanction authority (including without limitation the list of Specially Designated Nationals and Sectorial or Sanctions Identifications) or owned or controlled by such sanctioned person (together as "Sanctioned Person") and undertake at all times to conduct your business in compliance with applicable sanctions and export control laws and regulations ("Export Laws").
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      You acknowledge that the use of the Platform or the Virtual Land may be subject to Export Laws in the country of your residence or place of business and you agree to apply for relevant import authorization and/or export licenses, as applicable to you. You shall indemnify and hold us and each of our affiliates harmless against any losses, damages, fees, or monetary sanctions imposed as a result of your failure to comply with Export Laws. 
+
+                      </span>
+                    </li>
+                
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            COMPLIANCE WITH ANTI-MONEY LAUNDERING LAWS
+            </span>
+            <ol type='1' className='ol'>
+            <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                      You shall comply with all applicable laws and regulations as applicable to prevention of money laundering including without limitation the Anti-Money Laundering Act, 2020 (USA); Proceeds of Crime Act, 2002 (UK); the European Union (EU) Anti-Money Laundering Directive; and the Prevention of Money Laundering Act, 2002 (India). 
+
+                  
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+
+                      You shall not use, directly, indirectly, or remotely, the Platform; the Tools; the Virtual Lands; or the User Content, in any manner whatsoever for any illegal or unauthorised purposes including for the purposes of giving or receiving bribes, promoting, or supporting corruption or corrupt practices, for laundering money or financial instruments including cryptocurrency or to violate laws or regulations in force. 
+
+                      </span>
+                    </li>
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                      We have a no tolerance policy for breach of any laws and your association shall stand terminated in case of violation of this provision. In such eventuality, we reserve the right to share all User Account information or any information relating to you as available to us with any law enforcement agencies.
+
+                      </span>
+                    </li>
+                
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            Dispute Resolution/Arbitration 
+            </span>
+           <br/>
+           <br/>
+           <p className='font-bold'>
+           PLEASE READ THE ARBITRATION AGREEMENT IN THIS SECTION (“ARBITRATION AGREEMENT”) CAREFULLY. IT CONTAINS PROCEDURES FOR MANDATORY BINDING ARBITRATION AND A CLASS ACTION WAIVER.
+
+           </p>
+           <ol type='1' className='ol'>
+           <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Applicability of Arbitration Agreement
+                        </strong>
+                        You agree that all claims and disputes (excluding claims for injunctive or other equitable relief as set forth below) in connection with these Terms or the use of any Tools provided by COMEARTH that cannot be resolved informally or in small claims court shall be resolved by binding arbitration on an individual basis under the terms of this Arbitration Agreement. Unless otherwise agreed to, all arbitration proceedings shall be held in English. This Arbitration Agreement applies to you and COMEARTH, and to any subsidiaries, affiliates, agents, employees, predecessors in interest, successors, and assigns, as well as all authorized or unauthorized Users or beneficiaries of Tools or goods provided under these Terms.
+                  
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Notice Requirement and Informal Dispute Resolution
+                        </strong>
+                        Before either party may seek arbitration, the party must first send to the other party a written notice describing the nature and basis of the claim or dispute and the requested relief (“Notice of Dispute”). A Notice of Dispute to COMEARTH should be sent to: support@comearth.world. After the Notice of Dispute is received, you and COMEARTH may attempt to resolve the claim or dispute informally. If you and COMEARTH do not resolve the claim or dispute within thirty (30) days after the Notice of Dispute is received, either party may begin an arbitration proceeding. The amount of any settlement offer made by any party may not be disclosed to the arbitrator until after the arbitrator has determined the amount of the award, if any, to which either party is entitled.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Arbitration Rules
+                        </strong>
+                        Arbitration shall be initiated through the American Arbitration Association (“AAA”), an established alternative dispute resolution provider (“ADR Provider”) that offers arbitration as set forth in this section. If AAA is not available to arbitrate, the parties shall agree to select an alternative ADR Provider. The rules of the ADR Provider shall govern all aspects of the arbitration, including but not limited to the method of initiating and/or demanding arbitration, except to the extent such rules are in conflict with these Terms. The AAA Consumer Arbitration Rules (“Arbitration Rules”) governing the arbitration are available online at www.adr.org. The arbitration shall be conducted by a single, neutral arbitrator. Any claims or disputes where the total amount of the award sought is less than Five Thousand U.S. Dollars (US $5,000.00) may be resolved through binding non-appearance-based arbitration, at the option of the party seeking relief. For claims or disputes where the total amount of the award sought is Five Thousand U.S. Dollars (US $5,000.00) or more, the right to a hearing will be determined by the Arbitration Rules. Any hearing will be held in a location within 100 miles of your residence, unless you reside outside of the United States, and unless the parties agree otherwise. If you reside outside of the U.S., the arbitrator shall give the parties reasonable notice of the date, time, and place of any oral hearings. Any judgment on the award rendered by the arbitrator may be entered in any court of competent jurisdiction. If the arbitrator grants you an award that is greater than the last settlement offers that COMEARTH made to you prior to the initiation of arbitration, COMEARTH will pay you the greater of the award or $2,500.00. Each party shall bear its own costs (including attorney’s fees) and disbursements arising out of the arbitration and shall pay an equal share of the fees and costs of the ADR Provider.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Additional Rules for Non-Appearance Based Arbitration
+                        </strong>
+                        If non-appearance-based arbitration is elected, the arbitration shall be conducted by telephone, online and/or based solely on written submissions; the specific manner shall be chosen by the party initiating the arbitration. The arbitration shall not involve any personal appearance by the parties or witnesses unless otherwise agreed by the parties.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Time Limits
+                        </strong>
+                        If you or COMEARTH pursues arbitration, the arbitration action must be initiated and/or demanded within the statute of limitations (i.e., the legal deadline for filing a claim) and within any deadline imposed under the AAA Rules for the pertinent claim.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Authority of Arbitrator
+                        </strong>
+                         If arbitration is initiated, the arbitrator will decide the rights and liabilities, if any, of you and COMEARTH, and the dispute will not be consolidated with any other matters or joined with any other cases or parties. The arbitrator shall have exclusive authority to (i) determine the scope and enforceability of this Arbitration Agreement; and (ii) resolve any dispute related to the interpretation, applicability, enforceability, or formation of this Arbitration Agreement including, but not limited to, any claim that all or any part of this Arbitration Agreement is void or voidable; and shall also have the authority to grant motions dispositive of all or part of any claim. The exceptions to the preceding sentence are (1) all disputes arising out of or relating to the class action waiver, including any claim that all or part of the class action waiver is unenforceable, illegal, void or voidable, or such class action waiver has been breached, shall be decided by a court of competent jurisdiction and not by an arbitrator; (2) all disputes arising out of or relating to the payment of arbitration fees shall be decided only by a court of competent jurisdiction and not by an arbitrator; and (3) all disputes arising out of or relating to whether either party has satisfied any condition precedent to arbitration shall be decided only by a court of competent jurisdiction and not by an arbitrator. The arbitrator shall have the authority to award monetary damages, and to grant any non-monetary remedy or relief available to an individual under applicable law, the AAA Rules, and these Terms. The arbitrator shall issue a written award and statement of decision describing the essential findings and conclusions on which the award is based, including the calculation of any damages awarded. The arbitrator has the same authority to award relief on an individual basis that a judge in a court of law would have. The award of the arbitrator is final and binding upon you and COMEARTH. Any judgment on the award rendered by the arbitrator may be entered in any court of competent jurisdiction.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                   Waiver of Jury Trial
+                        </strong>
+                        THE PARTIES HEREBY WAIVE THEIR CONSTITUTIONAL AND STATUTORY RIGHTS TO GO TO COURT AND HAVE A TRIAL IN FRONT OF A JUDGE OR A JURY, instead electing that all claims and disputes shall be resolved by arbitration under this Arbitration Agreement. Arbitration procedures are typically more limited, more efficient, and less costly than rules applicable in a court and are subject to very limited review by a court. In the event any litigation should arise between you and COMEARTH in any state or federal court in a suit to vacate or enforce an arbitration award or otherwise, YOU AND COMEARTH WAIVE ALL RIGHTS TO A JURY TRIAL, instead electing that the dispute be resolved by a judge.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Waiver of Class or Consolidated Actions
+                        </strong>
+                        ALL CLAIMS AND DISPUTES WITHIN THE SCOPE OF THIS ARBITRATION AGREEMENT MUST BE ARBITRATED OR LITIGATED ON AN INDIVIDUAL BASIS AND NOT ON A CLASS BASIS, AND CLAIMS OF MORE THAN ONE CUSTOMER OR USER CANNOT BE ARBITRATED OR LITIGATED JOINTLY OR CONSOLIDATED WITH THOSE OF ANY OTHER CUSTOMER OR USER. If a decision is issued stating that applicable law precludes enforcement of any of this subsection’s limitations as to a given claim for relief, then the claim must be severed from the arbitration and brought into the courts of USA. All other claims shall be arbitrated.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Confidentiality
+                        </strong>
+                        All aspects of the arbitration proceeding, including but not limited to the award of the arbitrator and compliance therewith, shall be strictly confidential. The parties agree to maintain confidentiality unless otherwise required by law. This paragraph shall not prevent a party from submitting to a court of law any information necessary to enforce this Agreement, to enforce an arbitration award, or to seek injunctive or equitable relief.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Severability
+                        </strong>
+                        If any part or parts of this Arbitration Agreement are found under the law to be invalid or unenforceable by a court of competent jurisdiction, then such specific part or parts shall be of no force and effect and shall be severed and the remainder of the Arbitration Agreement shall continue in full force and effect.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Right to opt Out
+                        </strong>
+                        You have the right to opt out of this Arbitration Agreement by sending written notice of your decision to opt out to: support@comearth.world. Such notice must be given within 30 days after first becoming subject to a version of these Terms containing an arbitration provision. Your notice must include your name and address, your Account username (if any), Virtual Land URL, Store or marketplace URL, the email address & wallet address you used to set up your Account (if you have one), and an unequivocal statement that you want to opt out of this Arbitration Agreement. If you opt out of arbitration, all other parts of these Terms will continue to apply to you. Opting out of arbitration has no effect on any other arbitration agreements that you may currently have, or may enter into in the future, with us.
+
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Right to Waive
+                        </strong>
+                        Any or all of the rights and limitations set forth in this Arbitration Agreement may be waived by the party against whom the claim is asserted. Such waiver shall not waive or affect any other portion of this Arbitration Agreement.
+
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Survival of Agreement
+                        </strong>
+                        This Arbitration Agreement will survive the termination of your relationship with COMEARTH.
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Small Claims Court
+                        </strong>
+                        Notwithstanding the foregoing, either you or COMEARTH may bring an individual action in small claims court.
+
+                      </span>
+                    </li>
+
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Emergency Equitable Relief
+                        </strong>
+                        Notwithstanding the foregoing, either party may seek emergency equitable relief before a state or federal court in order to maintain the status quo pending arbitration. A request for interim measures shall not be deemed a waiver of any other rights or obligations under this Arbitration Agreement.
+
+                      </span>
+                    </li>
+
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Claims Not Subject to Arbitration
+                        </strong>
+                        Notwithstanding the foregoing, claims of defamation, violation of the Computer Fraud and Abuse Act, and infringement or misappropriation of the other party’s patent, copyright, trademark, or trade secrets shall not be subject to this Arbitration Agreement.
+
+                      </span>
+                    </li>
+
+                    <li className='li pl-2 mb-3'>
+                      <span className='pl-2 mb-3'>
+                        <strong>
+                        Courts
+                        </strong>
+                        In any circumstances where the foregoing Arbitration Agreement permits the parties to litigate in court, the parties hereby agree to submit to the personal jurisdiction of the courts located within USA, for such purpose.
+
+                      </span>
+                    </li>
+
+
+                    
+
+                    
+            </ol>
+        </li>
+
+        <li className='li pl-2 mb-3'>
+            <span className='mt-3 font-bold pl-2 mb-3'>
+            General
+            </span>
+            <br/>
+            <br/>
+            
+                      <span className='pl-2 mb-3'>
+
+                      We reserve the right in our sole discretion to modify, suspend, or discontinue the Tools, or any features or parts thereof, whether temporarily or permanently, at any time with or without notice to you in our sole discretion. The words “include” “including” or “includes” are used herein in an illustrative sense and not in a limiting sense and they shall be deemed to be followed by the words “without limitation”. The headings, underlined, bold typeface, and titles in these Terms are indicative and shall not be deemed part thereof or be taken into consideration in the interpretation or construction of these Terms. No provision of these Terms shall be interpreted in favour of, or against, any of the parties by reason of the extent to which any such party has put forward these Terms or any part of it. We will not be liable for any failure or delayed performance of our obligations that result from any condition beyond our reasonable control, including, but not limited to, governmental action, acts of terrorism, earthquake, fire, flood, acts of God, labor conditions, power failures, internet disturbances, or acts or omissions of third parties. These Terms constitute the entire legal agreement between you and COMEARTH, govern your access to and use of the Platform and/or Tools, and completely replace any prior or contemporaneous agreements between the parties related to your access to or use of the Platform and/or Tools, whether oral or written. These Terms, and your access to and use of the Tools, shall be governed by and construed and enforced in accordance with the laws of the USA without regard to any conflict of law rules or principles that would cause the application of the laws of any other jurisdiction. Any dispute between the parties that is not subject to arbitration or cannot be heard in small claims court, shall be resolved in the courts of the USA. Notwithstanding anything contained in these Terms, we reserve the right, without notice and in our sole discretion, to terminate your right to access or use the Tool at any time and for any or no reason, and you acknowledge and agree that COMEARTH Entities shall have no liability or obligation to you in such event and that you will not be entitled to a refund of any amounts that you have already paid to us, to the fullest extent permitted by applicable law. If any term, section, or provision of these Terms is held invalid or unenforceable, then that term, section or provision will be severable from these Terms and will not affect the validity or enforceability of any remaining part of that term, section or provision, or any other term, section, or provision of these Terms. Your relationship to COMEARTH is that of an independent contractor, and neither party is an agent or partner of the other. These Terms, and any rights and licenses granted hereunder, may not be transferred, or assigned by you without the prior written consent of COMEARTH, however, we may cede, assign, or otherwise transfer our rights or obligations under these Terms to any third party without your consent and without notice to you. You can only transfer your rights in a Virtual Land in accordance with these Terms. All sections including indemnity and limitation of liability, which by their nature should survive the termination of these Terms shall continue in full force and effect subsequent to and notwithstanding any termination of these Terms by COMEARTH or you. COMEARTH’s failure to assert any right or provision under these Terms shall not constitute a waiver of such right or provision. Except as otherwise provided herein, these Terms are intended solely for the benefit of COMEARTH and you and are not intended to confer third party beneficiary rights upon any other person or entity. 
+
+                  
+                      </span>
+                   
+        </li>
 
             
           
            
   </ol>
+  <span className='font-bold'>
+  You want more information or have a question or query for us, then please click Contact Us
+  </span>
     </Fragment>
   )
 }
