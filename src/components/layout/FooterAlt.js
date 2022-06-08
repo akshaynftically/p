@@ -15,21 +15,25 @@ const _menu = {
       id: '1002',
       title: 'Reserve Virtual Land ',
       url: 'reserve-land',
+      target:false
     },
     {
       id: '1003',
       title: 'About Us',
       url: 'about-us',
+      target:false
     },
     {
       id: '1004',
       title: 'Contact Us',
       url: 'contact-us',
+      target:false
     },
     {
       id: '1005',
       title: 'Visit NFTICALLY',
       url: 'https://www.nftically.com',
+      target:true
     },
   ],
   resources: [
@@ -37,11 +41,13 @@ const _menu = {
       id: '1004',
       title: 'Whitepaper',
       url: 'https://docs.comearth.world/whitepaper',
+      target:true
     },
     {
       id: '1005',
       title: 'Blog',
       url: 'https://www.comearth.world/blog',
+      target:true
     },
   ],
 }
@@ -189,7 +195,7 @@ const FooterAlt = () => {
                     <a
                       className='text-[14px] text-white/[.80] hover:text-white transition duration-[200ms] ease-in-out'
                       href={elI.url}
-                      
+                      target={elI.target ? '_blank' : '_self' }
                     >
                       {elI.title}
                     </a>
@@ -243,7 +249,7 @@ const FooterAlt = () => {
               © NFTICALLY {new Date().getFullYear()} | All Rights Reserved. Built with Love on
               planet Earth.
             </div>
-            <ul className='grid grid-cols-2 md:flex items-center md:-mx-[16px] mb-[24px] md:mb-0 w-full md:w-auto'>
+            <ul className='grid grid-cols-3 text-center md:flex items-center md:-mx-[16px] mb-[24px] md:mb-0 w-full md:w-auto'>
               {_secondMenu.map((el) => (
                 <li key={el.id} className={`md:mx-[16px] ${el.className}`}>
                   <Link
