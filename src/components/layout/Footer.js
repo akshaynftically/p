@@ -1,4 +1,4 @@
-import {useLocation} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
 
 const Footer = () => {
   const {pathname} = useLocation()
@@ -16,17 +16,15 @@ const Footer = () => {
 
         <nav className='mx-auto lg:mx-[unset] lg:ml-auto text-[10px] md:text-[12px]'>
           <ul className='flex'>
+            
             <li className='mr-[16px] md:mr-[38px]'>
-              <a href='/'>Community Guidelines</a>
+              <Link target="_self" to='/risk'>Risk Disclaimer</Link>
             </li>
             <li className='mr-[16px] md:mr-[38px]'>
-              <a href='/'>Risk Policy</a>
-            </li>
-            <li className='mr-[16px] md:mr-[38px]'>
-              <a href='/'>Terms</a>
+              <Link to='/terms'>Terms</Link>
             </li>
             <li>
-              <a href='/'>Privacy Policy</a>
+              <Link to='/policy'>Privacy Policy</Link>
             </li>
           </ul>
         </nav>

@@ -38,7 +38,7 @@ const AddFundsModal = (props) => {
                     {activeTab === 0 ? (
                        <div>
                            <div className='pt-[24px] px-[24px] pb-[25px] bg-[#363738] rounded-[8px] mb-[24px]'>
-                               <span className='text-white/80 text-[16px]'>Deposit Polygon (Matic) from your exchange or wallet to the following adress</span>
+                               <span className='text-white/80 text-[16px]'>Deposit Crypto from your exchange or wallet to the following address</span>
 
                                <hr className='border-white/10 my-[16px]' />
 

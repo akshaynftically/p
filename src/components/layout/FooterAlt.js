@@ -6,6 +6,7 @@ import {SimpleButton} from 'components/buttons'
 // Sources
 import _logoComearth from 'assets/img/logo-comearth.svg'
 import _logoNftcally from 'assets/img/logo-nftically.svg'
+import { Link } from 'react-router-dom'
 
 // Mocks
 const _menu = {
@@ -188,7 +189,7 @@ const FooterAlt = () => {
                     <a
                       className='text-[14px] text-white/[.80] hover:text-white transition duration-[200ms] ease-in-out'
                       href={elI.url}
-                      target='_blank'
+                      
                     >
                       {elI.title}
                     </a>
@@ -245,13 +246,13 @@ const FooterAlt = () => {
             <ul className='grid grid-cols-2 md:flex items-center md:-mx-[16px] mb-[24px] md:mb-0 w-full md:w-auto'>
               {_secondMenu.map((el) => (
                 <li key={el.id} className={`md:mx-[16px] ${el.className}`}>
-                  <a
+                  <Link
                     className='text-[12px] text-white/[.65] hover:text-white transition duration-[200ms] ease-in-out'
-                    href={el.url}
-                    target='_blank'
+                    to={el.url}
+                   
                   >
                     {el.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
