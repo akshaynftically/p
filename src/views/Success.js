@@ -36,8 +36,8 @@ const Failed = () => {
             navigate('/reserve-land')
         }
 
-        // dispatch(clearTransactionForm())
-        // localStorage.removeItem('order')
+        dispatch(clearTransactionForm())
+        localStorage.removeItem('order')
     console.log(transactionForm)
 
     }, [dispatch, navigate, transactionForm])
