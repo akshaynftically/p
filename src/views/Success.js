@@ -158,7 +158,7 @@ const Failed = () => {
                         </div>
                     </div>
 
-                    <div className="bg-[#262728] px-[32px] py-[24px] rounded-[8px] mb-[24px]">
+                    {/* <div className="bg-[#262728] px-[32px] py-[24px] rounded-[8px] mb-[24px]">
                         <div className="border-b border-[#363738] pb-[8px] mb-[16px]">
                             <h5 className='text-[20px] font-bold'>Customer Details</h5>
                         </div>
@@ -178,10 +178,10 @@ const Failed = () => {
                             </div>
                             <div>
                                 <div className='text-left font-normal text-white/60 mb-[4px]'>Country</div>
-                                <div>{transactionForm.country.label}</div>
+                                 <div>{transactionForm.country.label}</div> 
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="bg-[#262728] px-[32px] py-[24px] rounded-[8px] mb-[24px]">
                         <div className="border-b border-[#363738] pb-[8px]">
@@ -198,7 +198,7 @@ const Failed = () => {
                                             {/* <svg className='mr-[3px]' width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12.3254 4.79649C12.024 4.6189 11.6322 4.6189 11.3008 4.79649L8.95018 6.15801L7.35303 7.04598L5.00246 8.40748C4.70111 8.58508 4.30935 8.58508 3.97786 8.40748L2.10947 7.34196C1.80812 7.16435 1.59717 6.83876 1.59717 6.4836V4.38212C1.59717 4.02693 1.77799 3.70135 2.10947 3.52376L3.94773 2.48782C4.24908 2.31023 4.64084 2.31023 4.97232 2.48782L6.8106 3.52376C7.11191 3.70135 7.3229 4.02693 7.3229 4.38212V5.74362L8.92006 4.82609V3.46456C8.92006 3.10939 8.73925 2.78381 8.40775 2.60622L5.00246 0.652724C4.70111 0.475134 4.30935 0.475134 3.97786 0.652724L0.5123 2.60622C0.180812 2.78381 0 3.10939 0 3.46456V7.40114C0 7.7563 0.180812 8.08189 0.5123 8.25949L3.97786 10.213C4.27921 10.3906 4.67097 10.3906 5.00246 10.213L7.35303 8.88106L8.95018 7.96352L11.3008 6.63159C11.6021 6.45399 11.9939 6.45399 12.3254 6.63159L14.1636 7.66755C14.4649 7.8451 14.6759 8.17069 14.6759 8.5259V10.6274C14.6759 10.9825 14.4951 11.3081 14.1636 11.4857L12.3254 12.5513C12.024 12.7289 11.6322 12.7289 11.3008 12.5513L9.46248 11.5153C9.16112 11.3377 8.95018 11.0122 8.95018 10.6569V9.29545L7.35303 10.213V11.5745C7.35303 11.9297 7.53383 12.2553 7.86533 12.4329L11.3309 14.3863C11.6322 14.5639 12.024 14.5639 12.3555 14.3863L15.821 12.4329C16.1224 12.2553 16.3333 11.9297 16.3333 11.5745V7.63793C16.3333 7.28277 16.1525 6.95718 15.821 6.77958L12.3254 4.79649Z" fill="#7A3FE4"/>
                                             </svg> */}
-                                        <img src={_tokenIcons[location.state.tokenLogo.logo]} className='mr-[3px]'/>
+                                        <img src={_tokenIcons[localStorage.getItem('token_logo')]} className='mr-[3px]'/>
 
                                             <span>{(item.perItemPrice * item.qty).toFixed(5)}</span>
                                         </div>
@@ -223,7 +223,7 @@ const Failed = () => {
                                 <td className='text-right pb-[8px] pt-[22px]'>
                                     <div className="flex items-center justify-end">
                                        
-                                        <img src={_tokenIcons[location.state.tokenLogo.logo]} className='mr-[3px]'/>
+                                        <img src={_tokenIcons[localStorage.getItem('token_logo')]} className='mr-[3px]'/>
                                         <span className='text-[20px]'>{(total()).toFixed(5)}</span>
                                     </div>
                                 </td>

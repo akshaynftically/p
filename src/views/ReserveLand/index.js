@@ -820,6 +820,7 @@ const ReserveLand = () => {
           }
           let process = startTransactionFlow(provider)
           process.then((tx) => {
+            
             navigate('/success', {state: {tokenLogo: selectToken}})
           }).catch((err) => {
             console.log(err)
@@ -873,6 +874,11 @@ const ReserveLand = () => {
       localStorage.setItem('transaction_form', JSON.stringify({...transactionFormData, email: email}))
     }
   }, [emailReadOnly])
+
+  useEffect(() => {
+    console.log(selectToken)
+   localStorage.setItem('token_logo',selectToken.logo)
+  }, [selectToken])
 
   return (
     <Fragment>
