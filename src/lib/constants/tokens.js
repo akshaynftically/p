@@ -1,3 +1,10 @@
+/**
+ * notes
+ * 
+ * when enabling all token(s)
+ * check ids specially weth and wmatic id in all arrays [token id 1 and 5]
+ */
+
 export const _selectTokenOptions = {
    137:[
             {
@@ -205,7 +212,7 @@ export const _selectTokenOptions = {
             "decimals":18
             },
             {
-               "id":5,
+               "id":1,
                "logo":"token_logo5",
                "value":"WETH",
                "label":"WETH ERC20 on Ethereum Network",
@@ -303,7 +310,7 @@ export const _selectTokenOptions = {
             "decimals":18
             },
             {
-               "id":5,
+               "id":1,
                "logo":"token_logo5",
                "value":"WETH",
                "label":"WETH ERC20 on Ethereum Network",
