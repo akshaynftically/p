@@ -13,7 +13,7 @@ const WrongNetworkModal = (props) => {
         <>
             {openWrongNetworkModal && (
                 <FullScreenPopup fullscreen={true} size='w-full md:w-[520px]' title='Network Not Supported' className='min-h-[100vh] md:min-h-full' onClose={onClose}>
-                    <p className='text-white/80 text-[14px] mb-[20px]'>Your currently selected Blockchain network in your wallet is Ethereum Mainnet. Presently, this store does not support this network and supports only the below-mentioned network(s).</p>
+                    <p className='text-white/80 text-[14px] mb-[20px]'>Your currently selected Blockchain network in your wallet is not supported. Presently, only the below-mentioned network(s) are supported.</p>
 
                     <div className='rounded-[4px] bg-[#363738] pt-[20px] px-[16px] pb-[32px]'>
                         <p className='text-white/80 text-[16px] mb-[20px]'>Please select one of the below-mentioned networks by clicking on its button below.</p>
