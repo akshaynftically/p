@@ -36,9 +36,8 @@ const Failed = () => {
             navigate('/reserve-land')
         }
 
-        // dispatch(clearTransactionForm())
-        // localStorage.removeItem('order')
-    // console.log(transactionForm)
+        dispatch(clearTransactionForm())
+        localStorage.removeItem('order')
 
     }, [dispatch, navigate, transactionForm])
 
@@ -221,7 +220,7 @@ const Failed = () => {
                                     <td className='text-right pb-[8px] pt-[22px]'>
                                         <div className="flex items-center justify-end">
                                             
-                                            <span> {discount}%</span>
+                                            <span> - {discount}%</span>
                                         </div>
                                     </td>
                                 </tr>
