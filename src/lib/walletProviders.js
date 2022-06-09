@@ -10,15 +10,20 @@ export const getWalletProvider = async (walletTitle) =>{
     let walletWeb3;
     let userWallet = localStorage.getItem('wallet') ? JSON.parse(localStorage.getItem('wallet')) : null
     if(isMobile){
-      let userInfo = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null
-      let userString = window.location.search === '' ? '?user_id='+userInfo.id : '&user_id='+userInfo.id
+      // since we don't have auth in mobile redirect to page directly
+      // let userInfo = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null
+      // let userString = window.location.search === '' ? '?user_id='+userInfo.id : '&user_id='+userInfo.id
       if(walletTitle === 'MetaMask' && typeof window.ethereum === "undefined"){
-        let locat= 'https://metamask.app.link/dapp/'+window.location.host+window.location.pathname+userString
+        // let locat= 'https://metamask.app.link/dapp/'+window.location.host+window.location.pathname+userString
+        console.log('helellkeflkjf')
+        let locat= 'https://metamask.app.link/dapp/'+window.location.host+window.location.pathname
+        console.log(locat)
         window.location = locat
         return
       }
       if(walletTitle === 'Coinbase Wallet' && typeof window.ethereum === "undefined"){
-        let locat= 'https://go.cb-w.com/dapp?cb_url='+window.location.host+window.location.pathname+userString
+        // let locat= 'https://go.cb-w.com/dapp?cb_url='+window.location.host+window.location.pathname+userString
+        let locat= 'https://go.cb-w.com/dapp?cb_url='+window.location.host+window.location.pathname
         window.location = locat
         return
       }
