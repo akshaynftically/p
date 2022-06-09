@@ -242,12 +242,12 @@ const Failed = () => {
                         </table>
                     </div>
 
-                    <p className='text-white/80 mb-9'>Thank you for your purchase. Your parcel(s) have been reserved, we will contact you at your email id ({transactionForm.email}) as soon as we are ready with our phase 1.</p>
+                    <p className='text-white/80 mb-9'>Thank you for your purchase. Your parcel(s) have been reserved.</p>
 
-                    <p className='text-white/80'>
+                    {/* <p className='text-white/80'>
                     You will receive details of this purchase on your email also. In case, you are not able to find it, please make sure to check your spam folder too. 
                         <a className='text-[#3F99FF] underline ml-1' rel="noreferrer" target='_blank' href={process.env.REACT_APP_SUCCESS_LEARN_MORE}>Learn More</a>
-                    </p>
+                    </p> */}
                 </div>
             )}
         </Fragment>
