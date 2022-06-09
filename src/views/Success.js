@@ -38,9 +38,16 @@ const Failed = () => {
 
         dispatch(clearTransactionForm())
         localStorage.removeItem('order')
-    console.log(transactionForm)
 
     }, [dispatch, navigate, transactionForm])
+
+    useEffect(() => {
+       return ()=>{
+        dispatch(clearTransactionForm())
+        localStorage.removeItem('order')
+       }
+
+    }, [])
 
     const getTotal = () => {
         let total = transactionForm.basket.reduce((sum, cur) => {
@@ -127,7 +134,9 @@ const Failed = () => {
                     <h2 className='font-[900] text-[24px] lg:text-[36px] mb-[8px]'>Congratulations!</h2>
                     <h5 className='text-[16px] lg:text-[32px] mb-[20px]'>You now own a real estate in COMEARTH</h5>
                     <div className=''>
-                        <button className='bg-[#3F99FF] mt-[6px] mb-[30px] md:mt-0 block w-full md:w-auto px-[50px] py-[10px] rounded-l-[4px] md:rounded-l-0 rounded-r-[4px] text-[14px]'>
+                        <button onClick={()=>{     dispatch(clearTransactionForm());
+                            
+                            localStorage.removeItem('order'); navigate('/reserve-land?user_id='+auth.id)}} className='bg-[#3F99FF] mt-[6px] mb-[30px] md:mt-0 block w-full md:w-auto px-[50px] py-[10px] rounded-l-[4px] md:rounded-l-0 rounded-r-[4px] text-[14px]'>
                             <Link to={'/reserve-land?user_id='+auth.id}>Buy More</Link>
                         </button>
                     </div>
@@ -211,7 +220,7 @@ const Failed = () => {
                                     <td className='text-right pb-[8px] pt-[22px]'>
                                         <div className="flex items-center justify-end">
                                             
-                                            <span> {discount}%</span>
+                                            <span> - {discount}%</span>
                                         </div>
                                     </td>
                                 </tr>

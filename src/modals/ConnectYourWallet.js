@@ -7,6 +7,7 @@ import {FullScreenPopup} from 'components/popups'
 import { _walletIcons } from 'lib/constants/walletIcons'
 import { getWalletProvider } from 'lib/walletProviders'
 import apiRepository from 'lib/apiRepository'
+import {  isMobile, MobileView } from "react-device-detect";
 
 
 const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
@@ -18,9 +19,18 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
     document.dispatchEvent(connected);
   }
 
+  const renderContent = () => {
+     console.log(isMobile)
+    if (isMobile) {
+      return <div className='text-[14px] text-white/[.80] mb-[10px]'> For optimal purchase experience please reserve land parcels on laptop or desktop.</div>
+    }
+
+  }
+
   return (
     <FullScreenPopup title='Connect Your Wallet' size='w-full sm:w-[520px]' onClose={onClose}>
       <div className='text-[14px] text-white/[.80] mb-[10px]'>
+      {renderContent()}
         By connecting a wallet, you agree to NFTICALLY’s{' '}
         <a className='font-bold text-[#3E97FC] hover:underline' rel='noreferrer' href='/terms#terms'>
           Terms of Service
@@ -34,6 +44,7 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
       <div className='text-[14px] text-white/[.80] mb-[24px]'>
       If changing wallet, please change the account in wallet's browser extension or app first.
       </div>
+      
 
       <div className='bg-[#363738] rounded-lg mb-[18px]'>
         <div>

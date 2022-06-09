@@ -96,7 +96,7 @@ const Basket = (props) => {
                />
              </svg> */}
 
-             {(discountPercentage[0]/1000).toFixed(2)} %
+             - {(discountPercentage[0]/1000).toFixed(2)} %
            </div>
           </div>
       </> 
