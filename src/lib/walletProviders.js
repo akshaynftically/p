@@ -15,9 +15,7 @@ export const getWalletProvider = async (walletTitle) =>{
       // let userString = window.location.search === '' ? '?user_id='+userInfo.id : '&user_id='+userInfo.id
       if(walletTitle === 'MetaMask' && typeof window.ethereum === "undefined"){
         // let locat= 'https://metamask.app.link/dapp/'+window.location.host+window.location.pathname+userString
-        console.log('helellkeflkjf')
         let locat= 'https://metamask.app.link/dapp/'+window.location.host+window.location.pathname
-        console.log(locat)
         window.location = locat
         return
       }
