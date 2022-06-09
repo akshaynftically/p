@@ -2,12 +2,12 @@ import axios from "./axiosHelper";
 
 export class apiRepository {
 
-    // async createLead(email){
-    //     return
-    //     return axios.post('/v1/leads',{
-    //         email: email
-    //     })
-    // }
+    async createLead(data){
+        console.log(data)
+        return axios.post('/v1/leads',{
+            ...data
+        })
+    }
 
     // async getOtpData(otp){
     //     return
