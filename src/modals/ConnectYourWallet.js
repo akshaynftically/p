@@ -31,8 +31,11 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
         </a>{' '}
         that you have read and understand.
       </div>
-      <div className='text-[14px] text-white/[.80] mb-[24px]'>
+      <div className='text-[14px] text-white/[.80] mb-[10px]'>
       If changing wallet, please change the account in wallet's browser extension or app first.
+      </div>
+      <div className='text-[14px] text-white/[.80] mb-[24px]'>
+      For optimal purchase experience please reserve land parcels on laptop or desktop.
       </div>
 
       <div className='bg-[#363738] rounded-lg mb-[18px]'>
