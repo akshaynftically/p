@@ -239,7 +239,7 @@ const ReserveLand = () => {
   const navigate = useNavigate()
   const [openAddFundsModal, setOpenAddFundsModal] = useState(false)
   const [cookies, setCookie] = useCookies()
-  const [selectNetwork, setSelectNetwork] = useState(process.env.REACT_APP_IS_MAINNET_ENABLED == 'true' ?_networks[2] :_networks[3])
+  const [selectNetwork, setSelectNetwork] = useState(_networks.filter((n) => {return n.chainId == process.env.REACT_APP_DEFAULT_NETWORK})[0])
   const mainnetType=!(process.env.REACT_APP_IS_MAINNET_ENABLED == 'false')
 
   const appGlobals = useContext(AppContext)
@@ -308,7 +308,7 @@ const ReserveLand = () => {
   const [discountCode, setDiscountCode] = useState('')
   const [selectIndustry, setSelectIndustry] = useState(_selectIndustryOptions[0])
   const [selectCountry, setSelectCountry] = useState(null)
-  const [tokenList, setTokenList] = useState(_selectTokenOptions[1])
+  const [tokenList, setTokenList] = useState(_selectTokenOptions[process.env.REACT_APP_DEFAULT_NETWORK])
   const [selectToken, setSelectToken] = useState(tokenList[0])
   const [discountPercentage, setDiscountPercentage] = useState(0)
   const [areYouRepresenting, setAreYouRepresenting] = useState('individual')
@@ -810,7 +810,6 @@ const ReserveLand = () => {
     return receipt
   }
   const onSubmit = (data) => {
-    console.log(discountPercentage)
     let discount = (discountPercentage[0] / 1000).toFixed(2)
     localStorage.setItem('discount', JSON.stringify(discount))
     dispatch(setTransactionForm({...data, basket, discount}))
