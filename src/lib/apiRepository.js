@@ -52,10 +52,23 @@ export class apiRepository {
                     last_connected_at: new Date().getTime()
                 }]
               })
-              if(resp.status.code === '200'){
-                  console.log('user updated')
-              }else if(resp.status.code === '201'){
-                  console.log('user created')
+              console.log(resp)
+              if(resp.status === 200){
+                    console.log('user updated')
+                    // gtm create user
+                    window.dataLayer.push({
+                        "event" : "user-updated",
+                        "user_id" : resp.data.id,
+                        "user" : resp.data
+                    })
+              }else if(resp.status === 201){
+                    console.log('user created')
+                    // gtm create user
+                    window.dataLayer.push({
+                        "event" : "user-created",
+                        "user_id" : resp.data.id,
+                        "user" : resp.data
+                    })
               }
               localStorage.setItem('auth',JSON.stringify(resp.data))
             }catch(error){
