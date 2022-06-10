@@ -114,7 +114,7 @@ const Main = () => {
                   /> */}
 
                   <SimpleButton
-                    className=' top-0 right-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold lg:rounded-l-none'
+                    className=' top-0 right-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold lg:rounded'
                     type='submit'
                   >
                     Reserve Your Land Now

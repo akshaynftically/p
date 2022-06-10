@@ -837,6 +837,8 @@ const ReserveLand = () => {
       "payment_token" : selectToken.label,
       "total_price_in_token" : ethers.utils.formatUnits(totalPrice,selectToken.decimals),
     })
+
+    localStorage.setItem('ts',JSON.stringify(receipt))
     return receipt
   }
   const onSubmit = (data) => {
