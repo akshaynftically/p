@@ -35,11 +35,11 @@ learn:'',
     })
     const {onClose} = props
 
-    useEffect(() => {
-        if (transactionForm) {
-            setValue('email', transactionForm.email)
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (transactionForm) {
+    //         setValue('email', transactionForm.email)
+    //     }
+    // }, [])
     const handleProgressWallet =() =>{
         setIsOpenedProgressWallet(!isOpenedProgressWallet)
       }
