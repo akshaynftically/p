@@ -710,16 +710,6 @@ const ReserveLand = () => {
     const networkConfig = await getChainData(provider)
     let totalPrice = await getTotalParcelPrice(basket, selectToken, account)
 
-    // gtm event
-    window.dataLayer.push({
-      "event" : "land-reservation-initiated",
-      "user_id" : user.id,
-      "parcel_quantities" : [...(basket.map((el) => {return el.qty}))],
-      "payment_token" : selectToken.label,
-      "total_price_in_token" : ethers.utils.formatUnits(totalPrice,selectToken.decimals),
-      ...wallet
-    })
-
     let contract = new ethers.Contract(networkConfig.land_reserver_contract, _landReserverAbi, provider)
     let signedContract = contract.connect(signer)
     let parcelQuantities = basket.map((el) => {
@@ -736,6 +726,20 @@ const ReserveLand = () => {
     } catch (e) {
       tNumber = BigNumber.from(0)
     }
+
+    // gtm event
+    window.dataLayer.push({
+      "event" : "land-reservation-initiated",
+      "user_id" : user.id,
+      "order_id" : order.id,
+      "discount_percentage" : discount,
+      "parcel_quantities" : [...(basket.map((el) => {return el.qty}))],
+      "payment_token" : selectToken.label,
+      "total_price_in_token" : ethers.utils.formatUnits(totalPrice,selectToken.decimals),
+      "wallet_address" : wallet.address,
+      "wallet_name" : wallet.wallet,
+    })
+
     // check for approval erc20
     if (selectToken.id !== 0) {
       let erc20 = new ethers.Contract(selectToken.contract_address, _erc20Abi, provider)
@@ -757,11 +761,14 @@ const ReserveLand = () => {
         window.dataLayer.push({
           "event" : "insufficient-funds-popup-shown",
           "user_id" : user.id,
+          "order_id" : order.id,
+          "discount_percentage" : discount,
           "parcel_quantities" : [...(basket.map((el) => {return el.qty}))],
           "payment_token" : selectToken.label,
           "total_price_in_token" : ethers.utils.formatUnits(totalPrice,selectToken.decimals),
           "user_balance" : ethers.utils.formatUnits(balance,selectToken.decimals),
-          ...wallet
+          "wallet_address" : wallet.address,
+          "wallet_name" : wallet.wallet,
         })
         err = {scope: 'comearth', message: 'Low erc20 balance'}
         throw err
@@ -833,9 +840,13 @@ const ReserveLand = () => {
     window.dataLayer.push({
       "event" : "land-reservation-successful",
       "user_id" : user.id,
+      "order_id" :order.id,
+      "discount_percentage" : discount,
       "parcel_quantities" : [...(basket.map((el) => {return el.qty}))],
       "payment_token" : selectToken.label,
       "total_price_in_token" : ethers.utils.formatUnits(totalPrice,selectToken.decimals),
+      "wallet_address" : wallet.address,
+      "wallet_name" : wallet.wallet,
     })
     return receipt
   }
@@ -877,9 +888,11 @@ const ReserveLand = () => {
               "event" : "land-reservation-failed",
               "user_id" : user.id,
               "order_id" : order.id,
+              "discount_percentage" : discount,
               "parcel_quantities" : [...(basket.map((el) => {return el.qty}))],
               "payment_token" : selectToken.label,
-              ...wallet,
+              "wallet_address" : wallet.address,
+              "wallet_name" : wallet.wallet,
               "failure_reason" : err
             })
             setIsOpenedProgressWallet(false)
