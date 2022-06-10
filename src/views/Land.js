@@ -95,13 +95,13 @@ const Land = (props) => {
   //         console.log(data)
   //     })
 
-  useEffect(() => {
-    setAnimate(true)
+  // useEffect(() => {
+  //   setAnimate(true)
 
-    if (transactionForm) {
-      setValue('email', transactionForm.email)
-    }
-  }, [])
+  //   if (transactionForm) {
+  //     setValue('email', transactionForm.email)
+  //   }
+  // }, [])
 
   function back() {
     const immediately = window.scrollY > window.outerHeight
