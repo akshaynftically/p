@@ -688,7 +688,8 @@ const ReserveLand = () => {
   }
 
   const startTransactionFlow = async (provider) => {
-
+    let user = JSON.parse(localStorage.getItem('auth'))
+    let wallet = JSON.parse(localStorage.getItem('wallet'))
     let transaction
     let receipt
     let tNumber = 0
@@ -707,6 +708,17 @@ const ReserveLand = () => {
     const signer = provider.getSigner()
     const account = (await provider.send('eth_accounts', []))[0]
     const networkConfig = await getChainData(provider)
+    let totalPrice = await getTotalParcelPrice(basket, selectToken, account)
+
+    // gtm event
+    window.dataLayer.push({
+      "event" : "land-reservation-initiated",
+      "user_id" : user.id,
+      "parcel_quantities" : [...(basket.map((el) => {return el.qty}))],
+      "payment_token" : selectToken.label,
+      "total_price_in_token" : ethers.utils.formatUnits(totalPrice,selectToken.decimals),
+      ...wallet
+    })
 
     let contract = new ethers.Contract(networkConfig.land_reserver_contract, _landReserverAbi, provider)
     let signedContract = contract.connect(signer)
@@ -725,7 +737,6 @@ const ReserveLand = () => {
       tNumber = BigNumber.from(0)
     }
     // check for approval erc20
-    let totalPrice = await getTotalParcelPrice(basket, selectToken, account)
     if (selectToken.id !== 0) {
       let erc20 = new ethers.Contract(selectToken.contract_address, _erc20Abi, provider)
       let allowedAmt = await erc20.allowance(account, networkConfig.land_reserver_contract)
@@ -741,6 +752,16 @@ const ReserveLand = () => {
           tokenIcon: _tokenIcons[selectToken.logo],
           addressExplorar: networkConfig.explorar + '/address/' + account,
           chainId: networkConfig.chainId
+        })
+        // gtm event low balance
+        window.dataLayer.push({
+          "event" : "insufficient-funds-popup-shown",
+          "user_id" : user.id,
+          "parcel_quantities" : [...(basket.map((el) => {return el.qty}))],
+          "payment_token" : selectToken.label,
+          "total_price_in_token" : ethers.utils.formatUnits(totalPrice,selectToken.decimals),
+          "user_balance" : ethers.utils.formatUnits(balance,selectToken.decimals),
+          ...wallet
         })
         err = {scope: 'comearth', message: 'Low erc20 balance'}
         throw err
@@ -807,6 +828,15 @@ const ReserveLand = () => {
       amount: actualData.a,
       conversion_factor: actualData.c
     })
+
+    // gtm event
+    window.dataLayer.push({
+      "event" : "land-reservation-successful",
+      "user_id" : user.id,
+      "parcel_quantities" : [...(basket.map((el) => {return el.qty}))],
+      "payment_token" : selectToken.label,
+      "total_price_in_token" : ethers.utils.formatUnits(totalPrice,selectToken.decimals),
+    })
     return receipt
   }
   const onSubmit = (data) => {
@@ -839,6 +869,19 @@ const ReserveLand = () => {
             navigate('/success', {state: {tokenLogo: selectToken}})
           }).catch((err) => {
             console.log(err)
+            let user = JSON.parse(localStorage.getItem('auth'))
+            let order = JSON.parse(localStorage.getItem('order'))
+            let wallet = JSON.parse(localStorage.getItem('wallet'))
+            // gtm catch any type of error into gtm
+            window.dataLayer.push({
+              "event" : "land-reservation-failed",
+              "user_id" : user.id,
+              "order_id" : order.id,
+              "parcel_quantities" : [...(basket.map((el) => {return el.qty}))],
+              "payment_token" : selectToken.label,
+              ...wallet,
+              "failure_reason" : err
+            })
             setIsOpenedProgressWallet(false)
             if (globalErrorNotifier(err) === false) {
               // if we have an uncaught error then send user to failed page
@@ -846,8 +889,19 @@ const ReserveLand = () => {
             } else {
               // for native token error
               if ((JSON.stringify(err)).includes('insufficient funds for gas')) {
-                console.log('inside err')
-
+                (async() => {
+                  let totalPrice = await getTotalParcelPrice(basket, selectToken, account)
+                  let balance = await (await appGlobals.hasWalletProvider()).getBalance(account)
+                  // gtm event low balance
+                  window.dataLayer.push({
+                    "event" : "insufficient-funds-popup-shown",
+                    "user_id" : user.id,
+                    "parcel_quantities" : [...(basket.map((el) => {return el.qty}))],
+                    "payment_token" : selectToken.label,
+                    "total_price_in_token" : ethers.utils.formatUnits(totalPrice,selectToken.decimals),
+                    "user_balance" : ethers.utils.formatUnits(balance,selectToken.decimals)
+                  })
+                })()
                 setOpenAddFundsModal(true)
               }
             }
