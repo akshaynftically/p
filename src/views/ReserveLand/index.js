@@ -251,8 +251,8 @@ const ReserveLand = () => {
   const [isWhiteListed, setIsWhiteListed] = useState(false)
   const [whiteListError, setWhiteListError] = useState(null)
   const [disabledReserveLand, setDisabledReserveLand] = useState(false)
-  const [emailReadOnly, setEmailReadOnly] = useState(null)
-  const [email, setEmail] = useState('')
+  // const [emailReadOnly, setEmailReadOnly] = useState(null)
+  // const [email, setEmail] = useState('')
   const [authData, setAuthData] = useState(null)
   const [openModal, setOpenModal] = useState(false)
 
@@ -433,14 +433,14 @@ const ReserveLand = () => {
   useEffect(() => {
     if (transactionForm) {
       setValue('name', transactionForm.name)
-      setValue('email', transactionForm.email)
+      // setValue('email', transactionForm.email)
       setValue('company', transactionForm.company)
       setValue('country', transactionForm.country)
-      setEmail(transactionForm.email)
-      if (transactionForm.email) {
+      // setEmail(transactionForm.email)
+      // if (transactionForm.email) {
 
-        setEmailReadOnly(true)
-      }
+      //   setEmailReadOnly(true)
+      // }
 
       // Other fields
       if (transactionForm.token) {
@@ -462,9 +462,9 @@ const ReserveLand = () => {
 
     setValue('industry', _selectIndustryOptions[0])
 
-    if (email) {
-      setEmailReadOnly(false)
-    }
+    // if (email) {
+    //   setEmailReadOnly(false)
+    // }
 
           //Get UTM Prameters
 			let utmParams = JSON.stringify(getUtmParameters());
@@ -506,7 +506,7 @@ const ReserveLand = () => {
           })
           dispatch(setTransactionForm({
             name: user.name,
-            email: user.email,
+            // email: user.email,
             country: country[0],
             company: user.company,
             representing: user.company != null ? 'company' : 'individual'
@@ -838,14 +838,16 @@ const ReserveLand = () => {
       "total_price_in_token" : ethers.utils.formatUnits(totalPrice,selectToken.decimals),
     })
 
-    localStorage.setItem('ts',JSON.stringify(receipt))
+    localStorage.setItem('cart',JSON.stringify(basket))
+    
+
     return receipt
   }
   const onSubmit = (data) => {
     let discount = (discountPercentage[0] / 1000).toFixed(2)
     localStorage.setItem('discount', JSON.stringify(discount))
     dispatch(setTransactionForm({...data, basket, discount}))
-    setEmailReadOnly(true)
+    // setEmailReadOnly(true)
 
 
     let total_qty = basket.reduce((sum, el) => {
@@ -912,11 +914,11 @@ const ReserveLand = () => {
       })
     })
   }
-  const handleEmailEdit = () => {
-    setEmailReadOnly(!emailReadOnly)
+  // const handleEmailEdit = () => {
+  //   setEmailReadOnly(!emailReadOnly)
 
 
-  }
+  // }
 
   // useEffect(() => {
   //   if (email.match(
@@ -929,21 +931,21 @@ const ReserveLand = () => {
   // }, [email])
 
 
-  useEffect(() => {
-    setAuthData(JSON.parse(localStorage.getItem('auth')))
-    setTransactionFormData(JSON.parse(localStorage.getItem('transaction_form')))
-    if (emailReadOnly === false) {
-      localStorage.removeItem('auth')
-      localStorage.removeItem('transaction_form')
-      setValue('email', '')
+  // useEffect(() => {
+  //   setAuthData(JSON.parse(localStorage.getItem('auth')))
+  //   setTransactionFormData(JSON.parse(localStorage.getItem('transaction_form')))
+  //   if (emailReadOnly === false) {
+  //     localStorage.removeItem('auth')
+  //     localStorage.removeItem('transaction_form')
+  //     setValue('email', '')
 
 
-    } else {
-      setTransactionFormData({...transactionForm, email: email})
-      console.log(email)
-      localStorage.setItem('transaction_form', JSON.stringify({...transactionFormData, email: email}))
-    }
-  }, [emailReadOnly])
+  //   } else {
+  //     setTransactionFormData({...transactionForm, email: email})
+  //     console.log(email)
+  //     localStorage.setItem('transaction_form', JSON.stringify({...transactionFormData, email: email}))
+  //   }
+  // }, [emailReadOnly])
 
   useEffect(() => {
     console.log(selectToken)

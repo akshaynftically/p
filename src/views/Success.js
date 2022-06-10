@@ -26,7 +26,7 @@ const Failed = () => {
     const location = useLocation();
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const transactionForm = useSelector(getTransactionForm)
+    const transactionForm = JSON.parse(localStorage.getItem('cart'))
     console.log(transactionForm)
     const order=JSON.parse(localStorage.getItem('order'))
     const auth=JSON.parse(localStorage.getItem('auth'))
@@ -45,12 +45,15 @@ const Failed = () => {
        return ()=>{
         dispatch(clearTransactionForm())
         localStorage.removeItem('order')
+        localStorage.removeItem('discount')
+        localStorage.removeItem('cart')
+
        }
 
     }, [])
 
     const getTotal = () => {
-        let total = transactionForm.basket.reduce((sum, cur) => {
+        let total = transactionForm.reduce((sum, cur) => {
             return sum += cur.perItemPrice * cur.qty
         }, 0)
 
@@ -60,8 +63,8 @@ const Failed = () => {
     const total = () => {
         let total = getTotal()
 
-        if (transactionForm.discount) {
-            total = total - ((total * transactionForm.discount) / 100)
+        if (discount) {
+            total = total - ((total * discount) / 100)
         }
 
         return total
@@ -199,7 +202,7 @@ const Failed = () => {
 
                         <table className="table-fixed w-full">
                             <tbody>
-                            {transactionForm.basket.map((item, index) => (
+                            {transactionForm.map((item, index) => (
                                 item.qty ? <tr className='border-b border-[#363738]' key={index}>
                                     <td className='text-wrap pb-[8px] pt-[22px]'>{item.qty}  Parcel(s) - {item.type} Size</td>
                                     <td className='text-right pb-[8px] pt-[22px]'>
