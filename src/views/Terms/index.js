@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import clsx from 'clsx'
+import {Helmet} from "react-helmet";
 
 // Views
 import TermsAndConditions from './TermsAndConditions'
@@ -44,6 +45,9 @@ const Terms = () => {
     <div className='text-white pt-[150px]'>
       <div className='mx-[20px] lg:mx-[80px]'>
         <div className='flex overflow-auto pb-[20px] md:pb-0 items-center mb-[34px] -mx-[8px]'>
+        <Helmet>
+          <link rel="canonical" href="https://www.comearth.world/terms" />
+        </Helmet>
           {_menu.map((el) => (
             <Link
               key={el.id}
