@@ -1,8 +1,13 @@
 import {Fragment} from 'react'
+import {Helmet} from "react-helmet";
 
 const PrivacyPolicy = () => {
   return (
     <Fragment>
+       <Helmet>
+          <title>Comearth Privacy Policy - Web3.0 E-Commerce Metaverse & Ecosystem</title>
+          <link rel="canonical" href="https://www.comearth.world/privary-policy" />
+        </Helmet>
       <h1 className='font-white text-[48px] mt-[5rem]'>Privacy Policy</h1>
 
       <div className='mb-[34px]'>

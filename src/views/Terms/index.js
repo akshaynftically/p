@@ -46,6 +46,7 @@ const Terms = () => {
       <div className='mx-[20px] lg:mx-[80px]'>
         <div className='flex overflow-auto pb-[20px] md:pb-0 items-center mb-[34px] -mx-[8px]'>
         <Helmet>
+          <title>Comearth Terms & Conditions - Web3.0 E-Commerce Metaverse & Ecosystem</title>
           <link rel="canonical" href="https://www.comearth.world/terms" />
         </Helmet>
           {_menu.map((el) => (
