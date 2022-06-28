@@ -5,6 +5,7 @@ import {Fragment, useEffect, useState, useMemo, useContext} from 'react'
 import {BigNumber, ethers, utils} from 'ethers'
 import {components} from 'react-select'
 import {useCookies} from 'react-cookie'
+import {Helmet} from "react-helmet";
 
 // Tokens list
 import {_selectTokenOptions} from 'lib/constants/tokens'
@@ -967,6 +968,10 @@ const ReserveLand = () => {
 
   return (
     <Fragment>
+      <Helmet>
+          <title>Reserve Land at Comearth - Web3.0 E-Commerce Metaverse & Ecosystem</title>
+          <link rel="canonical" href="https://www.comearth.world/reserve-land" />
+      </Helmet>
       <div className='sm:items-end w-full mx-auto px-4 sm:px-6 px-[20px] lg:px-[80px]'>
         <div className='py-[120px] text-white'>
           <div className='mb-[14px] lg:mb-[20px]'>
