@@ -1,44 +1,13 @@
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-	<url>
-		<loc>https://www.comearth.world/</loc>
-		<image:image>
-			<image:loc>https://www.nftically.com/site-assets/images/nftically-logo-white-background.png</image:loc>
-		</image:image>
-		<image:image>
-			<image:loc>https://img.nftically.com/comearth-content/assets/images/COMEARTH-Metaverse-NFTICALLY-web3.0-E-Commerce.png</image:loc>
-		</image:image>
-		<image:image>
-			<image:loc>https://img.nftically.com/comearth-content/assets/favicon/fav-270px.png</image:loc>
-		</image:image>
-		<image:image>
-			<image:loc>https://img.nftically.com/comearth-content/static/media/4.8edff834c86de1ef2301.jpg</image:loc>
-		</image:image>
-		<image:image>
-			<image:loc>https://img.nftically.com/comearth-content/static/media/6.3b351227ee894e5faf19.jpg</image:loc>
-		</image:image>
-		<image:image>
-			<image:loc>https://img.nftically.com/comearth-content/static/media/5.5a0146486e1561a2f0ee.jpg</image:loc>
-		</image:image>
-	</url>
-	<url>
-		<loc>https://www.comearth.world/about-us</loc>
-	</url>
-	<url>
-		<loc>https://www.comearth.world/blog/</loc>
-	</url>
-		<url>
-		<loc>https://www.comearth.world/contact-us</loc>
-	</url>
-	<url>
-		<loc>https://www.comearth.world/privary-policy</loc>
-	</url>
-	<url>
-		<loc>https://www.comearth.world/reserve-land/</loc>
-	</url>
-	<url>
-		<loc>https://www.comearth.world/terms</loc>
-	</url>
-		<url>
-		<loc>https://docs.comearth.world/whitepaper</loc>
-	</url>
-</urlset>
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <sitemap>
+    <loc>https://www.comearth.world/sitemap_page_xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://docs.comearth.world/whitepaper/sitemap.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.comearth.world/blog/sitemap_index.xml</loc>
+  </sitemap>
+</sitemapindex>

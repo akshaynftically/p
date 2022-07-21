@@ -1,4 +1,5 @@
 User-agent: *
-Disallow: 
-Disallow: /cgi-bin/
+Disallow:
+Allow:
+
 Sitemap: https://www.comearth.world/sitemap.xml
