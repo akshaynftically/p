@@ -13,6 +13,8 @@ import About from 'views/About'
 import Contact from 'views/ContactUs'
 import NotFound from 'views/Errors/NotFound'
 import ServerError from 'views/Errors/ServerError'
+import PrivacyPolicy from 'views/Terms/PrivacyPolicy'
+import RiskPolicy from 'views/Terms/RiskPolicy'
 
 const Routes = () => {
   return (
@@ -30,6 +32,10 @@ const Routes = () => {
         <Route path='/failed' element={<Faild />} exact />
         <Route path='/success' element={<Success />} exact />
         <Route path='/terms' element={<Terms />} />
+        <Route path='/policy' element={<PrivacyPolicy />} />
+        <Route path='/risk' element={<RiskPolicy />} />
+
+
         <Route path='*' element={<Navigate to="404"/>} />
 
       </RRDRoutes>

@@ -26,7 +26,11 @@ const switchNetwork = (chainId) => {
                             decimals: chain.decimals,
                         }
                     }],
-                ).catch((addError) => {
+                ).then(() => {
+                    let changed = new CustomEvent('network:changed')
+                    document.dispatchEvent(changed);
+                    // window.location.reload()
+                }).catch((addError) => {
                 // handle "add" error
                 });
             }

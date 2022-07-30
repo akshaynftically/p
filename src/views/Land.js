@@ -81,23 +81,13 @@ const Land = (props) => {
     setIsOpenedProgressWallet(!isOpenedProgressWallet)
   }
   const onSubmit = (data) => {
+    // remove any cached localstorage
+    localStorage.removeItem('order')
+    localStorage.removeItem('wallet')
+    localStorage.removeItem('transaction_form')
+    localStorage.removeItem('auth')
     dispatch(setTransactionForm(data))
-    new apiRepository().createLead(data.email)
-    .then(res => {
-      // save lead in localstorage
-      console.log(res)
-      navigate('/reserve-land')
-    })
-    .catch(err => {
-      console.log(err)
-      if(err?.response?.status === 409){
-        navigate('/reserve-land')
-      }
-      if(err?.response?.status === 302){
-        handleToggleEnterYourDetails()
-        setIsOpenedProgressWallet(true)
-      }
-    })
+    navigate('/reserve-land')
   }
 
   // axios.get('https://e35df215-1476-4ed0-9a7b-a9053666b26c.mock.pstmn.io/metaverse/comearth')
@@ -105,13 +95,13 @@ const Land = (props) => {
   //         console.log(data)
   //     })
 
-  useEffect(() => {
-    setAnimate(true)
+  // useEffect(() => {
+  //   setAnimate(true)
 
-    if (transactionForm) {
-      setValue('email', transactionForm.email)
-    }
-  }, [])
+  //   if (transactionForm) {
+  //     setValue('email', transactionForm.email)
+  //   }
+  // }, [])
 
   function back() {
     const immediately = window.scrollY > window.outerHeight

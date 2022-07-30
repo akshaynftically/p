@@ -9,8 +9,8 @@ import countryList from 'react-select-country-list'
 
 const Promo = () => {
   const [searchParams,setSearchParams] = useSearchParams()
-  const otp = searchParams.get('otp')
-  const referralCode = searchParams.get('ref')
+  // const otp = searchParams.get('otp')
+  const referralCode = searchParams.get('r')
   const cookieDuration = 10 // in days
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -82,17 +82,17 @@ const Promo = () => {
 			createCookie('referral_last_touch', referralCode, cookieDuration);
     }
 
-      if(otp != null){
-        let resp = await new apiRepsitory().getOtpData(otp)
-        console.log(resp)
-        if(resp.status === 200){
-          let user = resp.data[0]
-          localStorage.setItem('auth',JSON.stringify(user))
-          let country = _selectCountryOptions.filter((el) => {return el.value === user.country_code})
-          dispatch(setTransactionForm({name: user.name, email: user.email, country : country[0], company: user.company, representing: user.company != null ? "company":"individual" }))
-          navigate('reserve-land')
-        }
-      }
+      // if(otp != null){
+      //   let resp = await new apiRepsitory().getOtpData(otp)
+      //   console.log(resp)
+      //   if(resp.status === 200){
+      //     let user = resp.data[0]
+      //     localStorage.setItem('auth',JSON.stringify(user))
+      //     let country = _selectCountryOptions.filter((el) => {return el.value === user.country_code})
+      //     dispatch(setTransactionForm({name: user.name, email: user.email, country : country[0], company: user.company, representing: user.company != null ? "company":"individual" }))
+      //     navigate('reserve-land')
+      //   }
+      // }
     })()
   },[])
 

@@ -6,6 +6,7 @@ import {SimpleButton} from 'components/buttons'
 // Sources
 import _logoComearth from 'assets/img/logo-comearth.svg'
 import _logoNftcally from 'assets/img/logo-nftically.svg'
+import { Link } from 'react-router-dom'
 
 // Mocks
 const _menu = {
@@ -14,21 +15,25 @@ const _menu = {
       id: '1002',
       title: 'Reserve Virtual Land ',
       url: 'reserve-land',
+      target:false
     },
     {
       id: '1003',
       title: 'About Us',
       url: 'about-us',
+      target:false
     },
     {
       id: '1004',
       title: 'Contact Us',
-      url: 'contact--us',
+      url: 'contact-us',
+      target:false
     },
     {
       id: '1005',
       title: 'Visit NFTICALLY',
       url: 'https://www.nftically.com',
+      target:true
     },
   ],
   resources: [
@@ -36,46 +41,42 @@ const _menu = {
       id: '1004',
       title: 'Whitepaper',
       url: 'https://docs.comearth.world/whitepaper',
+      target:true
     },
     {
       id: '1005',
       title: 'Blog',
       url: 'https://www.comearth.world/blog',
+      target:true
     },
   ],
 }
 const _menuCategories = Object.keys(_menu)
 const _secondMenu = [
   {
-    id: '1001',
-    title: 'Community Guidelines',
-    url: 'https://www.nftically.com/terms',
-    className: ''
-  },
-  {
     id: '1002',
-    title: 'Risk Policy',
-    url: 'https://www.nftically.com/terms',
-    className: 'text-right md:text-left'
+    title: 'Risk Disclaimer',
+    url: '/terms#risk-disclaimer',
+    className: ' md:text-left'
   },
   {
     id: '1003',
     title: 'Terms',
-    url: 'https://www.nftically.com/terms',
+    url: 'terms#terms',
     className: ''
   },
   {
     id: '1004',
     title: 'Privacy Policy',
-    url: 'https://www.nftically.com/privacy-policy',
-    className: 'text-right md:text-left'
+    url: '/terms#privacy-policy',
+    className: ' md:text-left'
   },
 ]
 const _socialMenu = [
   {
     id: '1001',
     title: 'Facebook',
-    url: 'https://www.facebook.com/comearth.metaverse',
+    url: 'https://www.facebook.com/ComearthHQ',
     icon: (
       <path d='M15.9998 2.66602C8.63584 2.66602 2.6665 8.63535 2.6665 15.9993C2.6665 22.654 7.5425 28.17 13.9172 29.1713V19.8527H10.5305V15.9993H13.9172V13.062C13.9172 9.72068 15.9065 7.87535 18.9532 7.87535C20.4118 7.87535 21.9372 8.13535 21.9372 8.13535V11.4153H20.2572C18.5998 11.4153 18.0838 12.4433 18.0838 13.498V15.9993H21.7812L21.1905 19.8527H18.0838V29.1713C24.4572 28.1713 29.3332 22.6527 29.3332 15.9993C29.3332 8.63535 23.3638 2.66602 15.9998 2.66602Z' />
     ),
@@ -174,7 +175,7 @@ const FooterAlt = () => {
         <div className='grid grid-cols-12 border-t-[1px] md:border-none border-[#363738] pt-[24px] md:pt-0'>
           <div className='col-span-12 text-center md:text-left md:col-span-4 mb-[24px] md:mb-0'>
             <div className='mb-[20px] md:mb-[24px]'>
-              <img className='inline-block max-w-full' src={_logoComearth} alt='Comearth' />
+              <img className='inline-block max-w-full' src={_logoComearth} alt='COMEARTH' />
             </div>
 
             <div className='flex justify-center md:justify-start'>
@@ -194,7 +195,7 @@ const FooterAlt = () => {
                     <a
                       className='text-[14px] text-white/[.80] hover:text-white transition duration-[200ms] ease-in-out'
                       href={elI.url}
-                      target='_blank'
+                      target={elI.target ? '_blank' : '_self' }
                     >
                       {elI.title}
                     </a>
@@ -248,16 +249,16 @@ const FooterAlt = () => {
               © NFTICALLY {new Date().getFullYear()} | All Rights Reserved. Built with Love on
               planet Earth.
             </div>
-            <ul className='grid grid-cols-2 md:flex items-center md:-mx-[16px] mb-[24px] md:mb-0 w-full md:w-auto'>
+            <ul className='grid grid-cols-3 text-center md:flex items-center md:-mx-[16px] mb-[24px] md:mb-0 w-full md:w-auto'>
               {_secondMenu.map((el) => (
                 <li key={el.id} className={`md:mx-[16px] ${el.className}`}>
-                  <a
+                  <Link
                     className='text-[12px] text-white/[.65] hover:text-white transition duration-[200ms] ease-in-out'
-                    href={el.url}
-                    target='_blank'
+                    to={el.url}
+                   
                   >
                     {el.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

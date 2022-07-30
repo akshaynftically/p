@@ -1,11 +1,25 @@
 import AppContext from 'components/AppContext';
 import { SimpleButton } from 'components/buttons'
+import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet';
+import ReserveLandModal from 'modals/ReserveLandModal';
 import {useContext, useEffect, useState} from "react";
 import HeaderBalance from "./HeaderBalance";
 
 const HeaderWalletInfo = () => {
     const [account, setAccount] = useState(null)
     const [provider,setProvider] = useState(null)
+
+  const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
+
+  const [txModalProps,setTxModalProps] = useState({
+    title:'Email is Required',
+    mainHeading:'Please enter Email ID before connecting wallet.',
+    content:'',
+    loading:false,
+    learn:'',
+    view:''
+  })
+
     const appGlobals = useContext(AppContext)
 
     useEffect(() => {
@@ -23,8 +37,21 @@ const HeaderWalletInfo = () => {
             setAccount(accounts[0])
         })
     }
+    const handleProgressWallet =() =>{
+        setIsOpenedProgressWallet(!isOpenedProgressWallet)
+      }
 
     const connectWallet = async ()  => {
+// let transaction_form=JSON.parse(localStorage.getItem('transaction_form'))
+// if(!transaction_form){
+//     setIsOpenedProgressWallet(true)
+//     return
+    
+// }else if(!transaction_form.email){
+//     setIsOpenedProgressWallet(true)
+//     return
+// }
+
         let tempProvider = await appGlobals.getWalletProviderConfirmed()
         setProvider(tempProvider)
         changeAccount(tempProvider)
@@ -61,6 +88,9 @@ const HeaderWalletInfo = () => {
                     <HeaderBalance provider={provider} address={account} />
                 )
             }
+          {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} 
+      {...txModalProps}
+      />}
         </div>
     )
 }

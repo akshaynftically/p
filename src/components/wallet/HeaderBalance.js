@@ -8,45 +8,9 @@ import {components} from "react-select";
 import WrongNetworkModal from "../../modals/WrongNetworkModal";
 import AppContext from 'components/AppContext';
 import { useFieldArray } from 'react-hook-form';
-import { getChainData } from 'lib/appHelpers';
-
-const _networks = [
-    {
-        value: 1,
-        label: 'Polygon (Mainnet)',
-        chainId: 137,
-        mainnet: true,
-        icon: <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15.8469 5.49895C15.4594 5.27061 14.9557 5.27061 14.5295 5.49895L11.5074 7.24948L9.45389 8.39115L6.43174 10.1416C6.04428 10.37 5.54059 10.37 5.1144 10.1416L2.71218 8.77169C2.32472 8.54334 2.05351 8.12472 2.05351 7.66809V4.96618C2.05351 4.50952 2.28598 4.09091 2.71218 3.86258L5.07565 2.53066C5.4631 2.30233 5.96679 2.30233 6.39299 2.53066L8.75648 3.86258C9.14389 4.09091 9.41516 4.50952 9.41516 4.96618V6.71669L11.4686 5.537V3.78647C11.4686 3.32981 11.2362 2.91121 10.81 2.68288L6.43174 0.171247C6.04428 -0.0570825 5.54059 -0.0570825 5.1144 0.171247L0.658672 2.68288C0.232472 2.91121 0 3.32981 0 3.78647V8.84778C0 9.30441 0.232472 9.72303 0.658672 9.95138L5.1144 12.463C5.50185 12.6914 6.00554 12.6914 6.43174 12.463L9.45389 10.7505L11.5074 9.57084L14.5295 7.85836C14.917 7.63001 15.4207 7.63001 15.8469 7.85836L18.2103 9.19031C18.5978 9.41859 18.869 9.8372 18.869 10.2939V12.9958C18.869 13.4524 18.6365 13.8711 18.2103 14.0994L15.8469 15.4694C15.4594 15.6977 14.9557 15.6977 14.5295 15.4694L12.166 14.1374C11.7786 13.9091 11.5074 13.4905 11.5074 13.0338V11.2833L9.45389 12.463V14.2136C9.45389 14.6702 9.68636 15.0888 10.1126 15.3172L14.5683 17.8287C14.9557 18.0571 15.4594 18.0571 15.8856 17.8287L20.3413 15.3172C20.7288 15.0888 21 14.6702 21 14.2136V9.15223C21 8.6956 20.7675 8.27698 20.3413 8.04863L15.8469 5.49895Z" fill="#7A3FE4"/>
-        </svg>
-    },
-    {
-        value: 2,
-        label: 'Polygon (Testnet)',
-        chainId: 80001,
-        mainnet: false,
-        icon: <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15.8469 5.49895C15.4594 5.27061 14.9557 5.27061 14.5295 5.49895L11.5074 7.24948L9.45389 8.39115L6.43174 10.1416C6.04428 10.37 5.54059 10.37 5.1144 10.1416L2.71218 8.77169C2.32472 8.54334 2.05351 8.12472 2.05351 7.66809V4.96618C2.05351 4.50952 2.28598 4.09091 2.71218 3.86258L5.07565 2.53066C5.4631 2.30233 5.96679 2.30233 6.39299 2.53066L8.75648 3.86258C9.14389 4.09091 9.41516 4.50952 9.41516 4.96618V6.71669L11.4686 5.537V3.78647C11.4686 3.32981 11.2362 2.91121 10.81 2.68288L6.43174 0.171247C6.04428 -0.0570825 5.54059 -0.0570825 5.1144 0.171247L0.658672 2.68288C0.232472 2.91121 0 3.32981 0 3.78647V8.84778C0 9.30441 0.232472 9.72303 0.658672 9.95138L5.1144 12.463C5.50185 12.6914 6.00554 12.6914 6.43174 12.463L9.45389 10.7505L11.5074 9.57084L14.5295 7.85836C14.917 7.63001 15.4207 7.63001 15.8469 7.85836L18.2103 9.19031C18.5978 9.41859 18.869 9.8372 18.869 10.2939V12.9958C18.869 13.4524 18.6365 13.8711 18.2103 14.0994L15.8469 15.4694C15.4594 15.6977 14.9557 15.6977 14.5295 15.4694L12.166 14.1374C11.7786 13.9091 11.5074 13.4905 11.5074 13.0338V11.2833L9.45389 12.463V14.2136C9.45389 14.6702 9.68636 15.0888 10.1126 15.3172L14.5683 17.8287C14.9557 18.0571 15.4594 18.0571 15.8856 17.8287L20.3413 15.3172C20.7288 15.0888 21 14.6702 21 14.2136V9.15223C21 8.6956 20.7675 8.27698 20.3413 8.04863L15.8469 5.49895Z" fill="#7A3FE4"/>
-        </svg>
-    },
-    {
-        value: 3,
-        label: 'Binance Smart Chain (Mainnnet)',
-        chainId: 56,
-        mainnet: true,
-        icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_440_1476)">
-                <path d="M6.11584 8.4042L9.99984 4.5203L13.8858 8.4062L16.1458 6.1462L9.99984 0L3.85594 6.1442L6.11584 8.4042ZM0 9.99969L2.26007 7.73962L4.51999 9.99955L2.25994 12.2596L0 9.99969ZM6.11584 11.5958L9.99984 15.4797L13.8857 11.5939L16.1469 13.8527L16.1458 13.8539L9.99984 20L3.85574 13.856L3.85254 13.8528L6.11584 11.5958ZM15.4801 10.0009L17.7401 7.74087L20.0001 10.0008L17.74 12.2609L15.4801 10.0009Z" fill="#F3BA2F"/>
-                <path d="M12.2918 9.99838H12.2928L9.99948 7.70508L8.30468 9.39988H8.30458L8.10988 9.59468L7.70828 9.99638L7.70508 9.99948L7.70828 10.0028L9.99948 12.2941L12.2928 10.0008L12.2939 9.99948L12.2918 9.99838Z" fill="#F3BA2F"/>
-            </g>
-            <defs>
-                <clipPath id="clip0_440_1476">
-                    <rect width="20" height="20" fill="white"/>
-                </clipPath>
-            </defs>
-        </svg>
-    }
-]
+import { getChainData, onNetwork } from 'lib/appHelpers';
+import switchNetwork from 'lib/switchNetwork';
+import { _networks } from 'lib/constants/networks';
 
 const networkSelectOption = (props) => {
     return (
@@ -98,7 +62,7 @@ const HeaderBalance = (props) => {
     const [selectNetwork, setSelectNetwork] = useState(_networks[0])
     const appGlobals = useContext(AppContext)
     const [addressExplorar, setAddressExplorar] = useState('')
-
+    const [networkIcon,setNetworkIcon] = useState('')
 
     
 
@@ -130,15 +94,15 @@ const HeaderBalance = (props) => {
             let tempProvider = await appGlobals.hasWalletProvider()
             if(!tempProvider) return
             let chainId = (await tempProvider.getNetwork()).chainId
-            console.log('chainId',chainId)
-            appGlobals.setIsWrongNetwork(chainId == process.env.REACT_APP_CHAIN_ID )
-            const networkConfig = await getChainData(tempProvider)
-            setAddressExplorar(networkConfig.explorar+'/address/'+address)
+            appGlobals.setIsWrongNetwork(onNetwork(chainId) )
+            if(onNetwork(chainId)){
+                const networkConfig = await getChainData(tempProvider)
+                setAddressExplorar(networkConfig.explorar+'/address/'+address)
+            }
             const getNetwork=_networks.filter((el) => {return el.chainId === chainId})
-            console.log(getNetwork)
             if(getNetwork.length!==0){
-
                 setSelectNetwork(_networks.filter((el) => {return el.chainId === chainId})[0])
+                setNetworkIcon(_networks.filter((el) => {return el.chainId === chainId})[0]['icon'])
             }
             setBalance(utils.formatEther(await provider.getBalance(address)))
         })()
@@ -157,24 +121,27 @@ const HeaderBalance = (props) => {
         setAccountModal(true)
     }
 
+    // const handleSelectNetwork = async (val) => {
+    //     switchNetwork(val.chainId)
+    //     setSelectNetwork(val)
+    // }
+
     return (
         <div className='flex items-center'>
-            <Select value={selectNetwork}
+            {/* <Select value={selectNetwork}
                     options={_networks.filter(item=>item.mainnet==mainnetType)}
                     customStyles={customSelectStyles}
                     placeholder='Please Select Token'
                     className='hidden lg:block mr-[12px]'
                     isSearchable={false}
-                    onChange={setSelectNetwork}
+                    onChange={handleSelectNetwork}
                     components={{SingleValue: networkSelectValueContainer}}
                     Option={networkSelectOption}>
-            </Select>
+            </Select> */}
             {appGlobals.isWrongNetwork? (
                 <>
                     <div className='cursor-pointer hidden md:flex bg-[#262728] items-center rounded-[8px] pl-[24px] h-[44px]' onClick={handleOpenAccountModal}>
-                        <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15.8469 5.49895C15.4594 5.27061 14.9557 5.27061 14.5295 5.49895L11.5074 7.24948L9.45389 8.39115L6.43174 10.1416C6.04428 10.37 5.54059 10.37 5.1144 10.1416L2.71218 8.77169C2.32472 8.54334 2.05351 8.12472 2.05351 7.66809V4.96618C2.05351 4.50952 2.28598 4.09091 2.71218 3.86258L5.07565 2.53066C5.4631 2.30233 5.96679 2.30233 6.39299 2.53066L8.75648 3.86258C9.14389 4.09091 9.41516 4.50952 9.41516 4.96618V6.71669L11.4686 5.537V3.78647C11.4686 3.32981 11.2362 2.91121 10.81 2.68288L6.43174 0.171247C6.04428 -0.0570825 5.54059 -0.0570825 5.1144 0.171247L0.658672 2.68288C0.232472 2.91121 0 3.32981 0 3.78647V8.84778C0 9.30441 0.232472 9.72303 0.658672 9.95138L5.1144 12.463C5.50185 12.6914 6.00554 12.6914 6.43174 12.463L9.45389 10.7505L11.5074 9.57084L14.5295 7.85836C14.917 7.63001 15.4207 7.63001 15.8469 7.85836L18.2103 9.19031C18.5978 9.41859 18.869 9.8372 18.869 10.2939V12.9958C18.869 13.4524 18.6365 13.8711 18.2103 14.0994L15.8469 15.4694C15.4594 15.6977 14.9557 15.6977 14.5295 15.4694L12.166 14.1374C11.7786 13.9091 11.5074 13.4905 11.5074 13.0338V11.2833L9.45389 12.463V14.2136C9.45389 14.6702 9.68636 15.0888 10.1126 15.3172L14.5683 17.8287C14.9557 18.0571 15.4594 18.0571 15.8856 17.8287L20.3413 15.3172C20.7288 15.0888 21 14.6702 21 14.2136V9.15223C21 8.6956 20.7675 8.27698 20.3413 8.04863L15.8469 5.49895Z" fill="#7A3FE4"/>
-                        </svg>
+                        {networkIcon}
 
                         <span className='text-[16px] text-white ml-[4px] mr-[17px]'>{parseFloat(balance).toFixed(4)}</span>
 
@@ -203,7 +170,7 @@ const HeaderBalance = (props) => {
                             </defs>
                         </svg>
                     </button>
-                    <AccountModal openAccountModal={accountModal} addressExplorar={addressExplorar} balance={balance} address={address} onClose={handleCloseAccountModal}/>
+                    <AccountModal openAccountModal={accountModal} chainId={selectNetwork.chainId} addressExplorar={addressExplorar} balance={balance} address={address} onClose={handleCloseAccountModal}/>
                 </>
             ) : (
                 <>
@@ -212,7 +179,7 @@ const HeaderBalance = (props) => {
                             <path d="M11.8666 0.999956L21.3926 17.5C21.4804 17.652 21.5266 17.8244 21.5266 18C21.5266 18.1755 21.4804 18.3479 21.3926 18.4999C21.3048 18.652 21.1786 18.7782 21.0266 18.866C20.8746 18.9537 20.7021 19 20.5266 19H1.47458C1.29905 19 1.12661 18.9537 0.974593 18.866C0.822577 18.7782 0.696343 18.652 0.608578 18.4999C0.520812 18.3479 0.474608 18.1755 0.474609 18C0.47461 17.8244 0.520817 17.652 0.608584 17.5L10.1346 0.999956C10.2224 0.847949 10.3486 0.721722 10.5006 0.633962C10.6526 0.546202 10.8251 0.5 11.0006 0.5C11.1761 0.5 11.3485 0.546202 11.5006 0.633962C11.6526 0.721722 11.7788 0.847949 11.8666 0.999956ZM10.0006 14V16H12.0006V14H10.0006ZM10.0006 6.99996V12H12.0006V6.99996H10.0006Z" fill="white" fill-opacity="0.8"/>
                         </svg>
 
-                        Wrong Network
+                        Wrong Network (Click to Change)
                     </SimpleButton>
 
                     <WrongNetworkModal openWrongNetworkModal={wrongNetworkModal} onClose={handleCloseWrongNetworkModal} />

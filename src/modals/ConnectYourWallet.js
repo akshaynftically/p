@@ -7,31 +7,44 @@ import {FullScreenPopup} from 'components/popups'
 import { _walletIcons } from 'lib/constants/walletIcons'
 import { getWalletProvider } from 'lib/walletProviders'
 import apiRepository from 'lib/apiRepository'
+import {  isMobile, MobileView } from "react-device-detect";
 
 
 const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
 
   //handler for logging into wallet and handle transactions
   const handleWalletConnect = async(walletTitle) => {
-    await new apiRepository().createOrUpdateUser()
     let provider = await getWalletProvider(walletTitle)
     let connected = new CustomEvent('wallet:connected',{detail : { provider : provider}})
     document.dispatchEvent(connected);
   }
 
+  const renderContent = () => {
+     console.log(isMobile)
+    if (isMobile) {
+      return <div className='text-[14px] text-white/[.80] mb-[10px]'> For optimal purchase experience please reserve land parcels on laptop or desktop.</div>
+    }
+
+  }
+
   return (
     <FullScreenPopup title='Connect Your Wallet' size='w-full sm:w-[520px]' onClose={onClose}>
-      <div className='text-[14px] text-white/[.80] mb-[24px]'>
+      <div className='text-[14px] text-white/[.80] mb-[10px]'>
+      {renderContent()}
         By connecting a wallet, you agree to NFTICALLY’s{' '}
-        <a className='font-bold text-[#3E97FC] hover:underline' rel='noreferrer' href='//www.nftically.com/terms' target="_blank">
+        <a className='font-bold text-[#3E97FC] hover:underline' rel='noreferrer' href='/terms#terms'>
           Terms of Service
         </a>{' '}
         and{' '}
-        <a className='font-bold text-[#3E97FC] hover:underline' rel='noreferrer' href='//www.nftically.com/privacy-policy' target="_blank">
-          Privacy Policy that
+        <a className='font-bold text-[#3E97FC] hover:underline' rel='noreferrer' href='/terms#privacy-policy' >
+          Privacy Policy
         </a>{' '}
-        you have read and understand.
+        that you have read and understand.
       </div>
+      <div className='text-[14px] text-white/[.80] mb-[24px]'>
+      If changing wallet, please change the account in wallet's browser extension or app first.
+      </div>
+
 
       <div className='bg-[#363738] rounded-lg mb-[18px]'>
         <div>
@@ -47,7 +60,7 @@ const ConnectYourWallet = ({onClose, onSelect, startTransactionFlow}) => {
       </div>
 
       <div className='px-[10px]'>
-        <a className='flex items-center text-[14px] text-[#3F99FF] hover:underline' target='_blank' rel='noreferrer' to={process.env.REACT_APP_LEARN_HOW_TO_RESERVE_LAND}>
+        <a className='contents items-center text-[14px] text-[#3F99FF] hover:underline'  rel='noreferrer' target='_blank' href='https://www.comearth.world/blog/how-to-reserve-a-virtual-land-in-comearth-metaverse/'>
           <span className='mr-[5px]'>
             <svg
               width='20'

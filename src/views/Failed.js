@@ -1,7 +1,18 @@
-import { Link } from 'react-router-dom'
+import { getTransactionForm } from 'app/TransactionFormSlice'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import {SimpleButton} from '../components/buttons'
 
 const Failed = () => {
+  const transactionForm = useSelector(getTransactionForm)
+  const navigate = useNavigate()
+  const order=JSON.parse(localStorage.getItem('order'))
+  useEffect(() => {
+    if (!(order && transactionForm)) {
+      navigate('/reserve-land')
+    }
+  },[])
   return (
     <fragment>
       <div className='py-[120px] sm:max-w-[90rem] 2xl:max-w-[105rem] flex flex-wrap basis-full items-center w-full mx-auto px-4 sm:px-6 lg:px-[80px] text-white'>
@@ -165,9 +176,9 @@ const Failed = () => {
           <p className='mb-[20px]'>Your transaction couldn’t be completed.</p>
           <p className='mb-[32px]'>
             You can retry your payment.{' '}
-            <Link className='text-[#3F99FF] underline' to={process.to.REACT_APP_FAILED_LEARN_MORE}>
+            <a className='text-[#3F99FF] underline' rel="noreferrer" href={process.env.REACT_APP_FAILED_LEARN_MORE}>
               Learn More
-            </Link>
+            </a>
           </p>
 
           <SimpleButton className='max-w-[439px] w-full' href='/reserve-land'>

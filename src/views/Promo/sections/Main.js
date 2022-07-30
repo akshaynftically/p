@@ -21,7 +21,8 @@ import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet'
 
 
 const Main = () => {
-  const isTimer=!(process.env.REACT_APP_IS_MAINNET_ENABLED == 'false')                    //converting  env data string into boolean
+  const isTimer=!(process.env.REACT_APP_IS_TIMER == 'false')     
+  console.log(isTimer)               
   const modelViewerRef = useRef()
   const navigate = useNavigate()
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
@@ -57,25 +58,30 @@ const Main = () => {
 
   const onSubmit = (data) => {
     // dispatch(setTransactionForm(data))
-    // navigate('/reserve-land')
+     navigate('/reserve-land')
     // window.open(`${process.env.REACT_APP_JOIN_LINK}`, "_blank")
-    dispatch(setTransactionForm(data))
-    new apiRepository().createLead(data.email)
-    .then(res => {
-      // save lead in localstorage
-      console.log(res)
-      navigate('/reserve-land')
-    })
-    .catch(err => {
-      console.log(err)
-      if(err?.response?.status === 409){
-        navigate('/reserve-land')
-      }
-      if(err?.response?.status === 302){
-        // handleToggleEnterYourDetails()
-        setIsOpenedProgressWallet(true)
-      }
-    })
+    // remove any cached localstorage
+    // localStorage.removeItem('order')
+    // localStorage.removeItem('wallet')
+    // localStorage.removeItem('transaction_form')
+    // localStorage.removeItem('auth')
+    // dispatch(setTransactionForm(data))
+    // new apiRepository().createLead(data.email)
+    // .then(res => {
+    //   // save lead in localstorage
+    //   console.log(res)
+    //   navigate('/reserve-land')
+    // })
+    // .catch(err => {
+    //   console.log(err)
+    //   if(err?.response?.status === 409){
+    //     navigate('/reserve-land')
+    //   }
+    //   if(err?.response?.status === 302){
+    //     // handleToggleEnterYourDetails()
+    //     setIsOpenedProgressWallet(true)
+    //   }
+    // })
   }
 
   return (
@@ -99,16 +105,16 @@ const Main = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className='mb-[45px]'>
                 <FieldGroup className='relative'>
-                  <Field
+                  {/* <Field
                     isError={errors.email}
                     register={register('email', {required: true, pattern: /^\S+@\S+$/i})}
                     type='email'
-                    className='pr-[230px] py-[14px] lg:py-[14px] mb-[12px] lg:mb-0'
+                    className=' py-[14px] lg:py-[14px] mb-[12px] lg:mb-0'
                     placeholder='Enter Your Email Address'
-                  />
+                  /> */}
 
                   <SimpleButton
-                    className='lg:absolute top-0 right-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold lg:rounded-l-none'
+                    className=' top-0 right-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold lg:rounded'
                     type='submit'
                   >
                     Reserve Your Land Now
@@ -127,7 +133,10 @@ const Main = () => {
                 </small>
               </div>
             </form>
-            <div className='flex items-center mb-[12px]'>
+            
+            {
+              isTimer  && <>
+              <div className='flex items-center mb-[12px]'>
               <svg
                 className='stroke-white mr-[8px]'
                 width='24'
@@ -155,40 +164,39 @@ const Main = () => {
                 Hurry, <span className='text-gradient'>Sale Ends in:</span>
               </span>
             </div>
-            {
-              isTimer  && 
-            <Countdown
-              date={Date.now() + 1036800000}
-              renderer={({days, hours, minutes, seconds}) => (
-                <div className='bg-[#262728] pseudo-border-gradient-1 relative rounded-lg p-[8px]'>
-                  <div className='absolute w-full h-full top-0 left-0 bg-gradient-to-b from-[#BCDCF5]/20 to-[#BCDCF5]/0'></div>
-                  <div className='grid grid-cols-4'>
-                    <div className='leading-tight uppercase text-center'>
-                      <div className='font-black text-[24px]'>{days < 10 ? `0${days}` : days}</div>
-                      <div className='text-[14px] text-white/[.80]'>Days</div>
-                    </div>
-                    <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
-                      <div className='font-black text-[24px]'>
-                        {hours < 10 ? `0${hours}` : hours}
+              <Countdown
+                date={parseInt(process.env.REACT_APP_SALE_ENDS_TIMESTAMP)}
+                renderer={({days, hours, minutes, seconds}) => (
+                  <div className='bg-[#262728] pseudo-border-gradient-1 relative rounded-lg p-[8px]'>
+                    <div className='absolute w-full h-full top-0 left-0 bg-gradient-to-b from-[#BCDCF5]/20 to-[#BCDCF5]/0'></div>
+                    <div className='grid grid-cols-4'>
+                      <div className='leading-tight uppercase text-center'>
+                        <div className='font-black text-[24px]'>{days < 10 ? `0${days}` : days}</div>
+                        <div className='text-[14px] text-white/[.80]'>Days</div>
                       </div>
-                      <div className='text-[14px] text-white/[.80]'>Hours</div>
-                    </div>
-                    <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
-                      <div className='font-black text-[24px]'>
-                        {minutes < 10 ? `0${minutes}` : minutes}
+                      <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
+                        <div className='font-black text-[24px]'>
+                          {hours < 10 ? `0${hours}` : hours}
+                        </div>
+                        <div className='text-[14px] text-white/[.80]'>Hours</div>
                       </div>
-                      <div className='text-[14px] text-white/[.80]'>Minutes</div>
-                    </div>
-                    <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
-                      <div className='font-black text-[24px]'>
-                        {seconds < 10 ? `0${seconds}` : seconds}
+                      <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
+                        <div className='font-black text-[24px]'>
+                          {minutes < 10 ? `0${minutes}` : minutes}
+                        </div>
+                        <div className='text-[14px] text-white/[.80]'>Minutes</div>
                       </div>
-                      <div className='text-[14px] text-white/[.80]'>Seconds</div>
+                      <div className='leading-tight uppercase text-center border-l-[1px] border-[#363738]'>
+                        <div className='font-black text-[24px]'>
+                          {seconds < 10 ? `0${seconds}` : seconds}
+                        </div>
+                        <div className='text-[14px] text-white/[.80]'>Seconds</div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            />
+                )}
+              />
+              </>
             }
           </div>
           <div className='order-1 flex justify-center md:order-2 col-span-12 md:col-span-6 text-right metaverse-demo min-h-[300px] h-full relative'>

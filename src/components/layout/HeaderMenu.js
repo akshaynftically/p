@@ -31,7 +31,7 @@ export function HeaderMenu() {
           </a>
         </div>
 
-        {pathname === '/reserve-land' && <HeaderWalletInfo />}
+        {(pathname === '/reserve-land'|| pathname === '/reserve-land/') && <HeaderWalletInfo />}
       </nav>
     </header>
   )

@@ -1,20 +1,26 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { FullScreenPopup } from 'components/popups'
 import { SimpleButton } from 'components/buttons'
 import { Link } from 'react-router-dom'
 import AddFundsModal from './AddFundsModal'
 import CopyToClipboard from 'components/clipboard/CopyToClipboard'
 import { useDispatch, useSelector } from 'react-redux'
-import { getWallet, removeWallet } from 'app/WalletSlice'
+import { getWallet, removeWallet, setWallet } from 'app/WalletSlice'
 import AppContext from 'components/AppContext'
 import { _walletIcons } from 'lib/constants/walletIcons'
+import { _networks } from 'lib/constants/networks'
 
 const AccountModal = (props) => {
-    const {openAccountModal, address,addressExplorar, balance,showLowBalance ,tokenIcon , onClose} = props
+    const {openAccountModal, address, addressExplorar, balance, showLowBalance ,tokenIcon, chainId , onClose} = props
     const [openAddFundsModal, setOpenAddFundsModal] = useState(false)
+    const[wallet,setWallet]=useState(null)
+
+    const networkConfig = _networks.filter((el) => {return el.chainId === chainId})[0]
+
     const userWallet = useSelector(getWallet)
     const appGlobals = useContext(AppContext)
-    const walletInfo = (_walletIcons.filter(((el) =>{return el.title === userWallet.wallet})))[0]
+    // const walletInfo = (_walletIcons.filter(((el) =>{return el.title === userWallet.wallet})))[0]
+    const [walletInfo,setWalletInfo]=useState((_walletIcons.filter(((el) =>{return el.title === userWallet.wallet})))[0])
     const dispatch = useDispatch()
     const handleBackAddFundsModal = () => {
         setOpenAddFundsModal(false)
@@ -24,7 +30,12 @@ const AccountModal = (props) => {
         setOpenAddFundsModal(false)
         onClose()
     }
+const getWalletInfo=()=>{
 
+    let wallet= JSON.parse(localStorage.getItem('wallet'))
+    return (_walletIcons.filter(((el) =>{return el.title === wallet.wallet})))[0]
+
+}
     const handleChangeWallet = async () => {
         // logic to disconnect wallet if has any
         if(userWallet.wallet === 'MetaMask' || userWallet.wallet === 'Coinbase Wallet'){
@@ -33,6 +44,10 @@ const AccountModal = (props) => {
             await appGlobals.getWalletProviderConfirmed()
         }
     }
+    useEffect(() => {
+        setWallet(appGlobals.walletData)
+      }, [appGlobals])
+    
 
     return (
         <>
@@ -58,16 +73,14 @@ const AccountModal = (props) => {
                                 <span className='block text-white/70 text-[14px] mb-[4px]'>Total Balance</span>
                                 <div className='flex items-center'>
                                 {tokenIcon ? <img src={tokenIcon} alt="token logo" /> :
-                                    <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M15.8469 5.49895C15.4594 5.27061 14.9557 5.27061 14.5295 5.49895L11.5074 7.24948L9.45389 8.39115L6.43174 10.1416C6.04428 10.37 5.54059 10.37 5.1144 10.1416L2.71218 8.77169C2.32472 8.54334 2.05351 8.12472 2.05351 7.66809V4.96618C2.05351 4.50952 2.28598 4.09091 2.71218 3.86258L5.07565 2.53066C5.4631 2.30233 5.96679 2.30233 6.39299 2.53066L8.75648 3.86258C9.14389 4.09091 9.41516 4.50952 9.41516 4.96618V6.71669L11.4686 5.537V3.78647C11.4686 3.32981 11.2362 2.91121 10.81 2.68288L6.43174 0.171247C6.04428 -0.0570825 5.54059 -0.0570825 5.1144 0.171247L0.658672 2.68288C0.232472 2.91121 0 3.32981 0 3.78647V8.84778C0 9.30441 0.232472 9.72303 0.658672 9.95138L5.1144 12.463C5.50185 12.6914 6.00554 12.6914 6.43174 12.463L9.45389 10.7505L11.5074 9.57084L14.5295 7.85836C14.917 7.63001 15.4207 7.63001 15.8469 7.85836L18.2103 9.19031C18.5978 9.41859 18.869 9.8372 18.869 10.2939V12.9958C18.869 13.4524 18.6365 13.8711 18.2103 14.0994L15.8469 15.4694C15.4594 15.6977 14.9557 15.6977 14.5295 15.4694L12.166 14.1374C11.7786 13.9091 11.5074 13.4905 11.5074 13.0338V11.2833L9.45389 12.463V14.2136C9.45389 14.6702 9.68636 15.0888 10.1126 15.3172L14.5683 17.8287C14.9557 18.0571 15.4594 18.0571 15.8856 17.8287L20.3413 15.3172C20.7288 15.0888 21 14.6702 21 14.2136V9.15223C21 8.6956 20.7675 8.27698 20.3413 8.04863L15.8469 5.49895Z" fill="#7A3FE4"/>
-                                    </svg>
+                                    networkConfig.icon
                                 }
                                     <span className='font-[900] text-[20px] text-white ml-[8px] mr-[17px]'>{parseFloat(balance).toFixed(4)}</span>
                                 </div>
                             </div>
                             <div>
                                 <span className='block text-white/60 text-[14px] mb-[4px]'>Network</span>
-                                <span className='text-[14px] text-white mr-[17px]'>Polygon (Mainnet)</span>
+                                <span className='text-[14px] text-white mr-[17px]'>{networkConfig.label}</span>
                             </div>
                             <div className='col-span-2 md:col-span-1'>
                                 <SimpleButton type='button' size='sm' className='block w-full' onClick={() => setOpenAddFundsModal(true)}>Add Funds</SimpleButton>
@@ -77,10 +90,10 @@ const AccountModal = (props) => {
                     <div className='pt-[24px] px-[24px] pb-[25px] bg-[#363738] rounded-[8px]'>
                         <div className='flex items-center justify-between flex-wrap'>
                             <div className="flex items-center">
-                                <img className='max-h-full' src={walletInfo.icon} alt={walletInfo.title} />
+                                <img className='max-h-full' src={getWalletInfo().icon} alt={getWalletInfo().title} />
                                 
 
-                                <span className='text-white/80 text-[16px] ml-[10px]'>Connected with {walletInfo.title}</span>
+                                <span className='text-white/80 text-[16px] ml-[10px]'>Connected with {getWalletInfo().title}</span>
                             </div>
 
                             <SimpleButton type='button' size='sm' className='block w-full mt-3 sm:w-auto sm:inline sm:mt-0' onClick={handleChangeWallet}>Change Wallet</SimpleButton>

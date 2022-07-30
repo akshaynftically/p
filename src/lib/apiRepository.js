@@ -2,17 +2,19 @@ import axios from "./axiosHelper";
 
 export class apiRepository {
 
-    async createLead(email){
+    async createLead(data){
+        console.log(data)
         return axios.post('/v1/leads',{
-            email: email
+            ...data
         })
     }
 
-    async getOtpData(otp){
-        return await axios.get('/v1/users',{params:{
-            otp : otp
-        }})
-    }
+    // async getOtpData(otp){
+    //     return
+    //     return await axios.get('/v1/users',{params:{
+    //         otp : otp
+    //     }})
+    // }
 
     getCookie(cookieName) {
         let name = cookieName + "=";
@@ -30,52 +32,70 @@ export class apiRepository {
         return "";
     }
 
-    async createOrUpdateUser(){
-        let transactionForm = localStorage.getItem('transaction_form') ? JSON.parse(localStorage.getItem('transaction_form')) : null
+    async createOrUpdateUser(data){
         let userInfo = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null
-
         let firstReferredBy = this.getCookie('referral_first_touch')
         let referredBy = this.getCookie('referral_last_touch')
-        let utmFirstTouch = this.getCookie('utm_first_touch')
-        let utmLastTouch = this.getCookie('utm_last_touch')
+        let utmFirstTouch = this.getCookie('utm_first_touch') === '' ? undefined : JSON.parse(this.getCookie('utm_first_touch'))
+        let utmLastTouch = this.getCookie('utm_last_touch') === '' ? undefined :JSON.parse(this.getCookie('utm_last_touch'))
 
         if(!userInfo){
             try{
               let resp = await axios.post('v1/users',{
-                name: transactionForm?.name,
-                email: transactionForm?.email,
-                country: transactionForm?.country,
-                industry: transactionForm?.industry?.value,
-                country_code: transactionForm?.country?.value,
                 first_referred_by: firstReferredBy,
                 referred_by: referredBy,
                 utm_first_touch: utmFirstTouch,
-                utm_last_touch: utmLastTouch
+                utm_last_touch: utmLastTouch,
+                wallets: [{
+                    wallet_name: data.wallet,
+                    wallet_address: data.address,
+                    last_connected_at: new Date().getTime()
+                }]
               })
+              console.log(resp)
+              if(resp.status === 200){
+                    console.log('user updated')
+                    // gtm create user
+                    window.dataLayer.push({
+                        "event" : "user-updated",
+                        "user_id" : resp.data.id,
+                        "user" : resp.data
+                    })
+              }else if(resp.status === 201){
+                    console.log('user created')
+                    // gtm create user
+                    window.dataLayer.push({
+                        "event" : "user-created",
+                        "user_id" : resp.data.id,
+                        "user" : resp.data
+                    })
+              }
               localStorage.setItem('auth',JSON.stringify(resp.data))
             }catch(error){
-                // update user here
-                console.log(error)
+                throw error
             }
         }else{
             try{
                 let resp = await axios.post('v1/users/'+userInfo.id,{
-                  name: transactionForm?.name,
-                  email: transactionForm?.email,
-                  country: transactionForm?.country,
-                  industry: transactionForm?.industry?.value,
-                  country_code: transactionForm?.country?.value,
                   first_referred_by: firstReferredBy,
                   referred_by: referredBy,
                   utm_first_touch: utmFirstTouch,
-                  utm_last_touch: utmLastTouch
+                  utm_last_touch: utmLastTouch,
+                  wallets: [{
+                    wallet_name: data.wallet,
+                    wallet_address: data.address,
+                    last_connected_at: new Date().getTime()
+                }]
                 })
                 localStorage.setItem('auth',JSON.stringify(resp.data))
               }catch(error){
-                  // update user here
-                  console.log(error)
+                  throw error
               }
         }
+    }
+
+    async getUserById(id){
+        return await axios.get('/v1/users/'+id)
     }
 
     async addWallets(data){
@@ -90,7 +110,7 @@ export class apiRepository {
         })
     }
 
-    async createOrder(token_id,tNumber,discount, firstReferredBy, referredBy, utmFirstTouch, utmLastTouch, address){
+    async createOrder(token_id,discount, firstReferredBy, referredBy, utmFirstTouch, utmLastTouch, address,prices,chain_id){
         let form = JSON.parse(localStorage.getItem('transaction_form'))
         let items = form.basket.map((el,i) => {return el.qty})
         let order = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : null
@@ -101,8 +121,9 @@ export class apiRepository {
             path+= '/'+order.id
         }
         order = await axios.post(path,{
+            chain_id: chain_id,
             parcel_quantities: items,
-            tracking_number: tNumber,
+            parcel_prices: prices,
             discount: discount,
             status: 'open',
             erc20_payment_token_id: token_id,
@@ -112,7 +133,7 @@ export class apiRepository {
             utm_first_touch: utmFirstTouch,
             utm_last_touch: utmLastTouch
         })
-        debugger;
+        
         order = order.data
         localStorage.setItem('order',JSON.stringify(order))
         return order
@@ -122,6 +143,7 @@ export class apiRepository {
         let order = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : null
         return await axios.post('v1/orders/'+order.id,{
             status: data.order_status,
+            conversion_factor: data.conversion_factor,
             transactions: [{
                 parcel_quantities: data.parcel_quantities,
                 amount_paid: data.amount,

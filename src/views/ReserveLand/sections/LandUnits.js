@@ -2,14 +2,14 @@ import {Swiper, SwiperSlide} from 'swiper/react'
 import {Navigation} from 'swiper'
 
 // Plugins styles
-import 'swiper/css'
-import 'swiper/css/navigation'
+// import 'swiper/css'
+// import 'swiper/css/navigation'
 
 // Components
 import LandUnit from 'components/cards/LandUnit'
 
 const LandUnits = (props) => {
-  const {basket, setBasket,} = props
+  const {basket, setBasket,disableCounter} = props
 
   const settings = {
     spaceBetween: 12,
@@ -37,13 +37,13 @@ const LandUnits = (props) => {
   }
 
   return (
-    <Swiper {...settings} className='mb-[34px]'>
+    <div  className='mb-[34px] gap-[10px]'>
       {props.basket.map((el, index) => (
-        <SwiperSlide key={el.id}>
-          <LandUnit {...el} index={index} onChange={qty => onChange(qty, index)} />
-        </SwiperSlide>
+        <div key={el.id}>
+          <LandUnit {...el} index={index} onChange={qty => onChange(qty, index)} disableCounter={disableCounter} />
+        </div>
       ))}
-    </Swiper>
+    </div>
   )
 }
 

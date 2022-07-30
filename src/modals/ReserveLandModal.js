@@ -19,7 +19,7 @@ const ReserveLandModal = (props) => {
         mainHeading:'We have an account already registered with this email, Please check your email to proceed further.',
         content:'',
         loading:false,
-learn:process.env.REACT_APP_PROGRESS_CONNECT_LEARN_MORE,
+learn:'',
         view:''
       })
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
@@ -35,37 +35,23 @@ learn:process.env.REACT_APP_PROGRESS_CONNECT_LEARN_MORE,
     })
     const {onClose} = props
 
-    useEffect(() => {
-        if (transactionForm) {
-            setValue('email', transactionForm.email)
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (transactionForm) {
+    //         setValue('email', transactionForm.email)
+    //     }
+    // }, [])
     const handleProgressWallet =() =>{
         setIsOpenedProgressWallet(!isOpenedProgressWallet)
       }
 
     const onSubmit = (data) => {
+        // remove any cached localstorage
+        localStorage.removeItem('order')
+        localStorage.removeItem('wallet')
+        localStorage.removeItem('transaction_form')
+        localStorage.removeItem('auth')
         dispatch(setTransactionForm(data))
-        new apiRepository().createLead(data.email)
-        .then(res => {
-          // save lead in localstorage
-          console.log(res)
-          onClose()
-          navigate('/reserve-land')
-        })
-        .catch(err => {
-          console.log(err)
-          if(err?.response?.status === 409){
-            onClose()
-
-            navigate('/reserve-land')
-          }
-          if(err?.response?.status === 302){
-            // handleToggleEnterYourDetails()
-            // onClose()
-            setIsOpenedProgressWallet(true)
-          }
-        })
+        navigate('/reserve-land')
     }
 
     return (

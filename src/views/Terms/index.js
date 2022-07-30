@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import clsx from 'clsx'
+import {Helmet} from "react-helmet";
 
 // Views
 import TermsAndConditions from './TermsAndConditions'
@@ -21,14 +22,9 @@ const _menu = [
     url: '#privacy-policy',
   },
   {
-    id: '1003',
-    title: 'Community Guidelines',
-    url: '#community-guidelines',
-  },
-  {
     id: '1004',
-    title: 'Risk Policy',
-    url: '#risk-policy',
+    title: 'Risk Disclaimer',
+    url: '#risk-disclaimer',
   },
 ]
 
@@ -49,6 +45,10 @@ const Terms = () => {
     <div className='text-white pt-[150px]'>
       <div className='mx-[20px] lg:mx-[80px]'>
         <div className='flex overflow-auto pb-[20px] md:pb-0 items-center mb-[34px] -mx-[8px]'>
+        <Helmet>
+          <title>Comearth Terms & Conditions - Web3.0 E-Commerce Metaverse & Ecosystem</title>
+          <link rel="canonical" href="https://www.comearth.world/terms" />
+        </Helmet>
           {_menu.map((el) => (
             <Link
               key={el.id}
@@ -64,8 +64,7 @@ const Terms = () => {
 
         {hash === '#terms' && <TermsAndConditions />}
         {hash === '#privacy-policy' && <PrivacyPolicy />}
-        {hash === '#community-guidelines' && <CommunityGuidelines />}
-        {hash === '#risk-policy' && <RiskPolicy />}
+        {hash === '#risk-disclaimer' && <RiskPolicy />}
       </div>
     </div>
   )
