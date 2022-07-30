@@ -55,7 +55,7 @@ const Failed = () => {
     const getTotal = () => {
         let total = transactionForm.reduce((sum, cur) => {
             return sum += cur.perItemPrice * cur.qty
-        }, 0)
+        })
 
         return total
     }
@@ -138,7 +138,7 @@ const Failed = () => {
                     <h5 className='text-[16px] lg:text-[32px] mb-[20px]'>You now own a real estate in COMEARTH</h5>
                     <div className=''>
                         <button onClick={()=>{     dispatch(clearTransactionForm());
-                            
+
                             localStorage.removeItem('order'); navigate('/reserve-land?user_id='+auth.id)}} className='bg-[#3F99FF] mt-[6px] mb-[30px] md:mt-0 block w-full md:w-auto px-[50px] py-[10px] rounded-l-[4px] md:rounded-l-0 rounded-r-[4px] text-[14px]'>
                             <Link to={'/reserve-land?user_id='+auth.id}>Buy More</Link>
                         </button>
@@ -190,7 +190,7 @@ const Failed = () => {
                             </div>
                             <div>
                                 <div className='text-left font-normal text-white/60 mb-[4px]'>Country</div>
-                                 <div>{transactionForm.country.label}</div> 
+                                 <div>{transactionForm.country.label}</div>
                             </div>
                         </div>
                     </div> */}
@@ -222,7 +222,7 @@ const Failed = () => {
                                     <td className='text-wrap pb-[8px] pt-[22px]'>Discount</td>
                                     <td className='text-right pb-[8px] pt-[22px]'>
                                         <div className="flex items-center justify-end">
-                                            
+
                                             <span> - {discount}%</span>
                                         </div>
                                     </td>
@@ -234,7 +234,7 @@ const Failed = () => {
                                 <td className='text-wrap text-[20px] text-white/80 pb-[8px] pt-[22px]'>Grand Total</td>
                                 <td className='text-right pb-[8px] pt-[22px]'>
                                     <div className="flex items-center justify-end">
-                                       
+
                                         <img src={_tokenIcons[localStorage.getItem('token_logo')]} className='mr-[3px]'/>
                                         <span className='text-[20px]'>{(total()).toFixed(5)}</span>
                                     </div>
@@ -247,7 +247,7 @@ const Failed = () => {
                     <p className='text-white/80 mb-9'>Thank you for your purchase. Your parcel(s) have been reserved.</p>
 
                     {/* <p className='text-white/80'>
-                    You will receive details of this purchase on your email also. In case, you are not able to find it, please make sure to check your spam folder too. 
+                    You will receive details of this purchase on your email also. In case, you are not able to find it, please make sure to check your spam folder too.
                         <a className='text-[#3F99FF] underline ml-1' rel="noreferrer" target='_blank' href={process.env.REACT_APP_SUCCESS_LEARN_MORE}>Learn More</a>
                     </p> */}
                 </div>
