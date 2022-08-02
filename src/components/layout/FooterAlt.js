@@ -11,12 +11,12 @@ import { Link } from 'react-router-dom'
 // Mocks
 const _menu = {
   COMEARTH: [
-    {
-      id: '1002',
-      title: 'Reserve Virtual Land ',
-      url: 'reserve-land',
-      target:false
-    },
+    // {
+    //   id: '1002',
+    //   title: 'Reserve Virtual Land ',
+    //   url: 'reserve-land',
+    //   target:false
+    // },
     {
       id: '1003',
       title: 'About Us',
@@ -255,7 +255,7 @@ const FooterAlt = () => {
                   <Link
                     className='text-[12px] text-white/[.65] hover:text-white transition duration-[200ms] ease-in-out'
                     to={el.url}
-                   
+
                   >
                     {el.title}
                   </Link>

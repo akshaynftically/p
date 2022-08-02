@@ -169,9 +169,9 @@ const Land = (props) => {
 
               </small>
             </FieldGroup>
-            <SimpleButton type='submit' block>
+            {/* <SimpleButton type='submit' block>
               Reserve Land Now
-            </SimpleButton>
+            </SimpleButton> */}
           </form>
         </FullScreenPopup>
       )}
@@ -204,12 +204,12 @@ const Land = (props) => {
                     pariatur.{' '}
                   </p>
                 </div>
-                <button
+                {/* <button
                     onClick={handleToggleEnterYourDetails}
                     className='w-full md:w-auto text-center bg-[#3F99FF] text-[16px] py-[14px] px-[20px] rounded'
                 >
                   Reserve Land Now
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
@@ -369,12 +369,12 @@ const Land = (props) => {
                     incididunt ut labore et dolore magna aliqua
                   </p>
 
-                  <button
+                  {/* <button
                       onClick={handleToggleEnterYourDetails}
                       className='bg-[#3F99FF] py-[14px] block w-full text-center shadow rounded-[4px]'
                   >
                     Reserve Land Now
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -423,12 +423,12 @@ const Land = (props) => {
                       irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
                       pariatur.{' '}
                     </p>
-                    <button
+                    {/* <button
                         onClick={handleToggleEnterYourDetails}
                         className='bg-[#3F99FF] py-[14px] px-[20px] text-white shadow rounded-[4px] mb-[50px]'
                     >
                       Reserve Land Now
-                    </button>
+                    </button> */}
                   </div>
                 </div>
 
@@ -672,12 +672,12 @@ const Land = (props) => {
                         </div>
                       </div>
                     </div>
-                    <button
+                    {/* <button
                         onClick={handleToggleEnterYourDetails}
                         className='bg-[#3F99FF] py-[14px] px-[20px] text-white shadow rounded-[4px] mb-[50px]'
                     >
                       Reserve Land Now
-                    </button>
+                    </button> */}
                   </div>
                 </div>
 
@@ -711,12 +711,12 @@ const Land = (props) => {
                   </p>
                 </div>
                 <div className='text-center'>
-                  <button
+                  {/* <button
                       onClick={handleToggleEnterYourDetails}
                       className='bg-[#3F99FF] py-[14px] px-[20px] text-white shadow rounded-[4px] mb-[50px]'
                   >
                     Reserve Land Now
-                  </button>
+                  </button> */}
                 </div>
               </div>
 
@@ -808,12 +808,12 @@ const Land = (props) => {
               </div>
 
               <div className='text-center'>
-                <button
+                {/* <button
                     onClick={handleToggleEnterYourDetails}
                     className='bg-[#3F99FF] py-[14px] px-[20px] text-white shadow rounded-[4px] mb-[50px]'
                 >
                   Reserve Land Now
-                </button>
+                </button> */}
                 <div className='block'></div>
                 <BackButton className='bg-[#363738]' back={back} />
               </div>
@@ -822,7 +822,7 @@ const Land = (props) => {
           {/* End Section */}
         </>
       )}
-      {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} 
+      {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet}
       {...txModalProps}
       />}
     </Fragment>

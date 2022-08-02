@@ -21,8 +21,8 @@ import ProgressConnectYourWallet from 'modals/ProgressConnectYourWallet'
 
 
 const Main = () => {
-  const isTimer=!(process.env.REACT_APP_IS_TIMER == 'false')     
-  console.log(isTimer)               
+  const isTimer=!(process.env.REACT_APP_IS_TIMER == 'false')
+  console.log(isTimer)
   const modelViewerRef = useRef()
   const navigate = useNavigate()
   const [isOpenedProgressWallet, setIsOpenedProgressWallet] = useState(false)
@@ -54,7 +54,7 @@ const Main = () => {
       setLoading(e.detail.totalProgress * 180)
     })
   })
-  
+
 
   const onSubmit = (data) => {
     // dispatch(setTransactionForm(data))
@@ -113,18 +113,15 @@ const Main = () => {
                     placeholder='Enter Your Email Address'
                   /> */}
 
-                  <SimpleButton
+                  {/* <SimpleButton
                     className=' top-0 right-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold lg:rounded'
                     type='submit'
                   >
                     Reserve Your Land Now
-                  </SimpleButton>
-                  {/* <SimpleButton
-                    className='lg:absolute top-0 left-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold'
-                    type='submit'
-                  >
-                    Join Waiting List
                   </SimpleButton> */}
+                  <SimpleButton className=' top-0 right-0 w-full md:w-[210px] lg:min-h-full lg:text-[14px] text-bold lg:rounded' block href={process.env.REACT_APP_JOIN_WHITELIST_LINK} target="_blank">
+                    Join community
+                  </SimpleButton>
                 </FieldGroup>
 
                 <small className='text-red-400 block translate-y-[-15px]'>
@@ -133,7 +130,7 @@ const Main = () => {
                 </small>
               </div>
             </form>
-            
+
             {
               isTimer  && <>
               <div className='flex items-center mb-[12px]'>
@@ -293,7 +290,7 @@ const Main = () => {
           </div>
         </div>
       </div>
-      {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} 
+      {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet}
       {...txModalProps}
       />}
 

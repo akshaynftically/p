@@ -28,7 +28,8 @@ const Routes = () => {
         <Route path='/metaverse' element={<Navigate to="/" />}>
           <Route hash='land' path='land/:landId' element={<Navigate to="/" />} />
         </Route>
-        <Route path='/reserve-land' element={<ReserveLand />} exact />
+        <Route path='/reserve-land' element={<Navigate to="/" />} exact />
+        {/* <Route path='/reserve-land' element={<ReserveLand />} exact /> */}
         <Route path='/failed' element={<Faild />} exact />
         <Route path='/success' element={<Success />} exact />
         <Route path='/terms' element={<Terms />} />

@@ -139,7 +139,9 @@ const Seventh = () => {
               >
                 {_lands.map((el, i) => (
                   <SwiperSlide key={el.id} className='!w-[265px] group'>
-                    <div onClick={() => navigate('/reserve-land')}>
+                    <div
+                    // onClick={() => navigate('/reserve-land')}
+                    >
                       <div className='relative cursor-pointer flex items-center justify-center w-[265px] h-[240px] overflow-hidden border-bottom-sq-gradient--active mb-[10px]'>
                         <div className='absolute -top-[22px] -bottom-[22px] -left-[22px] -right-[22px]'>
                           {[...Array(11)].map((el, i) => (
@@ -168,10 +170,10 @@ const Seventh = () => {
                       </div>
                       <div
                         className='cursor-pointer opacity-0 swiper-slide-active:opacity-100 transition duration-[.5s] text-[16px] text-white/[.80] underline hover:no-underline underline-offset-8 decoration-[#3F99FF]'
-                        
+
                       >
-                        Reserve Your Land Now
-                        <svg
+                        {/* Reserve Your Land Now */}
+                        {/* <svg
                           className='fill-[#3F99FF] ml-[8px]'
                           width='13'
                           height='14'
@@ -180,7 +182,7 @@ const Seventh = () => {
                           xmlns='http://www.w3.org/2000/svg'
                         >
                           <path d='M8.05047 7.35909L2.39447 13.0171L0.980469 11.6021L6.63747 5.94609L1.68747 0.996094H13.0005V12.3091L8.05047 7.35909Z' />
-                        </svg>
+                        </svg> */}
                       </div>
                     </div>
                   </SwiperSlide>
@@ -241,9 +243,9 @@ const Seventh = () => {
                     </div>
                   </div>
 
-                  <div
+                  {/* <div
                     className='cursor-pointer opacity-0 transition group-hover:opacity-100 text-[16px] text-white/[.80] underline hover:no-underline underline-offset-8 decoration-[#3F99FF]'
-                    
+
                   >
                     Reserve Your Land Now
                     <svg
@@ -256,7 +258,7 @@ const Seventh = () => {
                     >
                       <path d='M8.05047 7.35909L2.39447 13.0171L0.980469 11.6021L6.63747 5.94609L1.68747 0.996094H13.0005V12.3091L8.05047 7.35909Z' />
                     </svg>
-                  </div>
+                  </div> */}
                 </div>
               </SwiperSlide>
           ))}

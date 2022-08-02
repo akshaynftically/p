@@ -35,12 +35,15 @@ const Main = () => {
               We are on a mission to bring e-commerce to web3.0 & metaverse making the buying & selling of digital products & experiences a breeze through our DIY E-Commerce Metaverse COMEARTH.  COMEARTH shall power e-commerce and experiences to connect brands, creators, and products with their customers in an exciting and immersive environment.
             </div>
 
-            <SimpleButton
+            {/* <SimpleButton
               className='md:w-[210px] lg:min-h-full lg:text-[14px] text-bold'
-             
+
               href="/reserve-land"
             >
               Reserve Your Land Now
+            </SimpleButton> */}
+            <SimpleButton className='md:w-[210px] lg:min-h-full lg:text-[14px] text-bold' block href={process.env.REACT_APP_JOIN_WHITELIST_LINK} target="_blank">
+              Join community
             </SimpleButton>
           </div>
           <div className='hidden lg:block order-1 flex justify-center md:order-2 col-span-12 md:col-span-6 text-right metaverse-demo min-h-[300px] h-full relative'>

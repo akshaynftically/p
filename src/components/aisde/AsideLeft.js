@@ -143,7 +143,7 @@ const AsideLeft = () => {
             >
               Contact Us
             </a>
-           
+
             <a
               href='https://www.nftically.com'
               target='_blank'
@@ -158,12 +158,15 @@ const AsideLeft = () => {
             >
               Blog
             </a>
-          
+
           </nav>
 
           <div className='absolute bottom-0 w-full'>
-            <SimpleButton block href='/reserve-land'>
+            {/* <SimpleButton block href='/reserve-land'>
               Reserve Land Now
+            </SimpleButton> */}
+            <SimpleButton block href={process.env.REACT_APP_JOIN_WHITELIST_LINK} target="_blank">
+              Join community
             </SimpleButton>
           </div>
         </div>

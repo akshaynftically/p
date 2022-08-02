@@ -127,9 +127,13 @@ const Fourth = () => {
           </div>
 
           <div className='flex items-end justify-center text-center mb-[50px] relative z-[100]'>
-            <SimpleButton className='!px-[24px] md:mb-[55px]' type='button'
-                          onClick={() =>   navigate('/reserve-land')}>
-              Start Your Metaverse Journey Now
+            <SimpleButton className='!px-[24px] md:mb-[55px]'
+                          // onClick={() =>   navigate('/reserve-land')}
+
+              href={process.env.REACT_APP_JOIN_WHITELIST_LINK} target="_blank"
+                          >
+              {/* Start Your Metaverse Journey Now */}
+              Join community
             </SimpleButton>
           </div>
         </div>

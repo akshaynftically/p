@@ -209,13 +209,13 @@ const Sixth = () => {
                           <div className='font-black font-[JamGrotesque] uppercase text-[52px] mb-[12px]'>{el.title}</div>
                         </div>
                         <div className='text-[16px] text-white/[.80] mb-[32px]'>{el.text}</div>
-                        <SimpleButton type='button'
+                        {/* <SimpleButton type='button'
                                       className='block w-full md:w-auto py-[15px] md:py-3'
                                       size='sm'
                                       onClick={() => navigate('/reserve-land')}
                         >
                           Reserve Land Now
-                        </SimpleButton>
+                        </SimpleButton> */}
                       </div>
                     </div>
                   </div>

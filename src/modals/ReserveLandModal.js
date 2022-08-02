@@ -70,12 +70,15 @@ learn:'',
                           {errors.email?.type === 'pattern' && 'Email is invalid'}
                       </small>
                   </FieldGroup>
-                  <SimpleButton type='submit' block>
-                      Reserve Land Now
-                  </SimpleButton>
+            {/* <SimpleButton type="submit" block href='/reserve-land'>
+              Reserve Land Now
+            </SimpleButton> */}
+            <SimpleButton block href={process.env.REACT_APP_JOIN_WHITELIST_LINK} target="_blank">
+              Join community
+            </SimpleButton>
               </form>
           </>
-          {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet} 
+          {isOpenedProgressWallet && <ProgressConnectYourWallet onClose={handleProgressWallet}
       {...txModalProps}
       />}
       </FullScreenPopup>
