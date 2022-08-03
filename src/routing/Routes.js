@@ -1,5 +1,5 @@
 import {Fragment} from 'react'
-import {Routes as RRDRoutes, Route, Navigate} from 'react-router-dom'
+import {Routes as RRDRoutes, Route, Navigate, Outlet} from 'react-router-dom'
 
 // Views
 import Promo from 'views/Promo'
@@ -28,8 +28,11 @@ const Routes = () => {
         <Route path='/metaverse' element={<Navigate to="/" />}>
           <Route hash='land' path='land/:landId' element={<Navigate to="/" />} />
         </Route>
-        <Route path='/reserve-land' element={<Navigate to="/" />} exact />
+        {/* <Route path='/reserve-land' element={<Navigate to="/" />} exact /> */}
         {/* <Route path='/reserve-land' element={<ReserveLand />} exact /> */}
+        <Route exact path='/reserve-land' element={<ProtectedRoute />}>
+          <Route exact path='/reserve-land' element={<Home />} />
+        </Route>
         <Route path='/failed' element={<Faild />} exact />
         <Route path='/success' element={<Success />} exact />
         <Route path='/terms' element={<Terms />} />
@@ -45,3 +48,11 @@ const Routes = () => {
 }
 
 export default Routes
+
+function ProtectedRoute({ component: Component, ...restOfProps }) {
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlSearchParams.entries());
+  const isAuthenticated = params?.pass==='true'
+
+  return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+}
